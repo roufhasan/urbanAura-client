@@ -29,7 +29,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="relative items-center justify-between md:flex md:py-7 md:pl-14 md:pr-[100px]">
+    <nav className="relative items-center justify-between md:flex md:py-7 md:pl-[4%] md:pr-[7%]">
       <div className="flex items-center justify-between px-[4%]">
         {/* Mobile Menu Toggle Button */}
         <div

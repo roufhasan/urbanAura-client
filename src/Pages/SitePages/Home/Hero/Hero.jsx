@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <section
       style={{ backgroundImage: `url(${heroImg})` }}
-      className="flex h-[calc(100vh-106px)] max-h-[716px] min-h-[470px] w-full flex-col items-start justify-evenly bg-cover bg-center bg-no-repeat text-[#333] md:items-end md:justify-center md:pr-[100px]"
+      className="flex h-[calc(100vh-106px)] max-h-[716px] min-h-[470px] w-full flex-col items-start justify-evenly bg-cover bg-center bg-no-repeat text-[#333] md:items-end md:justify-center md:pr-[7%]"
     >
       <div className="bg-[#fff3e3] px-[4%] pr-14 pt-16 md:max-w-[643px] md:pl-10">
         <p className="font-semibold">New Arrival</p>
