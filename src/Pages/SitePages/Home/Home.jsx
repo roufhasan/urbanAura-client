@@ -1,5 +1,7 @@
+import Hero from "./Hero/Hero";
+
 const Home = () => {
-  return <div className="mt-32 h-screen">Home</div>;
+  return <Hero />;
 };
 
 export default Home;
