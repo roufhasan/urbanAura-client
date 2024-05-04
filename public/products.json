@@ -1,0 +1,92 @@
+[
+  {
+    "id": "001",
+    "title": "Syltherine",
+    "sub_title": "Stylish cafe chair",
+    "price": 106,
+    "image": "https://i.ibb.co/HX8MB3f/image-1.png",
+    "isNew": false,
+    "discount": 30
+  },
+  {
+    "id": "002",
+    "title": "Leviosa",
+    "sub_title": "Stylish cafe chair",
+    "price": 79,
+    "image": "https://i.ibb.co/2yQ7mXf/image-2.png",
+    "isNew": false,
+    "discount": 0
+  },
+  {
+    "id": "003",
+    "title": "Lolito",
+    "sub_title": "Luxury big sofa",
+    "price": 300,
+    "image": "https://i.ibb.co/DQWMk8M/image-3.png",
+    "isNew": false,
+    "discount": 50
+  },
+  {
+    "id": "004",
+    "title": "Respira",
+    "sub_title": "Outdoor bar table and stool",
+    "price": 339,
+    "image": "https://i.ibb.co/cbfwFJn/image-4.jpg",
+    "isNew": true,
+    "discount": 0
+  },
+  {
+    "id": "005",
+    "title": "Grifo",
+    "sub_title": "Night lamp",
+    "price": 49,
+    "image": "https://i.ibb.co/gdC4THm/image-5.png",
+    "isNew": false,
+    "discount": 0
+  },
+  {
+    "id": "006",
+    "title": "Muggo",
+    "sub_title": "Small mug",
+    "price": 119,
+    "image": "https://i.ibb.co/JtkRkdt/image-6.png",
+    "isNew": true,
+    "discount": 0
+  },
+  {
+    "id": "007",
+    "title": "Pingky",
+    "sub_title": "Cute bed set",
+    "price": 649.5,
+    "image": "https://i.ibb.co/T0X54z0/image-7.jpg",
+    "isNew": false,
+    "discount": 50
+  },
+  {
+    "id": "008",
+    "title": "Potty",
+    "sub_title": "Minimalist flower pot",
+    "price": 99,
+    "image": "https://i.ibb.co/mHnTNRJ/image-8.jpg",
+    "isNew": true,
+    "discount": 0
+  },
+  {
+    "id": "009",
+    "title": "Dolonm",
+    "sub_title": "Modern Accent Chair",
+    "price": 111,
+    "image": "https://i.ibb.co/4fVX4Kg/image-9.jpg",
+    "isNew": false,
+    "discount": 0
+  },
+  {
+    "id": "010",
+    "title": "Armen",
+    "sub_title": "Dining Accent Chair",
+    "price": 130,
+    "image": "https://i.ibb.co/zHHpJSy/image-10.jpg",
+    "isNew": true,
+    "discount": 30
+  }
+]
