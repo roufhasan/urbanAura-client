@@ -88,6 +88,7 @@ const RoomSlider = () => {
                   src={data.image}
                   alt={`${data.title}`}
                   className="h-[486px] w-full object-cover object-center"
+                  loading="lazy"
                 />
                 <div className="slider-text absolute bottom-10 left-[10%] flex items-end justify-center">
                   <div className="max-w-60 bg-white/70 p-8 pr-4">
