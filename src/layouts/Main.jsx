@@ -7,7 +7,7 @@ const Main = () => {
     <div className="mx-auto w-full max-w-[1440px] font-Poppins">
       <Navbar />
       <Outlet />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
