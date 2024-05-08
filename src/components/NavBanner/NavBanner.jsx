@@ -10,7 +10,7 @@ const NavBanner = ({ location }) => {
       className="h-[316px] max-h-[316px] w-full bg-cover bg-left-top"
       style={{ background: `url(${navigationBg})` }}
     >
-      <div className="flex h-full w-full flex-col justify-center gap-3 bg-[#d3d3d3]/50 capitalize backdrop-blur-[3px]">
+      <div className="flex h-full w-full flex-col justify-center gap-3 bg-black/5 capitalize backdrop-blur-sm">
         <h1 className="text-center text-5xl font-medium">{urlPath}</h1>
         <div className="flex items-center justify-center gap-[6px]">
           <Link to="/" className="font-medium">
