@@ -7,7 +7,7 @@ const NavBanner = ({ location }) => {
 
   return (
     <div
-      className="h-[316px] max-h-[316px] w-full bg-cover bg-left-top"
+      className="h-64 max-h-64 w-full bg-cover bg-left-top md:h-[316px] md:max-h-[316px]"
       style={{ background: `url(${navigationBg})` }}
     >
       <div className="flex h-full w-full flex-col justify-center gap-3 bg-black/5 capitalize backdrop-blur-sm">
