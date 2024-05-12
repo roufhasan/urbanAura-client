@@ -2,7 +2,7 @@
 import gridIcon from "../../../../assets/logo/grid-big-round.svg";
 import listIcon from "../../../../assets/logo/view-list.svg";
 
-const SortView = () => {
+const SortView = ({ handleSort }) => {
   return (
     <div className="flex flex-wrap items-center justify-end gap-y-4 bg-[#F9F1E7] px-[4%] py-5 md:justify-between md:px-[7%]">
       {/* left buttons */}
@@ -32,10 +32,11 @@ const SortView = () => {
           name="sortings"
           id="sortings"
           className="py-1 text-[#9f9f9f] md:py-3 md:pl-7"
+          onChange={handleSort}
         >
           <option value="default">Default</option>
-          <option value="ascending">Price (Low to High)</option>
-          <option value="descending">Price (High to Low)</option>
+          <option value="asc">Price (Low to High)</option>
+          <option value="desc">Price (High to Low)</option>
         </select>
       </div>
     </div>
