@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 const Shop = () => {
   const [products, setProducts] = useState([]);
   const [sortedProducts, setSortedProducts] = useState(products);
+  const [gridView, setGridView] = useState(true);
   const location = useLocation();
 
   /* get products */
@@ -37,8 +38,8 @@ const Shop = () => {
     <section>
       {/* page navigation banner */}
       <NavBanner location={location} />
-      <SortView handleSort={handleSort} />
-      <Products sortedProducts={sortedProducts} />
+      <SortView handleSort={handleSort} setGridView={setGridView} />
+      <Products gridView={gridView} sortedProducts={sortedProducts} />
       <ServicesHighlight />
     </section>
   );

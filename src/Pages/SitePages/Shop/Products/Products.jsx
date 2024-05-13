@@ -1,9 +1,11 @@
 import Card from "../../../../components/Card/Card";
 
-const Products = ({ sortedProducts }) => {
+const Products = ({ gridView, sortedProducts }) => {
   return (
     <section className="px-[4%] pb-[85px] pt-16 md:px-[7%]">
-      <div className="grid grid-cols-1 gap-y-8 md:grid-cols-4 md:gap-x-8 md:gap-y-10">
+      <div
+        className={`grid grid-cols-1 gap-y-8 md:gap-y-10 ${gridView && "md:grid-cols-4 md:gap-x-8"}`}
+      >
         {sortedProducts &&
           sortedProducts.length > 0 &&
           sortedProducts.map((product) => (

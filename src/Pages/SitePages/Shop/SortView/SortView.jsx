@@ -2,7 +2,7 @@
 import gridIcon from "../../../../assets/logo/grid-big-round.svg";
 import listIcon from "../../../../assets/logo/view-list.svg";
 
-const SortView = ({ handleSort }) => {
+const SortView = ({ handleSort, setGridView }) => {
   return (
     <div className="flex flex-wrap items-center justify-end gap-y-4 bg-[#F9F1E7] px-[4%] py-5 md:justify-between md:px-[7%]">
       {/* left buttons */}
@@ -12,11 +12,13 @@ const SortView = ({ handleSort }) => {
           <img
             src={gridIcon}
             alt="grid icon"
+            onClick={() => setGridView(true)}
             className="size-6 cursor-pointer md:size-7"
           />
           <img
             src={listIcon}
             alt="grid icon"
+            onClick={() => setGridView(false)}
             className="size-5 cursor-pointer md:size-6"
           />
         </div>
