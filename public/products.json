@@ -88,5 +88,311 @@
     "image": "https://i.ibb.co/zHHpJSy/image-10.jpg",
     "isNew": true,
     "discount": 30
+  },
+  {
+    "id": "011",
+    "title": "Ardor",
+    "sub_title": "Comfortable Seating",
+    "price": 150,
+    "image": "https://i.ibb.co/s3txsYh/ahmed-amir-j-AA28-GP8-JVo-unsplash.jpg",
+    "isNew": true,
+    "discount": 25
+  },
+  {
+    "id": "012",
+    "title": "Basil",
+    "sub_title": "Stylish Sofa",
+    "price": 200,
+    "image": "https://i.ibb.co/610rDYv/andrea-davis-z-OPRKa-YLSd-E-unsplash.jpg",
+    "isNew": true,
+    "discount": 0
+  },
+  {
+    "id": "013",
+    "title": "Cedar",
+    "sub_title": "Modern Armchair",
+    "price": 180,
+    "image": "https://i.ibb.co/4KcwSbP/armin-djuhic-mc-L2f-J74-GY-unsplash.jpg",
+    "isNew": false,
+    "discount": 15
+  },
+  {
+    "id": "014",
+    "title": "Drift",
+    "sub_title": "Luxury Recliner",
+    "price": 250,
+    "image": "https://i.ibb.co/gDzSpbn/behnam-norouzi-ph-Xwn-WWz-BM-unsplash.jpg",
+    "isNew": false,
+    "discount": 30
+  },
+  {
+    "id": "015",
+    "title": "Elm",
+    "sub_title": "Classic Loveseat",
+    "price": 300,
+    "image": "https://i.ibb.co/S0H00Mf/benjamin-voros-X63-FTIZFb-Zo-unsplash.jpg",
+    "isNew": true,
+    "discount": 0
+  },
+  {
+    "id": "016",
+    "title": "Fjord",
+    "sub_title": "Elegant Chair",
+    "price": 120,
+    "image": "https://i.ibb.co/xJGhV2d/charlota-blunarova-M0-FIbfxh-K64-unsplash.jpg",
+    "isNew": false,
+    "discount": 20
+  },
+  {
+    "id": "017",
+    "title": "Glade",
+    "sub_title": "Cozy Couch",
+    "price": 220,
+    "image": "https://i.ibb.co/ys5nmW6/cheryl-winn-boujnida-jh-Dof9-B6v-PY-unsplash.jpg",
+    "isNew": true,
+    "discount": 0
+  },
+  {
+    "id": "018",
+    "title": "Haven",
+    "sub_title": "Chic Sectional",
+    "price": 400,
+    "image": "https://i.ibb.co/mvcRBhW/chuttersnap-11-Jrs2-ZY-c-A-unsplash.jpg",
+    "isNew": false,
+    "discount": 35
+  },
+  {
+    "id": "019",
+    "title": "Ivy",
+    "sub_title": "Soft Sofa",
+    "price": 260,
+    "image": "https://i.ibb.co/HYW1mJy/collov-home-design-H-1j-s0dh-Cw-unsplash.jpg",
+    "isNew": true,
+    "discount": 20
+  },
+  {
+    "id": "020",
+    "title": "Jade",
+    "sub_title": "Luxurious Couch",
+    "price": 340,
+    "image": "https://i.ibb.co/88Ljg3j/collov-home-design-Pf-Gj-Kf-YGO4-unsplash.jpg",
+    "isNew": true,
+    "discount": 0
+  },
+  {
+    "id": "021",
+    "title": "Kane",
+    "sub_title": "Modern Sofa",
+    "price": 230,
+    "image": "https://i.ibb.co/pn4yWTP/connor-wang-MNz7-IGrc-El0-unsplash.jpg",
+    "isNew": false,
+    "discount": 25
+  },
+  {
+    "id": "022",
+    "title": "Lark",
+    "sub_title": "Trendy Chair",
+    "price": 170,
+    "image": "https://i.ibb.co/c8Mw7Hj/dennis-cortes-veir-RXw-POQ-unsplash.jpg",
+    "isNew": false,
+    "discount": 0
+  },
+  {
+    "id": "023",
+    "title": "Moss",
+    "sub_title": "Comfortable Couch",
+    "price": 280,
+    "image": "https://i.ibb.co/2PyGwsj/denys-striyeshyn-w-J7y-Gwz2-00-unsplash.jpg",
+    "isNew": true,
+    "discount": 30
+  },
+  {
+    "id": "024",
+    "title": "Nook",
+    "sub_title": "Classic Recliner",
+    "price": 260,
+    "image": "https://i.ibb.co/tZs7CKZ/don-kaveen-NFbwes-e-j-I-unsplash.jpg",
+    "isNew": false,
+    "discount": 0
+  },
+  {
+    "id": "025",
+    "title": "Oak",
+    "sub_title": "Elegant Loveseat",
+    "price": 320,
+    "image": "https://i.ibb.co/Qmz0tyW/eugenivy-now-1-JJJIHh7-Mk-unsplash.jpg",
+    "isNew": true,
+    "discount": 15
+  },
+  {
+    "id": "026",
+    "title": "Pine",
+    "sub_title": "Modern Sofa",
+    "price": 270,
+    "image": "https://i.ibb.co/S3WcT64/francesca-tosolini-9dyit-A0-YIHE-unsplash.jpg",
+    "isNew": false,
+    "discount": 25
+  },
+  {
+    "id": "027",
+    "title": "Quartz",
+    "sub_title": "Comfortable Chair",
+    "price": 140,
+    "image": "https://i.ibb.co/D7QxgVm/hutomo-abrianto-Q-f-Zcn8vl-WY-unsplash.jpg",
+    "isNew": true,
+    "discount": 0
+  },
+  {
+    "id": "028",
+    "title": "Rust",
+    "sub_title": "Classic Couch",
+    "price": 290,
+    "image": "https://i.ibb.co/yfCb64R/hutomo-abrianto-X5-BWooe-O4-Cw-unsplash.jpg",
+    "isNew": false,
+    "discount": 30
+  },
+  {
+    "id": "029",
+    "title": "Sage",
+    "sub_title": "Trendy Loveseat",
+    "price": 330,
+    "image": "https://i.ibb.co/HGtDRVM/igor-starkov-os-Sjw-Cj-VMIg-unsplash.jpg",
+    "isNew": true,
+    "discount": 0
+  },
+  {
+    "id": "030",
+    "title": "Thyme",
+    "sub_title": "Modern Sectional",
+    "price": 420,
+    "image": "https://i.ibb.co/QQp3Fdb/jean-philippe-delberghe-90e-Bo-Ep2t-S0-unsplash.jpg",
+    "isNew": false,
+    "discount": 20
+  },
+  {
+    "id": "031",
+    "title": "Umber",
+    "sub_title": "Elegant Sofa",
+    "price": 280,
+    "image": "https://i.ibb.co/71PnF0m/jonathan-borba-9ilja-Lpo9uw-unsplash.jpg",
+    "isNew": true,
+    "discount": 15
+  },
+  {
+    "id": "032",
+    "title": "Vine",
+    "sub_title": "Cozy Recliner",
+    "price": 240,
+    "image": "https://i.ibb.co/tDvvNsL/jonathan-borba-Ydom-Jd-Fdb-Do-unsplash.jpg",
+    "isNew": false,
+    "discount": 0
+  },
+  {
+    "id": "033",
+    "title": "Willow",
+    "sub_title": "Classic Sectional",
+    "price": 370,
+    "image": "https://i.ibb.co/9bLvr5R/kseniia-l-QSd-LNOKb-Js-unsplash.jpg",
+    "isNew": true,
+    "discount": 30
+  },
+  {
+    "id": "034",
+    "title": "Xenia",
+    "sub_title": "Stylish Chair",
+    "price": 160,
+    "image": "https://i.ibb.co/R4WQFyR/laura-adai-ac7w573i-Ga-M-unsplash.jpg",
+    "isNew": false,
+    "discount": 10
+  },
+  {
+    "id": "035",
+    "title": "Yarrow",
+    "sub_title": "Modern Couch",
+    "price": 310,
+    "image": "https://i.ibb.co/CHfNy4J/michael-oxendine-GHCVUt-BECu-Y-unsplash.jpg",
+    "isNew": true,
+    "discount": 20
+  },
+  {
+    "id": "036",
+    "title": "Zenith",
+    "sub_title": "Comfortable Sectional",
+    "price": 450,
+    "image": "https://i.ibb.co/F5LNcFs/nathan-van-egmond-0-Iwyp-LLb-Hi-A-unsplash.jpg",
+    "isNew": false,
+    "discount": 0
+  },
+  {
+    "id": "037",
+    "title": "Aspen",
+    "sub_title": "Elegant Loveseat",
+    "price": 310,
+    "image": "https://i.ibb.co/XCpB5hM/nathan-van-egmond-q9-QVDa-EPg-M-unsplash.jpg",
+    "isNew": true,
+    "discount": 25
+  },
+  {
+    "id": "038",
+    "title": "Birch",
+    "sub_title": "Classic Armchair",
+    "price": 200,
+    "image": "https://i.ibb.co/bXrfKq4/r-architecture-CCj-APxo-QWg-Q-unsplash.jpg",
+    "isNew": false,
+    "discount": 0
+  },
+  {
+    "id": "039",
+    "title": "Cove",
+    "sub_title": "Modern Sectional",
+    "price": 430,
+    "image": "https://i.ibb.co/K7YbYnN/r-architecture-IZwm-Kiy-Od-MI-unsplash.jpg",
+    "isNew": true,
+    "discount": 10
+  },
+  {
+    "id": "040",
+    "title": "Dune",
+    "sub_title": "Luxury Loveseat",
+    "price": 340,
+    "image": "https://i.ibb.co/3vBWtyV/samantha-gades-XDaa1-RPb6n8-unsplash.jpg",
+    "isNew": false,
+    "discount": 15
+  },
+  {
+    "id": "041",
+    "title": "Ember",
+    "sub_title": "Elegant Sofa",
+    "price": 290,
+    "image": "https://i.ibb.co/9ZWwVSQ/spacejoy-TKFsk-Jy8-PQ8-unsplash.jpg",
+    "isNew": true,
+    "discount": 20
+  },
+  {
+    "id": "042",
+    "title": "Fable",
+    "sub_title": "Stylish Sectional",
+    "price": 450,
+    "image": "https://i.ibb.co/cvQnFT5/thanos-pal-9-OZf-Te-y5-T4-unsplash.jpg",
+    "isNew": false,
+    "discount": 0
+  },
+  {
+    "id": "043",
+    "title": "Grove",
+    "sub_title": "Comfortable Chair",
+    "price": 150,
+    "image": "https://i.ibb.co/R3LGQrN/tu-tu-QZGQO3-Nvs-Lo-unsplash.jpg",
+    "isNew": true,
+    "discount": 30
+  },
+  {
+    "id": "044",
+    "title": "Haze",
+    "sub_title": "Modern Loveseat",
+    "price": 320,
+    "image": "https://i.ibb.co/QnH1cQr/xie-yujie-nick-et-FRTql2qp-M-unsplash.jpg",
+    "isNew": false,
+    "discount": 0
   }
 ]
