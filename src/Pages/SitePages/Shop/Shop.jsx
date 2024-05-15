@@ -12,39 +12,11 @@ const Shop = () => {
   const [gridView, setGridView] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(16);
 
-  const prevDisabled = currentPage === 1;
-  const nextDisabled = currentPage === totalPages;
-
-  const itemsPerPage = 16;
+  // products pagination start index and end index
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const itemsToDisplay = sortedProducts.slice(startIndex, endIndex);
-
-  const handlePrevClick = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  const handleNextClick = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
-  };
-
-  /* get products */
-  const getProducts = async () => {
-    const response = await fetch("products.json");
-    const data = await response.json();
-    setProducts(data);
-    setSortedProducts(data);
-    setTotalPages(Math.ceil(data.length / 16));
-  };
 
   /* handle products sorting */
   const handleSort = (e) => {
@@ -57,6 +29,15 @@ const Shop = () => {
     }
   };
 
+  /* get products */
+  const getProducts = async () => {
+    const response = await fetch("products.json");
+    const data = await response.json();
+    setProducts(data);
+    setSortedProducts(data);
+    setTotalPages(Math.ceil(data.length / itemsPerPage));
+  };
+
   useEffect(() => {
     getProducts();
   }, []);
@@ -65,12 +46,25 @@ const Shop = () => {
     <section>
       {/* page navigation banner */}
       <NavBanner location={location} />
-      <SortView handleSort={handleSort} setGridView={setGridView} />
+      <SortView
+        endIndex={endIndex}
+        handleSort={handleSort}
+        itemsPerPage={itemsPerPage}
+        sortedProducts={sortedProducts}
+        startIndex={startIndex}
+        setGridView={setGridView}
+        setItemsPerPage={setItemsPerPage}
+      />
       <Products
+        currentPage={currentPage}
+        endIndex={endIndex}
         gridView={gridView}
-        itemsToDisplay={itemsToDisplay}
+        itemsPerPage={itemsPerPage}
+        sortedProducts={sortedProducts}
+        startIndex={startIndex}
         totalPages={totalPages}
-        handlePageChange={handlePageChange}
+        setCurrentPage={setCurrentPage}
+        setTotalPages={setTotalPages}
       />
       <ServicesHighlight />
     </section>

@@ -1,12 +1,91 @@
+import { useEffect } from "react";
 import Card from "../../../../components/Card/Card";
+import { scrollToTop } from "../../../../utils/scrollUtils";
 
 const Products = ({
+  currentPage,
+  endIndex,
   gridView,
-  itemsToDisplay,
+  itemsPerPage,
+  sortedProducts,
+  startIndex,
   totalPages,
-  handlePageChange,
+  setCurrentPage,
+  setTotalPages,
 }) => {
-  console.log(itemsToDisplay);
+  // previous and next button disable status
+  const prevDisabled = currentPage === 1;
+  const nextDisabled = currentPage === totalPages;
+
+  // items to display
+  const itemsToDisplay = sortedProducts.slice(startIndex, endIndex);
+
+  // page change by click on page number
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+    scrollToTop();
+  };
+
+  // previous page button
+  const handlePrevClick = () => {
+    scrollToTop();
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  // next page button
+  const handleNextClick = () => {
+    scrollToTop();
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  // render page num buttons
+  const renderPageButtons = () => {
+    const buttons = [];
+    let startIndex, endIndex;
+
+    if (currentPage <= 2) {
+      startIndex = 1;
+      endIndex = Math.min(3, totalPages);
+    } else {
+      startIndex = Math.max(1, currentPage - 1);
+      endIndex = Math.min(totalPages, currentPage + 1);
+
+      if (currentPage >= totalPages - 1) {
+        startIndex = Math.max(1, totalPages - 2);
+        endIndex = totalPages;
+      }
+    }
+
+    for (let i = startIndex; i <= endIndex; i++) {
+      buttons.push(
+        <button
+          key={i}
+          onClick={() => handlePageChange(i)}
+          disabled={i === currentPage}
+          className={`rounded-[10px] px-6 py-4 text-xl ${
+            i === currentPage ? "bg-[#d4a017] text-white" : "bg-[#f9f1e7]"
+          }`}
+        >
+          {i}
+        </button>,
+      );
+    }
+
+    return buttons;
+  };
+
+  useEffect(() => {
+    setTotalPages(Math.ceil(sortedProducts.length / itemsPerPage));
+  }, [itemsPerPage]);
+
+  useEffect(() => {
+    scrollToTop();
+  }, [currentPage]);
+
   return (
     <section className="px-[4%] pb-[85px] pt-16 md:px-[7%]">
       <div
@@ -19,33 +98,28 @@ const Products = ({
           ))}
       </div>
 
-      <div className="mt-8 flex justify-center">
-        {Array.from({ length: totalPages }).map((_, index) => (
-          <button
-            onClick={() => handlePageChange(index + 1)}
-            key={index}
-            className="mx-2 rounded border px-4 py-2"
-          >
-            {index + 1}
-          </button>
-        ))}
-      </div>
-
       {/* pagination */}
-      {/* <div className="mt-[70px] flex items-center justify-center gap-5 text-lg md:gap-9 md:text-xl">
-        <div className="rounded-[10px] bg-[#b88e2f] px-5 py-3 text-white md:px-7 md:py-4">
-          1
-        </div>
-        <div className="rounded-[10px] bg-[#f9f1e7] px-5 py-3 md:px-7 md:py-4">
-          2
-        </div>
-        <div className="rounded-[10px] bg-[#f9f1e7] px-5 py-3 md:px-7 md:py-4">
-          3
-        </div>
-        <div className="rounded-[10px] bg-[#f9f1e7] px-5 py-3 md:px-7 md:py-4">
-          Next
-        </div>
-      </div> */}
+      <div className="mt-[70px] flex items-center justify-center gap-9">
+        {currentPage > 1 && (
+          <button
+            onClick={handlePrevClick}
+            disabled={prevDisabled}
+            className={`rounded-[10px] bg-[#f9f1e7] px-7 py-4 text-lg font-light`}
+          >
+            Prev
+          </button>
+        )}
+        {renderPageButtons()}
+        {currentPage < totalPages && (
+          <button
+            onClick={handleNextClick}
+            disabled={nextDisabled}
+            className={`rounded-[10px] bg-[#f9f1e7] px-7 py-4 text-lg font-light`}
+          >
+            Next
+          </button>
+        )}
+      </div>
     </section>
   );
 };
