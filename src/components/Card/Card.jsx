@@ -1,17 +1,9 @@
 import { BsArrowLeftRight, BsFillShareFill, BsHeart } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { discountedPrice } from "../../utils/discountedPrice";
 
 const Card = ({ product }) => {
   const { id, title, sub_title, price, image, isNew, discount } = product;
-
-  const discountedPrice = (orginalPrice, discountPercentage) => {
-    const offerPrice = orginalPrice - (orginalPrice * discountPercentage) / 100;
-
-    if (Math.floor(offerPrice) !== offerPrice) {
-      return offerPrice.toFixed(2);
-    }
-    return offerPrice;
-  };
 
   return (
     <div className="group relative">

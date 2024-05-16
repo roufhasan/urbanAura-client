@@ -45,11 +45,11 @@ const SortView = ({
       </div>
 
       {/* right side */}
-      <div className="flex items-center justify-between gap-7">
+      <div className="flex flex-wrap items-center justify-between gap-2 md:gap-7">
         <div className="flex items-center gap-2 md:gap-4 md:text-xl">
-          <p>Show</p>
+          <p>Show:</p>
           <input
-            className="size-[55px] text-center text-[#9f9f9f]"
+            className="size-11 text-center text-[#9f9f9f] md:size-[55px]"
             type="text"
             name="itemsPerPage"
             id="itemsPerPage"
@@ -58,11 +58,11 @@ const SortView = ({
           />
         </div>
         <div className="flex items-center gap-2 md:gap-4 md:text-xl">
-          <p>Sort by</p>
+          <p className="w-16 md:w-full">Sort by:</p>
           <select
             name="sortings"
             id="sortings"
-            className="py-1 text-[#9f9f9f] md:py-3 md:pl-7"
+            className="h-11 w-20 py-1 text-[#9f9f9f] md:h-auto md:w-fit md:py-3 md:pl-7"
             onChange={handleSort}
           >
             <option value="default">Default</option>

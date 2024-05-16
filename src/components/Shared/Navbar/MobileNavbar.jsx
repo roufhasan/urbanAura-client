@@ -11,7 +11,7 @@ const MobileNavbar = ({
   return (
     <div
       ref={sideBarRef}
-      className="fixed top-0 min-h-screen w-full bg-black/50 md:hidden"
+      className="fixed top-0 z-50 min-h-screen w-full bg-black/50 md:hidden"
     >
       <div ref={menuRef} className="min-h-screen w-3/4 bg-white">
         <div className="flex items-center justify-between bg-[#fcf8f3] px-[4%] py-4">

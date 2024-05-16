@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Card from "../../../../components/Card/Card";
 import { scrollToTop } from "../../../../utils/scrollUtils";
+import CardList from "../../../../components/CardList/CardList";
 
 const Products = ({
   currentPage,
@@ -66,7 +67,7 @@ const Products = ({
           key={i}
           onClick={() => handlePageChange(i)}
           disabled={i === currentPage}
-          className={`rounded-[10px] px-6 py-4 text-xl ${
+          className={`rounded-[10px] px-4 py-3 text-lg md:px-6 md:py-4 md:text-xl ${
             i === currentPage ? "bg-[#d4a017] text-white" : "bg-[#f9f1e7]"
           }`}
         >
@@ -79,32 +80,38 @@ const Products = ({
   };
 
   useEffect(() => {
-    setTotalPages(Math.ceil(sortedProducts.length / itemsPerPage));
-  }, [itemsPerPage]);
-
-  useEffect(() => {
     scrollToTop();
-  }, [currentPage]);
+    setTotalPages(Math.ceil(sortedProducts.length / itemsPerPage));
+  }, [itemsPerPage, currentPage]);
 
   return (
     <section className="px-[4%] pb-[85px] pt-16 md:px-[7%]">
-      <div
-        className={`grid grid-cols-1 gap-y-8 md:gap-y-10 ${gridView && "md:grid-cols-4 md:gap-x-8"}`}
-      >
-        {itemsToDisplay &&
-          itemsToDisplay.length > 0 &&
-          itemsToDisplay.map((product) => (
-            <Card key={product.id} product={product} />
-          ))}
-      </div>
+      {/* produtcs container */}
+      {gridView ? (
+        <div className={`grid gap-y-8 md:grid-cols-4 md:gap-x-8 md:gap-y-10`}>
+          {itemsToDisplay &&
+            itemsToDisplay.length > 0 &&
+            itemsToDisplay.map((product) => (
+              <Card key={product.id} product={product} />
+            ))}
+        </div>
+      ) : (
+        <div className={`grid grid-cols-1 gap-y-8 md:gap-x-8 md:gap-y-10`}>
+          {itemsToDisplay &&
+            itemsToDisplay.length > 0 &&
+            itemsToDisplay.map((product) => (
+              <CardList key={product.id} product={product} />
+            ))}
+        </div>
+      )}
 
       {/* pagination */}
-      <div className="mt-[70px] flex items-center justify-center gap-9">
+      <div className="mt-[70px] flex items-center justify-center gap-5 md:gap-9">
         {currentPage > 1 && (
           <button
             onClick={handlePrevClick}
             disabled={prevDisabled}
-            className={`rounded-[10px] bg-[#f9f1e7] px-7 py-4 text-lg font-light`}
+            className={`rounded-[10px] bg-[#f9f1e7] px-4 py-2 font-light md:px-7 md:py-4 md:text-lg`}
           >
             Prev
           </button>
@@ -114,7 +121,7 @@ const Products = ({
           <button
             onClick={handleNextClick}
             disabled={nextDisabled}
-            className={`rounded-[10px] bg-[#f9f1e7] px-7 py-4 text-lg font-light`}
+            className={`rounded-[10px] bg-[#f9f1e7] px-4 py-2 font-light md:px-7 md:py-4 md:text-lg`}
           >
             Next
           </button>
