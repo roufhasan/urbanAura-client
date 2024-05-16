@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import Card from "../../../../components/Card/Card";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
 
-  const getProducts = async () => {
-    const res = await fetch("products.json");
-    const data = await res.json();
-    setProducts(data);
+  const getProducts = () => {
+    axios
+      .get("http://localhost:5000/products")
+      .then((res) => setProducts(res.data))
+      .then((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -28,7 +30,7 @@ const Products = () => {
           products.length > 0 &&
           products
             .slice(0, 8)
-            .map((product) => <Card key={product.id} product={product} />)}
+            .map((product) => <Card key={product._id} product={product} />)}
       </div>
 
       <div className="mt-8 text-center">

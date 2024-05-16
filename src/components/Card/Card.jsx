@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { discountedPrice } from "../../utils/discountedPrice";
 
 const Card = ({ product }) => {
-  const { id, title, sub_title, price, image, isNew, discount } = product;
+  const { _id, title, sub_title, price, image, isNew, discount } = product;
 
   return (
     <div className="group relative">
@@ -47,7 +47,7 @@ const Card = ({ product }) => {
 
       {/* Hover Elements */}
       <Link
-        to={`/products/${id}`}
+        to={`/products/${_id}`}
         className="absolute bottom-0 left-0 h-0 w-full bg-[#3A3A3A] opacity-0 transition-all duration-300 ease-linear group-hover:z-10 group-hover:h-full group-hover:opacity-70"
       ></Link>
       <div className="absolute left-0 top-0 hidden h-full w-full flex-col items-center justify-center gap-6 px-4 group-hover:flex">

@@ -92,7 +92,7 @@ const Products = ({
           {itemsToDisplay &&
             itemsToDisplay.length > 0 &&
             itemsToDisplay.map((product) => (
-              <Card key={product.id} product={product} />
+              <Card key={product._id} product={product} />
             ))}
         </div>
       ) : (
@@ -100,7 +100,7 @@ const Products = ({
           {itemsToDisplay &&
             itemsToDisplay.length > 0 &&
             itemsToDisplay.map((product) => (
-              <CardList key={product.id} product={product} />
+              <CardList key={product._id} product={product} />
             ))}
         </div>
       )}

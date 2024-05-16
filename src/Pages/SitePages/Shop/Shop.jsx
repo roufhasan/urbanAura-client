@@ -4,6 +4,7 @@ import ServicesHighlight from "../../../components/ServicesHighlight/ServicesHig
 import Products from "./Products/Products";
 import SortView from "./SortView/SortView";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Shop = () => {
   const location = useLocation();
@@ -30,12 +31,12 @@ const Shop = () => {
   };
 
   /* get products */
-  const getProducts = async () => {
-    const response = await fetch("products.json");
-    const data = await response.json();
-    setProducts(data);
-    setSortedProducts(data);
-    setTotalPages(Math.ceil(data.length / itemsPerPage));
+  const getProducts = () => {
+    axios.get("http://localhost:5000/products").then((res) => {
+      setProducts(res.data);
+      setSortedProducts(res.data);
+      setTotalPages(Math.ceil(res.data.length / itemsPerPage));
+    });
   };
 
   useEffect(() => {
