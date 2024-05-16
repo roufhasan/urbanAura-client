@@ -10,6 +10,7 @@ const Shop = () => {
   const location = useLocation();
   const [products, setProducts] = useState([]);
   const [sortedProducts, setSortedProducts] = useState(products);
+  const [loading, setLoading] = useState(true);
   const [gridView, setGridView] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -33,6 +34,7 @@ const Shop = () => {
   /* get products */
   const getProducts = () => {
     axios.get("http://localhost:5000/products").then((res) => {
+      setLoading(false);
       setProducts(res.data);
       setSortedProducts(res.data);
       setTotalPages(Math.ceil(res.data.length / itemsPerPage));
@@ -61,6 +63,7 @@ const Shop = () => {
         endIndex={endIndex}
         gridView={gridView}
         itemsPerPage={itemsPerPage}
+        loading={loading}
         sortedProducts={sortedProducts}
         startIndex={startIndex}
         totalPages={totalPages}

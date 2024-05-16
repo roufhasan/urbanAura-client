@@ -2,15 +2,23 @@ import { useEffect, useState } from "react";
 import Card from "../../../../components/Card/Card";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import SkeletonLoader from "../../../../components/SkeletonLoader/SkeletonLoader";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getProducts = () => {
     axios
       .get("http://localhost:5000/products")
-      .then((res) => setProducts(res.data))
-      .then((err) => console.log(err));
+      .then((res) => {
+        setLoading(false);
+        setProducts(res.data);
+      })
+      .then((err) => {
+        setLoading(false);
+        console.log(err);
+      });
   };
 
   useEffect(() => {
@@ -26,7 +34,9 @@ const Products = () => {
 
       {/* Products */}
       <div className="grid gap-8 md:grid-cols-4">
-        {products &&
+        {loading && <SkeletonLoader />}
+        {!loading &&
+          products &&
           products.length > 0 &&
           products
             .slice(0, 8)

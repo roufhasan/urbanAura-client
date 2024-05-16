@@ -2,12 +2,14 @@ import { useEffect } from "react";
 import Card from "../../../../components/Card/Card";
 import { scrollToTop } from "../../../../utils/scrollUtils";
 import CardList from "../../../../components/CardList/CardList";
+import SkeletonLoader from "../../../../components/SkeletonLoader/SkeletonLoader";
 
 const Products = ({
   currentPage,
   endIndex,
   gridView,
   itemsPerPage,
+  loading,
   sortedProducts,
   startIndex,
   totalPages,
@@ -89,7 +91,9 @@ const Products = ({
       {/* produtcs container */}
       {gridView ? (
         <div className={`grid gap-y-8 md:grid-cols-4 md:gap-x-8 md:gap-y-10`}>
-          {itemsToDisplay &&
+          {loading && <SkeletonLoader />}
+          {!loading &&
+            itemsToDisplay &&
             itemsToDisplay.length > 0 &&
             itemsToDisplay.map((product) => (
               <Card key={product._id} product={product} />
