@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   BsCart3,
   BsHeart,
@@ -12,6 +12,7 @@ import MobileNavbar from "./MobileNavbar";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const location = useLocation();
   const sideBarRef = useRef();
   const menuRef = useRef();
 
@@ -59,21 +60,23 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Search Field */}
-      <div className="flex h-14 w-full flex-col justify-center bg-[#f2f3f5] md:hidden">
-        <form className="relative mx-auto h-11 w-11/12">
-          <input
-            className="h-full w-full py-1 pl-3 pr-10 outline-none"
-            type="text"
-            placeholder="Search Here..."
-          />
-          <button
-            className="absolute right-3 top-1/2 -translate-y-1/2"
-            type="submit"
-          >
-            <BsSearch size={16} />
-          </button>
-        </form>
-      </div>
+      {location.pathname === "/" && (
+        <div className="flex h-14 w-full flex-col justify-center bg-[#f2f3f5] md:hidden">
+          <form className="relative mx-auto h-11 w-11/12">
+            <input
+              className="h-full w-full py-1 pl-3 pr-10 outline-none"
+              type="text"
+              placeholder="Search Here..."
+            />
+            <button
+              className="absolute right-3 top-1/2 -translate-y-1/2"
+              type="submit"
+            >
+              <BsSearch size={16} />
+            </button>
+          </form>
+        </div>
+      )}
 
       {/* Desktop Navigation Links */}
       <ul className="hidden items-center gap-x-[75px] font-medium md:flex">
