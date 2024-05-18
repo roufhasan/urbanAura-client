@@ -1,6 +1,8 @@
 import { useLocation } from "react-router-dom";
 import NavBanner from "../../../components/NavBanner/NavBanner";
 import ContactDetails from "./ContactDetails/ContactDetails";
+import ContactForm from "./ContactForm/ContactForm";
+import ServicesHighlight from "../../../components/ServicesHighlight/ServicesHighlight";
 
 const Contact = () => {
   const location = useLocation();
@@ -22,13 +24,13 @@ const Contact = () => {
         </div>
 
         {/* ==> Contact details and form container <== */}
-        <div>
-          {/* ==> Contact details container <== */}
-          <div>
-            <ContactDetails />
-          </div>
+        <div className="flex flex-col items-center gap-16 md:flex-row md:items-start md:justify-evenly">
+          <ContactDetails />
+          <ContactForm />
         </div>
       </div>
+
+      <ServicesHighlight />
     </section>
   );
 };
