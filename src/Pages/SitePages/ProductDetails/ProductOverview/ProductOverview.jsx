@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { AiFillTwitterCircle } from "react-icons/ai";
+import { BsFacebook, BsLinkedin } from "react-icons/bs";
 
 const images = [
+  "https://i.ibb.co/QnH1cQr/xie-yujie-nick-et-FRTql2qp-M-unsplash.jpg",
   "https://i.ibb.co/610rDYv/andrea-davis-z-OPRKa-YLSd-E-unsplash.jpg",
   "https://i.ibb.co/s3txsYh/ahmed-amir-j-AA28-GP8-JVo-unsplash.jpg",
   "https://i.ibb.co/gDzSpbn/behnam-norouzi-ph-Xwn-WWz-BM-unsplash.jpg",
@@ -10,23 +13,20 @@ const images = [
 const ProductOverview = () => {
   const [mainImage, setMainImage] = useState(images[0]);
 
-  const handleImgHover = (img) => {
-    setMainImage(img);
-  };
-
   return (
     <div className="justify-between md:flex">
       {/* gallery container */}
       <div className="flex flex-col-reverse gap-8 md:flex-row">
         {/* thumbnail */}
         <div className="flex justify-evenly md:flex-col md:justify-start md:gap-8">
-          {images.slice(0, 4).map((image, index) => {
+          {images.slice(1, 5).map((image, index) => {
             return (
               <img
                 key={index}
                 src={image}
                 alt="shop image"
-                className="size-16 rounded-[10px] object-cover object-center md:h-20 md:w-[76px]"
+                onMouseEnter={() => setMainImage(image)}
+                className={`size-16 rounded-[10px] border-[3px] object-cover object-center transition-all duration-150 ease-in md:h-20 md:w-[76px] ${image === mainImage ? "border-[#b88e2f]" : "border-transparent"}`}
               ></img>
             );
           })}
@@ -88,6 +88,41 @@ const ProductOverview = () => {
           <button className="flex justify-center gap-2.5 rounded-[10px] border border-black py-[14px] text-2xl md:px-12">
             + <span className="text-xl">Compare</span>
           </button>
+        </div>
+
+        <div className="border-t border-[#d9d9d9] pt-10">
+          <div className="grid gap-3 text-[#9f9f9f]">
+            <div className="grid grid-cols-[90px_34px_auto]">
+              <span>SKU</span>
+              <span className="text-center">:</span>
+              <span>SS001</span>
+            </div>
+            <div className="grid grid-cols-[90px_34px_auto]">
+              <span>Category</span>
+              <span className="text-center">:</span>
+              <span>Sofas</span>
+            </div>
+            <div className="grid grid-cols-[90px_34px_auto]">
+              <span>Tags</span>
+              <span className="text-center">:</span>
+              <span>Sofa, Chair, Home, Shop</span>
+            </div>
+            <div className="grid grid-cols-[90px_34px_auto]">
+              <span>Share</span>
+              <span className="text-center">:</span>
+              <span className="flex items-center gap-6">
+                <a href="#" className="text-black">
+                  <BsFacebook size={20} />
+                </a>
+                <a href="#" className="text-black">
+                  <BsLinkedin size={20} />
+                </a>
+                <a href="#" className="text-black">
+                  <AiFillTwitterCircle size={25} />
+                </a>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

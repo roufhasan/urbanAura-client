@@ -5,12 +5,11 @@ import ProductOverview from "./ProductOverview/ProductOverview";
 const ProductDetails = () => {
   const product = useLoaderData();
   const { title } = product;
-  console.log(product);
 
   return (
     <section>
       <BreadCrumbs title={title} />
-      <div className="px-[4%] pt-8 md:px-[7%]">
+      <div className="border-b border-[#d9d9d9] px-[4%] pb-16 pt-8 md:px-[7%]">
         <ProductOverview />
       </div>
     </section>
