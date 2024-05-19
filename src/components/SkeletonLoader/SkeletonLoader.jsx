@@ -1,7 +1,7 @@
 const SkeletonLoader = () => {
   return (
     <>
-      {Array.from({ length: 8 }, (_, i) => (
+      {Array.from({ length: 4 }, (_, i) => (
         <div key={i} className="bg-[#f4f5f7]">
           <div className="animate-pulse">
             <div className="h-72 w-full bg-gray-200"></div>
