@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { BsFacebook, BsLinkedin } from "react-icons/bs";
+import { discountedPrice } from "../../../../utils/discountedPrice";
 
 const images = [
   "https://i.ibb.co/QnH1cQr/xie-yujie-nick-et-FRTql2qp-M-unsplash.jpg",
@@ -10,11 +11,13 @@ const images = [
   "https://i.ibb.co/4KcwSbP/armin-djuhic-mc-L2f-J74-GY-unsplash.jpg",
 ];
 
-const ProductOverview = () => {
+const ProductOverview = ({ product }) => {
+  const { discount, title, price } = product;
+  console.log(product);
   const [mainImage, setMainImage] = useState(images[0]);
 
   return (
-    <div className="justify-between md:flex">
+    <div className="justify-between pb-16 pt-8 md:flex">
       {/* gallery container */}
       <div className="flex flex-col-reverse gap-8 md:flex-row">
         {/* thumbnail */}
@@ -43,8 +46,10 @@ const ProductOverview = () => {
 
       {/* product info container */}
       <div className="mt-8">
-        <h1 className="text-[42px]">Asgaard sofa</h1>
-        <p className="text-2xl font-medium text-[#9f9f9f]">$ 250,000.00</p>
+        <h1 className="text-[42px]">{title}</h1>
+        <p className="text-2xl font-medium text-[#9f9f9f]">
+          $ {price && discount > 0 ? discountedPrice(price, discount) : price}
+        </p>
         <div className="mb-4 mt-3 flex flex-wrap items-center gap-5">
           <p>⭐⭐⭐⭐⭐</p>
           <div className="h-8 w-0.5 bg-[#9f9f9f]"></div>

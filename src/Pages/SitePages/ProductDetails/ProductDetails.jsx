@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import BreadCrumbs from "./BreadCrumbs/BreadCrumbs";
 import ProductOverview from "./ProductOverview/ProductOverview";
+import ProductTabs from "./ProductTabs/ProductTabs";
 
 const ProductDetails = () => {
   const product = useLoaderData();
@@ -9,8 +10,11 @@ const ProductDetails = () => {
   return (
     <section>
       <BreadCrumbs title={title} />
-      <div className="border-b border-[#d9d9d9] px-[4%] pb-16 pt-8 md:px-[7%]">
-        <ProductOverview />
+      <div className="px-[4%] md:px-[7%]">
+        <ProductOverview product={product} />
+      </div>
+      <div className="border-y border-[#d9d9d9] px-[4%] md:px-[7%]">
+        <ProductTabs />
       </div>
     </section>
   );
