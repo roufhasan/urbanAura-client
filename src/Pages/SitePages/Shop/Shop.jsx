@@ -50,25 +50,29 @@ const Shop = () => {
       {/* page navigation banner */}
       <NavBanner location={location} />
       <SortView
-        endIndex={endIndex}
-        handleSort={handleSort}
-        itemsPerPage={itemsPerPage}
-        sortedProducts={sortedProducts}
-        startIndex={startIndex}
-        setGridView={setGridView}
-        setItemsPerPage={setItemsPerPage}
+        {...{
+          endIndex,
+          handleSort,
+          itemsPerPage,
+          sortedProducts,
+          startIndex,
+          setGridView,
+          setItemsPerPage,
+        }}
       />
       <Products
-        currentPage={currentPage}
-        endIndex={endIndex}
-        gridView={gridView}
-        itemsPerPage={itemsPerPage}
-        loading={loading}
-        sortedProducts={sortedProducts}
-        startIndex={startIndex}
-        totalPages={totalPages}
-        setCurrentPage={setCurrentPage}
-        setTotalPages={setTotalPages}
+        {...{
+          currentPage,
+          endIndex,
+          gridView,
+          itemsPerPage,
+          loading,
+          sortedProducts,
+          startIndex,
+          totalPages,
+          setCurrentPage,
+          setTotalPages,
+        }}
       />
       <ServicesHighlight />
     </section>

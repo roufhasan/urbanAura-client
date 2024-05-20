@@ -27,7 +27,7 @@ const CardList = ({ product }) => {
       <div className="w-full px-6 py-4">
         <div className="flex items-center justify-between">
           <Link
-            to={`/product/${_id}`}
+            to={`/products/${_id}`}
             className="text-xl font-semibold md:text-3xl"
           >
             {title}
