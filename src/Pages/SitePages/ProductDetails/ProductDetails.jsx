@@ -13,7 +13,7 @@ const ProductDetails = () => {
       <div className="px-[4%] md:px-[7%]">
         <ProductOverview product={product} />
       </div>
-      <div className="border-y border-[#d9d9d9] px-[4%] md:px-[7%]">
+      <div className="border-y border-[#d9d9d9] px-[4%] pb-16 md:px-[7%]">
         <ProductTabs />
       </div>
     </section>
