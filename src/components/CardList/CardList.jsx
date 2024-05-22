@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { discountedPrice } from "../../utils/discountedPrice";
 
 const CardList = ({ product }) => {
-  const { _id, title, sub_title, price, image, isNew, discount } = product;
+  const { _id, title, sub_title, price, thumbnail, isNew, discount } = product;
 
   return (
     <div className="flex bg-[#faf3ea] shadow-sm">
@@ -10,7 +10,7 @@ const CardList = ({ product }) => {
       <div className="relative h-40 w-40 md:h-56">
         <img
           className="h-full w-full object-cover object-center"
-          src={image}
+          src={thumbnail}
           alt={`image of ${title}`}
           loading="lazy"
         />

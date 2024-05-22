@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import { discountedPrice } from "../../utils/discountedPrice";
 
 const Card = ({ product }) => {
-  const { _id, title, sub_title, price, image, isNew, discount } = product;
+  const { _id, title, sub_title, price, thumbnail, isNew, discount } = product;
 
   return (
     <div className="group relative">
       <div className="relative h-[300px] w-full">
         <img
           className="h-full w-full object-cover object-center"
-          src={image}
+          src={thumbnail}
           alt={`image of ${title}`}
           loading="lazy"
         />

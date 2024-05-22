@@ -3,18 +3,9 @@ import { AiFillTwitterCircle } from "react-icons/ai";
 import { BsFacebook, BsLinkedin } from "react-icons/bs";
 import { discountedPrice } from "../../../../utils/discountedPrice";
 
-const images = [
-  "https://i.ibb.co/QnH1cQr/xie-yujie-nick-et-FRTql2qp-M-unsplash.jpg",
-  "https://i.ibb.co/610rDYv/andrea-davis-z-OPRKa-YLSd-E-unsplash.jpg",
-  "https://i.ibb.co/s3txsYh/ahmed-amir-j-AA28-GP8-JVo-unsplash.jpg",
-  "https://i.ibb.co/gDzSpbn/behnam-norouzi-ph-Xwn-WWz-BM-unsplash.jpg",
-  "https://i.ibb.co/4KcwSbP/armin-djuhic-mc-L2f-J74-GY-unsplash.jpg",
-];
-
 const ProductOverview = ({ product }) => {
-  const { discount, title, price } = product;
-  console.log(product);
-  const [mainImage, setMainImage] = useState(images[0]);
+  const { discount, title, price, thumbnail, gallery } = product;
+  const [mainImage, setMainImage] = useState(thumbnail);
 
   return (
     <div className="justify-between pb-16 pt-8 md:flex">
@@ -22,17 +13,19 @@ const ProductOverview = ({ product }) => {
       <div className="flex flex-col-reverse gap-8 md:flex-row">
         {/* thumbnail */}
         <div className="flex justify-evenly md:flex-col md:justify-start md:gap-8">
-          {images.slice(1, 5).map((image, index) => {
-            return (
-              <img
-                key={index}
-                src={image}
-                alt="shop image"
-                onMouseEnter={() => setMainImage(image)}
-                className={`size-16 rounded-[10px] border-[3px] object-cover object-center transition-all duration-150 ease-in md:h-20 md:w-[76px] ${image === mainImage ? "border-[#b88e2f]" : "border-transparent"}`}
-              ></img>
-            );
-          })}
+          {gallery &&
+            gallery.length > 0 &&
+            gallery.map((image, index) => {
+              return (
+                <img
+                  key={index}
+                  src={image}
+                  alt="shop image"
+                  onMouseEnter={() => setMainImage(image)}
+                  className={`size-16 rounded-[10px] border-[3px] object-cover object-center transition-all duration-150 ease-in md:h-20 md:w-[76px] ${image === mainImage ? "border-[#b88e2f]" : "border-transparent"}`}
+                ></img>
+              );
+            })}
         </div>
         {/* main image */}
         <div>
