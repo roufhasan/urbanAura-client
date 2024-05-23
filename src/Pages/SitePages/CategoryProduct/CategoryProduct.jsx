@@ -1,12 +1,12 @@
 import { useLocation } from "react-router-dom";
 import NavBanner from "../../../components/NavBanner/NavBanner";
+import SortView from "../Shop/SortView/SortView";
 import ServicesHighlight from "../../../components/ServicesHighlight/ServicesHighlight";
-import ProductsPagination from "./Products/ProductsPagination";
-import SortView from "./SortView/SortView";
+import ProductsPagination from "../Shop/Products/ProductsPagination";
 import useProducts from "../../../hooks/useProducts";
 
 const Shop = () => {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
   const {
     endIndex,
     handleSort,
@@ -21,7 +21,7 @@ const Shop = () => {
     totalPages,
     setCurrentPage,
     setTotalPages,
-  } = useProducts();
+  } = useProducts(search);
 
   return (
     <section>

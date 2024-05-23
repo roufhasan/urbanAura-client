@@ -5,9 +5,9 @@ import categoryImg3 from "../../../../assets/images/home/category-3.png";
 
 const Categories = () => {
   const categoryItems = [
-    { img: categoryImg1, text: "Dining", link: "/categoy/dining" },
-    { img: categoryImg2, text: "Living", link: "/categoy/living" },
-    { img: categoryImg3, text: "Bedroom", link: "/categoy/bedroom" },
+    { img: categoryImg1, text: "Dining", link: "dining" },
+    { img: categoryImg2, text: "Living", link: "living" },
+    { img: categoryImg3, text: "Bedroom", link: "bedroom" },
   ];
 
   return (
@@ -20,7 +20,7 @@ const Categories = () => {
       <div className="mt-12 gap-x-5 md:flex">
         {categoryItems.map((item) => (
           <div key={item.text}>
-            <Link to={item.link}>
+            <Link to={`/products?category=${item.link}`}>
               <img
                 src={item.img}
                 alt={`image of ${item.text} room`}
@@ -28,7 +28,7 @@ const Categories = () => {
               />
             </Link>
             <Link
-              to={item.link}
+              to={`/products?category=${item.link}`}
               className="mb-8 mt-4 block text-center text-xl font-semibold md:mt-7 md:text-2xl"
             >
               {item.text}

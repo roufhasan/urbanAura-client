@@ -4,8 +4,8 @@ import { BsChevronRight } from "react-icons/bs";
 import navigationBg from "../../assets/images/navigation-bg.png";
 import logo from "../../assets/logo/logo.png";
 
-const NavBanner = ({ location }) => {
-  const urlPath = location.pathname.split("/").join("");
+const NavBanner = ({ pathname }) => {
+  const urlPath = pathname?.split("/")?.join("");
 
   return (
     <div

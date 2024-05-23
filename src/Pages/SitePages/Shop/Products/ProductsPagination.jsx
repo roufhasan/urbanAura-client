@@ -4,7 +4,7 @@ import { scrollToTop } from "../../../../utils/scrollUtils";
 import CardList from "../../../../components/CardList/CardList";
 import SkeletonLoader from "../../../../components/SkeletonLoader/SkeletonLoader";
 
-const Products = ({
+const ProductsPagination = ({
   currentPage,
   endIndex,
   gridView,
@@ -135,4 +135,4 @@ const Products = ({
   );
 };
 
-export default Products;
+export default ProductsPagination;
