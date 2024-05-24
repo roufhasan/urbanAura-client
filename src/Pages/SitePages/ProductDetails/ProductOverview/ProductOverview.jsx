@@ -3,12 +3,41 @@ import { AiFillTwitterCircle } from "react-icons/ai";
 import { BsFacebook, BsLinkedin } from "react-icons/bs";
 import { discountedPrice } from "../../../../utils/discountedPrice";
 
+const sizes = ["l", "xl", "xs"];
+const colors = ["#816dfa", "black", "#b88e2f"];
+
 const ProductOverview = ({ product }) => {
   const { discount, title, price, thumbnail, gallery } = product;
   const [mainImage, setMainImage] = useState(thumbnail);
+  const [size, setSize] = useState("l");
+  const [color, setColor] = useState("#816dfa");
+  const [quantity, setQuantity] = useState(1);
+
+  const increaseQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  const handleAddToCart = () => {
+    const cartData = {
+      thumbnail,
+      title,
+      price,
+      size,
+      color,
+      quantity,
+    };
+
+    console.log(cartData);
+  };
 
   return (
-    <div className="justify-between pb-16 pt-8 md:flex">
+    <div className="justify-between pb-16 pt-8 md:flex md:gap-24">
       {/* gallery container */}
       <div className="flex flex-col-reverse gap-8 md:flex-row">
         {/* thumbnail */}
@@ -38,7 +67,7 @@ const ProductOverview = ({ product }) => {
       </div>
 
       {/* product info container */}
-      <div className="mt-8">
+      <div className="mt-8 flex-1">
         <h1 className="text-[42px]">{title}</h1>
         <p className="text-2xl font-medium text-[#9f9f9f]">
           $ {price && discount > 0 ? discountedPrice(price, discount) : price}
@@ -58,32 +87,46 @@ const ProductOverview = ({ product }) => {
         <div className="text-sm">
           <p className="text-[#9f9f9f]">Size</p>
           <div className="mt-3 flex gap-4">
-            <button className="size-8 rounded-md bg-[#b88e2f] text-white">
-              L
-            </button>
-            <button className="size-8 rounded-md bg-[#f9f1e7]">XL</button>
-            <button className="size-8 rounded-md bg-[#f9f1e7]">XS</button>
+            {sizes.map((itemSize, i) => (
+              <button
+                onClick={() => setSize(itemSize)}
+                key={i}
+                className={`size-8 rounded-md uppercase ${size === itemSize ? "bg-[#b88e2f] text-white" : "bg-[#f9f1e7]"}`}
+              >
+                {itemSize}
+              </button>
+            ))}
           </div>
         </div>
 
         <div className="mt-5 text-sm">
           <p className="text-[#9f9f9f]">Color</p>
           <div className="mt-3 flex gap-4">
-            <div className="size-8 rounded-full bg-violet-500"></div>
-            <div className="size-8 rounded-full bg-black"></div>
-            <div className="size-8 rounded-full bg-[#b88e2f]"></div>
+            {colors.map((itemColor, i) => (
+              <div
+                key={i}
+                onClick={() => setColor(itemColor)}
+                className={`size-8 rounded-full ${itemColor === color && "border-4 bg-slate-900"}`}
+                style={{ backgroundColor: itemColor }}
+              ></div>
+            ))}
           </div>
         </div>
 
         {/* buttons */}
         <div className="mb-16 mt-8 flex flex-col gap-4 md:flex-row">
-          <button className="flex justify-center gap-9 rounded-[10px] border border-[#9f9f9f] p-4 md:p-5">
-            -<span className="font-medium">1</span>+
+          <button className="flex justify-between rounded-[10px] border border-[#9f9f9f] p-4 md:w-full md:max-w-[120px] md:p-5">
+            <span onClick={decreaseQuantity}>-</span>
+            <span className="font-medium">{quantity}</span>
+            <span onClick={increaseQuantity}>+</span>
           </button>
-          <button className="flex justify-center rounded-[10px] border border-black py-4 text-xl md:px-12">
+          <button
+            onClick={handleAddToCart}
+            className="flex flex-1 justify-center rounded-[10px] border border-black py-4 text-xl md:w-full md:max-w-[217px] md:px-12"
+          >
             Add To Cart
           </button>
-          <button className="flex justify-center gap-2.5 rounded-[10px] border border-black py-[14px] text-2xl md:px-12">
+          <button className="flex justify-center gap-2.5 rounded-[10px] border border-black py-[14px] text-2xl md:w-full md:max-w-[215px] md:px-12">
             + <span className="text-xl">Compare</span>
           </button>
         </div>
