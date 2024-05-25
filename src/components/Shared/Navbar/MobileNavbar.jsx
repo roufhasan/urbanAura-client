@@ -46,7 +46,7 @@ const MobileNavbar = ({
         <div>
           <h3 className="mt-8 bg-[#f2f3f5] px-[4%] py-1 text-lg">Account</h3>
           <Link
-            to="/account"
+            to="/login"
             onClick={() => setShowMenu(!showMenu)}
             className="mt-2 flex items-center gap-2 px-[4%]"
           >

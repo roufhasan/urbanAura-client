@@ -93,7 +93,7 @@ const Navbar = () => {
           <BsSearch size={24} />
         </li>
         <li>
-          <Link to="/account">
+          <Link to="/login">
             <BsPersonExclamation size={28} />
           </Link>
         </li>
