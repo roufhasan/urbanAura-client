@@ -1,26 +1,47 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 /* images */
 import logo from "../../../assets/logo/logo.png";
 import googleLogo from "../../../assets/logo/google-logo.png";
 import loginImg from "../../../assets/images/authentication/login.jpg";
+import { useContext } from "react";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 const Login = () => {
+  const { loading, googleSignIn, setLoading } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
     setValue,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     console.log(data);
   };
 
+  // demo login function to fill up email, password and submit the form
   const handleDemoLogin = () => {
     setValue("email", "demo@example.com");
     setValue("password", "Asdf1234");
+  };
+
+  // google login
+  const handleGoogleLogin = () => {
+    googleSignIn()
+      .then((res) => {
+        const loggedUser = res.user;
+        navigate("/");
+        console.log(loggedUser);
+      })
+      .catch((err) => {
+        setLoading(false);
+        const errCode = err.code;
+        const errMessage = err.message;
+        console.error(errCode, errMessage);
+      });
   };
 
   return (
@@ -87,28 +108,36 @@ const Login = () => {
             </p>
 
             <button
+              disabled={loading}
               type="Submit"
               className="block w-full rounded-[10px] bg-[#b88e2f] py-2 text-xl text-white"
             >
               Log in
             </button>
-            <div className="mb-4 mt-8 flex items-center gap-2.5 text-[#9f9f9f]">
-              <div className="h-0.5 w-full bg-[#9f9f9f]"></div>
-              <p className="">OR</p>
-              <div className="h-0.5 w-full bg-[#9f9f9f]"></div>
-            </div>
-            <button className="my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg">
-              <img src={googleLogo} alt="google logo" className="size-6" />
-              <p>Log In With Google</p>
-            </button>
-            <button
-              onClick={handleDemoLogin}
-              className="flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg"
-            >
-              <BsFillPeopleFill size={24} />
-              <p>Log In With Demo Account</p>
-            </button>
           </form>
+
+          {/* divider and other login buttons */}
+          <div className="mb-4 mt-8 flex items-center gap-2.5 text-[#9f9f9f]">
+            <div className="h-0.5 w-full bg-[#9f9f9f]"></div>
+            <p className="">OR</p>
+            <div className="h-0.5 w-full bg-[#9f9f9f]"></div>
+          </div>
+          <button
+            onClick={handleGoogleLogin}
+            disabled={loading}
+            className="my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg"
+          >
+            <img src={googleLogo} alt="google logo" className="size-6" />
+            <p>Log In With Google</p>
+          </button>
+          <button
+            onClick={handleDemoLogin}
+            disabled={loading}
+            className="flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg"
+          >
+            <BsFillPeopleFill size={24} />
+            <p>Log In With Demo Account</p>
+          </button>
         </div>
       </div>
       {/* image container */}
