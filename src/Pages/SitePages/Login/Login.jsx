@@ -10,11 +10,17 @@ const Login = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);
+  };
+
+  const handleDemoLogin = () => {
+    setValue("email", "demo@example.com");
+    setValue("password", "Asdf1234");
   };
 
   return (
@@ -95,7 +101,10 @@ const Login = () => {
               <img src={googleLogo} alt="google logo" className="size-6" />
               <p>Log In With Google</p>
             </button>
-            <button className="flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg">
+            <button
+              onClick={handleDemoLogin}
+              className="flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg"
+            >
               <BsFillPeopleFill size={24} />
               <p>Log In With Demo Account</p>
             </button>
