@@ -2,8 +2,19 @@ import { Link } from "react-router-dom";
 /* images */
 import logo from "../../../assets/logo/logo.png";
 import signupImg from "../../../assets/images/authentication/signup.jpg";
+import { useForm } from "react-hook-form";
 
 const Signup = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <section className="mx-auto h-full max-h-[1080px] min-h-screen w-full max-w-[1440px] grid-cols-12 px-[4%] py-10 font-Poppins md:grid md:px-[7%]">
       {/* image container */}
@@ -25,7 +36,7 @@ const Signup = () => {
         </Link>
         {/* form */}
         <div className="mt-6">
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <h1 className="text-4xl font-semibold">Furnish Your Space</h1>
             <p className="text-xl italic text-[#9f9f9f]">Join Us Today</p>
 
@@ -33,37 +44,55 @@ const Signup = () => {
               htmlFor="name"
               className="mb-2 mt-10 block w-full text-[#9f9f9f]"
             >
-              Name
+              {errors.name ? (
+                <span className="text-red-500">Name is required*</span>
+              ) : (
+                "Name"
+              )}
             </label>
             <input
-              type="text"
-              name="name"
-              id="name"
               className="block w-full rounded-[10px] border px-3 py-2 text-lg outline-none focus:border-gray-500"
+              type="text"
+              id="name"
+              {...register("name", { required: true })}
             />
             <label
               htmlFor="email"
               className="mb-2 mt-6 block w-full text-[#9f9f9f]"
             >
-              Email
+              {errors.email ? (
+                <span className="text-red-500">Email is required*</span>
+              ) : (
+                "Email"
+              )}
             </label>
             <input
-              type="email"
-              name="email"
-              id="email"
               className="block w-full rounded-[10px] border px-3 py-2 text-lg outline-none focus:border-gray-500"
+              type="email"
+              id="email"
+              {...register("email", { required: true })}
             />
             <label
               htmlFor="password"
               className="mb-2 mt-6 block w-full text-[#9f9f9f]"
             >
-              Password
+              {errors.password ? (
+                <span className="text-sm text-red-500">
+                  Password must be min 8 characters & include at least one
+                  uppercase and one number*
+                </span>
+              ) : (
+                "Password"
+              )}
             </label>
             <input
-              type="password"
-              name="password"
-              id="password"
               className="block w-full rounded-[10px] border px-3 py-2 text-lg outline-none focus:border-gray-500"
+              type="password"
+              id="password"
+              {...register("password", {
+                required: true,
+                pattern: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/,
+              })}
             />
 
             <p className="mb-8 mt-6 text-right text-sm text-[#9f9f9f]">
