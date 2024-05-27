@@ -2,39 +2,77 @@ import { Link } from "react-router-dom";
 import categoryImg1 from "../../../../assets/images/home/category-1.png";
 import categoryImg2 from "../../../../assets/images/home/category-2.png";
 import categoryImg3 from "../../../../assets/images/home/category-3.png";
+import { BsArrowRight } from "react-icons/bs";
 
 const Categories = () => {
-  const categoryItems = [
-    { img: categoryImg1, text: "Dining", link: "dining" },
-    { img: categoryImg2, text: "Living", link: "living" },
-    { img: categoryImg3, text: "Bedroom", link: "bedroom" },
-  ];
-
   return (
     <section className="px-[4%] text-[#333] md:px-[10%]">
       <h1 className="mt-14 text-center text-3xl font-bold">Browse The Range</h1>
       <p className="text-center text-lg text-[#666] md:text-xl">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </p>
-
-      <div className="mt-12 gap-x-5 md:flex">
-        {categoryItems.map((item) => (
-          <div key={item.text}>
-            <Link to={`/products?category=${item.link}`}>
-              <img
-                src={item.img}
-                alt={`image of ${item.text} room`}
-                className="h-96 rounded-[10px] object-cover md:h-[480px]"
-              />
-            </Link>
+      {/* cards container */}
+      <div className="mt-12 flex flex-col gap-6 md:flex-row">
+        {/* card-1 */}
+        <div className="relative">
+          <img src={categoryImg1} alt="elagant white sofa with pillow" />
+          <div className="absolute left-12 top-12 font-medium">
+            <h3 className="mb-3 text-[34px]">Living Room</h3>
             <Link
-              to={`/products?category=${item.link}`}
-              className="mb-8 mt-4 block text-center text-xl font-semibold md:mt-7 md:text-2xl"
+              to="/products?category=living"
+              className="group inline-flex items-center gap-1 border-b border-black pb-0.5"
             >
-              {item.text}
+              Shop Now
+              <span>
+                <BsArrowRight
+                  size={20}
+                  className="transition-transform duration-300 ease-in group-hover:translate-x-1"
+                />
+              </span>
             </Link>
           </div>
-        ))}
+        </div>
+        {/* card-2 and card-3 container */}
+        <div className="flex flex-col gap-6">
+          {/* card-2 */}
+          <div className="relative">
+            <img src={categoryImg2} alt="elagant white sofa with pillow" />
+            <div className="absolute bottom-10 left-8 font-medium">
+              <h3 className="mb-3 text-[34px]">Bed Room</h3>
+              <Link
+                to="/products?category=bedroom"
+                className="group inline-flex items-center gap-1 border-b border-black pb-0.5"
+              >
+                Shop Now
+                <span>
+                  <BsArrowRight
+                    size={20}
+                    className="transition-transform duration-300 ease-in group-hover:translate-x-1"
+                  />
+                </span>
+              </Link>
+            </div>
+          </div>
+          {/* card-3 */}
+          <div className="relative">
+            <img src={categoryImg3} alt="elagant white sofa with pillow" />
+            <div className="absolute bottom-10 left-8 font-medium">
+              <h3 className="mb-3 text-[34px]">Kitchen</h3>
+              <Link
+                to="/products?category=dining"
+                className="group inline-flex items-center gap-1 border-b border-black pb-0.5"
+              >
+                Shop Now
+                <span>
+                  <BsArrowRight
+                    size={20}
+                    className="transition-transform duration-300 ease-in group-hover:translate-x-1"
+                  />
+                </span>
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
