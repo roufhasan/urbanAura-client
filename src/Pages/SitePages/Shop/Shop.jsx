@@ -27,29 +27,41 @@ const Shop = () => {
     <section>
       {/* page navigation banner */}
       <NavBanner pathname={pathname} />
+
+      {/* Props for SortView component:
+          - Pagination data: startIndex, endIndex, itemsPerPage, setItemsPerPage
+          - Sorting: sortedProducts, handleSort
+          - View state: setGridView
+      */}
       <SortView
         {...{
-          endIndex,
-          handleSort,
-          itemsPerPage,
-          sortedProducts,
           startIndex,
-          setGridView,
+          endIndex,
+          itemsPerPage,
           setItemsPerPage,
+          sortedProducts,
+          handleSort,
+          setGridView,
         }}
       />
+
+      {/* Props for ProductsPagination component:
+          - Pagination state: currentPage, totalPages, setCurrentPage, setTotalPages
+          - Product data: sortedProducts, itemsPerPage, startIndex, endIndex
+          - View state: gridView, loading 
+      */}
       <ProductsPagination
         {...{
           currentPage,
-          endIndex,
-          gridView,
-          itemsPerPage,
-          loading,
-          sortedProducts,
-          startIndex,
           totalPages,
           setCurrentPage,
           setTotalPages,
+          sortedProducts,
+          itemsPerPage,
+          startIndex,
+          endIndex,
+          gridView,
+          loading,
         }}
       />
       <ServicesHighlight />

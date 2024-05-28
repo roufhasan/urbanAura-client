@@ -16,18 +16,27 @@ import logo from "../../../assets/logo/logo.png";
 import MobileNavbar from "./MobileNavbar";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [showMenu, setShowMenu] = useState(false);
   const location = useLocation();
   const sideBarRef = useRef();
   const menuRef = useRef();
 
+  // Mobile Menu Toggle Handler
   window.addEventListener("click", (e) => {
     if (e.target === sideBarRef.current || e.target === menuRef.current) {
       setShowMenu(!showMenu);
     }
   });
 
+  // Handle user logout
+  const handleUserLogOut = () => {
+    logOut()
+      .then(() => console.log("Sign-out successful"))
+      .catch((err) => console.error(err));
+  };
+
+  // Navigation Menu Links
   const navItems = [
     { link: "/", text: "Home" },
     { link: "/shop", text: "Shop" },
@@ -35,6 +44,7 @@ const Navbar = () => {
     { link: "/contact", text: "Contact" },
   ];
 
+  // Desktop User Profile Imgae Dropdown Button
   const userDropDown = (
     <>
       <Popover>
@@ -68,7 +78,10 @@ const Navbar = () => {
             </span>
             My Orders
           </Link>
-          <button className="flex items-center gap-2 text-sm">
+          <button
+            onClick={handleUserLogOut}
+            className="flex items-center gap-2 text-sm"
+          >
             <BsBoxArrowInLeft size={24} />
             Logout
           </button>
@@ -165,6 +178,7 @@ const Navbar = () => {
           setShowMenu={setShowMenu}
           showMenu={showMenu}
           navItems={navItems}
+          handleUserLogOut={handleUserLogOut}
         />
       )}
     </nav>
