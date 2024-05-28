@@ -16,7 +16,8 @@ const Categories = () => {
         {/* card-1 */}
         <div className="relative">
           <img src={categoryImg1} alt="elagant white sofa with pillow" />
-          <div className="absolute left-12 top-12 font-medium">
+          <div className="absolute left-0 top-0 h-full w-full bg-black/10 md:hidden"></div>
+          <div className="absolute left-8 top-12 font-medium md:left-12">
             <h3 className="mb-3 text-[34px]">Living Room</h3>
             <Link
               to="/products?category=living"
@@ -37,6 +38,7 @@ const Categories = () => {
           {/* card-2 */}
           <div className="relative">
             <img src={categoryImg2} alt="elagant white sofa with pillow" />
+            <div className="absolute left-0 top-0 h-full w-full bg-black/10 md:hidden"></div>
             <div className="absolute bottom-10 left-8 font-medium">
               <h3 className="mb-3 text-[34px]">Bed Room</h3>
               <Link
@@ -56,6 +58,7 @@ const Categories = () => {
           {/* card-3 */}
           <div className="relative">
             <img src={categoryImg3} alt="elagant white sofa with pillow" />
+            <div className="absolute left-0 top-0 h-full w-full bg-black/10 md:hidden"></div>
             <div className="absolute bottom-10 left-8 font-medium">
               <h3 className="mb-3 text-[34px]">Kitchen</h3>
               <Link
