@@ -1,16 +1,22 @@
+import { useContext, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import {
+  BsBox2,
+  BsBoxArrowInLeft,
   BsCart3,
   BsHeart,
   BsList,
   BsPersonExclamation,
+  BsPersonGear,
   BsSearch,
 } from "react-icons/bs";
+import { AuthContext } from "../../../Providers/AuthProvider";
 import logo from "../../../assets/logo/logo.png";
-import { useRef, useState } from "react";
 import MobileNavbar from "./MobileNavbar";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
   const [showMenu, setShowMenu] = useState(false);
   const location = useLocation();
   const sideBarRef = useRef();
@@ -28,6 +34,48 @@ const Navbar = () => {
     { link: "/about", text: "About" },
     { link: "/contact", text: "Contact" },
   ];
+
+  const userDropDown = (
+    <>
+      <Popover>
+        <PopoverButton className="size-8 focus:outline-none">
+          <img
+            loading="eazy"
+            src={user && user?.photoURL}
+            alt={`${user && user?.displayName} profile img`}
+            className="h-full w-full rounded-full"
+          />
+        </PopoverButton>
+        <PopoverPanel
+          anchor="bottom"
+          className="mt-10 rounded border bg-white px-4 py-3 text-gray-600 shadow"
+        >
+          <Link
+            to="/account-settings"
+            className="mb-4 flex items-center gap-2 text-sm"
+          >
+            <span>
+              <BsPersonGear size={24} />
+            </span>
+            Manage My Account
+          </Link>
+          <Link
+            to="/my-orders"
+            className="mb-4 flex items-center gap-2 text-sm"
+          >
+            <span className="w-6">
+              <BsBox2 size={18} />
+            </span>
+            My Orders
+          </Link>
+          <button className="flex items-center gap-2 text-sm">
+            <BsBoxArrowInLeft size={24} />
+            Logout
+          </button>
+        </PopoverPanel>
+      </Popover>
+    </>
+  );
 
   return (
     <nav className="relative items-center justify-between md:flex md:py-7 md:pl-[4%] md:pr-[7%]">
@@ -93,9 +141,13 @@ const Navbar = () => {
           <BsSearch size={24} />
         </li>
         <li>
-          <Link to="/login">
-            <BsPersonExclamation size={28} />
-          </Link>
+          {user ? (
+            userDropDown
+          ) : (
+            <Link to="/login">
+              <BsPersonExclamation size={28} />
+            </Link>
+          )}
         </li>
         <li>
           <BsHeart size={24} />
