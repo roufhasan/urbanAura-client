@@ -1,18 +1,36 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { AuthContext } from "../../../Providers/AuthProvider";
 /* images */
 import logo from "../../../assets/logo/logo.png";
 import signupImg from "../../../assets/images/authentication/signup.jpg";
-import { useForm } from "react-hook-form";
 
 const Signup = () => {
+  // Auth Context for user creation
+  const { createUser, loading, setLoading } = useContext(AuthContext);
+  // React Hook Form Setup
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate();
+
+  // Form Submit handler
   const onSubmit = (data) => {
-    console.log(data);
+    createUser(data.email, data.password)
+      .then((result) => {
+        const loggedUser = result.user;
+        navigate("/");
+        setLoading(false);
+        console.log(loggedUser);
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.error(error.message);
+      });
   };
 
   return (
@@ -103,8 +121,9 @@ const Signup = () => {
             </p>
 
             <button
+              disabled={loading}
               type="Submit"
-              className="block w-full rounded-[10px] bg-[#b88e2f] py-2 text-xl text-white"
+              className={`block w-full rounded-[10px] py-2 text-xl text-white ${loading ? "bg-[#b88f2fc4]" : "bg-[#b88e2f]"}`}
             >
               Sign up
             </button>
