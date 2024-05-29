@@ -123,7 +123,7 @@ const Login = () => {
               type="Submit"
               className={`block w-full rounded-[10px] py-2 text-xl text-white ${loading ? "bg-[#b88f2fc4]" : "bg-[#b88e2f]"}`}
             >
-              Log in
+              Login
             </button>
           </form>
 
@@ -139,7 +139,7 @@ const Login = () => {
             className={`my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg ${loading && "text-[#9f9f9f]"}`}
           >
             <img src={googleLogo} alt="google logo" className="size-6" />
-            <p>Log In With Google</p>
+            <p>Login With Google</p>
           </button>
           <button
             onClick={handleDemoLogin}
@@ -150,7 +150,7 @@ const Login = () => {
               size={24}
               color={loading ? "#9f9f9f" : undefined}
             />
-            <p>Log In With Demo Account</p>
+            <p>Login With Demo Account</p>
           </button>
         </div>
       </div>

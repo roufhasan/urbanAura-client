@@ -38,7 +38,7 @@ const Footer = () => {
               className="mx-auto w-[80%] border-b border-b-black py-1 pr-7 text-center text-[#9F9F9F] outline-none focus:border-b-2 md:mx-0 md:w-full md:text-left"
               type="email"
               name="email"
-              id="email"
+              id="footer_email"
               placeholder="Enter Your Email Address"
             />
             <button className="mt-3 border-b border-b-black py-1 font-medium uppercase md:ml-3 md:mt-0 md:py-[5px]">

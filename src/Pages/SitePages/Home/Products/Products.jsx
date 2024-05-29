@@ -17,6 +17,7 @@ const Products = () => {
       })
       .then((err) => {
         setLoading(false);
+        console.error(err);
       });
   };
 
