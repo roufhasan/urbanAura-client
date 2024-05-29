@@ -9,7 +9,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 
 const Login = () => {
-  const { loading, googleSignIn, setLoading } = useContext(AuthContext);
+  const { signIn, googleSignIn, loading, setLoading } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -18,8 +18,19 @@ const Login = () => {
   } = useForm();
   const navigate = useNavigate();
 
+  // Form Submit handler
   const onSubmit = (data) => {
-    console.log(data);
+    signIn(data.email, data.password)
+      .then((result) => {
+        setLoading(false);
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        navigate("/");
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.error(error.message);
+      });
   };
 
   // demo login function to fill up email, password and submit the form
@@ -110,7 +121,7 @@ const Login = () => {
             <button
               disabled={loading}
               type="Submit"
-              className="block w-full rounded-[10px] bg-[#b88e2f] py-2 text-xl text-white"
+              className={`block w-full rounded-[10px] py-2 text-xl text-white ${loading ? "bg-[#b88f2fc4]" : "bg-[#b88e2f]"}`}
             >
               Log in
             </button>
@@ -125,7 +136,7 @@ const Login = () => {
           <button
             onClick={handleGoogleLogin}
             disabled={loading}
-            className="my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg"
+            className={`my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg ${loading && "text-[#9f9f9f]"}`}
           >
             <img src={googleLogo} alt="google logo" className="size-6" />
             <p>Log In With Google</p>
@@ -133,9 +144,12 @@ const Login = () => {
           <button
             onClick={handleDemoLogin}
             disabled={loading}
-            className="flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg"
+            className={`flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg ${loading && "text-[#9f9f9f]"}`}
           >
-            <BsFillPeopleFill size={24} />
+            <BsFillPeopleFill
+              size={24}
+              color={loading ? "#9f9f9f" : undefined}
+            />
             <p>Log In With Demo Account</p>
           </button>
         </div>

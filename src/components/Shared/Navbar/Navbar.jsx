@@ -7,6 +7,7 @@ import {
   BsCart3,
   BsHeart,
   BsList,
+  BsPersonCircle,
   BsPersonExclamation,
   BsPersonGear,
   BsSearch,
@@ -49,12 +50,16 @@ const Navbar = () => {
     <>
       <Popover>
         <PopoverButton className="size-8 focus:outline-none">
-          <img
-            loading="eazy"
-            src={user && user?.photoURL}
-            alt={`${user && user?.displayName} profile img`}
-            className="h-full w-full rounded-full"
-          />
+          {user && user.photoURL ? (
+            <img
+              loading="eazy"
+              src={user.photoURL}
+              alt={`${user && user?.displayName} profile img`}
+              className="h-full w-full rounded-full"
+            />
+          ) : (
+            <BsPersonCircle size={28} />
+          )}
         </PopoverButton>
         <PopoverPanel
           anchor="bottom"
