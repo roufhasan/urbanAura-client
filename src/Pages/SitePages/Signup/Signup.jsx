@@ -8,7 +8,8 @@ import signupImg from "../../../assets/images/authentication/signup.jpg";
 
 const Signup = () => {
   // Auth Context for user creation
-  const { createUser, loading, setLoading } = useContext(AuthContext);
+  const { createUser, updateUserProfile, loading, setLoading } =
+    useContext(AuthContext);
   // React Hook Form Setup
   const {
     register,
@@ -20,14 +21,26 @@ const Signup = () => {
 
   // Form Submit handler
   const onSubmit = (data) => {
+    // create new user with email and password
     createUser(data.email, data.password)
       .then((result) => {
         const loggedUser = result.user;
-        navigate("/");
-        setLoading(false);
         console.log(loggedUser);
+
+        // Update user profile name
+        updateUserProfile(data.name)
+          .then(() => {
+            // Navigate to home page after successful profile update
+            navigate("/");
+            setLoading(false);
+          })
+          .catch((error) => {
+            // Handle error during profile update
+            console.error("Profile update error:", error);
+          });
       })
       .catch((error) => {
+        // Handle error during user creation
         setLoading(false);
         console.error(error.message);
       });
