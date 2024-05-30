@@ -16,13 +16,26 @@ const useProducts = (initialUrl) => {
 
   /* handle products sorting */
   const handleSort = (e) => {
-    if (e.target.value === "asc") {
-      setSortedProducts([...sortedProducts].sort((a, b) => a.price - b.price));
-    } else if (e.target.value === "desc") {
-      setSortedProducts([...sortedProducts].sort((a, b) => b.price - a.price));
-    } else {
-      setSortedProducts(products);
-    }
+    const sortType = e.target.value;
+
+    setSortedProducts(
+      [...products].sort((a, b) => {
+        const priceA = a.price.discounted
+          ? a.price.discounted
+          : a.price.original;
+        const priceB = b.price.discounted
+          ? b.price.discounted
+          : b.price.original;
+
+        if (sortType === "asc") {
+          return priceA - priceB;
+        } else if (sortType === "desc") {
+          return priceB - priceA;
+        } else {
+          return 0;
+        }
+      }),
+    );
   };
 
   const url = initialUrl

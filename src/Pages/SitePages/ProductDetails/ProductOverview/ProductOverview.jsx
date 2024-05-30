@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { BsFacebook, BsLinkedin } from "react-icons/bs";
-import { discountedPrice } from "../../../../utils/discountedPrice";
+import { formatPrice } from "../../../../utils/formatPrice";
 
 const sizes = ["l", "xl", "xs"];
 const colors = ["#816dfa", "black", "#b88e2f"];
 
 const ProductOverview = ({ product }) => {
-  const { discount, title, price, thumbnail, gallery } = product;
+  const { title, price, thumbnail, gallery } = product;
   const [mainImage, setMainImage] = useState(thumbnail);
   const [size, setSize] = useState("l");
   const [color, setColor] = useState("#816dfa");
@@ -70,7 +70,10 @@ const ProductOverview = ({ product }) => {
       <div className="mt-8 flex-1">
         <h1 className="text-[42px]">{title}</h1>
         <p className="text-2xl font-medium text-[#9f9f9f]">
-          $ {price && discount > 0 ? discountedPrice(price, discount) : price}
+          ${" "}
+          {price.discounted
+            ? formatPrice(price.discounted)
+            : formatPrice(price.original)}
         </p>
         <div className="mb-4 mt-3 flex flex-wrap items-center gap-5">
           <p>⭐⭐⭐⭐⭐</p>
@@ -83,7 +86,7 @@ const ProductOverview = ({ product }) => {
           Kilburn is a compact, stout-hearted hero with a well-balanced audio
           which boasts a clear midrange and extended highs for a sound.
         </p>
-
+        {/* Size Selection Buttons */}
         <div className="text-sm">
           <p className="text-[#9f9f9f]">Size</p>
           <div className="mt-3 flex gap-4">
@@ -98,7 +101,7 @@ const ProductOverview = ({ product }) => {
             ))}
           </div>
         </div>
-
+        {/* Color Selection Buttons */}
         <div className="mt-5 text-sm">
           <p className="text-[#9f9f9f]">Color</p>
           <div className="mt-3 flex gap-4">

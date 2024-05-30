@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { discountedPrice } from "../../utils/discountedPrice";
+import { formatPrice } from "../../utils/formatPrice";
+// import { discountedPrice } from "../../utils/discountedPrice";
 
 const CardList = ({ product }) => {
-  const { _id, title, sub_title, price, thumbnail, isNew, discount } = product;
+  const { _id, title, sub_title, price, thumbnail, is_new } = product;
 
   return (
     <div className="flex bg-[#faf3ea] shadow-sm">
@@ -14,11 +15,11 @@ const CardList = ({ product }) => {
           alt={`image of ${title}`}
           loading="lazy"
         />
-        {isNew || discount > 0 ? (
+        {is_new || price.discount_percent ? (
           <p
-            className={`absolute right-4 top-4 flex size-8 items-center justify-center rounded-full text-xs font-medium text-white md:right-3 md:top-3 md:size-9 ${isNew ? "bg-[#2EC1AC]" : "bg-[#E97171]"}`}
+            className={`absolute right-4 top-4 flex size-8 items-center justify-center rounded-full text-xs font-medium text-white md:right-3 md:top-3 md:size-9 ${is_new ? "bg-[#2EC1AC]" : "bg-[#E97171]"}`}
           >
-            <span>{isNew ? "New" : `-${discount}%`}</span>
+            <span>{is_new ? "New" : `-${price.discount_percent}%`}</span>
           </p>
         ) : null}
       </div>
@@ -33,8 +34,10 @@ const CardList = ({ product }) => {
             {title}
           </Link>
           {/* Original price of a discounted product  */}
-          {price && discount > 0 && (
-            <p className="text-[#B0B0B0] line-through">${price.toFixed(2)}</p>
+          {price.discounted && (
+            <p className="text-[#B0B0B0] line-through">
+              ${formatPrice(price.original)}
+            </p>
           )}
         </div>
 
@@ -42,14 +45,16 @@ const CardList = ({ product }) => {
           <p className="text-[#898989] md:font-medium">{sub_title}</p>
           {/* discounted price */}
           <div
-            className={`${price && discount > 0 && "flex items-center justify-between"} mt-auto`}
+            className={`${price.discounted && "flex items-center justify-between"} mt-auto`}
           >
-            {price && discount ? (
+            {price.discounted ? (
               <p className="text-lg font-semibold md:text-2xl">
-                ${discountedPrice(price, discount)}
+                ${formatPrice(price.discounted)}
               </p>
             ) : (
-              <p className="text-lg font-semibold md:text-2xl">${price}</p>
+              <p className="text-lg font-semibold md:text-2xl">
+                ${formatPrice(price.original)}
+              </p>
             )}
           </div>
         </div>

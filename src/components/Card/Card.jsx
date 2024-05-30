@@ -1,21 +1,23 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { BsArrowLeftRight, BsFillShareFill, BsHeart } from "react-icons/bs";
-import toast from "react-hot-toast";
 import { AuthContext } from "../../Providers/AuthProvider";
-import LoginModal from "../LoginModal/LoginModal";
-import { discountedPrice } from "../../utils/discountedPrice";
+import LoginModal from "../Modals/LoginModal/LoginModal";
+import AddToCartModal from "../Modals/AddToCartModal.jsx/AddToCartModal";
+import { formatPrice } from "../../utils/formatPrice";
 
 const Card = ({ product }) => {
-  const { _id, title, sub_title, price, thumbnail, isNew, discount } = product;
+  const { _id, title, sub_title, price, thumbnail, is_new } = product;
   const { user } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState({});
 
-  const handleAddToCart = (id) => {
+  const handleModal = () => {
     if (!user) {
       return setIsOpen(true);
     }
-    toast.success(id);
+    setIsOpen(true);
+    setSelectedProduct(product);
   };
 
   return (
@@ -28,11 +30,11 @@ const Card = ({ product }) => {
             alt={`image of ${title}`}
             loading="lazy"
           />
-          {isNew || discount > 0 ? (
+          {price.discount_percent || is_new ? (
             <p
-              className={`text-white" absolute right-4 top-4 flex size-11 items-center justify-center rounded-full font-medium text-white md:right-6 md:top-6 md:size-12 ${isNew ? "bg-[#2EC1AC]" : "bg-[#E97171]"}`}
+              className={`text-white" absolute right-4 top-4 flex size-11 items-center justify-center rounded-full font-medium text-white md:right-6 md:top-6 md:size-12 ${is_new ? "bg-[#2EC1AC]" : "bg-[#E97171]"}`}
             >
-              <span>{isNew ? "New" : `-${discount}%`}</span>
+              <span>{is_new ? "New" : `-${price.discount_percent}%`}</span>
             </p>
           ) : null}
         </div>
@@ -42,19 +44,23 @@ const Card = ({ product }) => {
           <p className="my-2 text-[#898989] md:font-medium">{sub_title}</p>
 
           <div
-            className={`${price && discount > 0 && "flex items-center justify-between"}`}
+            className={`${price.discounted && "flex items-center justify-between"}`}
           >
-            {price && discount ? (
+            {price.discounted ? (
               <p className="text-lg font-semibold md:text-xl">
-                ${discountedPrice(price, discount)}
+                ${formatPrice(price.discounted)}
               </p>
             ) : (
-              <p className="text-lg font-semibold md:text-xl">${price}</p>
+              <p className="text-lg font-semibold md:text-xl">
+                ${formatPrice(price.original)}
+              </p>
             )}
 
             {/* Original price of a discounted product  */}
-            {price && discount > 0 && (
-              <p className="text-[#B0B0B0] line-through">${price.toFixed(2)}</p>
+            {price.discounted && (
+              <p className="text-[#B0B0B0] line-through">
+                ${formatPrice(price.original)}
+              </p>
             )}
           </div>
         </div>
@@ -66,7 +72,7 @@ const Card = ({ product }) => {
         ></Link>
         <div className="absolute left-0 top-0 hidden h-full w-full flex-col items-center justify-center gap-6 px-4 group-hover:flex">
           <button
-            onClick={() => handleAddToCart(_id)}
+            onClick={() => handleModal(product)}
             className="z-20 bg-white px-14 py-3 font-medium text-[#B88E2F]"
           >
             Add to cart
@@ -85,7 +91,15 @@ const Card = ({ product }) => {
         </div>
       </div>
 
-      <LoginModal isOpen={isOpen} setIsOpen={setIsOpen} />
+      {open && user ? (
+        <AddToCartModal
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          selectedProduct={selectedProduct}
+        />
+      ) : (
+        <LoginModal isOpen={isOpen} setIsOpen={setIsOpen} />
+      )}
     </>
   );
 };
