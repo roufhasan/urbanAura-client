@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Dialog, DialogPanel } from "@headlessui/react";
-import { BsFillPeopleFill } from "react-icons/bs";
+import { BsFillPeopleFill, BsXLg } from "react-icons/bs";
 import { AuthContext } from "../../Providers/AuthProvider";
 import googleLogo from "../../assets/logo/google-logo.png";
 
@@ -63,17 +63,17 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
       >
         <div className="fixed inset-0 flex w-screen items-center justify-center overflow-y-auto bg-black/50">
           <DialogPanel className="w-full space-y-4 border bg-white px-6 py-10 md:h-fit md:w-fit md:px-12">
-            <div className="flex items-center justify-between text-2xl font-semibold">
+            <div className="flex items-center justify-between text-xl font-semibold">
               <div>
-                <p>Login</p>
+                <p>Welcome! Please Login to continue.</p>
               </div>
-              <button
+              <BsXLg
                 onClick={() => setIsOpen(false)}
-                className="flex size-6 items-center justify-center rounded-full bg-gray-200 text-base transition-all hover:bg-gray-300"
-              >
-                X
-              </button>
+                size={24}
+                className="cursor-pointer text-[#9f9f9f] transition-all hover:text-[#8f8f8f]"
+              />
             </div>
+
             <div className="flex flex-col justify-center px-3 md:flex-row md:items-center md:gap-10">
               <form onSubmit={handleSubmit(onSubmit)} className="md:min-w-80">
                 <label

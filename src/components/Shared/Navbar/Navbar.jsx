@@ -69,26 +69,28 @@ const Navbar = () => {
             to="/account-settings"
             className="mb-4 flex items-center gap-2 text-sm"
           >
-            <span>
-              <BsPersonGear size={24} />
+            <BsPersonGear size={24} />
+            <span className="border-b border-transparent transition-all hover:border-[#b88e2f] hover:text-[#b88e2f]">
+              Manage My Account
             </span>
-            Manage My Account
           </Link>
           <Link
             to="/my-orders"
             className="mb-4 flex items-center gap-2 text-sm"
           >
-            <span className="w-6">
-              <BsBox2 size={18} />
+            <BsBox2 size={18} className="w-6" />
+            <span className="border-b border-transparent transition-all hover:border-[#b88e2f] hover:text-[#b88e2f]">
+              My Orders
             </span>
-            My Orders
           </Link>
           <button
             onClick={handleUserLogOut}
             className="flex items-center gap-2 text-sm"
           >
             <BsBoxArrowInLeft size={24} />
-            Logout
+            <span className="border-b border-transparent transition-all hover:border-[#b88e2f] hover:text-[#b88e2f]">
+              Logout
+            </span>
           </button>
         </PopoverPanel>
       </Popover>
