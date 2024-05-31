@@ -1,26 +1,36 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { Dialog, DialogPanel, Transition } from "@headlessui/react";
 import { BsBagX, BsCart3 } from "react-icons/bs";
+import { IoCloseCircle } from "react-icons/io5";
 import img1 from "../../assets/images/home/slider-3.jpg";
 import img2 from "../../assets/images/home/gallery-9.png";
-import { IoCloseCircle } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { CartContext } from "../../Providers/CartProvider";
 
 const CartDropDown = () => {
+  const cart = useContext(CartContext);
+  console.log(cart);
   const [isOpen, setIsOpen] = useState(false);
   const [isShowing, setIsShowing] = useState(true);
 
   return (
     <>
-      <BsCart3
-        onClick={() => {
-          setIsOpen(true);
-          setIsShowing(false);
-          setTimeout(() => setIsShowing(true), 300);
-        }}
-        size={24}
-        className="cursor-pointer"
-      />
+      <div className="relative">
+        <BsCart3
+          onClick={() => {
+            setIsOpen(true);
+            setIsShowing(false);
+            setTimeout(() => setIsShowing(true), 300);
+          }}
+          size={24}
+          className="cursor-pointer"
+        />
+        {cart && cart.length > 0 && (
+          <p className="absolute -right-1 -top-1 flex size-[14px] items-center justify-center rounded-full bg-red-500 text-xs text-white">
+            {cart.length}
+          </p>
+        )}
+      </div>
 
       <Dialog
         open={isOpen}
