@@ -12,7 +12,7 @@ const sizes = ["l", "xl", "xs"];
 const colors = ["#816dfa", "black", "#b88e2f"];
 
 const AddToCartModal = ({ isOpen, setIsOpen, selectedProduct }) => {
-  const { title, thumbnail, price } = selectedProduct;
+  const { _id, title, thumbnail, price } = selectedProduct;
   const [size, setSize] = useState("l");
   const [color, setColor] = useState("#816dfa");
   const [quantity, setQuantity] = useState(1);
@@ -29,12 +29,13 @@ const AddToCartModal = ({ isOpen, setIsOpen, selectedProduct }) => {
 
   const handleAddToCart = () => {
     const cartData = {
-      thumbnail,
+      productId: _id,
       title,
-      price,
+      price: price.discounted ? price.discounted : price.original,
+      thumbnail,
+      quantity,
       size,
       color,
-      quantity,
     };
 
     console.log(cartData);
