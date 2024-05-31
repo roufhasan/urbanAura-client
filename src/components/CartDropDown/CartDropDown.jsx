@@ -3,13 +3,11 @@ import { Link } from "react-router-dom";
 import { Dialog, DialogPanel, Transition } from "@headlessui/react";
 import { BsBagX, BsCart3 } from "react-icons/bs";
 import { IoCloseCircle } from "react-icons/io5";
-import img1 from "../../assets/images/home/slider-3.jpg";
-import img2 from "../../assets/images/home/gallery-9.png";
 import { CartContext } from "../../Providers/CartProvider";
+import { formatPrice } from "../../utils/formatPrice";
 
 const CartDropDown = () => {
-  const cart = useContext(CartContext);
-  console.log(cart);
+  const { cart } = useContext(CartContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isShowing, setIsShowing] = useState(true);
 
@@ -62,52 +60,37 @@ const CartDropDown = () => {
                 <div className="mb-10 mt-6 h-[1px] w-5/6 bg-[#d9d9d9]"></div>
                 {/* Products container */}
                 <div className="h-[60vh] max-h-[648px] space-y-5 overflow-y-auto">
-                  {/* product 1 */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-8">
-                      <img
-                        src={img1}
-                        alt=""
-                        className="size-24 rounded-[10px] object-cover object-center"
-                      />
-                      <div>
-                        <p>Asgaard sofa</p>
-                        <p className="mt-2 font-light">
-                          1 <span className="mx-4 text-xs">X</span>
-                          <span className="text-xs font-medium text-[#b88e2f]">
-                            $270
-                          </span>
-                        </p>
+                  {cart &&
+                    cart.length > 0 &&
+                    cart.map((item) => (
+                      <div
+                        key={item._id}
+                        className="flex items-center justify-between"
+                      >
+                        <div className="flex items-center gap-8">
+                          <img
+                            loading="lazy"
+                            src={item.thumbnail}
+                            alt={`${item.title} image`}
+                            className="size-24 rounded-[10px] object-cover object-center"
+                          />
+                          <div>
+                            <p>{item.title}</p>
+                            <p className="mt-2 font-light">
+                              {item.quantity}
+                              <span className="mx-4 text-xs">X</span>
+                              <span className="text-xs font-medium text-[#b88e2f]">
+                                ${formatPrice(item.price * item.quantity)}
+                              </span>
+                            </p>
+                          </div>
+                        </div>
+                        <IoCloseCircle
+                          size={24}
+                          className="cursor-pointer text-[#9f9f9f] transition-all hover:text-[#888888]"
+                        />
                       </div>
-                    </div>
-                    <IoCloseCircle
-                      size={24}
-                      className="cursor-pointer text-[#9f9f9f] transition-all hover:text-[#888888]"
-                    />
-                  </div>
-                  {/* product 2 */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-8">
-                      <img
-                        src={img2}
-                        alt=""
-                        className="size-24 rounded-[10px] object-cover object-center"
-                      />
-                      <div>
-                        <p>Casaliving Wood</p>
-                        <p className="mt-2 font-light">
-                          1 <span className="mx-4 text-xs">X</span>
-                          <span className="text-xs font-medium text-[#b88e2f]">
-                            $499
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                    <IoCloseCircle
-                      size={24}
-                      className="cursor-pointer text-[#9f9f9f] transition-all hover:text-[#888888]"
-                    />
-                  </div>
+                    ))}
                 </div>
               </div>
 

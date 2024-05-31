@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Dialog,
   DialogPanel,
@@ -7,11 +7,13 @@ import {
   TransitionChild,
 } from "@headlessui/react";
 import { BsXLg } from "react-icons/bs";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 const sizes = ["l", "xl", "xs"];
 const colors = ["#816dfa", "black", "#b88e2f"];
 
 const AddToCartModal = ({ isOpen, setIsOpen, selectedProduct }) => {
+  const { user } = useContext(AuthContext);
   const { _id, title, thumbnail, price } = selectedProduct;
   const [size, setSize] = useState("l");
   const [color, setColor] = useState("#816dfa");
@@ -29,7 +31,8 @@ const AddToCartModal = ({ isOpen, setIsOpen, selectedProduct }) => {
 
   const handleAddToCart = () => {
     const cartData = {
-      productId: _id,
+      user_email: user.email,
+      product_id: _id,
       title,
       price: price.discounted ? price.discounted : price.original,
       thumbnail,
