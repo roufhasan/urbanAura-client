@@ -11,6 +11,10 @@ const CartDropDown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isShowing, setIsShowing] = useState(true);
 
+  const totalPrice = cart.reduce((acc, curr) => {
+    return acc + curr.quantity * curr.price;
+  }, 0);
+
   return (
     <>
       <div className="relative">
@@ -97,7 +101,9 @@ const CartDropDown = () => {
               <div>
                 <div className="mt-7 flex items-center justify-between pl-[30px] pr-24">
                   <p>Subtotal</p>
-                  <p className="font-semibold text-[#b88e2f]">$769</p>
+                  <p className="font-semibold text-[#b88e2f]">
+                    ${formatPrice(totalPrice)}
+                  </p>
                 </div>
                 <div className="my-6 h-[1px] bg-[#d9d9d9]"></div>
                 {/* buttons */}
@@ -109,7 +115,7 @@ const CartDropDown = () => {
                     Cart
                   </Link>
                   <Link
-                    to="/cart"
+                    to="/checkout"
                     className="w-full rounded-full border border-black px-[30px] py-1.5 text-center text-xs"
                   >
                     Checkout
