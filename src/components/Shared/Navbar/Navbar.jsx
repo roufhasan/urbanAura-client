@@ -15,6 +15,7 @@ import {
 import { AuthContext } from "../../../Providers/AuthProvider";
 import logo from "../../../assets/logo/logo.png";
 import MobileNavbar from "./MobileNavbar";
+import CartDropDown from "../../CartDropDown/CartDropDown";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -173,7 +174,7 @@ const Navbar = () => {
           <BsHeart size={24} />
         </li>
         <li>
-          <BsCart3 size={24} />
+          <CartDropDown />
         </li>
       </ul>
 
