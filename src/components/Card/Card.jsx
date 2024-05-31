@@ -91,7 +91,7 @@ const Card = ({ product }) => {
         </div>
       </div>
 
-      {open && user ? (
+      {isOpen && user ? (
         <AddToCartModal
           isOpen={isOpen}
           setIsOpen={setIsOpen}

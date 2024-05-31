@@ -8,13 +8,16 @@ import {
 } from "@headlessui/react";
 import { BsXLg } from "react-icons/bs";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import { CartContext } from "../../../Providers/CartProvider";
 
 const sizes = ["l", "xl", "xs"];
 const colors = ["#816dfa", "black", "#b88e2f"];
 
 const AddToCartModal = ({ isOpen, setIsOpen, selectedProduct }) => {
-  const { user } = useContext(AuthContext);
   const { _id, title, thumbnail, price } = selectedProduct;
+  const { user } = useContext(AuthContext);
+  const { handleAddToCart } = useContext(CartContext);
+
   const [size, setSize] = useState("l");
   const [color, setColor] = useState("#816dfa");
   const [quantity, setQuantity] = useState(1);
@@ -29,19 +32,15 @@ const AddToCartModal = ({ isOpen, setIsOpen, selectedProduct }) => {
     }
   };
 
-  const handleAddToCart = () => {
-    const cartData = {
-      user_email: user.email,
-      product_id: _id,
-      title,
-      price: price.discounted ? price.discounted : price.original,
-      thumbnail,
-      quantity,
-      size,
-      color,
-    };
-
-    console.log(cartData);
+  const item = {
+    user_email: user.email,
+    product_id: _id,
+    title,
+    price: price.discounted ? price.discounted : price.original,
+    thumbnail,
+    quantity,
+    size,
+    color,
   };
 
   return (
@@ -51,7 +50,7 @@ const AddToCartModal = ({ isOpen, setIsOpen, selectedProduct }) => {
         onClose={() => setIsOpen(false)}
         className="relative z-50 font-Poppins"
       >
-        <div className="fixed inset-0 flex w-screen items-center justify-center overflow-y-auto bg-black/50">
+        <div className="fixed inset-0 flex h-full w-screen items-center justify-center overflow-y-auto bg-black/50">
           <TransitionChild
             enter="ease-out duration-300"
             enterFrom="opacity-0 transform-[scale(95%)]"
@@ -126,7 +125,7 @@ const AddToCartModal = ({ isOpen, setIsOpen, selectedProduct }) => {
                     </div>
                     {/* Add To Cart */}
                     <button
-                      onClick={handleAddToCart}
+                      onClick={() => handleAddToCart(item, setIsOpen)}
                       className="inline-flex min-w-32 justify-center rounded-[10px] border border-black p-2"
                     >
                       Add To Cart
