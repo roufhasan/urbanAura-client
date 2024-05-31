@@ -37,7 +37,7 @@ const CartDropDown = () => {
             leaveFrom="translate-x-0"
             leaveTo="translate-x-full"
           >
-            <DialogPanel className="flex h-screen max-h-[1080px] min-h-fit w-full max-w-[417px] flex-col justify-between overflow-y-auto bg-white py-7">
+            <DialogPanel className="flex h-screen max-h-[1080px] min-h-fit w-full max-w-[417px] flex-col justify-between overflow-y-auto bg-white py-5">
               {/* products div */}
               <div className="pl-[30px] pr-10">
                 {/* title */}
@@ -50,8 +50,8 @@ const CartDropDown = () => {
                   />
                 </div>
                 <div className="mb-10 mt-6 h-[1px] w-5/6 bg-[#d9d9d9]"></div>
-
-                <div className="h-[60vh] max-h-[648px] overflow-y-auto">
+                {/* Products container */}
+                <div className="h-[60vh] max-h-[648px] space-y-5 overflow-y-auto">
                   {/* product 1 */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-8">
@@ -76,7 +76,7 @@ const CartDropDown = () => {
                     />
                   </div>
                   {/* product 2 */}
-                  <div className="my-5 flex items-center justify-between">
+                  <div className="flex items-center justify-between">
                     <div className="flex items-center gap-8">
                       <img
                         src={img2}
