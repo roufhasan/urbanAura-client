@@ -100,7 +100,7 @@ const Navbar = () => {
 
   return (
     <nav className="relative items-center justify-between md:flex md:py-7 md:pl-[4%] md:pr-[7%]">
-      <div className="flex items-center justify-between px-[4%]">
+      <div className="flex items-center justify-between px-[4%] md:pl-[4%] md:pr-0">
         {/* Mobile Menu Toggle Button */}
         <div
           onClick={() => setShowMenu(true)}
@@ -148,7 +148,7 @@ const Navbar = () => {
       )}
 
       {/* Desktop Navigation Links */}
-      <ul className="hidden items-center gap-x-[75px] font-medium md:flex">
+      <ul className="hidden items-center font-medium md:flex md:gap-x-6 lg:gap-x-12 xl:gap-x-[75px]">
         {navItems.map((nav) => (
           <li key={nav.text}>
             <Link to={nav.link}>{nav.text}</Link>
@@ -157,7 +157,7 @@ const Navbar = () => {
       </ul>
 
       {/* Desktop Navigation Buttons */}
-      <ul className="hidden items-center gap-x-11 md:flex">
+      <ul className="hidden items-center md:flex md:gap-x-6 lg:gap-x-10">
         <li>
           <BsSearch size={24} />
         </li>

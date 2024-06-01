@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
+import { BsArrowRight } from "react-icons/bs";
 import categoryImg1 from "../../../../assets/images/home/category-1.png";
 import categoryImg2 from "../../../../assets/images/home/category-2.png";
 import categoryImg3 from "../../../../assets/images/home/category-3.png";
-import { BsArrowRight } from "react-icons/bs";
 
 const Categories = () => {
   return (
@@ -14,8 +14,13 @@ const Categories = () => {
       {/* cards container */}
       <div className="mt-12 flex flex-col gap-6 md:flex-row">
         {/* card-1 */}
-        <div className="relative">
-          <img src={categoryImg1} alt="elagant white sofa with pillow" />
+        <div className="relative mx-auto w-fit">
+          <img
+            loading="lazy"
+            src={categoryImg1}
+            alt="elagant white sofa with pillow"
+            className="h-full max-h-[500px] w-full max-w-96 sm:max-h-[564px] sm:max-w-[448px] md:max-h-[664px] md:max-w-[548px]"
+          />
           <div className="absolute left-0 top-0 h-full w-full bg-black/10 md:hidden"></div>
           <div className="absolute left-8 top-12 font-medium md:left-12">
             <h3 className="mb-3 text-[34px]">Living Room</h3>
@@ -36,8 +41,13 @@ const Categories = () => {
         {/* card-2 and card-3 container */}
         <div className="flex flex-col gap-6">
           {/* card-2 */}
-          <div className="relative">
-            <img src={categoryImg2} alt="elagant white sofa with pillow" />
+          <div className="relative mx-auto w-fit">
+            <img
+              loading="lazy"
+              src={categoryImg2}
+              alt="elagant white sofa with pillow"
+              className="h-full w-full max-w-96 sm:max-w-[448px] md:max-w-[548px]"
+            />
             <div className="absolute left-0 top-0 h-full w-full bg-black/10 md:hidden"></div>
             <div className="absolute bottom-10 left-8 font-medium">
               <h3 className="mb-3 text-[34px]">Bed Room</h3>
@@ -56,8 +66,13 @@ const Categories = () => {
             </div>
           </div>
           {/* card-3 */}
-          <div className="relative">
-            <img src={categoryImg3} alt="elagant white sofa with pillow" />
+          <div className="relative mx-auto w-fit">
+            <img
+              loading="lazy"
+              src={categoryImg3}
+              alt="elagant white sofa with pillow"
+              className="h-full w-full max-w-96 sm:max-w-[448px] md:max-w-[548px]"
+            />
             <div className="absolute left-0 top-0 h-full w-full bg-black/10 md:hidden"></div>
             <div className="absolute bottom-10 left-8 font-medium">
               <h3 className="mb-3 text-[34px]">Kitchen</h3>
