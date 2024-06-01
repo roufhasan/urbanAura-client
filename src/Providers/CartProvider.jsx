@@ -10,6 +10,7 @@ const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [refetch, setRefetch] = useState(false);
 
+  // Add a item to the cart
   const handleAddToCart = (item, setIsOpen) => {
     axios
       .post("http://localhost:5000/cart", item)
@@ -17,6 +18,7 @@ const CartProvider = ({ children }) => {
         if (res.data.acknowledged) {
           setIsOpen(false);
           toast.success("Added to cart!");
+          setRefetch(!refetch);
         }
       })
       .catch((err) => {
@@ -24,16 +26,30 @@ const CartProvider = ({ children }) => {
         toast.error("Something went wrong!");
         console.error(err);
       });
-    setRefetch(!refetch);
   };
 
-  const cartInfo = {
-    cart,
-    setCart,
-    handleAddToCart,
+  // Delete a item from the cart
+  const handleCartItemDel = (id) => {
+    if (user && id) {
+      axios
+        .delete("http://localhost:5000/cart", {
+          data: { id, email: user.email },
+        })
+        .then((res) => {
+          if (res.data.acknowledged && res.data.deletedCount > 0) {
+            toast.success("Item removed");
+            setRefetch(!refetch);
+          }
+        })
+        .catch((err) => {
+          console.error(err.message);
+          toast.error("Something went wrong!");
+        });
+    }
   };
 
   useEffect(() => {
+    // get a user cart data
     {
       user &&
         axios
@@ -51,6 +67,13 @@ const CartProvider = ({ children }) => {
           });
     }
   }, [user, refetch]);
+
+  const cartInfo = {
+    cart,
+    setCart,
+    handleAddToCart,
+    handleCartItemDel,
+  };
 
   return (
     <CartContext.Provider value={cartInfo}>{children}</CartContext.Provider>

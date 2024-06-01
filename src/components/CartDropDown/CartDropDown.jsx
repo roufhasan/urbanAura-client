@@ -7,10 +7,11 @@ import { CartContext } from "../../Providers/CartProvider";
 import { formatPrice } from "../../utils/formatPrice";
 
 const CartDropDown = () => {
-  const { cart } = useContext(CartContext);
+  const { cart, handleCartItemDel } = useContext(CartContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isShowing, setIsShowing] = useState(true);
 
+  // subtoatl price of all carted items
   const totalPrice = cart.reduce((acc, curr) => {
     return acc + curr.quantity * curr.price;
   }, 0);
@@ -90,6 +91,7 @@ const CartDropDown = () => {
                           </div>
                         </div>
                         <IoCloseCircle
+                          onClick={() => handleCartItemDel(item._id)}
                           size={24}
                           className="cursor-pointer text-[#9f9f9f] transition-all hover:text-[#888888]"
                         />
