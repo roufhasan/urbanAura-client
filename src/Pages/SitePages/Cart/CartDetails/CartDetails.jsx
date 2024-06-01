@@ -18,8 +18,8 @@ const CartDetails = () => {
   };
 
   return (
-    <div className="px-[4%] py-[72px] md:flex md:gap-8 md:px-[7%]">
-      <div className="w-full md:flex-1">
+    <div className="px-[4%] py-[72px] md:px-[7%] lg:flex lg:gap-8">
+      <div className="w-full lg:flex-1">
         {/* products info table */}
         <div className="overflow-x-auto">
           <table className="table">
@@ -81,19 +81,22 @@ const CartDetails = () => {
           </table>
         </div>
       </div>
-      <div className="inline-block bg-[#f9f1e7] px-16 pb-20 pt-4">
-        <h2 className="mb-14 text-[32px] font-semibold">Cart Totals</h2>
-        <p className="mb-8">
+
+      <div className="mt-16 bg-[#f9f1e7] px-10 pb-10 pt-4 text-right md:px-16 lg:mt-0 lg:inline-block lg:pb-20 lg:text-left">
+        <h2 className="mb-8 text-2xl font-semibold lg:mb-14 lg:text-[32px]">
+          Cart Totals
+        </h2>
+        <p className="mb-2 md:mb-8">
           <span className="mr-16 font-medium">Subtotal</span>
           <span className="text-[#9f9f9f]">$200</span>
         </p>
-        <p className="mb-10">
+        <p className="mb-8 md:mb-10">
           <span className="mr-14 font-medium">Total</span>
           <span className="text-xl font-medium text-[#b88e2f]">$200</span>
         </p>
         <Link
           to="/checkout"
-          className="inline-block rounded-2xl border border-black px-14 py-4 text-xl"
+          className="inline-block rounded-2xl border border-black px-6 py-3 text-lg md:py-4 lg:px-9 lg:text-xl xl:px-12"
         >
           Check Out
         </Link>
