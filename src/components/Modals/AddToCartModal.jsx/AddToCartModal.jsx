@@ -16,7 +16,7 @@ const colors = ["#816dfa", "black", "#b88e2f"];
 const AddToCartModal = ({ isOpen, setIsOpen, selectedProduct }) => {
   const { _id, title, thumbnail, price } = selectedProduct;
   const { user } = useContext(AuthContext);
-  const { handleAddToCart } = useContext(CartContext);
+  const { handleCartItemSave } = useContext(CartContext);
 
   const [size, setSize] = useState("l");
   const [color, setColor] = useState("#816dfa");
@@ -125,7 +125,7 @@ const AddToCartModal = ({ isOpen, setIsOpen, selectedProduct }) => {
                     </div>
                     {/* Add To Cart */}
                     <button
-                      onClick={() => handleAddToCart(item, setIsOpen)}
+                      onClick={() => handleCartItemSave(item, setIsOpen)}
                       className="inline-flex min-w-32 justify-center rounded-[10px] border border-black p-2"
                     >
                       Add To Cart

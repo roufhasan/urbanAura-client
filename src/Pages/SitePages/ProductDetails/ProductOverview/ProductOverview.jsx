@@ -23,7 +23,7 @@ const ProductOverview = ({ product }) => {
     }
   };
 
-  const handleAddToCart = () => {
+  const handleCartItemSave = () => {
     const cartData = {
       thumbnail,
       title,
@@ -124,7 +124,7 @@ const ProductOverview = ({ product }) => {
             <span onClick={increaseQuantity}>+</span>
           </button>
           <button
-            onClick={handleAddToCart}
+            onClick={handleCartItemSave}
             className="flex flex-1 justify-center rounded-[10px] border border-black py-4 text-xl md:w-full md:max-w-[217px] md:px-12"
           >
             Add To Cart

@@ -10,10 +10,10 @@ const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [refetch, setRefetch] = useState(false);
 
-  // Add a item to the cart
-  const handleAddToCart = (item, setIsOpen) => {
+  // Add a item to the cart or update the quantity if exists
+  const handleCartItemSave = (item, setIsOpen) => {
     axios
-      .post("http://localhost:5000/cart", item)
+      .put("http://localhost:5000/cart", item)
       .then((res) => {
         if (res.data.acknowledged) {
           setIsOpen(false);
@@ -71,7 +71,7 @@ const CartProvider = ({ children }) => {
   const cartInfo = {
     cart,
     setCart,
-    handleAddToCart,
+    handleCartItemSave,
     handleCartItemDel,
   };
 
