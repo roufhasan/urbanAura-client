@@ -1,0 +1,12 @@
+tbody::before {
+  content: "";
+  display: block;
+  height: 55px;
+}
+
+.table
+  :where(thead tr, tbody tr:not(:last-child), tbody tr:first-child:last-child) {
+  border-bottom-width: 0px;
+  --tw-border-opacity: 0;
+  border-bottom-color: transparent;
+}

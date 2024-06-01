@@ -7,6 +7,7 @@ import ProductDetails from "../Pages/SitePages/ProductDetails/ProductDetails";
 import CategoryProduct from "../Pages/SitePages/CategoryProduct/CategoryProduct";
 import Login from "../Pages/SitePages/Login/Login";
 import Signup from "../Pages/SitePages/Signup/Signup";
+import Cart from "../Pages/SitePages/Cart/Cart";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: "/products",
         element: <CategoryProduct />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },

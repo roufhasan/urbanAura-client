@@ -111,6 +111,7 @@ const CartDropDown = () => {
                 {/* buttons */}
                 <div className="flex w-full justify-between gap-5 px-7 pb-7">
                   <Link
+                    onClick={() => setIsOpen(false)}
                     to="/cart"
                     className="w-full rounded-full border border-black px-[30px] py-1.5 text-center text-xs"
                   >
