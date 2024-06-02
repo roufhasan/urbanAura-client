@@ -9,6 +9,7 @@ const CartProvider = ({ children }) => {
   const { user } = useContext(AuthContext);
   const [cart, setCart] = useState([]);
   const [refetch, setRefetch] = useState(false);
+  const [cartLoading, setCartLoading] = useState(false);
 
   // Add a item to the cart or update the quantity if exists
   const handleCartItemSave = (item, setIsOpen) => {
@@ -31,6 +32,29 @@ const CartProvider = ({ children }) => {
         if (setIsOpen) {
           setIsOpen(false);
         }
+      });
+  };
+
+  // Update cart item quantity
+  const handleQuantity = (quantity, id) => {
+    setCartLoading(true);
+
+    axios
+      .patch("http://localhost:5000/cart_quantity", {
+        id,
+        user_email: user.email,
+        quantity,
+      })
+      .then((res) => {
+        if (res.data.acknowledged && res.data.matchedCount > 0) {
+          setCartLoading(false);
+          setRefetch(!refetch);
+        }
+      })
+      .catch((err) => {
+        setCartLoading(false);
+        toast.error("Something went wrong!");
+        console.error(err.message);
       });
   };
 
@@ -77,7 +101,10 @@ const CartProvider = ({ children }) => {
   const cartInfo = {
     cart,
     setCart,
+    cartLoading,
+    setCartLoading,
     handleCartItemSave,
+    handleQuantity,
     handleCartItemDel,
   };
 

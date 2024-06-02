@@ -13,12 +13,14 @@ import {
   BsSearch,
 } from "react-icons/bs";
 import { AuthContext } from "../../../Providers/AuthProvider";
-import logo from "../../../assets/logo/logo.png";
+import { CartContext } from "../../../Providers/CartProvider";
 import MobileNavbar from "./MobileNavbar";
 import CartDropDown from "../../CartDropDown/CartDropDown";
+import logo from "../../../assets/logo/logo.png";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const { setCart } = useContext(CartContext);
   const [showMenu, setShowMenu] = useState(false);
   const location = useLocation();
   const sideBarRef = useRef();
@@ -33,6 +35,7 @@ const Navbar = () => {
 
   // Handle user logout
   const handleUserLogOut = () => {
+    setCart([]);
     logOut()
       .then(() => console.log("Sign-out successful"))
       .catch((err) => console.error(err));

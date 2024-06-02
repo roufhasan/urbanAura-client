@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { BsFacebook, BsLinkedin } from "react-icons/bs";
-import { formatPrice } from "../../../../utils/formatPrice";
 import { AuthContext } from "../../../../Providers/AuthProvider";
-import LoginModal from "../../../../components/Modals/LoginModal/LoginModal";
 import { CartContext } from "../../../../Providers/CartProvider";
+import LoginModal from "../../../../components/Modals/LoginModal/LoginModal";
+import { formatPrice } from "../../../../utils/formatPrice";
 
 const sizes = ["l", "xl", "xs"];
 const colors = ["#816dfa", "black", "#b88e2f"];
@@ -17,8 +17,7 @@ const ProductOverview = ({ product }) => {
   const [size, setSize] = useState("l");
   const [color, setColor] = useState("#816dfa");
   const [quantity, setQuantity] = useState(1);
-  // login modal state
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // login modal state\
 
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
@@ -30,6 +29,7 @@ const ProductOverview = ({ product }) => {
     }
   };
 
+  // Add a new item to cart
   const submitCartItem = () => {
     if (!user) {
       return setIsOpen(true);
