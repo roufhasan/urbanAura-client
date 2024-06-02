@@ -1,21 +1,26 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { BiSolidTrashAlt } from "react-icons/bi";
-import img from "../../../../assets/images/home/gallery-9.png";
+import { CartContext } from "../../../../Providers/CartProvider";
+import { formatPrice } from "../../../../utils/formatPrice";
 import "./cartDetails.css";
+import { calculateTotalPrice } from "../../../../utils/calculateTotalPrice";
 
 const CartDetails = () => {
-  const [quantity, setQuantity] = useState(1);
+  const { cart, handleCartItemDel } = useContext(CartContext);
 
-  const increaseQuantity = () => {
-    setQuantity(quantity + 1);
-  };
+  // total price of all cart items
+  const totalPrice = calculateTotalPrice(cart);
 
-  const decreaseQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
+  // const increaseQuantity = () => {
+  //   setQuantity(quantity + 1);
+  // };
+
+  // const decreaseQuantity = () => {
+  //   if (quantity > 1) {
+  //     setQuantity(quantity - 1);
+  //   }
+  // };
 
   return (
     <div className="px-[4%] py-[72px] md:px-[7%] lg:flex lg:gap-8">
@@ -35,64 +40,73 @@ const CartDetails = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className="text-base">
-                <td>
-                  <img
-                    src={img}
-                    alt=""
-                    className="h-16 w-14 min-w-16 rounded-[10px] object-cover object-center md:size-[105px]"
-                  />
-                </td>
-                <td>
-                  <p className="text-[#9f9f9f]">Asgaard sofa</p>
-                </td>
-                <td>
-                  {/* original price */}
-                  <p className="text-[#9f9f9f]">$100</p>
-                </td>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <button
-                      onClick={decreaseQuantity}
-                      className="flex size-5 items-center justify-center rounded-full transition-all hover:bg-gray-300"
-                    >
-                      -
-                    </button>
-                    <p>{quantity}</p>
-                    <button
-                      onClick={increaseQuantity}
-                      className="flex size-5 items-center justify-center rounded-full transition-all hover:bg-gray-300"
-                    >
-                      +
-                    </button>
-                  </div>
-                </td>
-                <td>
-                  <p>${quantity * 100}</p>
-                </td>
-                <td>
-                  <BiSolidTrashAlt
-                    size={26}
-                    className="cursor-pointer text-[#b88e2f]"
-                  />
-                </td>
-              </tr>
+              {cart &&
+                cart.length > 0 &&
+                cart.map((item) => (
+                  <tr
+                    key={item._id}
+                    className="text-base shadow-sm transition-all hover:bg-gray-100"
+                  >
+                    <td>
+                      <img
+                        src={item.thumbnail}
+                        alt=""
+                        className="h-16 w-14 min-w-16 rounded-[10px] object-cover object-center md:size-[105px]"
+                      />
+                    </td>
+                    <td>
+                      <p className="text-[#9f9f9f]">{item.title}</p>
+                    </td>
+                    <td>
+                      <p className="text-[#9f9f9f]">${item.price}</p>
+                    </td>
+                    <td>
+                      <div className="flex items-center gap-3">
+                        <button
+                          // onClick={decreaseQuantity}
+                          className="flex size-5 items-center justify-center rounded-full transition-all hover:bg-gray-300"
+                        >
+                          -
+                        </button>
+                        <p>{item.quantity}</p>
+                        <button
+                          // onClick={increaseQuantity}
+                          className="flex size-5 items-center justify-center rounded-full transition-all hover:bg-gray-300"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </td>
+                    <td>
+                      <p>${formatPrice(item.quantity * item.price)}</p>
+                    </td>
+                    <td>
+                      <BiSolidTrashAlt
+                        onClick={() => handleCartItemDel(item._id)}
+                        size={26}
+                        className="cursor-pointer text-[#b88e2f]"
+                      />
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
       </div>
 
-      <div className="mt-16 bg-[#f9f1e7] px-10 pb-10 pt-4 text-right md:px-16 lg:mt-0 lg:inline-block lg:pb-20 lg:text-left">
+      <div className="mt-16 h-fit bg-[#f9f1e7] px-10 pb-10 pt-4 text-right md:px-16 lg:mt-0 lg:inline-block lg:pb-20 lg:text-left">
         <h2 className="mb-8 text-2xl font-semibold lg:mb-14 lg:text-[32px]">
           Cart Totals
         </h2>
         <p className="mb-2 md:mb-8">
           <span className="mr-16 font-medium">Subtotal</span>
-          <span className="text-[#9f9f9f]">$200</span>
+          <span className="text-[#9f9f9f]">${formatPrice(totalPrice)}</span>
         </p>
         <p className="mb-8 md:mb-10">
           <span className="mr-14 font-medium">Total</span>
-          <span className="text-xl font-medium text-[#b88e2f]">$200</span>
+          <span className="text-xl font-medium text-[#b88e2f]">
+            ${formatPrice(totalPrice)}
+          </span>
         </p>
         <Link
           to="/checkout"

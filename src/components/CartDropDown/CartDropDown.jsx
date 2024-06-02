@@ -5,6 +5,7 @@ import { BsBagX, BsCart3 } from "react-icons/bs";
 import { IoCloseCircle } from "react-icons/io5";
 import { CartContext } from "../../Providers/CartProvider";
 import { formatPrice } from "../../utils/formatPrice";
+import { calculateTotalPrice } from "../../utils/calculateTotalPrice";
 
 const CartDropDown = () => {
   const { cart, handleCartItemDel } = useContext(CartContext);
@@ -12,9 +13,7 @@ const CartDropDown = () => {
   const [isShowing, setIsShowing] = useState(true);
 
   // subtoatl price of all carted items
-  const totalPrice = cart.reduce((acc, curr) => {
-    return acc + curr.quantity * curr.price;
-  }, 0);
+  const totalPrice = calculateTotalPrice(cart);
 
   return (
     <>
