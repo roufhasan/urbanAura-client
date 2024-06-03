@@ -9,17 +9,17 @@ const Categories = () => {
     <section className="px-[4%] text-[#333] md:px-[10%]">
       <h1 className="mt-14 text-center text-3xl font-bold">Browse The Range</h1>
       <p className="text-center text-lg text-[#666] md:text-xl">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Discover our top categories for your perfect home makeover.
       </p>
       {/* cards container */}
       <div className="mt-12 flex flex-col gap-6 md:flex-row">
         {/* card-1 */}
-        <div className="relative mx-auto w-fit">
+        <div className="relative mx-auto w-full md:w-fit">
           <img
             loading="lazy"
             src={categoryImg1}
             alt="elagant white sofa with pillow"
-            className="h-full max-h-[500px] w-full max-w-96 sm:max-h-[564px] sm:max-w-[448px] md:max-h-[664px] md:max-w-[548px]"
+            className="h-full w-full md:max-h-[664px]"
           />
           <div className="absolute left-0 top-0 h-full w-full bg-black/10 md:hidden"></div>
           <div className="absolute left-8 top-12 font-medium md:left-12">

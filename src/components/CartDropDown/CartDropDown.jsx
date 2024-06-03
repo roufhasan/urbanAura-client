@@ -24,8 +24,7 @@ const CartDropDown = () => {
             setIsShowing(false);
             setTimeout(() => setIsShowing(true), 300);
           }}
-          size={24}
-          className="cursor-pointer"
+          className="cursor-pointer text-2xl lg:text-[23px]"
         />
         {cart && cart.length > 0 && (
           <p className="absolute -right-1 -top-1 flex size-[14px] items-center justify-center rounded-full bg-red-500 text-xs text-white">

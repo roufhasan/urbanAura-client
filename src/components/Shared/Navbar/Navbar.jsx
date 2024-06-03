@@ -115,8 +115,8 @@ const Navbar = () => {
         {/* Logo & Title */}
         <Link to="/" className="flex items-center">
           <img className="w-[50px]" src={logo} alt="urbanAura logo" />
-          <h1 className="-ml-1 font-Montserrat text-2xl font-bold md:text-[34px]">
-            Furniro
+          <h1 className="-ml-1 font-Montserrat text-2xl font-bold lg:text-[28px] xl:text-[34px]">
+            UrbanAura
           </h1>
         </Link>
 
@@ -151,7 +151,7 @@ const Navbar = () => {
       )}
 
       {/* Desktop Navigation Links */}
-      <ul className="hidden items-center font-medium md:flex md:gap-x-6 lg:gap-x-12 xl:gap-x-[75px]">
+      <ul className="hidden items-center font-medium md:flex md:gap-x-6 lg:gap-x-8 xl:gap-x-[75px]">
         {navItems.map((nav) => (
           <li key={nav.text}>
             <Link to={nav.link}>{nav.text}</Link>
@@ -160,21 +160,21 @@ const Navbar = () => {
       </ul>
 
       {/* Desktop Navigation Buttons */}
-      <ul className="hidden items-center md:flex md:gap-x-6 lg:gap-x-10">
+      <ul className="hidden items-center md:flex md:gap-x-6 lg:gap-x-8 xl:gap-x-10">
         <li>
-          <BsSearch size={24} />
+          <BsSearch className="cursor-pointer text-xl lg:text-[21px] xl:text-2xl" />
         </li>
         <li>
           {user ? (
             userDropDown
           ) : (
             <Link to="/login">
-              <BsPersonExclamation size={28} />
+              <BsPersonExclamation className="cursor-pointer text-[25px] lg:text-[26px] xl:text-[28px]" />
             </Link>
           )}
         </li>
         <li>
-          <BsHeart size={24} />
+          <BsHeart className="cursor-pointer text-xl lg:text-2xl lg:text-[21px]" />
         </li>
         <li>
           <CartDropDown />

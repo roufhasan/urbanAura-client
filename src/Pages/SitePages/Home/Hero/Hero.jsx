@@ -9,17 +9,17 @@ const Hero = () => {
     >
       <div className="bg-[#fff3e3] px-[4%] pr-14 pt-16 md:max-w-[643px] md:pl-10">
         <p className="font-semibold">New Arrival</p>
-        <h1 className="mt-2 text-[35px] font-bold leading-tight text-[#b88e2f] md:text-[52px]">
+        <h1 className="mt-2 text-[35px] font-bold leading-tight text-[#b88e2f] md:text-[45px] lg:text-[48px] xl:text-[52px]">
           Discover Our <br />
           New Collection
         </h1>
         <p className="mt-4 text-lg font-medium">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-          tellus, luctus nec ullamcorper mattis.
+          Refresh your space with our latest furniture designs. Stylish,
+          comfortable, and made for you.
         </p>
         <Link
           to="/"
-          className="mb-9 mt-12 inline-block bg-[#B88E2F] px-14 py-4  font-bold uppercase text-white md:px-[72px] md:py-6"
+          className="mb-9 mt-12 inline-block bg-[#B88E2F] px-14 py-4  font-bold uppercase text-white md:px-16 lg:px-[68px] lg:py-5 xl:px-[72px] xl:py-6"
         >
           Buy Now
         </Link>
