@@ -41,12 +41,12 @@ const Categories = () => {
         {/* card-2 and card-3 container */}
         <div className="flex flex-col gap-6">
           {/* card-2 */}
-          <div className="relative mx-auto w-fit">
+          <div className="relative mx-auto w-full md:w-fit">
             <img
               loading="lazy"
               src={categoryImg2}
               alt="elagant white sofa with pillow"
-              className="h-full w-full max-w-96 sm:max-w-[448px] md:max-w-[548px]"
+              className="h-full w-full md:max-w-[548px]"
             />
             <div className="absolute left-0 top-0 h-full w-full bg-black/10 md:hidden"></div>
             <div className="absolute bottom-10 left-8 font-medium">
@@ -66,12 +66,12 @@ const Categories = () => {
             </div>
           </div>
           {/* card-3 */}
-          <div className="relative mx-auto w-fit">
+          <div className="relative mx-auto w-full md:w-fit">
             <img
               loading="lazy"
               src={categoryImg3}
               alt="elagant white sofa with pillow"
-              className="h-full w-full max-w-96 sm:max-w-[448px] md:max-w-[548px]"
+              className="h-full w-full md:max-w-[548px]"
             />
             <div className="absolute left-0 top-0 h-full w-full bg-black/10 md:hidden"></div>
             <div className="absolute bottom-10 left-8 font-medium">

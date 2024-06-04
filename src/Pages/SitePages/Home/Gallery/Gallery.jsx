@@ -25,19 +25,19 @@ const Gallery = () => {
           <img
             src={img1}
             alt="interior design"
-            className="col-start-1 col-end-4 row-start-1 row-end-6 h-full w-full object-cover md:col-end-2 md:md:row-start-1 md:md:row-end-7"
+            className="col-start-1 col-end-4 row-start-1 row-end-7 h-full w-full object-cover md:col-end-2 md:md:row-start-1 md:md:row-end-7"
             loading="lazy"
           />
           <img
             src={img2}
             alt="interior design"
-            className="col-start-1 col-end-4 row-start-6 row-end-10 h-full w-full object-cover md:col-start-2 md:col-end-6 md:row-start-2 md:row-end-7"
+            className="col-start-1 col-end-4 row-start-7 row-end-13 h-full w-full object-cover md:col-start-2 md:col-end-6 md:row-start-2 md:row-end-7"
             loading="lazy"
           />
           <img
             src={img3}
             alt="interior design"
-            className="row-end-13h-full col-start-10 col-end-13 row-start-7 w-full object-cover md:col-start-1 md:col-end-3 md:row-start-7 md:row-end-13"
+            className="col-start-10 col-end-13 row-start-7 row-end-13 h-full w-full object-cover md:col-start-1 md:col-end-3 md:row-start-7 md:row-end-13"
             loading="lazy"
           />
           <img

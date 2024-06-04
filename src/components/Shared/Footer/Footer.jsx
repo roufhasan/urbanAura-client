@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="border-t border-t-[#D9D9D9] px-[4%] pt-12  md:px-[7%]">
-      <div className="justify-between border-b border-b-[#D9D9D9] pb-12 text-center md:flex md:text-left">
+      <div className="justify-between gap-10 border-b border-b-[#D9D9D9] pb-12 text-center md:flex md:text-left">
         <div>
-          <h2 className="mb-8 text-2xl font-bold md:mb-[50px]">Furniro.</h2>
+          <h2 className="mb-8 text-2xl font-bold md:mb-[50px]">UrbanAura.</h2>
           <p className="mx-auto max-w-72 text-[#9F9F9F] md:mx-0">
             400 University Drive Suite 200 Coral Gables, <br />
             FL 33134 USA

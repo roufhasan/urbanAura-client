@@ -1,19 +1,17 @@
 import { Link } from "react-router-dom";
+import { BsArrowRight } from "react-icons/bs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-
-/* Style Import */
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import "./roomSlider.css";
-
 /* Image Import */
 import slider1 from "../../../../assets/images/home/slider-1.png";
 import slider2 from "../../../../assets/images/home/slider-2.png";
 import slider3 from "../../../../assets/images/home/slider-3.jpg";
 import slider4 from "../../../../assets/images/home/slider-4.jpg";
-import { BsArrowRight } from "react-icons/bs";
+/* Style Import */
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "./roomSlider.css";
 
 const RoomSlider = () => {
   const sliderData = [
@@ -40,10 +38,10 @@ const RoomSlider = () => {
   ];
 
   return (
-    <section className="my-16 items-center bg-[#FCF8F3] px-[4%] py-12 text-[#3A3A3A] md:flex md:px-[7%]">
+    <section className="my-16 bg-[#FCF8F3] px-[4%] py-12 text-[#3A3A3A] md:flex md:items-center md:gap-4 md:px-[7%]">
       {/* Left Side Text */}
       <div className="mb-10 md:mb-0 md:w-[35%]">
-        <h1 className="text-[32px] font-bold md:text-[40px]">
+        <h1 className="text-[32px] font-bold leading-none lg:text-[40px]">
           50+ Beautiful rooms inspiration
         </h1>
         <p className="mb-6 mt-2 font-medium text-[#616161]">
@@ -63,6 +61,7 @@ const RoomSlider = () => {
         <Swiper
           slidesPerView={1}
           spaceBetween={12}
+          freeMode={true}
           pagination={{
             clickable: true,
           }}
@@ -71,6 +70,10 @@ const RoomSlider = () => {
           className="mySwiper"
           modules={[Pagination, Navigation]}
           breakpoints={{
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 24,
+            },
             768: {
               slidesPerView: 2,
               spaceBetween: 24,
@@ -80,24 +83,25 @@ const RoomSlider = () => {
           {sliderData &&
             sliderData.length > 0 &&
             sliderData.map((data, index) => (
-              <SwiperSlide
-                key={data.title}
-                className="relative max-h-[486px] max-w-[372px]"
-              >
+              <SwiperSlide key={data.title} className="relative h-full w-full">
                 <img
                   src={data.image}
                   alt={`${data.title}`}
-                  className="h-[486px] w-full object-cover object-center"
+                  className="h-full max-h-[486px] w-full object-cover object-center md:h-[486px]"
                   loading="lazy"
                 />
                 <div className="slider-text absolute bottom-10 left-[10%] flex items-end justify-center">
-                  <div className="max-w-60 bg-white/70 p-8 pr-4">
+                  <div className="max-w-60 bg-white/70 p-5 pr-3 lg:p-8 lg:pr-4">
                     <div className="flex items-center gap-2 text-[#616161]">
                       <p>0{index + 1}</p>
                       <div className="w-7 border border-[#616161]"></div>
-                      <p className="font-medium">{data.sub_title}</p>
+                      <p className="text-sm font-medium lg:text-base">
+                        {data.sub_title}
+                      </p>
                     </div>
-                    <p className="text-[28px] font-semibold">{data.title}</p>
+                    <p className="text-2xl font-semibold lg:text-[28px]">
+                      {data.title}
+                    </p>
                   </div>
                   <Link
                     to="/shop"
