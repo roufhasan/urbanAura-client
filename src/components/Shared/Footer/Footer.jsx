@@ -49,7 +49,7 @@ const Footer = () => {
       </div>
 
       <p className="pb-[38px] pt-[35px] text-center md:text-left">
-        2023 furino. All rights reverved
+        2024 UrabanAura. All rights reverved
       </p>
     </footer>
   );

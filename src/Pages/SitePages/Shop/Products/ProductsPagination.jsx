@@ -90,7 +90,9 @@ const ProductsPagination = ({
     <section className="px-[4%] pb-[85px] pt-16 md:px-[7%]">
       {/* produtcs container */}
       {gridView ? (
-        <div className={`grid gap-y-8 md:grid-cols-4 md:gap-x-8 md:gap-y-10`}>
+        <div
+          className={`grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-10 xl:grid-cols-4`}
+        >
           {loading && <SkeletonLoader />}
           {!loading &&
             itemsToDisplay &&

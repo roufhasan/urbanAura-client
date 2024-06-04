@@ -17,27 +17,27 @@ const SortView = ({
   };
 
   return (
-    <div className="flex flex-wrap items-center justify-end gap-y-4 bg-[#F9F1E7] px-[4%] py-5 md:justify-between md:px-[7%]">
+    <div className="flex flex-wrap items-center gap-y-6 bg-[#F9F1E7] px-[4%] py-5 sm:justify-between md:px-[7%]">
       {/* left buttons */}
-      <div className="hidden items-center md:flex">
-        <div className="flex items-center gap-3 md:gap-6">
-          <p className="md:text-xl">View:</p>
+      <div className="flex w-full items-center justify-between gap-3 sm:w-fit md:gap-0">
+        <div className="flex items-center gap-2 sm:gap-3 md:gap-4 xl:gap-6">
+          <p className="lg:text-xl">View:</p>
           <img
             src={gridIcon}
             alt="grid icon"
             onClick={() => setGridView(true)}
-            className="size-6 cursor-pointer md:size-7"
+            className="size-6 cursor-pointer lg:size-7"
           />
           <img
             src={listIcon}
             alt="grid icon"
             onClick={() => setGridView(false)}
-            className="size-5 cursor-pointer md:size-6"
+            className="size-5 cursor-pointer lg:size-6"
           />
         </div>
         {/* horizontal divider */}
-        <div className="ml-[30px] hidden h-9 w-[2px] bg-[#9F9F9F] md:mr-[34px] md:block"></div>
-        <p>
+        <div className="mx-5 hidden h-9 w-[2px] bg-[#9f9f9f] md:block xl:ml-[30px] xl:mr-[34px]"></div>
+        <p className="text-sm font-light text-[#9f9f9f] md:text-base md:text-black">
           Showing {startIndex + 1}–
           {endIndex < sortedProducts.length ? endIndex : sortedProducts.length}{" "}
           of {sortedProducts.length} results
@@ -45,11 +45,11 @@ const SortView = ({
       </div>
 
       {/* right side */}
-      <div className="flex flex-wrap items-center justify-between gap-2 md:gap-7">
-        <div className="flex items-center gap-2 md:gap-4 md:text-xl">
+      <div className="flex w-full flex-wrap items-center justify-between gap-2 sm:w-fit md:gap-4 lg:gap-7">
+        <div className="flex items-center gap-2 lg:text-xl xl:gap-4">
           <p>Show:</p>
           <input
-            className="size-11 text-center text-[#9f9f9f] md:size-[55px]"
+            className="size-11 text-center text-[#9f9f9f] lg:size-[55px]"
             type="text"
             name="itemsPerPage"
             id="itemsPerPage"
@@ -57,12 +57,12 @@ const SortView = ({
             onBlur={handleItemsPerPage}
           />
         </div>
-        <div className="flex items-center gap-2 md:gap-4 md:text-xl">
+        <div className="flex items-center gap-2 lg:text-xl xl:gap-4">
           <p className="w-16 md:w-full">Sort by:</p>
           <select
             name="sortings"
             id="sortings"
-            className="h-11 w-20 py-1 text-[#9f9f9f] md:h-auto md:w-fit md:py-3 md:pl-7"
+            className="h-11 w-20 py-1 text-[#9f9f9f] lg:h-auto lg:w-fit lg:py-3 lg:pl-7"
             onChange={handleSort}
           >
             <option value="default">Default</option>
