@@ -17,7 +17,7 @@ const ProductOverview = ({ product }) => {
   const [size, setSize] = useState("l");
   const [color, setColor] = useState("#816dfa");
   const [quantity, setQuantity] = useState(1);
-  const [isOpen, setIsOpen] = useState(false); // login modal state\
+  const [isOpen, setIsOpen] = useState(false); // login modal state
 
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
@@ -45,17 +45,17 @@ const ProductOverview = ({ product }) => {
       size,
       color,
     };
-    // save/update quantity of cart item if exists in the db
+    // save new item or update quantity of item if item exists in the cart
     handleCartItemSave(item);
   };
 
   return (
     <>
-      <div className="justify-between pb-16 pt-8 md:flex md:gap-24">
+      <div className="justify-between pb-16 pt-8 md:flex md:gap-6 lg:gap-10 xl:gap-20">
         {/* gallery container */}
-        <div className="flex flex-col-reverse gap-8 md:flex-row">
+        <div className="flex flex-col-reverse gap-8 md:justify-end lg:flex-row lg:gap-x-4">
           {/* thumbnail */}
-          <div className="flex justify-evenly md:flex-col md:justify-start md:gap-8">
+          <div className="flex justify-evenly lg:flex-col lg:justify-start lg:gap-8">
             {gallery &&
               gallery.length > 0 &&
               gallery.map((image, index) => {
@@ -64,8 +64,9 @@ const ProductOverview = ({ product }) => {
                     key={index}
                     src={image}
                     alt="shop image"
+                    onClick={() => setMainImage(image)}
                     onMouseEnter={() => setMainImage(image)}
-                    className={`size-16 rounded-[10px] border-[3px] object-cover object-center transition-all duration-150 ease-in md:h-20 md:w-[76px] ${image === mainImage ? "border-[#b88e2f]" : "border-transparent"}`}
+                    className={`size-16 rounded-[10px] border-[3px] object-cover object-center transition-all duration-150 ease-in sm:size-20 md:h-20 md:w-[76px] ${image === mainImage ? "border-[#b88e2f]" : "border-transparent"}`}
                   ></img>
                 );
               })}
@@ -74,24 +75,26 @@ const ProductOverview = ({ product }) => {
           <div>
             <img
               src={mainImage}
-              alt=""
-              className="h-[450px] w-full rounded-[10px] object-cover object-center md:h-[500px] md:max-h-[500px] md:w-[420px] md:max-w-[420px]"
+              alt={`image of ${title}`}
+              className="h-96 w-full rounded-[10px] object-cover object-center sm:h-[450px] md:h-[500px] md:max-h-[500px] md:w-[420px] md:max-w-[420px]"
             />
           </div>
         </div>
 
         {/* product info container */}
         <div className="mt-8 flex-1">
-          <h1 className="text-[42px]">{title}</h1>
-          <p className="text-2xl font-medium text-[#9f9f9f]">
+          <h1 className="text-2xl font-semibold sm:text-3xl lg:text-4xl lg:font-normal xl:text-[42px]">
+            {title}
+          </h1>
+          <p className="text-xl font-medium text-[#9f9f9f] sm:text-2xl">
             ${" "}
             {price.discounted
               ? formatPrice(price.discounted)
               : formatPrice(price.original)}
           </p>
-          <div className="mb-4 mt-3 flex flex-wrap items-center gap-5">
+          <div className="mb-4 mt-3 flex flex-wrap items-center gap-2 lg:gap-5">
             <p>⭐⭐⭐⭐⭐</p>
-            <div className="h-8 w-0.5 bg-[#9f9f9f]"></div>
+            <div className="h-6 w-0.5 bg-[#9f9f9f] lg:h-8"></div>
             <p className="text-sm text-[#9f9f9f]">5 customer review</p>
           </div>
 
@@ -131,8 +134,9 @@ const ProductOverview = ({ product }) => {
           </div>
 
           {/* buttons */}
-          <div className="mb-16 mt-8 flex flex-col gap-4 md:flex-row">
-            <div className="inline-flex w-full items-center justify-center gap-2 rounded-[10px] border border-[#9f9f9f] p-4 md:max-w-[120px] md:p-5">
+          <div className="mb-16 mt-8 flex flex-col flex-wrap gap-4 lg:flex-row">
+            {/* Quantity selection button */}
+            <div className="inline-flex w-full flex-1 items-center justify-center gap-2 rounded-[10px] border border-[#9f9f9f] p-2 lg:w-1/2 lg:p-3 xl:max-w-[120px] xl:p-5">
               <button
                 onClick={decreaseQuantity}
                 className="flex size-5 items-center justify-center rounded-full transition-all hover:bg-gray-300"
@@ -147,14 +151,16 @@ const ProductOverview = ({ product }) => {
                 +
               </button>
             </div>
+            {/* Add to cart button */}
             <button
               onClick={submitCartItem}
-              className="flex flex-1 justify-center rounded-[10px] border border-black py-4 text-xl md:w-full md:max-w-[217px] md:px-12"
+              className="flex flex-1 items-center justify-center rounded-[10px] border border-black py-2 md:w-full md:px-12 lg:w-1/2 lg:px-6 lg:text-lg xl:max-w-[217px] xl:px-2 xl:text-xl"
             >
               Add To Cart
             </button>
-            <button className="flex justify-center gap-2.5 rounded-[10px] border border-black py-[14px] text-2xl md:w-full md:max-w-[215px] md:px-12">
-              + <span className="text-xl">Compare</span>
+            {/* Compare button */}
+            <button className="flex items-center justify-center gap-2.5 rounded-[10px] border border-black py-2 md:w-full md:px-12 xl:max-w-[215px] xl:py-[14px]">
+              <span className="lg:text-lg xl:text-xl">+ Compare</span>
             </button>
           </div>
 
