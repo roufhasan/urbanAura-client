@@ -6,7 +6,7 @@ import supportSvg from "../../assets/logo/customer-support.svg";
 
 const ServicesHighlight = () => {
   return (
-    <section className="flex flex-col flex-wrap items-center gap-y-6 bg-[#FAF3EA] py-16 md:flex-row md:justify-evenly md:py-24 md:pl-[4%] md:pr-[7%]">
+    <section className="flex flex-col flex-wrap items-center gap-y-6 bg-[#FAF3EA] py-16 pl-[4%] md:flex-row md:justify-evenly md:py-24 md:pr-[7%]">
       <div className="w-full gap-4 md:flex md:justify-evenly xl:w-fit xl:justify-normal xl:gap-6">
         <div className="flex w-4/5 items-center justify-center gap-[10px] md:w-auto md:justify-normal">
           <img

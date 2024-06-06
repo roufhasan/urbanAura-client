@@ -1,18 +1,15 @@
 import { useLocation } from "react-router-dom";
 import PageBanner from "../../../components/PageBanner/PageBanner";
-import ServicesHighlight from "../../../components/ServicesHighlight/ServicesHighlight";
-import CartDetails from "./CartDetails/CartDetails";
+import image from "../../../assets/images/home/gallery-3.png";
 
-const Cart = () => {
+const Favourite = () => {
   const { pathname } = useLocation();
-
   return (
     <section>
       <PageBanner pathname={pathname} />
-      <CartDetails />
-      <ServicesHighlight />
+      {/* Favourite Items List */}
     </section>
   );
 };
 
-export default Cart;
+export default Favourite;

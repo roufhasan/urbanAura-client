@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import NavBanner from "../../../components/NavBanner/NavBanner";
+import PageBanner from "../../../components/PageBanner/PageBanner";
 import ContactDetails from "./ContactDetails/ContactDetails";
 import ContactForm from "./ContactForm/ContactForm";
 import ServicesHighlight from "../../../components/ServicesHighlight/ServicesHighlight";
@@ -8,7 +8,7 @@ const Contact = () => {
   const location = useLocation();
   return (
     <section>
-      <NavBanner location={location} />
+      <PageBanner location={location} />
 
       <div className="px-[4%] pb-12 pt-20 md:px-[7%] md:pb-16 md:pt-24">
         {/* Cotact title */}

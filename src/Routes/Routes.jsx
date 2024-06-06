@@ -8,6 +8,7 @@ import CategoryProduct from "../Pages/SitePages/CategoryProduct/CategoryProduct"
 import Login from "../Pages/SitePages/Login/Login";
 import Signup from "../Pages/SitePages/Signup/Signup";
 import Cart from "../Pages/SitePages/Cart/Cart";
+import Favourite from "../Pages/SitePages/Favourite/Favourite";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "favourite",
+        element: <Favourite />,
       },
     ],
   },

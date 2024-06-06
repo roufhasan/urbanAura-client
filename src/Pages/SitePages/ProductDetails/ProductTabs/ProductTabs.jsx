@@ -9,7 +9,7 @@ const ProductTabs = () => {
   const description = (
     <div className="text-[#9f9f9f]">
       <div className="px-[10%]">
-        <p className="mb-7 mt-9">
+        <p className="mb-7">
           Embodying the raw, wayward spirit of rock ‘n’ roll, the Kilburn
           portable active stereo speaker takes the unmistakable look and sound
           of Marshall, unplugs the chords, and takes the show on the road.
@@ -55,22 +55,23 @@ const ProductTabs = () => {
   return (
     <div className="pt-12">
       {/* tab buttons */}
-      <div className="flex items-center justify-center md:gap-12">
+      <div className="mb-9 flex items-center justify-center space-x-2 sm:space-x-7 md:gap-12">
         <button
           onClick={() => setActiveTab("des")}
-          className={`text-2xl text-[#9f9f9f] ${activeTab === "des" && "font-medium text-black"}`}
+          className={`text-sm text-[#9f9f9f] sm:text-base md:text-lg lg:text-xl xl:text-2xl ${activeTab === "des" && "font-medium text-black"}`}
         >
           Description
         </button>
         <button
           onClick={() => setActiveTab("addInfo")}
-          className={`text-2xl text-[#9f9f9f] ${activeTab === "addInfo" && "font-medium text-black"}`}
+          className={`text-sm text-[#9f9f9f] sm:text-base md:text-lg lg:text-xl xl:text-2xl ${activeTab === "addInfo" && "font-medium text-black"}`}
         >
-          Additional Information
+          Additional <span className="sm:hidden">Info</span>{" "}
+          <span className="hidden sm:inline-block">Information</span>
         </button>
         <button
           onClick={() => setActiveTab("rev")}
-          className={`text-2xl text-[#9f9f9f] ${activeTab === "rev" && "font-medium text-black"}`}
+          className={`text-sm text-[#9f9f9f] sm:text-base md:text-lg lg:text-xl xl:text-2xl ${activeTab === "rev" && "font-medium text-black"}`}
         >
           Reviews [5]
         </button>

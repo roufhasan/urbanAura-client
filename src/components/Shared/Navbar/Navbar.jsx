@@ -174,10 +174,12 @@ const Navbar = () => {
           )}
         </li>
         <li>
-          <BsHeart className="cursor-pointer text-xl lg:text-2xl lg:text-[21px]" />
+          <Link to={user ? "/favourite" : "/login"}>
+            <BsHeart className="cursor-pointer text-xl lg:text-2xl lg:text-[21px]" />
+          </Link>
         </li>
         <li>
-          <CartDropDown />
+          <CartDropDown user={user} />
         </li>
       </ul>
 

@@ -86,7 +86,7 @@ const ProductOverview = ({ product }) => {
           <h1 className="text-2xl font-semibold sm:text-3xl lg:text-4xl lg:font-normal xl:text-[42px]">
             {title}
           </h1>
-          <p className="text-xl font-medium text-[#9f9f9f] sm:text-2xl">
+          <p className="mt-4 text-xl font-medium text-[#9f9f9f] sm:text-2xl">
             ${" "}
             {price.discounted
               ? formatPrice(price.discounted)

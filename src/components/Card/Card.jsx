@@ -24,12 +24,14 @@ const Card = ({ product }) => {
     <>
       <div className="group relative">
         <div className="relative h-[300px] w-full">
-          <img
-            className="h-full w-full object-cover object-center"
-            src={thumbnail}
-            alt={`image of ${title}`}
-            loading="lazy"
-          />
+          <Link to={`/products/${_id}`}>
+            <img
+              className="h-full w-full object-cover object-center"
+              src={thumbnail}
+              alt={`image of ${title}`}
+              loading="lazy"
+            />
+          </Link>
           {price.discount_percent || is_new ? (
             <p
               className={`text-white" absolute right-4 top-4 flex size-11 items-center justify-center rounded-full font-medium text-white md:right-6 md:top-6 md:size-12 ${is_new ? "bg-[#2EC1AC]" : "bg-[#E97171]"}`}
@@ -40,7 +42,12 @@ const Card = ({ product }) => {
         </div>
 
         <div className="bg-[#F4F5F7] pb-7 pl-4 pr-5 pt-4">
-          <h3 className="text-xl font-semibold md:text-2xl">{title}</h3>
+          <Link
+            to={`/products/${_id}`}
+            className="text-xl font-semibold md:text-2xl"
+          >
+            {title}
+          </Link>
           <p className="my-2 text-[#898989] md:font-medium">{sub_title}</p>
 
           <div

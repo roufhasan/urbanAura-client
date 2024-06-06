@@ -8,13 +8,15 @@ const CardList = ({ product }) => {
   return (
     <div className="flex bg-[#faf3ea] shadow-sm">
       {/* image and product status */}
-      <div className="relative h-40 w-40 md:h-56">
-        <img
-          className="h-full w-full object-cover object-center"
-          src={thumbnail}
-          alt={`image of ${title}`}
-          loading="lazy"
-        />
+      <div className="relative h-40 w-40 md:h-44 xl:h-48">
+        <Link to={`/products/${_id}`}>
+          <img
+            className="h-full w-full object-cover object-center"
+            src={thumbnail}
+            alt={`image of ${title}`}
+            loading="lazy"
+          />
+        </Link>
         {is_new || price.discount_percent ? (
           <p
             className={`absolute right-4 top-4 flex size-8 items-center justify-center rounded-full text-xs font-medium text-white md:right-3 md:top-3 md:size-9 ${is_new ? "bg-[#2EC1AC]" : "bg-[#E97171]"}`}
@@ -29,7 +31,7 @@ const CardList = ({ product }) => {
         <div className="flex items-center justify-between">
           <Link
             to={`/products/${_id}`}
-            className="text-xl font-semibold md:text-3xl"
+            className="text-xl font-semibold md:text-2xl"
           >
             {title}
           </Link>
@@ -48,11 +50,11 @@ const CardList = ({ product }) => {
             className={`${price.discounted && "flex items-center justify-between"} mt-auto`}
           >
             {price.discounted ? (
-              <p className="text-lg font-semibold md:text-2xl">
+              <p className="text-lg font-semibold md:text-xl">
                 ${formatPrice(price.discounted)}
               </p>
             ) : (
-              <p className="text-lg font-semibold md:text-2xl">
+              <p className="text-lg font-semibold md:text-xl">
                 ${formatPrice(price.original)}
               </p>
             )}

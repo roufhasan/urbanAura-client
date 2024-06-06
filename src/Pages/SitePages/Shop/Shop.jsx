@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import NavBanner from "../../../components/NavBanner/NavBanner";
+import PageBanner from "../../../components/PageBanner/PageBanner";
 import ServicesHighlight from "../../../components/ServicesHighlight/ServicesHighlight";
 import ProductsPagination from "./Products/ProductsPagination";
 import SortView from "./SortView/SortView";
@@ -26,7 +26,7 @@ const Shop = () => {
   return (
     <section>
       {/* page navigation banner */}
-      <NavBanner pathname={pathname} />
+      <PageBanner pathname={pathname} />
 
       {/* Props for SortView component:
           - Pagination data: startIndex, endIndex, itemsPerPage, setItemsPerPage

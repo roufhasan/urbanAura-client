@@ -4,7 +4,7 @@ import { BsChevronRight } from "react-icons/bs";
 import navigationBg from "../../assets/images/navigation-bg.png";
 import logo from "../../assets/logo/logo.png";
 
-const NavBanner = ({ pathname }) => {
+const PageBanner = ({ pathname }) => {
   const urlPath = pathname?.split("/")?.join("");
 
   return (
@@ -36,4 +36,4 @@ const NavBanner = ({ pathname }) => {
   );
 };
 
-export default NavBanner;
+export default PageBanner;

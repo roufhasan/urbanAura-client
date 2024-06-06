@@ -7,7 +7,7 @@ import { CartContext } from "../../Providers/CartProvider";
 import { formatPrice } from "../../utils/formatPrice";
 import { calculateTotalPrice } from "../../utils/calculateTotalPrice";
 
-const CartDropDown = () => {
+const CartDropDown = ({ user }) => {
   const { cart, handleCartItemDel } = useContext(CartContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isShowing, setIsShowing] = useState(true);
@@ -18,18 +18,26 @@ const CartDropDown = () => {
   return (
     <>
       <div className="relative">
-        <BsCart3
-          onClick={() => {
-            setIsOpen(true);
-            setIsShowing(false);
-            setTimeout(() => setIsShowing(true), 300);
-          }}
-          className="cursor-pointer text-2xl lg:text-[23px]"
-        />
-        {cart && cart.length > 0 && (
-          <p className="absolute -right-1 -top-1 flex size-[14px] items-center justify-center rounded-full bg-red-500 text-xs text-white">
-            {cart.length}
-          </p>
+        {user ? (
+          <>
+            <BsCart3
+              onClick={() => {
+                setIsOpen(true);
+                setIsShowing(false);
+                setTimeout(() => setIsShowing(true), 300);
+              }}
+              className="cursor-pointer text-2xl lg:text-[23px]"
+            />
+            {cart && cart.length > 0 && (
+              <p className="absolute -right-1 -top-1 flex size-[14px] items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                {cart.length}
+              </p>
+            )}
+          </>
+        ) : (
+          <Link to="/login">
+            <BsCart3 className="cursor-pointer text-2xl lg:text-[23px]" />
+          </Link>
         )}
       </div>
 
