@@ -2,10 +2,10 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { BiSolidTrashAlt } from "react-icons/bi";
 import { CartContext } from "../../../../Providers/CartProvider";
+import FixedLoader from "../../../../components/Loader/FixedLoader";
 import { calculateTotalPrice } from "../../../../utils/calculateTotalPrice";
 import { formatPrice } from "../../../../utils/formatPrice";
 import "./cartDetails.css";
-import FixedLoader from "../../../../components/Loader/FixedLoader";
 
 const CartDetails = () => {
   const { cart, cartLoading, handleQuantity, handleCartItemDel } =
