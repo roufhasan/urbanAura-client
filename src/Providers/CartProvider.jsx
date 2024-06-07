@@ -67,7 +67,7 @@ const CartProvider = ({ children }) => {
         })
         .then((res) => {
           if (res.data.acknowledged && res.data.deletedCount > 0) {
-            toast.success("Item removed");
+            toast.success("Item removed from cart");
             setRefetch(!refetch);
           }
         })
