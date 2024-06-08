@@ -29,12 +29,12 @@ const ProductTabs = () => {
         <img
           src={sofa1}
           alt="sofa three seated"
-          className="h-full max-h-[348px] w-full rounded-[10px] object-cover object-center"
+          className="h-full max-h-[348px] w-full rounded-[10px] object-cover object-center md:w-1/2"
         />
         <img
           src={sofa2}
           alt="sofa three seated"
-          className="h-full max-h-[348px] w-full rounded-[10px] object-cover object-center"
+          className="h-full max-h-[348px] w-full rounded-[10px] object-cover object-center md:w-1/2"
         />
       </div>
     </div>

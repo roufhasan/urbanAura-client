@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Card from "../../../../components/Card/Card";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import SkeletonLoader from "../../../../components/SkeletonLoader/SkeletonLoader";
+import Card from "../../../../components/Card/Card";
+import RouteButton from "../../../../components/Buttons/RouteButton";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -43,14 +43,8 @@ const Products = () => {
             .map((product) => <Card key={product._id} product={product} />)}
       </div>
 
-      <div className="mt-8 text-center">
-        <Link
-          to="/shop"
-          className="mr-auto inline-block border border-[#B88E2F] px-20 py-3 font-semibold text-[#B88E2F]"
-        >
-          Show More
-        </Link>
-      </div>
+      {/* button */}
+      <RouteButton url="/shop" />
     </section>
   );
 };
