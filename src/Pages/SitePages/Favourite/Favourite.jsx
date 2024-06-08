@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { CartContext } from "../../../Providers/CartProvider";
@@ -40,11 +40,12 @@ const Favourite = () => {
       <PageBanner pathname={pathname} />
       {/* Favourite Items List */}
       <div className="px-[4%] py-[72px] md:px-[7%]">
-        <p className="mb-10 border-b pb-2">Favourite Items</p>
+        {favouriteItems && favouriteItems.length > 0 && (
+          <p className="mb-10 border-b pb-2">Favourite Items</p>
+        )}
         {/* favourite list container */}
         <div className="space-y-8">
-          {favouriteItems &&
-            favouriteItems.length > 0 &&
+          {favouriteItems && favouriteItems.length > 0 ? (
             favouriteItems.map((item) => (
               <FavouriteItemList
                 key={item._id}
@@ -55,7 +56,20 @@ const Favourite = () => {
                 handleCartItemSave={handleCartItemSave}
                 user={user}
               />
-            ))}
+            ))
+          ) : (
+            <div className="text-center">
+              <h1 className="mb-2 text-2xl font-medium">
+                You have not added any favourite products yet.
+              </h1>
+              <div className="text-[#9f9f9f]">
+                <Link to="/shop" className="text-[#b88e2f]">
+                  Browse our catalog
+                </Link>{" "}
+                and add your favourite items to see them here.
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>

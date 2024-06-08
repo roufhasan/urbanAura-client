@@ -74,7 +74,10 @@ const FavouriteItemList = ({
               />
             </button>
             {cartItemIds.includes(item.product_id) ? (
-              <button className="bg-green-600 px-8 py-2 text-2xl text-white md:hidden">
+              <button
+                disabled
+                className="bg-green-600 px-8 py-2 text-2xl text-white md:hidden"
+              >
                 <BsCartCheck />
               </button>
             ) : (
@@ -125,7 +128,10 @@ const FavouriteItemList = ({
         </div>
         <div>
           {cartItemIds.includes(item.product_id) ? (
-            <button className="bg-green-600 px-8 py-2 text-2xl text-white">
+            <button
+              disabled
+              className="bg-green-600 px-8 py-2 text-2xl text-white"
+            >
               <BsCartCheck />
             </button>
           ) : (
