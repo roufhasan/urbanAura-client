@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import axios from "axios";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { CartContext } from "../../../Providers/CartProvider";
+import { FavouriteContext } from "../../../Providers/FavouriteProvider";
 import PageBanner from "../../../components/PageBanner/PageBanner";
 import FavouriteItemList from "./FavouriteItemList/FavouriteItemList";
 
@@ -10,28 +10,12 @@ const Favourite = () => {
   const { pathname } = useLocation();
   const { user } = useContext(AuthContext);
   const { cart, handleCartItemSave } = useContext(CartContext);
-  const [favouriteItems, setFavouriteItems] = useState([]);
-
-  // Get favourite items of a user
-  const getFavouriteItems = (email) => {
-    axios
-      .get("http://localhost:5000/favourite", {
-        params: { userEmail: email },
-      })
-      .then((res) => setFavouriteItems(res.data))
-      .catch((err) => {
-        console.error(
-          "error while fetching favourite items:",
-          err.response.data.message,
-        );
-      });
-  };
+  const { favouriteItems, getFavouriteItems, deleteFavouriteItem } =
+    useContext(FavouriteContext);
 
   useEffect(() => {
-    if (user && user.email) {
-      getFavouriteItems(user.email);
-    }
-  }, [user]);
+    getFavouriteItems();
+  }, [getFavouriteItems]);
 
   const cartItemIds = cart.map((item) => item.product_id);
 
@@ -50,8 +34,7 @@ const Favourite = () => {
               <FavouriteItemList
                 key={item._id}
                 item={item}
-                favouriteItems={favouriteItems}
-                setFavouriteItems={setFavouriteItems}
+                deleteFavouriteItem={deleteFavouriteItem}
                 cartItemIds={cartItemIds}
                 handleCartItemSave={handleCartItemSave}
                 user={user}

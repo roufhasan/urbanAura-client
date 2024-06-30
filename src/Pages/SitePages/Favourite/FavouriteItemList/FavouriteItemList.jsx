@@ -1,37 +1,15 @@
 import { Link } from "react-router-dom";
-import axios from "axios";
-import toast from "react-hot-toast";
 import { BsCartCheck, BsCartPlus } from "react-icons/bs";
 import { BiSolidTrashAlt } from "react-icons/bi";
 import { formatPrice } from "../../../../utils/formatPrice";
 
 const FavouriteItemList = ({
   item,
-  favouriteItems,
-  setFavouriteItems,
+  deleteFavouriteItem,
   cartItemIds,
   handleCartItemSave,
   user,
 }) => {
-  // Delete a favourite item of a user
-  const deleteFavouriteItem = () => {
-    axios
-      .delete("http://localhost:5000/favourite", { data: { id: item._id } })
-      .then((res) => {
-        console.log(res);
-        if (res.data.acknowledged && res.data.deletedCount > 0) {
-          toast.success("Favourite item removed");
-          setFavouriteItems(
-            favouriteItems.filter((favItem) => favItem._id !== item._id),
-          );
-        }
-      })
-      .catch((err) => {
-        console.error(err.message);
-        toast.error("Something went wrong!");
-      });
-  };
-
   return (
     <div className="flex w-full flex-col justify-between md:flex-row">
       <div className="flex w-full gap-x-6">
@@ -69,7 +47,7 @@ const FavouriteItemList = ({
           <div className="flex w-full justify-between">
             <button>
               <BiSolidTrashAlt
-                onClick={deleteFavouriteItem}
+                onClick={() => deleteFavouriteItem(item._id)}
                 className="cursor-pointer text-xl text-[#9f9f9f] transition-all hover:text-[#b88e2f]"
               />
             </button>

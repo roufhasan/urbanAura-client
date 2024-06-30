@@ -1,9 +1,8 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { BsArrowLeftRight, BsFillShareFill, BsHeart } from "react-icons/bs";
-import toast from "react-hot-toast";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { FavouriteContext } from "../../Providers/FavouriteProvider";
 import LoginModal from "../Modals/LoginModal/LoginModal";
 import AddToCartModal from "../Modals/AddToCartModal.jsx/AddToCartModal";
 import { formatPrice } from "../../utils/formatPrice";
@@ -11,6 +10,7 @@ import { formatPrice } from "../../utils/formatPrice";
 const Card = ({ product }) => {
   const { _id, title, sub_title, price, thumbnail, is_new } = product;
   const { user } = useContext(AuthContext);
+  const { addToFavourite } = useContext(FavouriteContext);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState({});
 
@@ -20,37 +20,6 @@ const Card = ({ product }) => {
     }
     setIsOpen(true);
     setSelectedProduct(product);
-  };
-
-  const addToFavourite = () => {
-    if (!user) {
-      return toast.error("Please login to add your favourite item!");
-    }
-
-    axios
-      .post("http://localhost:5000/favourite", {
-        user_email: user.email,
-        product_id: _id,
-        title,
-        price,
-        thumbnail,
-        quantity: 1,
-        size: "l",
-        color: "#816dfa",
-      })
-      .then((res) => {
-        console.log(res);
-        if (res.data.message) {
-          return toast.success("Item already in favourites!");
-        }
-        if (res.data.acknowledged) {
-          return toast.success("Item added to favourite!");
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        toast.error(err.message);
-      });
   };
 
   return (
@@ -125,7 +94,7 @@ const Card = ({ product }) => {
               <BsArrowLeftRight /> Compare
             </button>
             <button
-              onClick={addToFavourite}
+              onClick={() => addToFavourite(_id, title, price, thumbnail)}
               className="flex items-center gap-1"
             >
               <BsHeart /> Like
