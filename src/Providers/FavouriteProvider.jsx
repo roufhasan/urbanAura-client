@@ -63,15 +63,19 @@ const FavouriteProvider = ({ children }) => {
   };
 
   // Delete a favourite a item
-  const deleteFavouriteItem = (id) => {
+  const deleteFavouriteItem = (product_id, user_email) => {
     axios
-      .delete("http://localhost:5000/favourite", { data: { id: id } })
+      .delete("http://localhost:5000/favourite", {
+        data: { product_id: product_id, user_email: user_email },
+      })
       .then((res) => {
         console.log(res);
         if (res.data.acknowledged && res.data.deletedCount > 0) {
           toast.success("Favourite item removed");
           setFavouriteItems(
-            favouriteItems.filter((favItem) => favItem._id !== id),
+            favouriteItems.filter(
+              (favItem) => favItem.product_id !== product_id,
+            ),
           );
         }
       })

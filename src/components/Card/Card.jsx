@@ -1,6 +1,11 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { BsArrowLeftRight, BsFillShareFill, BsHeart } from "react-icons/bs";
+import {
+  BsArrowLeftRight,
+  BsFillHeartFill,
+  BsFillShareFill,
+  BsHeart,
+} from "react-icons/bs";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { FavouriteContext } from "../../Providers/FavouriteProvider";
 import LoginModal from "../Modals/LoginModal/LoginModal";
@@ -10,7 +15,8 @@ import { formatPrice } from "../../utils/formatPrice";
 const Card = ({ product }) => {
   const { _id, title, sub_title, price, thumbnail, is_new } = product;
   const { user } = useContext(AuthContext);
-  const { addToFavourite } = useContext(FavouriteContext);
+  const { favouriteItems, addToFavourite, deleteFavouriteItem } =
+    useContext(FavouriteContext);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState({});
 
@@ -20,6 +26,16 @@ const Card = ({ product }) => {
     }
     setIsOpen(true);
     setSelectedProduct(product);
+  };
+
+  const isFavourite = favouriteItems.some((item) => item.product_id === _id);
+
+  const toggleFavourite = () => {
+    if (isFavourite) {
+      deleteFavouriteItem(_id, user?.email);
+    } else {
+      addToFavourite(_id, title, price, thumbnail);
+    }
   };
 
   return (
@@ -94,10 +110,20 @@ const Card = ({ product }) => {
               <BsArrowLeftRight /> Compare
             </button>
             <button
-              onClick={() => addToFavourite(_id, title, price, thumbnail)}
+              onClick={toggleFavourite}
               className="flex items-center gap-1"
             >
-              <BsHeart /> Like
+              {isFavourite ? (
+                <>
+                  <BsFillHeartFill color="red" />{" "}
+                  <span className="text-red-600">Like</span>
+                </>
+              ) : (
+                <>
+                  <BsHeart />
+                  Like
+                </>
+              )}
             </button>
           </div>
         </div>

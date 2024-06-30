@@ -47,7 +47,7 @@ const FavouriteItemList = ({
           <div className="flex w-full justify-between">
             <button>
               <BiSolidTrashAlt
-                onClick={() => deleteFavouriteItem(item._id)}
+                onClick={() => deleteFavouriteItem(item.product_id, user.email)}
                 className="cursor-pointer text-xl text-[#9f9f9f] transition-all hover:text-[#b88e2f]"
               />
             </button>
