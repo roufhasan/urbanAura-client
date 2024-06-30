@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import {
@@ -17,14 +17,20 @@ import { CartContext } from "../../../Providers/CartProvider";
 import MobileNavbar from "./MobileNavbar";
 import CartDropDown from "../../CartDropDown/CartDropDown";
 import logo from "../../../assets/logo/logo.png";
+import { FavouriteContext } from "../../../Providers/FavouriteProvider";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const { setCart } = useContext(CartContext);
+  const { favouriteItems, getFavouriteItems } = useContext(FavouriteContext);
   const [showMenu, setShowMenu] = useState(false);
   const location = useLocation();
   const sideBarRef = useRef();
   const menuRef = useRef();
+
+  useEffect(() => {
+    getFavouriteItems();
+  }, [getFavouriteItems]);
 
   // Mobile Menu Toggle Handler
   window.addEventListener("click", (e) => {
@@ -174,9 +180,22 @@ const Navbar = () => {
           )}
         </li>
         <li>
-          <Link to={user ? "/favourite" : "/login"}>
-            <BsHeart className="cursor-pointer text-xl lg:text-2xl lg:text-[21px]" />
-          </Link>
+          <div className="relative">
+            {user ? (
+              <Link to="/favourite">
+                <BsHeart className="cursor-pointer text-2xl lg:text-[23px]" />
+                {favouriteItems && favouriteItems.length > 0 && (
+                  <p className="absolute -right-1 -top-1 flex size-[14px] items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                    {favouriteItems.length}
+                  </p>
+                )}
+              </Link>
+            ) : (
+              <Link to={user ? "/favourite" : "/login"}>
+                <BsHeart className="cursor-pointer text-xl lg:text-2xl lg:text-[21px]" />
+              </Link>
+            )}
+          </div>
         </li>
         <li>
           <CartDropDown user={user} />

@@ -8,6 +8,7 @@ export const FavouriteContext = createContext(null);
 const FavouriteProvider = ({ children }) => {
   const { user } = useContext(AuthContext);
   const [favouriteItems, setFavouriteItems] = useState([]);
+  const [refetch, setRefetch] = useState(false);
 
   // Get favourite items of a user
   const getFavouriteItems = useCallback(() => {
@@ -16,7 +17,10 @@ const FavouriteProvider = ({ children }) => {
         .get("http://localhost:5000/favourite", {
           params: { userEmail: user.email },
         })
-        .then((res) => setFavouriteItems(res.data))
+        .then((res) => {
+          setFavouriteItems(res.data);
+          setRefetch(!refetch);
+        })
         .catch((err) => {
           console.error(
             "error while fetching favourite items:",
@@ -24,7 +28,7 @@ const FavouriteProvider = ({ children }) => {
           );
         });
     }
-  }, [user]);
+  }, [user, refetch]);
 
   // Save a new favourite item
   const addToFavourite = (_id, title, price, thumbnail) => {
