@@ -1,5 +1,6 @@
 import { useState } from "react";
 import InfoTab from "../../../../components/InfoTab/InfoTab";
+import Reviews from "../../../../components/Reviews/Reviews";
 
 const ProductTabs = ({ gallery }) => {
   const [activeTab, setActiveTab] = useState("des");
@@ -38,12 +39,6 @@ const ProductTabs = ({ gallery }) => {
     </div>
   );
 
-  const reviews = (
-    <>
-      <p>reviews i am who are you.</p>
-    </>
-  );
-
   return (
     <div className="pt-12">
       {/* tab buttons */}
@@ -72,7 +67,7 @@ const ProductTabs = ({ gallery }) => {
       {/* render active tab content */}
       {activeTab === "des" && description}
       {activeTab === "addInfo" && <InfoTab />}
-      {activeTab === "rev" && reviews}
+      {activeTab === "rev" && <Reviews />}
     </div>
   );
 };

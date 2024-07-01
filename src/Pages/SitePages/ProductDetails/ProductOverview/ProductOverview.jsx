@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { Rating } from "@smastrom/react-rating";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { BsFacebook, BsLinkedin } from "react-icons/bs";
 import { AuthContext } from "../../../../Providers/AuthProvider";
@@ -93,7 +94,7 @@ const ProductOverview = ({ product }) => {
               : formatPrice(price.original)}
           </p>
           <div className="mb-4 mt-3 flex flex-wrap items-center gap-2 lg:gap-5">
-            <p>⭐⭐⭐⭐⭐</p>
+            <Rating style={{ maxWidth: 110 }} value={3.5} readOnly />
             <div className="h-6 w-0.5 bg-[#9f9f9f] lg:h-8"></div>
             <p className="text-sm text-[#9f9f9f]">5 customer review</p>
           </div>
