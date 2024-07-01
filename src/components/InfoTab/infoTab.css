@@ -1,0 +1,3 @@
+tbody::before {
+  height: 1rem !important;
+}

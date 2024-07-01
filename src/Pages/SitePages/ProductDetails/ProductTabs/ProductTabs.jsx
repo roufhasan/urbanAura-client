@@ -1,9 +1,7 @@
 import { useState } from "react";
-// images
-import sofa1 from "../../../../assets/images/sofa1.jpg";
-import sofa2 from "../../../../assets/images/sofa2.jpg";
+import InfoTab from "../../../../components/InfoTab/InfoTab";
 
-const ProductTabs = () => {
+const ProductTabs = ({ gallery }) => {
   const [activeTab, setActiveTab] = useState("des");
 
   const description = (
@@ -27,23 +25,17 @@ const ProductTabs = () => {
       </div>
       <div className="mt-9 gap-7 md:flex">
         <img
-          src={sofa1}
+          src={gallery[0]}
           alt="sofa three seated"
           className="h-full max-h-[348px] w-full rounded-[10px] object-cover object-center md:w-1/2"
         />
         <img
-          src={sofa2}
+          src={gallery[1]}
           alt="sofa three seated"
           className="h-full max-h-[348px] w-full rounded-[10px] object-cover object-center md:w-1/2"
         />
       </div>
     </div>
-  );
-
-  const additionalInfo = (
-    <>
-      <p>Additional information</p>
-    </>
   );
 
   const reviews = (
@@ -58,20 +50,20 @@ const ProductTabs = () => {
       <div className="mb-9 flex items-center justify-center space-x-2 sm:space-x-7 md:gap-12">
         <button
           onClick={() => setActiveTab("des")}
-          className={`text-sm text-[#9f9f9f] sm:text-base md:text-lg lg:text-xl xl:text-2xl ${activeTab === "des" && "font-medium text-black"}`}
+          className={`text-base text-[#9f9f9f] md:text-lg lg:text-xl xl:text-2xl ${activeTab === "des" && "font-medium text-black"}`}
         >
           Description
         </button>
         <button
           onClick={() => setActiveTab("addInfo")}
-          className={`text-sm text-[#9f9f9f] sm:text-base md:text-lg lg:text-xl xl:text-2xl ${activeTab === "addInfo" && "font-medium text-black"}`}
+          className={`text-base text-[#9f9f9f] md:text-lg lg:text-xl xl:text-2xl ${activeTab === "addInfo" && "font-medium text-black"}`}
         >
-          Additional <span className="sm:hidden">Info</span>{" "}
+          Additional <span className="sm:hidden">Info</span>
           <span className="hidden sm:inline-block">Information</span>
         </button>
         <button
           onClick={() => setActiveTab("rev")}
-          className={`text-sm text-[#9f9f9f] sm:text-base md:text-lg lg:text-xl xl:text-2xl ${activeTab === "rev" && "font-medium text-black"}`}
+          className={`text-base text-[#9f9f9f] md:text-lg lg:text-xl xl:text-2xl ${activeTab === "rev" && "font-medium text-black"}`}
         >
           Reviews [5]
         </button>
@@ -79,7 +71,7 @@ const ProductTabs = () => {
 
       {/* render active tab content */}
       {activeTab === "des" && description}
-      {activeTab === "addInfo" && additionalInfo}
+      {activeTab === "addInfo" && <InfoTab />}
       {activeTab === "rev" && reviews}
     </div>
   );
