@@ -1,111 +1,90 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 import {
-  BsBox2,
-  BsBoxArrowInLeft,
   BsCart3,
   BsHeart,
   BsList,
-  BsPersonCircle,
   BsPersonExclamation,
-  BsPersonGear,
   BsSearch,
 } from "react-icons/bs";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { CartContext } from "../../../Providers/CartProvider";
-import MobileNavbar from "./MobileNavbar";
-import CartDropDown from "../../CartDropDown/CartDropDown";
-import logo from "../../../assets/logo/logo.png";
 import { FavouriteContext } from "../../../Providers/FavouriteProvider";
+import SearchDropDown from "../../SearchDropDown/SearchDropDown";
+import UserDropDown from "../../UserDropDown/UserDropDown";
+import CartDropDown from "../../CartDropDown/CartDropDown";
+import MobileNavbar from "./MobileNavbar";
+import useDebounce from "../../../hooks/useDebounce";
+import { navItems } from "../../../data/navItems";
+import logo from "../../../assets/logo/logo.png";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  // Context
+  const { user } = useContext(AuthContext);
   const { setCart } = useContext(CartContext);
   const { favouriteItems, getFavouriteItems } = useContext(FavouriteContext);
+
+  // State
   const [showMenu, setShowMenu] = useState(false);
-  const location = useLocation();
+  const [searchValue, setSearchValue] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  // Ref
   const sideBarRef = useRef();
   const menuRef = useRef();
 
+  // Router
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Debounce search input
+  const debouncedSearchValue = useDebounce(searchValue, 300);
+
+  // Fetch favourite items of a user
   useEffect(() => {
     getFavouriteItems();
   }, [getFavouriteItems]);
 
-  // Mobile Menu Toggle Handler
-  window.addEventListener("click", (e) => {
-    if (e.target === sideBarRef.current || e.target === menuRef.current) {
-      setShowMenu(!showMenu);
+  // Perform search when debounced search value changes
+  useEffect(() => {
+    if (debouncedSearchValue === "" || debouncedSearchValue.length === 0) {
+      return setSearchResults([]);
+    } else {
+      axios
+        .get(`http://localhost:5000/search/${debouncedSearchValue}`)
+        .then((res) => setSearchResults(res.data))
+        .catch((err) => console.error(err));
     }
-  });
+  }, [debouncedSearchValue]);
 
-  // Handle user logout
-  const handleUserLogOut = () => {
-    setCart([]);
-    logOut()
-      .then(() => console.log("Sign-out successful"))
-      .catch((err) => console.error(err));
+  // Clear search input and results
+  const clearSearch = () => {
+    setSearchValue("");
+    setSearchResults([]);
   };
 
-  // Navigation Menu Links
-  const navItems = [
-    { link: "/", text: "Home" },
-    { link: "/shop", text: "Shop" },
-    { link: "/about", text: "About" },
-    { link: "/contact", text: "Contact" },
-  ];
+  // Handle form submission for search
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    const searchText = e.target.search.value;
+    navigate(`/search/${searchText}`);
+    clearSearch();
+  };
 
-  // Desktop User Profile Imgae Dropdown Button
-  const userDropDown = (
-    <>
-      <Popover>
-        <PopoverButton className="size-8 focus:outline-none">
-          {user && user.photoURL ? (
-            <img
-              loading="eazy"
-              src={user.photoURL}
-              alt={`${user && user?.displayName} profile img`}
-              className="h-full w-full rounded-full"
-            />
-          ) : (
-            <BsPersonCircle size={28} />
-          )}
-        </PopoverButton>
-        <PopoverPanel
-          anchor="bottom"
-          className="mt-10 rounded border bg-white px-4 py-3 text-gray-600 shadow"
-        >
-          <Link
-            to="/account-settings"
-            className="mb-4 flex items-center gap-2 text-sm"
-          >
-            <BsPersonGear size={24} />
-            <span className="border-b border-transparent transition-all hover:border-[#b88e2f] hover:text-[#b88e2f]">
-              Manage My Account
-            </span>
-          </Link>
-          <Link
-            to="/my-orders"
-            className="mb-4 flex items-center gap-2 text-sm"
-          >
-            <BsBox2 size={18} className="w-6" />
-            <span className="border-b border-transparent transition-all hover:border-[#b88e2f] hover:text-[#b88e2f]">
-              My Orders
-            </span>
-          </Link>
-          <button
-            onClick={handleUserLogOut}
-            className="flex items-center gap-2 text-sm"
-          >
-            <BsBoxArrowInLeft size={24} />
-            <span className="border-b border-transparent transition-all hover:border-[#b88e2f] hover:text-[#b88e2f]">
-              Logout
-            </span>
-          </button>
-        </PopoverPanel>
-      </Popover>
-    </>
-  );
+  // Toggle mobile menu Visibility
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (e.target === sideBarRef.current || e.target === menuRef.current) {
+        setShowMenu(!showMenu);
+      }
+    };
+
+    window.addEventListener("click", handleClickOutside);
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, [showMenu]);
 
   return (
     <nav className="relative items-center justify-between md:flex md:py-7 md:pl-[4%] md:pr-[7%]">
@@ -140,11 +119,18 @@ const Navbar = () => {
       {/* Mobile Search Field */}
       {location.pathname === "/" && (
         <div className="flex h-14 w-full flex-col justify-center bg-[#f2f3f5] md:hidden">
-          <form className="relative mx-auto h-11 w-11/12">
+          <form
+            onSubmit={handleSearchSubmit}
+            className="relative mx-auto h-11 w-11/12"
+          >
             <input
               className="h-full w-full py-1 pl-3 pr-10 outline-none"
-              type="text"
-              placeholder="Search Here..."
+              type="search"
+              value={searchValue}
+              name="search"
+              placeholder="Search"
+              autoComplete="off"
+              onChange={(e) => setSearchValue(e.target.value)}
             />
             <button
               className="absolute right-3 top-1/2 -translate-y-1/2"
@@ -152,6 +138,13 @@ const Navbar = () => {
             >
               <BsSearch size={16} />
             </button>
+            {/* Search Drop Down */}
+            {searchResults && searchResults.length > 0 && (
+              <SearchDropDown
+                products={searchResults}
+                clearSearch={clearSearch}
+              />
+            )}
           </form>
         </div>
       )}
@@ -168,11 +161,34 @@ const Navbar = () => {
       {/* Desktop Navigation Buttons */}
       <ul className="hidden items-center md:flex md:gap-x-6 lg:gap-x-8 xl:gap-x-10">
         <li>
-          <BsSearch className="cursor-pointer text-xl lg:text-[21px] xl:text-2xl" />
+          <form onSubmit={handleSearchSubmit} className="relative">
+            <input
+              className="w-full max-w-48 rounded border px-3 py-1 pr-8 outline-none focus:border-black"
+              type="search"
+              value={searchValue}
+              name="search"
+              placeholder="Search"
+              autoComplete="off"
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
+            <button
+              type="submit"
+              className="absolute bottom-0 right-2 top-0 mb-auto mt-auto cursor-pointer text-lg text-gray-700"
+            >
+              <BsSearch />
+            </button>
+            {/* Search Drop Down */}
+            {searchResults && searchResults.length > 0 && (
+              <SearchDropDown
+                products={searchResults}
+                clearSearch={clearSearch}
+              />
+            )}
+          </form>
         </li>
         <li>
           {user ? (
-            userDropDown
+            <UserDropDown setCart={setCart} />
           ) : (
             <Link to="/login">
               <BsPersonExclamation className="cursor-pointer text-[25px] lg:text-[26px] xl:text-[28px]" />
@@ -210,7 +226,7 @@ const Navbar = () => {
           setShowMenu={setShowMenu}
           showMenu={showMenu}
           navItems={navItems}
-          handleUserLogOut={handleUserLogOut}
+          setCart={setCart}
         />
       )}
     </nav>

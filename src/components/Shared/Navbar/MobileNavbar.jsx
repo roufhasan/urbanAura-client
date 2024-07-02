@@ -15,9 +15,17 @@ const MobileNavbar = ({
   setShowMenu,
   showMenu,
   navItems,
-  handleUserLogOut,
+  setCart,
 }) => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+
+  // Handle user logout
+  const handleUserLogOut = () => {
+    setCart([]);
+    logOut()
+      .then(() => console.log("Sign-out successful"))
+      .catch((err) => console.error(err));
+  };
 
   return (
     <div
