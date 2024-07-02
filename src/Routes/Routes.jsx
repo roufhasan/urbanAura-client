@@ -9,6 +9,7 @@ import Login from "../Pages/SitePages/Login/Login";
 import Signup from "../Pages/SitePages/Signup/Signup";
 import Cart from "../Pages/SitePages/Cart/Cart";
 import Favourite from "../Pages/SitePages/Favourite/Favourite";
+import Checkout from "../Pages/SitePages/Checkout/Checkout";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
       {
         path: "favourite",
         element: <Favourite />,
+      },
+      {
+        path: "/checkout",
+        element: <Checkout />,
       },
     ],
   },
