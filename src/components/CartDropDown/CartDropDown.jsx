@@ -124,6 +124,7 @@ const CartDropDown = ({ user }) => {
                     Cart
                   </Link>
                   <Link
+                    onClick={() => setIsOpen(false)}
                     to="/checkout"
                     className="w-full rounded-full border border-black px-[30px] py-1.5 text-center text-xs"
                   >
