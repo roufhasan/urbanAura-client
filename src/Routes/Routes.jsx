@@ -11,6 +11,7 @@ import Cart from "../Pages/SitePages/Cart/Cart";
 import Favourite from "../Pages/SitePages/Favourite/Favourite";
 import Search from "../Pages/SitePages/Search/Search";
 import Checkout from "../Pages/SitePages/Checkout/Checkout";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -47,15 +48,27 @@ export const router = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <Cart />,
+        element: (
+          <PrivateRoute>
+            <Cart />
+          </PrivateRoute>
+        ),
       },
       {
         path: "favourite",
-        element: <Favourite />,
+        element: (
+          <PrivateRoute>
+            <Favourite />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/checkout",
-        element: <Checkout />,
+        element: (
+          <PrivateRoute>
+            <Checkout />
+          </PrivateRoute>
+        ),
       },
     ],
   },

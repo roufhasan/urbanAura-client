@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 /* images */
@@ -10,13 +10,17 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 
 const Login = () => {
   const { signIn, googleSignIn, loading, setLoading } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
+  // React hook form
   const {
     register,
     handleSubmit,
     setValue,
     formState: { errors },
   } = useForm();
-  const navigate = useNavigate();
 
   // Form Submit handler
   const onSubmit = (data) => {
@@ -25,7 +29,7 @@ const Login = () => {
         setLoading(false);
         const loggedUser = result.user;
         console.log(loggedUser);
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         setLoading(false);
@@ -44,7 +48,7 @@ const Login = () => {
     googleSignIn()
       .then((res) => {
         const loggedUser = res.user;
-        navigate("/");
+        navigate(from, { replace: true });
         console.log(loggedUser);
       })
       .catch((err) => {
