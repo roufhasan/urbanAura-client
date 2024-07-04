@@ -17,6 +17,7 @@ const BillingDetails = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    data.email = user.email;
     console.log(data);
   };
 
@@ -163,23 +164,6 @@ const BillingDetails = () => {
                 type="tel"
                 id="phone"
                 {...register("phone", { required: true })}
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="email"
-                className={`${errors.email && "text-red-600"} font-medium" mb-5 inline-block`}
-              >
-                Email address
-              </label>
-              <br />
-              <input
-                className="h-[75px] w-full rounded-[10px] border border-[#9f9f9f] px-5 outline-none"
-                type="email"
-                id="email"
-                value={user.email}
-                readOnly
-                {...register("email", { required: true })}
               />
             </div>
             <div>

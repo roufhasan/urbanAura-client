@@ -9,7 +9,7 @@ import {
 import { AuthContext } from "../../Providers/AuthProvider";
 import { FavouriteContext } from "../../Providers/FavouriteProvider";
 import LoginModal from "../Modals/LoginModal/LoginModal";
-import AddToCartModal from "../Modals/AddToCartModal.jsx/AddToCartModal";
+import AddToCartModal from "../Modals/AddToCartModal/AddToCartModal";
 import { formatPrice } from "../../utils/formatPrice";
 
 const Card = ({ product }) => {

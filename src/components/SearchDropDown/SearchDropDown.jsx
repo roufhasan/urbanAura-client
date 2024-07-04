@@ -3,7 +3,7 @@ import { formatPrice } from "../../utils/formatPrice";
 
 const SearchDropDown = ({ products, clearSearch }) => {
   return (
-    <div className="absolute top-[120%] w-full bg-white p-4 shadow-sm md:w-[125%]">
+    <div className="absolute top-[120%] z-10 w-full bg-white p-4 shadow-sm md:w-[125%]">
       <ul className="h-80 w-full space-y-6 overflow-y-auto">
         {products &&
           products.length > 0 &&
