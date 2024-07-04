@@ -1,14 +1,20 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { CartContext } from "../../../../Providers/CartProvider";
-import { formatPrice } from "../../../../utils/formatPrice";
-import { calculateTotalPrice } from "../../../../utils/calculateTotalPrice";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 import { AuthContext } from "../../../../Providers/AuthProvider";
+import { CartContext } from "../../../../Providers/CartProvider";
+import PaymentModal from "../../../../components/Modals/PaymentModal/PaymentModal";
+import { calculateTotalPrice } from "../../../../utils/calculateTotalPrice";
+import { formatPrice } from "../../../../utils/formatPrice";
+
+const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 
 const BillingDetails = () => {
   const { user } = useContext(AuthContext);
-  const { cart } = useContext(CartContext);
-
+  const { cart, setCart } = useContext(CartContext);
+  const [isOpen, setIsOpen] = useState(false);
+  const [billingData, setBillingData] = useState({});
   const {
     register,
     handleSubmit,
@@ -16,11 +22,18 @@ const BillingDetails = () => {
     formState: { errors },
   } = useForm();
 
+  // Total price of the cart items
+  const totalPrice = parseFloat(calculateTotalPrice(cart));
+
+  // Handle billing details form
   const onSubmit = (data) => {
-    data.email = user.email;
-    console.log(data);
+    if (data) {
+      setIsOpen(true);
+      setBillingData(data);
+    }
   };
 
+  // Trigger billing details form
   const triggerFormSubmit = async () => {
     const isValid = await trigger();
     if (isValid) {
@@ -33,6 +46,7 @@ const BillingDetails = () => {
       <div>
         <h1 className="my-9 pl-16 text-4xl font-semibold">Billing details</h1>
         <div className="flex flex-col gap-x-6 gap-y-16 md:flex-row">
+          {/* User info form */}
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="w-full space-y-9 md:w-1/2 md:px-16"
@@ -43,7 +57,7 @@ const BillingDetails = () => {
                   htmlFor="firstName"
                   className={`${errors.firstName && "text-red-600"} font-medium" mb-5 inline-block`}
                 >
-                  First Name
+                  First Name {errors.firstName && "*"}
                 </label>
                 <br />
                 <input
@@ -58,7 +72,7 @@ const BillingDetails = () => {
                   htmlFor="lastName"
                   className={`${errors.lastName && "text-red-600"} font-medium" mb-5 inline-block`}
                 >
-                  Last Name
+                  Last Name {errors.lastName && "*"}
                 </label>
                 <br />
                 <input
@@ -74,7 +88,7 @@ const BillingDetails = () => {
                 htmlFor="country"
                 className="mb-5 inline-block font-medium"
               >
-                Country/Region
+                Country
               </label>
               <select
                 id="country"
@@ -90,25 +104,10 @@ const BillingDetails = () => {
             </div>
             <div>
               <label
-                htmlFor="street"
-                className={`${errors.street && "text-red-600"} font-medium" mb-5 inline-block`}
-              >
-                Street address
-              </label>
-              <br />
-              <input
-                className="h-[75px] w-full rounded-[10px] border border-[#9f9f9f] px-5 outline-none"
-                type="text"
-                id="street"
-                {...register("street", { required: true })}
-              />
-            </div>
-            <div>
-              <label
                 htmlFor="city"
                 className={`${errors.city && "text-red-600"} font-medium" mb-5 inline-block`}
               >
-                Town / City
+                City {errors.city && "*"}
               </label>
               <br />
               <input
@@ -120,43 +119,25 @@ const BillingDetails = () => {
             </div>
             <div>
               <label
-                htmlFor="province"
-                className="mb-5 inline-block font-medium"
+                htmlFor="street"
+                className={`${errors.street && "text-red-600"} font-medium" mb-5 inline-block`}
               >
-                Province
-              </label>
-              <select
-                id="province"
-                className="h-[75px] w-full rounded-[10px] border border-[#9f9f9f] px-5"
-                {...register("province", { required: true })}
-              >
-                <option value="western">Western Province</option>
-                <option value="eastern">Eastern Province</option>
-                <option value="northern">Northern Province</option>
-                <option value="southern">Southern Province</option>
-              </select>
-            </div>
-            <div>
-              <label
-                htmlFor="zip_code"
-                className={`${errors.zip_code && "text-red-600"} font-medium" mb-5 inline-block`}
-              >
-                ZIP code
+                Street address {errors.street && "*"}
               </label>
               <br />
               <input
                 className="h-[75px] w-full rounded-[10px] border border-[#9f9f9f] px-5 outline-none"
                 type="text"
-                id="zip_code"
-                {...register("zip_code", { required: true })}
+                id="street"
+                {...register("street", { required: true })}
               />
             </div>
             <div>
               <label
                 htmlFor="phone"
-                className={`${errors.firstName && "text-red-600"} font-medium" mb-5 inline-block`}
+                className={`${errors.phone && "text-red-600"} font-medium" mb-5 inline-block`}
               >
-                Phone
+                Phone {errors.phone && "*"}
               </label>
               <br />
               <input
@@ -175,6 +156,8 @@ const BillingDetails = () => {
               ></textarea>
             </div>
           </form>
+
+          {/* Cart Items and Price Details */}
           <div className="w-full md:w-1/2">
             <div className="mb-4 flex items-center justify-between">
               <p className="text-2xl font-medium">Product</p>
@@ -208,7 +191,7 @@ const BillingDetails = () => {
             <div className="flex items-center justify-between">
               <p>Total</p>
               <p className="text-2xl font-bold text-[#B88E2F]">
-                ${formatPrice(calculateTotalPrice(cart))}
+                ${formatPrice(totalPrice)}
               </p>
             </div>
 
@@ -221,15 +204,20 @@ const BillingDetails = () => {
               </span>
             </p>
 
-            <div className="mt-10 text-center">
-              <button
-                type="submit"
-                onClick={triggerFormSubmit}
-                className="rounded-2xl border border-black px-24 py-4 text-xl transition-all hover:border-transparent hover:bg-[#B88E2F] hover:text-white"
-              >
-                Place order
-              </button>
-            </div>
+            <Elements stripe={stripePromise}>
+              <PaymentModal
+                {...{
+                  isOpen,
+                  setIsOpen,
+                  user,
+                  cart,
+                  setCart,
+                  totalPrice,
+                  billingData,
+                  triggerFormSubmit,
+                }}
+              />
+            </Elements>
           </div>
         </div>
       </div>
