@@ -2,7 +2,7 @@ import { useState } from "react";
 import InfoTab from "../../../../components/InfoTab/InfoTab";
 import Reviews from "../../../../components/Reviews/Reviews";
 
-const ProductTabs = ({ gallery }) => {
+const ProductTabs = ({ gallery, productId }) => {
   const [activeTab, setActiveTab] = useState("des");
 
   const description = (
@@ -67,7 +67,7 @@ const ProductTabs = ({ gallery }) => {
       {/* render active tab content */}
       {activeTab === "des" && description}
       {activeTab === "addInfo" && <InfoTab />}
-      {activeTab === "rev" && <Reviews />}
+      {activeTab === "rev" && <Reviews productId={productId} />}
     </div>
   );
 };

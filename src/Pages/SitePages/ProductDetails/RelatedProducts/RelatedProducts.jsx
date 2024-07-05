@@ -17,8 +17,6 @@ const RelatedProducts = ({ category }) => {
     getRelatedProducts();
   }, []);
 
-  console.log(products);
-
   return (
     <div className="mb-24 mt-14">
       <h1 className="mb-6 text-center text-4xl font-medium">

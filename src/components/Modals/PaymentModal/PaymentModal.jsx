@@ -49,7 +49,7 @@ const PaymentModal = ({
       return;
     }
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    const { error } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
@@ -58,7 +58,6 @@ const PaymentModal = ({
       console.log("[error]", error);
       setCardError(error);
     } else {
-      console.log("[paymentMethod]", paymentMethod);
       setCardError(error);
     }
 
@@ -81,7 +80,6 @@ const PaymentModal = ({
       console.log("[confirmError]", confirmError);
     }
 
-    console.log("[paymentIntent]", paymentIntent);
     setProcessing(false);
 
     if (paymentIntent.status === "succeeded") {
@@ -125,8 +123,9 @@ const PaymentModal = ({
             price: totalPrice,
           },
         );
-        console.log(res.data.clientSecret);
-        setClientSecret(res.data.clientSecret);
+        if (res.data.clientSecret) {
+          setClientSecret(res.data.clientSecret);
+        }
       } catch (err) {
         console.log(err);
       }
