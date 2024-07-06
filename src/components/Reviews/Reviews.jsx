@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Controller, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Rating } from "@smastrom/react-rating";
 import { AuthContext } from "../../Providers/AuthProvider";
 
@@ -23,7 +24,19 @@ const Reviews = ({ productId }) => {
 
   // Review Form Submit
   const onSubmit = (data) => {
-    console.log(data);
+    if (user.email) {
+      data.email = user.email;
+      data.date = new Date();
+
+      axios
+        .post("http://localhost:5000/review", data)
+        .then((res) => {
+          if (res.data.acknowledged) {
+            toast.success("Review submitted!");
+          }
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   useEffect(() => {

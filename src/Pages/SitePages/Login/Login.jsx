@@ -39,7 +39,7 @@ const Login = () => {
 
   // demo login function to fill up email, password and submit the form
   const handleDemoLogin = () => {
-    setValue("email", "demo@example.com");
+    setValue("email", "walter_white@crystal.com");
     setValue("password", "Asdf1234");
   };
 
