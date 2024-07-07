@@ -6,6 +6,7 @@ import { Rating } from "@smastrom/react-rating";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { formatReviewDate } from "../../utils/formatReviewDate";
 import { calculateAvgRating } from "../../utils/calculateAvgRating";
+import { Link } from "react-router-dom";
 
 const Reviews = ({ productId, reviews, setReviews }) => {
   const { user } = useContext(AuthContext);
@@ -122,20 +123,31 @@ const Reviews = ({ productId, reviews, setReviews }) => {
           </div>
         </div>
         <div>
-          {isSubmitted ? (
-            <button
-              onClick={deleteMyReview}
-              className="rounded bg-[#b88e2f] px-5 py-2.5 font-medium text-white transition-all hover:bg-[#9e7b28] md:px-6 md:py-4"
-            >
-              Delete my review
-            </button>
+          {user ? (
+            <>
+              {isSubmitted ? (
+                <button
+                  onClick={deleteMyReview}
+                  className="rounded bg-[#b88e2f] px-5 py-2.5 font-medium text-white transition-all hover:bg-[#9e7b28] md:px-6 md:py-4"
+                >
+                  Delete my review
+                </button>
+              ) : (
+                <button
+                  onClick={() => setFormVisible(true)}
+                  className="rounded bg-[#b88e2f] px-5 py-2.5 font-medium text-white transition-all hover:bg-[#9e7b28] md:px-6 md:py-4"
+                >
+                  Write a review
+                </button>
+              )}
+            </>
           ) : (
-            <button
-              onClick={() => setFormVisible(true)}
+            <Link
+              to="/login"
               className="rounded bg-[#b88e2f] px-5 py-2.5 font-medium text-white transition-all hover:bg-[#9e7b28] md:px-6 md:py-4"
             >
               Write a review
-            </button>
+            </Link>
           )}
         </div>
       </div>
