@@ -6,11 +6,12 @@ import { AuthContext } from "../../../../Providers/AuthProvider";
 import { CartContext } from "../../../../Providers/CartProvider";
 import LoginModal from "../../../../components/Modals/LoginModal/LoginModal";
 import { formatPrice } from "../../../../utils/formatPrice";
+import { calculateAvgRating } from "../../../../utils/calculateAvgRating";
 
 const sizes = ["l", "xl", "xs"];
 const colors = ["#816dfa", "black", "#b88e2f"];
 
-const ProductOverview = ({ product }) => {
+const ProductOverview = ({ product, reviews }) => {
   const { _id, title, price, thumbnail, gallery } = product;
   const { user } = useContext(AuthContext);
   const { handleCartItemSave } = useContext(CartContext);
@@ -94,9 +95,15 @@ const ProductOverview = ({ product }) => {
               : formatPrice(price.original)}
           </p>
           <div className="mb-4 mt-3 flex flex-wrap items-center gap-2 lg:gap-5">
-            <Rating style={{ maxWidth: 110 }} value={3.5} readOnly />
+            <Rating
+              style={{ maxWidth: 110 }}
+              value={calculateAvgRating(reviews)}
+              readOnly
+            />
             <div className="h-6 w-0.5 bg-[#9f9f9f] lg:h-8"></div>
-            <p className="text-sm text-[#9f9f9f]">5 customer review</p>
+            <p className="text-sm text-[#9f9f9f]">
+              {reviews.length} customer review
+            </p>
           </div>
 
           <p className="mb-6 w-full max-w-md text-sm">

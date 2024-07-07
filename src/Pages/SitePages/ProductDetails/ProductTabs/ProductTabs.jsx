@@ -2,7 +2,7 @@ import { useState } from "react";
 import InfoTab from "../../../../components/InfoTab/InfoTab";
 import Reviews from "../../../../components/Reviews/Reviews";
 
-const ProductTabs = ({ gallery, productId }) => {
+const ProductTabs = ({ gallery, productId, reviews, setReviews }) => {
   const [activeTab, setActiveTab] = useState("des");
 
   const description = (
@@ -60,14 +60,20 @@ const ProductTabs = ({ gallery, productId }) => {
           onClick={() => setActiveTab("rev")}
           className={`text-base text-[#9f9f9f] md:text-lg lg:text-xl xl:text-2xl ${activeTab === "rev" && "font-medium text-black"}`}
         >
-          Reviews [5]
+          Reviews [{reviews.length}]
         </button>
       </div>
 
       {/* render active tab content */}
       {activeTab === "des" && description}
       {activeTab === "addInfo" && <InfoTab />}
-      {activeTab === "rev" && <Reviews productId={productId} />}
+      {activeTab === "rev" && (
+        <Reviews
+          productId={productId}
+          reviews={reviews}
+          setReviews={setReviews}
+        />
+      )}
     </div>
   );
 };
