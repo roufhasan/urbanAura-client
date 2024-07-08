@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import { motion } from "framer-motion";
 import { AuthContext } from "../../../../Providers/AuthProvider";
+import { formatPrice } from "../../../../utils/formatPrice";
 
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
@@ -20,11 +21,12 @@ const MyOrders = () => {
     }
   }, [user]);
 
+  // Formate date of purchased product
   const formatDate = (isoDate) => {
     const date = new Date(isoDate);
     return format(date, "MMM d, yyy");
   };
-  console.log(orders);
+
   return (
     <section className="mb-28 px-[4%] md:px-[7%]">
       <h3 className="pb-8 pt-6 font-semibold text-[#b88e2f]">
@@ -35,14 +37,19 @@ const MyOrders = () => {
           {orders.map((order, i) => (
             <li
               key={order._id}
-              className={`space-y-6 border-b border-gray-200 pb-6 ${i === orders.length - 1 && "border-b-0"}`}
+              className={`space-y-6 border-b-[2px] border-gray-200 pb-6 ${i === orders.length - 1 && "border-none"}`}
             >
-              <p className="truncate text-right text-sm">
-                <span className=" text-[#b88e2f]">Ordered on:</span>{" "}
+              <p className="truncate text-left text-sm text-gray-400">
+                <span className="text-[#b88e2f]">
+                  Ordered #{order.items.length} items on:
+                </span>{" "}
                 {formatDate(order.date)}
               </p>
               {order.items.map((item) => (
-                <div key={item._id} className="flex justify-between">
+                <div
+                  key={item._id}
+                  className="flex justify-between py-1 shadow-sm"
+                >
                   <Link to={`/products/${item.product_id}`} className="group">
                     <img
                       src={item.thumbnail}
@@ -62,9 +69,15 @@ const MyOrders = () => {
                     <p className="w-14 truncate pt-1 text-sm text-gray-400 md:hidden">
                       Qty: {item.quantity}
                     </p>
+                    <p className="w-fit min-w-16 truncate pt-1 text-sm text-gray-400 md:hidden">
+                      $ {formatPrice(item.quantity * item.price)}
+                    </p>
                   </div>
                   <p className="hidden w-14 truncate pt-1 text-sm text-gray-400 md:block">
                     Qty: {item.quantity}
+                  </p>
+                  <p className="hidden w-fit min-w-14 truncate pt-1 text-sm text-gray-400 md:block">
+                    $ {formatPrice(item.quantity * item.price)}
                   </p>
                   <p className="h-fit w-24 truncate rounded-full bg-gray-100 p-1 text-center text-xs">
                     {order.status}

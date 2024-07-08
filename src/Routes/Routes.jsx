@@ -13,6 +13,7 @@ import Search from "../Pages/SitePages/Search/Search";
 import Checkout from "../Pages/SitePages/Checkout/Checkout";
 import PrivateRoute from "./PrivateRoute";
 import MyOrders from "../Pages/DashBoard/UserDashboard/MyOrders/MyOrders";
+import AccountSettings from "../Pages/DashBoard/UserDashboard/AccountSettings/AccountSettings";
 
 export const router = createBrowserRouter([
   {
@@ -77,6 +78,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyOrders />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/account-settings",
+        element: (
+          <PrivateRoute>
+            <AccountSettings />
           </PrivateRoute>
         ),
       },

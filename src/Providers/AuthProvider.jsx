@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
+  deleteUser,
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -38,17 +39,30 @@ const AuthProvider = ({ children }) => {
   };
 
   // Update user profile name
-  const updateUserProfile = (name) => {
+  const updateUserProfile = (name, photo) => {
     setLoading(true);
-    return updateProfile(auth.currentUser, {
-      displayName: name,
-    });
+    if (name && photo) {
+      return updateProfile(auth.currentUser, {
+        displayName: name,
+        photoURL: photo,
+      });
+    } else {
+      return updateProfile(auth.currentUser, {
+        displayName: name,
+      });
+    }
   };
 
   // Log out
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
+  };
+
+  // Delete User's Account
+  const deleteAccount = () => {
+    setLoading(true);
+    return deleteUser(auth.currentUser);
   };
 
   // authentication observer
@@ -74,6 +88,7 @@ const AuthProvider = ({ children }) => {
     logOut,
     setLoading,
     setUser,
+    deleteAccount,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
