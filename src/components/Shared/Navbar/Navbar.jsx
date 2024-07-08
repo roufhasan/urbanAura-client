@@ -200,7 +200,7 @@ const Navbar = () => {
         </li>
         {user && (
           <>
-            <li>
+            <li className="relative">
               <Link to="/favourite">
                 <BsHeart className="cursor-pointer text-2xl lg:text-[23px]" />
                 {favouriteItems && favouriteItems.length > 0 && (
@@ -215,24 +215,6 @@ const Navbar = () => {
             </li>
           </>
         )}
-        {/* <li>
-          <div className="relative">
-            {user ? (
-              <Link to="/favourite">
-                <BsHeart className="cursor-pointer text-2xl lg:text-[23px]" />
-                {favouriteItems && favouriteItems.length > 0 && (
-                  <p className="absolute -right-1 -top-1 flex size-[14px] items-center justify-center rounded-full bg-red-500 text-xs text-white">
-                    {favouriteItems.length}
-                  </p>
-                )}
-              </Link>
-            ) : (
-              <Link to={user ? "/favourite" : "/login"}>
-                <BsHeart className="cursor-pointer text-xl lg:text-2xl lg:text-[21px]" />
-              </Link>
-            )}
-          </div>
-        </li> */}
       </ul>
 
       {/* Mobile Sidebar Menu */}

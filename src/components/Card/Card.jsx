@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { BsArrowUpLeftCircle, BsFillHeartFill, BsHeart } from "react-icons/bs";
-import { easeIn, motion } from "framer-motion";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { FavouriteContext } from "../../Providers/FavouriteProvider";
 import LoginModal from "../Modals/LoginModal/LoginModal";

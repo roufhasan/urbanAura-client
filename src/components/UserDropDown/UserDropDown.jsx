@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import {
@@ -11,6 +11,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 
 const UserDropDown = ({ setCart }) => {
   const { user, logOut } = useContext(AuthContext);
+  const [isOpen, setIsOpen] = useState(false);
 
   // Handle user logout
   const handleUserLogOut = () => {
@@ -22,7 +23,10 @@ const UserDropDown = ({ setCart }) => {
 
   return (
     <Popover>
-      <PopoverButton className="size-8 focus:outline-none">
+      <PopoverButton
+        onClick={() => setIsOpen(true)}
+        className="size-8 focus:outline-none"
+      >
         {user && user.photoURL ? (
           <img
             loading="eazy"
@@ -34,35 +38,43 @@ const UserDropDown = ({ setCart }) => {
           <BsPersonCircle size={28} />
         )}
       </PopoverButton>
-      <PopoverPanel
-        anchor="bottom"
-        className="mt-10 rounded border bg-white px-4 py-3 text-gray-600 shadow"
-      >
-        <Link
-          to="/account-settings"
-          className="mb-4 flex items-center gap-2 text-sm"
+
+      {isOpen && (
+        <PopoverPanel
+          anchor="bottom"
+          className="mt-10 rounded border bg-white px-4 py-3 text-gray-600 shadow"
         >
-          <BsPersonGear size={24} />
-          <span className="border-b border-transparent transition-all hover:border-[#b88e2f] hover:text-[#b88e2f]">
-            Manage My Account
-          </span>
-        </Link>
-        <Link to="/my-orders" className="mb-4 flex items-center gap-2 text-sm">
-          <BsBox2 size={18} className="w-6" />
-          <span className="border-b border-transparent transition-all hover:border-[#b88e2f] hover:text-[#b88e2f]">
-            My Orders
-          </span>
-        </Link>
-        <button
-          onClick={handleUserLogOut}
-          className="flex items-center gap-2 text-sm"
-        >
-          <BsBoxArrowInLeft size={24} />
-          <span className="border-b border-transparent transition-all hover:border-[#b88e2f] hover:text-[#b88e2f]">
-            Logout
-          </span>
-        </button>
-      </PopoverPanel>
+          <Link
+            onClick={() => setIsOpen(false)}
+            to="/my-orders"
+            className="mb-4 flex items-center gap-2 text-sm"
+          >
+            <BsBox2 size={18} className="w-6" />
+            <span className="border-b border-transparent transition-all hover:border-[#b88e2f] hover:text-[#b88e2f]">
+              My Orders
+            </span>
+          </Link>
+          <Link
+            onClick={() => setIsOpen(false)}
+            to="/account-settings"
+            className="mb-4 flex items-center gap-2 text-sm"
+          >
+            <BsPersonGear size={24} />
+            <span className="border-b border-transparent transition-all hover:border-[#b88e2f] hover:text-[#b88e2f]">
+              Manage My Account
+            </span>
+          </Link>
+          <button
+            onClick={handleUserLogOut}
+            className="flex items-center gap-2 text-sm"
+          >
+            <BsBoxArrowInLeft size={24} />
+            <span className="border-b border-transparent transition-all hover:border-[#b88e2f] hover:text-[#b88e2f]">
+              Logout
+            </span>
+          </button>
+        </PopoverPanel>
+      )}
     </Popover>
   );
 };

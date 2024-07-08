@@ -1,9 +1,11 @@
 import { useContext, useState } from "react";
 import { Rating } from "@smastrom/react-rating";
+import { motion } from "framer-motion";
 import { AiFillTwitterCircle } from "react-icons/ai";
-import { BsFacebook, BsLinkedin } from "react-icons/bs";
+import { BsFacebook, BsHeart, BsHeartFill, BsLinkedin } from "react-icons/bs";
 import { AuthContext } from "../../../../Providers/AuthProvider";
 import { CartContext } from "../../../../Providers/CartProvider";
+import { FavouriteContext } from "../../../../Providers/FavouriteProvider";
 import LoginModal from "../../../../components/Modals/LoginModal/LoginModal";
 import { formatPrice } from "../../../../utils/formatPrice";
 import { calculateAvgRating } from "../../../../utils/calculateAvgRating";
@@ -15,11 +17,15 @@ const ProductOverview = ({ product, reviews }) => {
   const { _id, title, price, thumbnail, gallery } = product;
   const { user } = useContext(AuthContext);
   const { handleCartItemSave } = useContext(CartContext);
+  const { addToFavourite, favouriteItems, deleteFavouriteItem } =
+    useContext(FavouriteContext);
   const [mainImage, setMainImage] = useState(thumbnail);
   const [size, setSize] = useState("l");
   const [color, setColor] = useState("#816dfa");
   const [quantity, setQuantity] = useState(1);
   const [isOpen, setIsOpen] = useState(false); // login modal state
+
+  const isFavourite = favouriteItems.some((item) => item.product_id === _id);
 
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
@@ -49,6 +55,13 @@ const ProductOverview = ({ product, reviews }) => {
     };
     // save new item or update quantity of item if item exists in the cart
     handleCartItemSave(item);
+  };
+
+  const toggleFavourite = () => {
+    if (!isFavourite) {
+      return addToFavourite(_id, title, price, thumbnail);
+    }
+    deleteFavouriteItem(_id, user.email);
   };
 
   return (
@@ -160,16 +173,26 @@ const ProductOverview = ({ product, reviews }) => {
               </button>
             </div>
             {/* Add to cart button */}
-            <button
+            <motion.button
+              whileTap={{ scale: 0.9 }}
               onClick={submitCartItem}
-              className="flex flex-1 items-center justify-center rounded-[10px] border border-black py-2 md:w-full md:px-12 lg:w-1/2 lg:px-6 lg:text-lg xl:max-w-[217px] xl:px-2 xl:text-xl"
+              className="flex flex-1 items-center justify-center rounded-[10px] border border-black py-2 transition-colors hover:border-transparent hover:bg-[#b88e2f] hover:text-white md:w-full md:px-12 lg:w-1/2 lg:px-6 lg:text-lg xl:max-w-[217px] xl:px-2 xl:text-xl"
             >
               Add To Cart
-            </button>
+            </motion.button>
             {/* Compare button */}
-            <button className="flex items-center justify-center gap-2.5 rounded-[10px] border border-black py-2 md:w-full md:px-12 xl:max-w-[215px] xl:py-[14px]">
-              <span className="lg:text-lg xl:text-xl">+ Compare</span>
-            </button>
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              onClick={toggleFavourite}
+              className="group flex items-center justify-center gap-2.5 rounded-[10px] border border-black py-2 transition-colors hover:border-transparent hover:bg-[#b88e2f] hover:text-white md:w-full md:px-12 xl:max-w-[215px] xl:py-[14px]"
+            >
+              {isFavourite ? (
+                <BsHeartFill className="text-red-600 group-hover:text-white" />
+              ) : (
+                <BsHeart />
+              )}
+              <span className="lg:text-lg xl:text-xl">Favourite</span>
+            </motion.button>
           </div>
 
           <div className="border-t border-[#d9d9d9] pt-10">

@@ -22,7 +22,7 @@ const MyOrders = () => {
 
   const formatDate = (isoDate) => {
     const date = new Date(isoDate);
-    return format(date, "MMM d yyy");
+    return format(date, "MMM d, yyy");
   };
   console.log(orders);
   return (
@@ -37,6 +37,10 @@ const MyOrders = () => {
               key={order._id}
               className={`space-y-6 border-b border-gray-200 pb-6 ${i === orders.length - 1 && "border-b-0"}`}
             >
+              <p className="truncate text-right text-sm">
+                <span className=" text-[#b88e2f]">Ordered on:</span>{" "}
+                {formatDate(order.date)}
+              </p>
               {order.items.map((item) => (
                 <div key={item._id} className="flex justify-between">
                   <Link to={`/products/${item.product_id}`} className="group">
@@ -64,10 +68,6 @@ const MyOrders = () => {
                   </p>
                   <p className="h-fit w-24 truncate rounded-full bg-gray-100 p-1 text-center text-xs">
                     {order.status}
-                  </p>
-                  <p className="hidden w-44 truncate text-center text-sm italic sm:block">
-                    <span className=" text-[#b88e2f]">Ordered on:</span>{" "}
-                    {formatDate(order.date)}
                   </p>
                 </div>
               ))}
