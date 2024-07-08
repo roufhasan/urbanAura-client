@@ -1,11 +1,7 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  BsArrowLeftRight,
-  BsFillHeartFill,
-  BsFillShareFill,
-  BsHeart,
-} from "react-icons/bs";
+import { BsArrowUpLeftCircle, BsFillHeartFill, BsHeart } from "react-icons/bs";
+import { easeIn, motion } from "framer-motion";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { FavouriteContext } from "../../Providers/FavouriteProvider";
 import LoginModal from "../Modals/LoginModal/LoginModal";
@@ -98,25 +94,23 @@ const Card = ({ product }) => {
         <div className="absolute left-0 top-0 hidden h-full w-full flex-col items-center justify-center gap-6 px-4 group-hover:flex">
           <button
             onClick={() => handleModal(product)}
-            className="z-20 bg-white px-14 py-3 font-medium text-[#B88E2F]"
+            className="z-20 w-4/5 bg-white py-3 font-medium text-[#B88E2F] transition-all hover:bg-[#B88E2F] hover:text-white"
           >
             Add to cart
           </button>
-          <div className="z-20 flex flex-wrap items-center justify-between gap-4 font-semibold text-white">
-            <button className="flex items-center gap-1">
-              <BsFillShareFill size={14} /> Share
-            </button>
-            <button className="flex items-center gap-1">
-              <BsArrowLeftRight /> Compare
+          <div className="z-20 flex w-4/5 flex-wrap items-center justify-between gap-1 text-center font-semibold text-white">
+            <button className="flex items-center gap-1 transition-all hover:text-[#B88E2F]">
+              <BsArrowUpLeftCircle size={17} />
+              View Details
             </button>
             <button
               onClick={toggleFavourite}
-              className="flex items-center gap-1"
+              className="flex items-center gap-1 transition-all hover:text-[#B88E2F]"
             >
               {isFavourite ? (
                 <>
                   <BsFillHeartFill color="red" />{" "}
-                  <span className="text-red-600">Like</span>
+                  <span className="text-red-600">Liked</span>
                 </>
               ) : (
                 <>

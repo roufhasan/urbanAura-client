@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import heroImg from "../../../../assets/images/home/hero-bg.jpg";
 
 const Hero = () => {
@@ -17,12 +18,14 @@ const Hero = () => {
           Refresh your space with our latest furniture designs. Stylish,
           comfortable, and made for you.
         </p>
-        <Link
-          to="/"
-          className="mb-9 mt-12 inline-block bg-[#B88E2F] px-14 py-4  font-bold uppercase text-white md:px-16 lg:px-[68px] lg:py-5 xl:px-[72px] xl:py-6"
-        >
-          Buy Now
-        </Link>
+        <motion.button whileTap={{ scale: 0.9 }}>
+          <Link
+            to="/shop"
+            className="mb-9 mt-12 inline-block bg-[#B88E2F] px-14 py-4  font-bold uppercase text-white md:px-16 lg:px-[68px] lg:py-5 xl:px-[72px] xl:py-6"
+          >
+            Buy Now
+          </Link>
+        </motion.button>
       </div>
     </section>
   );

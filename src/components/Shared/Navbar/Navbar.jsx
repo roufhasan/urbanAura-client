@@ -152,7 +152,10 @@ const Navbar = () => {
       {/* Desktop Navigation Links */}
       <ul className="hidden items-center font-medium md:flex md:gap-x-6 lg:gap-x-8 xl:gap-x-[75px]">
         {navItems.map((nav) => (
-          <li key={nav.text}>
+          <li
+            className="relative cursor-pointer after:absolute after:-bottom-1 after:left-0 after:h-[3px] after:w-[0%] after:bg-black after:transition-all after:duration-300 after:content-[''] hover:after:w-full"
+            key={nav.text}
+          >
             <Link to={nav.link}>{nav.text}</Link>
           </li>
         ))}
@@ -195,7 +198,24 @@ const Navbar = () => {
             </Link>
           )}
         </li>
-        <li>
+        {user && (
+          <>
+            <li>
+              <Link to="/favourite">
+                <BsHeart className="cursor-pointer text-2xl lg:text-[23px]" />
+                {favouriteItems && favouriteItems.length > 0 && (
+                  <p className="absolute -right-1 -top-1 flex size-[14px] items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                    {favouriteItems.length}
+                  </p>
+                )}
+              </Link>
+            </li>
+            <li>
+              <CartDropDown user={user} />
+            </li>
+          </>
+        )}
+        {/* <li>
           <div className="relative">
             {user ? (
               <Link to="/favourite">
@@ -212,10 +232,7 @@ const Navbar = () => {
               </Link>
             )}
           </div>
-        </li>
-        <li>
-          <CartDropDown user={user} />
-        </li>
+        </li> */}
       </ul>
 
       {/* Mobile Sidebar Menu */}

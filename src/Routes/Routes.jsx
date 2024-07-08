@@ -12,6 +12,7 @@ import Favourite from "../Pages/SitePages/Favourite/Favourite";
 import Search from "../Pages/SitePages/Search/Search";
 import Checkout from "../Pages/SitePages/Checkout/Checkout";
 import PrivateRoute from "./PrivateRoute";
+import MyOrders from "../Pages/DashBoard/UserDashboard/MyOrders/MyOrders";
 
 export const router = createBrowserRouter([
   {
@@ -67,6 +68,15 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Checkout />
+          </PrivateRoute>
+        ),
+      },
+      // User Dashboard Routes
+      {
+        path: "/my-orders",
+        element: (
+          <PrivateRoute>
+            <MyOrders />
           </PrivateRoute>
         ),
       },

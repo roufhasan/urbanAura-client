@@ -6,6 +6,7 @@ import { IoCloseCircle } from "react-icons/io5";
 import { CartContext } from "../../Providers/CartProvider";
 import { formatPrice } from "../../utils/formatPrice";
 import { calculateTotalPrice } from "../../utils/calculateTotalPrice";
+import toast from "react-hot-toast";
 
 const CartDropDown = ({ user }) => {
   const { cart, handleCartItemDel } = useContext(CartContext);
@@ -71,8 +72,7 @@ const CartDropDown = ({ user }) => {
                 <div className="mb-10 mt-6 h-[1px] w-5/6 bg-[#d9d9d9]"></div>
                 {/* Products container */}
                 <div className="h-[60vh] max-h-[648px] space-y-5 overflow-y-auto">
-                  {cart &&
-                    cart.length > 0 &&
+                  {cart && cart.length > 0 ? (
                     cart.map((item) => (
                       <div
                         key={item._id}
@@ -102,7 +102,10 @@ const CartDropDown = ({ user }) => {
                           className="cursor-pointer text-[#9f9f9f] transition-all hover:text-[#888888]"
                         />
                       </div>
-                    ))}
+                    ))
+                  ) : (
+                    <p>You have not added any product yet! :(</p>
+                  )}
                 </div>
               </div>
 
@@ -119,17 +122,26 @@ const CartDropDown = ({ user }) => {
                   <Link
                     onClick={() => setIsOpen(false)}
                     to="/cart"
-                    className="w-full rounded-full border border-black px-[30px] py-1.5 text-center text-xs"
+                    className="w-full rounded-full border border-black px-[30px] py-1.5 text-center text-xs transition-all hover:border-[#b88e2f] hover:bg-[#b88e2f] hover:text-white"
                   >
                     Cart
                   </Link>
-                  <Link
-                    onClick={() => setIsOpen(false)}
-                    to="/checkout"
-                    className="w-full rounded-full border border-black px-[30px] py-1.5 text-center text-xs"
-                  >
-                    Checkout
-                  </Link>
+                  {cart && cart.length > 0 ? (
+                    <Link
+                      onClick={() => setIsOpen(false)}
+                      to="/checkout"
+                      className="w-full rounded-full border border-black px-[30px] py-1.5 text-center text-xs transition-all hover:border-[#b88e2f] hover:bg-[#b88e2f] hover:text-white"
+                    >
+                      Checkout
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={() => toast.error("Cart is empty!")}
+                      className="w-full rounded-full border border-black px-[30px] py-1.5 text-center text-xs transition-all hover:border-[#b88e2f] hover:bg-[#b88e2f] hover:text-white"
+                    >
+                      Checkout
+                    </button>
+                  )}
                 </div>
               </div>
             </DialogPanel>

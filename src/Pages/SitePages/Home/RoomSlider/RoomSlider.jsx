@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
+import { motion } from "framer-motion";
 /* Image Import */
 import slider1 from "../../../../assets/images/home/slider-1.png";
 import slider2 from "../../../../assets/images/home/slider-2.png";
@@ -48,12 +49,14 @@ const RoomSlider = () => {
           Our designer already made a lot of beautiful prototipe of rooms that
           inspire you
         </p>
-        <Link
-          to="/shop"
-          className="inline-block bg-[#B88E2F] px-9 py-3 font-semibold text-white"
-        >
-          Explore More
-        </Link>
+        <motion.button whileTap={{ scale: 0.9 }}>
+          <Link
+            to="/shop"
+            className="inline-block bg-[#B88E2F] px-9 py-3 font-semibold text-white"
+          >
+            Explore More
+          </Link>
+        </motion.button>
       </div>
 
       {/* Carousel */}
