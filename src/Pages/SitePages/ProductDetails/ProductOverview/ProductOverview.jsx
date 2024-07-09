@@ -58,6 +58,9 @@ const ProductOverview = ({ product, reviews }) => {
   };
 
   const toggleFavourite = () => {
+    if (!user) {
+      return setIsOpen(true);
+    }
     if (!isFavourite) {
       return addToFavourite(_id, title, price, thumbnail);
     }

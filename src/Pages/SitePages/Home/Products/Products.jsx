@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import SkeletonLoader from "../../../../components/SkeletonLoader/SkeletonLoader";
+import SkeletonLoader from "../../../../components/Loaders/SkeletonLoader/SkeletonLoader";
 import Card from "../../../../components/Card/Card";
 import RouteButton from "../../../../components/Buttons/RouteButton";
 

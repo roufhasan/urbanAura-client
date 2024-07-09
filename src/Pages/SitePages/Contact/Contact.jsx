@@ -3,11 +3,16 @@ import PageBanner from "../../../components/PageBanner/PageBanner";
 import ContactDetails from "./ContactDetails/ContactDetails";
 import ContactForm from "./ContactForm/ContactForm";
 import ServicesHighlight from "../../../components/ServicesHighlight/ServicesHighlight";
+import { Helmet } from "react-helmet";
 
 const Contact = () => {
   const location = useLocation();
   return (
     <section>
+      <Helmet>
+        <title>Contact Us - UrbanAura Furniture</title>
+      </Helmet>
+
       <PageBanner location={location} />
 
       <div className="px-[4%] pb-12 pt-20 md:px-[7%] md:pb-16 md:pt-24">

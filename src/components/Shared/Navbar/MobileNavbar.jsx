@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   BsBox2,
   BsBoxArrowInLeft,
@@ -8,6 +8,8 @@ import {
   BsXLg,
 } from "react-icons/bs";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import { FavouriteContext } from "../../../Providers/FavouriteProvider";
+import toast from "react-hot-toast";
 
 const MobileNavbar = ({
   sideBarRef,
@@ -18,13 +20,21 @@ const MobileNavbar = ({
   setCart,
 }) => {
   const { user, logOut } = useContext(AuthContext);
+  const { setFavouriteItems } = useContext(FavouriteContext);
+  const navigate = useNavigate();
 
   // Handle user logout
   const handleUserLogOut = () => {
-    setCart([]);
     logOut()
-      .then(() => console.log("Sign-out successful"))
+      .then(() => {
+        toast.success("Logged out!");
+        navigate("/");
+      })
       .catch((err) => console.error(err));
+
+    setCart([]);
+    setFavouriteItems([]);
+    setShowMenu(false);
   };
 
   return (
@@ -36,7 +46,7 @@ const MobileNavbar = ({
         <div className="flex items-center justify-between bg-[#fcf8f3] px-[4%] py-4">
           <p className="text-lg font-medium">
             Browse
-            <span className="ml-1 text-2xl">Furniro</span>
+            <span className="ml-1 text-2xl">UrbanAura</span>
           </p>
           <BsXLg
             onClick={() => setShowMenu(false)}
@@ -67,6 +77,7 @@ const MobileNavbar = ({
           {user ? (
             <div className="mt-2 px-[4%]">
               <Link
+                onClick={() => setShowMenu(!showMenu)}
                 to="/account-settings"
                 className="mb-4 flex items-center gap-2"
               >
@@ -75,7 +86,11 @@ const MobileNavbar = ({
                 </span>
                 Manage My Account
               </Link>
-              <Link to="/my-orders" className="mb-4 flex items-center gap-2">
+              <Link
+                onClick={() => setShowMenu(!showMenu)}
+                to="/my-orders"
+                className="mb-4 flex items-center gap-2"
+              >
                 <span className="w-6">
                   <BsBox2 size={18} />
                 </span>

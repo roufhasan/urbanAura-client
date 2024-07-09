@@ -11,19 +11,20 @@ import {
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { CartContext } from "../../../Providers/CartProvider";
 import { FavouriteContext } from "../../../Providers/FavouriteProvider";
-import SearchDropDown from "../../SearchDropDown/SearchDropDown";
-import UserDropDown from "../../UserDropDown/UserDropDown";
-import CartDropDown from "../../CartDropDown/CartDropDown";
+import SearchResultDropDown from "../../DropDowns/SearchResultDropDown/SearchResultDropDown";
+import UserDropDown from "../../DropDowns/UserDropDown/UserDropDown";
+import SidebarCart from "../../SidebarCart/SidebarCart";
 import MobileNavbar from "./MobileNavbar";
 import useDebounce from "../../../hooks/useDebounce";
-import { navItems } from "../../../data/navItems";
+import { navItems } from "../../../assets/data/navItems";
 import logo from "../../../assets/logo/logo.png";
 
 const Navbar = () => {
   // Context
   const { user } = useContext(AuthContext);
-  const { setCart } = useContext(CartContext);
-  const { favouriteItems, getFavouriteItems } = useContext(FavouriteContext);
+  const { cart, setCart } = useContext(CartContext);
+  const { getFavouriteItems, favouriteItems, setFavouriteItems } =
+    useContext(FavouriteContext);
 
   // State
   const [showMenu, setShowMenu] = useState(false);
@@ -99,20 +100,48 @@ const Navbar = () => {
 
         {/* Logo & Title */}
         <Link to="/" className="flex items-center">
-          <img className="w-[50px]" src={logo} alt="urbanAura logo" />
+          <img
+            className="mr-1 w-5 lg:w-7 xl:w-8"
+            src={logo}
+            alt="urbanAura logo"
+          />
           <h1 className="-ml-1 font-Montserrat text-2xl font-bold lg:text-[28px] xl:text-[34px]">
-            UrbanAura
+            rbanAura
           </h1>
         </Link>
 
         {/* Mobile Cart & Favourite Button */}
         <ul className="flex gap-4 md:hidden">
-          <Link to="/favourite">
-            <BsHeart size={18} />
-          </Link>
-          <Link to="/cart">
-            <BsCart3 size={18} />
-          </Link>
+          <li className="relative">
+            <Link to="/favourite">
+              <BsHeart size={18} />
+              {favouriteItems && favouriteItems.length > 0 && (
+                <p className="absolute -right-1 -top-1 flex size-3 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                  {favouriteItems.length}
+                </p>
+              )}
+            </Link>
+          </li>
+          <li className="relative">
+            {user ? (
+              <Link to="/cart">
+                <BsCart3
+                  size={18}
+                  onClick={() => {}}
+                  className="cursor-pointer"
+                />
+                {cart && cart.length > 0 && (
+                  <p className="absolute -right-1 -top-1 flex size-3 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                    {cart.length}
+                  </p>
+                )}
+              </Link>
+            ) : (
+              <Link to="/login">
+                <BsCart3 size={18} />
+              </Link>
+            )}
+          </li>
         </ul>
       </div>
 
@@ -140,7 +169,7 @@ const Navbar = () => {
             </button>
             {/* Search Drop Down */}
             {searchResults && searchResults.length > 0 && (
-              <SearchDropDown
+              <SearchResultDropDown
                 products={searchResults}
                 clearSearch={clearSearch}
               />
@@ -182,7 +211,7 @@ const Navbar = () => {
             </button>
             {/* Search Drop Down */}
             {searchResults && searchResults.length > 0 && (
-              <SearchDropDown
+              <SearchResultDropDown
                 products={searchResults}
                 clearSearch={clearSearch}
               />
@@ -191,7 +220,10 @@ const Navbar = () => {
         </li>
         <li>
           {user ? (
-            <UserDropDown setCart={setCart} />
+            <UserDropDown
+              setFavouriteItems={setFavouriteItems}
+              setCart={setCart}
+            />
           ) : (
             <Link to="/login">
               <BsPersonExclamation className="cursor-pointer text-[25px] lg:text-[26px] xl:text-[28px]" />
@@ -211,7 +243,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <CartDropDown user={user} />
+              <SidebarCart user={user} />
             </li>
           </>
         )}
@@ -220,12 +252,14 @@ const Navbar = () => {
       {/* Mobile Sidebar Menu */}
       {showMenu && (
         <MobileNavbar
-          sideBarRef={sideBarRef}
-          menuRef={menuRef}
-          setShowMenu={setShowMenu}
-          showMenu={showMenu}
-          navItems={navItems}
-          setCart={setCart}
+          {...{
+            navItems,
+            showMenu,
+            setShowMenu,
+            setCart,
+            menuRef,
+            sideBarRef,
+          }}
         />
       )}
     </nav>

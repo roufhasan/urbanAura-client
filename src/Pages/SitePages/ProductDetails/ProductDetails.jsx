@@ -1,10 +1,11 @@
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import axios from "axios";
+import { Helmet } from "react-helmet";
 import BreadCrumbs from "./BreadCrumbs/BreadCrumbs";
 import ProductOverview from "./ProductOverview/ProductOverview";
 import ProductTabs from "./ProductTabs/ProductTabs";
 import RelatedProducts from "./RelatedProducts/RelatedProducts";
-import { useEffect, useState } from "react";
-import axios from "axios";
 
 const ProductDetails = () => {
   const product = useLoaderData();
@@ -30,6 +31,9 @@ const ProductDetails = () => {
 
   return (
     <section>
+      <Helmet>
+        <title>{title} - UrbanAura Furniture</title>
+      </Helmet>
       <BreadCrumbs title={title} />
       <div className="px-[4%] md:px-[7%]">
         <ProductOverview product={product} reviews={reviews} />

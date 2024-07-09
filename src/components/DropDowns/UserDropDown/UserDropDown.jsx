@@ -7,18 +7,22 @@ import {
   BsPersonCircle,
   BsPersonGear,
 } from "react-icons/bs";
-import { AuthContext } from "../../Providers/AuthProvider";
+import { AuthContext } from "../../../Providers/AuthProvider";
+import toast from "react-hot-toast";
 
-const UserDropDown = ({ setCart }) => {
+const UserDropDown = ({ setCart, setFavouriteItems }) => {
   const { user, logOut } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
 
   // Handle user logout
   const handleUserLogOut = () => {
-    setCart([]);
     logOut()
-      .then(() => console.log("Sign-out successful"))
+      .then(() => {
+        toast.success("Logged out!");
+      })
       .catch((err) => console.error(err));
+    setCart([]);
+    setFavouriteItems([]);
   };
 
   return (

@@ -8,7 +8,7 @@ import { formatPrice } from "../../utils/formatPrice";
 import { calculateTotalPrice } from "../../utils/calculateTotalPrice";
 import toast from "react-hot-toast";
 
-const CartDropDown = ({ user }) => {
+const SidebarCart = ({ user }) => {
   const { cart, handleCartItemDel } = useContext(CartContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isShowing, setIsShowing] = useState(true);
@@ -152,4 +152,4 @@ const CartDropDown = ({ user }) => {
   );
 };
 
-export default CartDropDown;
+export default SidebarCart;

@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { CartContext } from "../../../Providers/CartProvider";
 import { FavouriteContext } from "../../../Providers/FavouriteProvider";
@@ -21,6 +22,9 @@ const Favourite = () => {
 
   return (
     <section>
+      <Helmet>
+        <title>Favourites - UrbanAura Furniture</title>
+      </Helmet>
       <PageBanner pathname={pathname} />
       {/* Favourite Items List */}
       <div className="px-[4%] py-[72px] md:px-[7%]">

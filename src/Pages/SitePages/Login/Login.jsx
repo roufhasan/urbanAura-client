@@ -1,4 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 /* images */
@@ -12,7 +13,7 @@ const Login = () => {
   const { signIn, googleSignIn, loading, setLoading } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  let from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/";
 
   // React hook form
   const {
@@ -61,13 +62,16 @@ const Login = () => {
 
   return (
     <section className="mx-auto h-full max-h-[1080px] min-h-screen w-full max-w-[1440px] grid-cols-12 px-[4%] py-10 font-Poppins md:grid md:px-[7%]">
+      <Helmet>
+        <title>Login - UrbanAura Furniture</title>
+      </Helmet>
       {/* form container */}
       <div className="md:col-span-5">
         {/* Logo & Title */}
         <Link to="/" className="inline-flex items-center">
-          <img className="w-[50px]" src={logo} alt="urbanAura logo" />
+          <img className="w-8" src={logo} alt="urbanAura logo" />
           <h1 className="-ml-1 font-Montserrat text-2xl font-bold md:text-[34px]">
-            Furniro
+            rbanAura
           </h1>
         </Link>
         {/* form */}

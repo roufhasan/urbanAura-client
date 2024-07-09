@@ -16,7 +16,7 @@ const PageBanner = ({ pathname }) => {
         <img
           src={logo}
           alt="urban aura logo"
-          className="size-14 object-cover object-center md:size-20"
+          className="size-12 object-cover object-center md:size-16"
         />
         <h1 className="text-5xl font-medium">{urlPath}</h1>
         <div className="flex items-center justify-center gap-[6px]">

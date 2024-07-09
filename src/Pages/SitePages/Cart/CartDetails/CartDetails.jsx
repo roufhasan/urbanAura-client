@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { BiSolidTrashAlt } from "react-icons/bi";
 import { CartContext } from "../../../../Providers/CartProvider";
-import FixedLoader from "../../../../components/Loader/FixedLoader";
+import FixedLoader from "../../../../components/Loaders/Loader/FixedLoader";
 import { calculateTotalPrice } from "../../../../utils/calculateTotalPrice";
 import { formatPrice } from "../../../../utils/formatPrice";
 import "./cartDetails.css";
@@ -94,7 +94,7 @@ const CartDetails = () => {
                             <BiSolidTrashAlt
                               onClick={() => handleCartItemDel(item._id)}
                               size={26}
-                              className="cursor-pointer text-[#b88e2f]"
+                              className="cursor-pointer text-[#b88e2f] transition-all hover:text-[#947325]"
                             />
                           </td>
                         </tr>
@@ -122,7 +122,7 @@ const CartDetails = () => {
               </p>
               <Link
                 to="/checkout"
-                className="inline-block rounded-2xl border border-black px-6 py-3 text-lg md:py-4 lg:px-9 lg:text-xl xl:px-12"
+                className="inline-block rounded-2xl border border-black px-6 py-3 text-lg transition-all hover:border-[#b88e2f] hover:bg-[#b88e2f] hover:text-white md:py-4 lg:px-9 lg:text-xl xl:px-12"
               >
                 Check Out
               </Link>

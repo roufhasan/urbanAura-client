@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet";
 import { AuthContext } from "../../../Providers/AuthProvider";
 /* images */
 import logo from "../../../assets/logo/logo.png";
@@ -48,6 +49,9 @@ const Signup = () => {
 
   return (
     <section className="mx-auto h-full max-h-[1080px] min-h-screen w-full max-w-[1440px] grid-cols-12 px-[4%] py-10 font-Poppins md:grid md:px-[7%]">
+      <Helmet>
+        <title>Sign Up - UrbanAura Furniture</title>
+      </Helmet>
       {/* image container */}
       <div className="hidden md:col-span-6 md:block">
         <img
@@ -60,16 +64,16 @@ const Signup = () => {
       <div className="col-span-full md:col-start-8">
         {/* Logo & Title */}
         <Link to="/" className="inline-flex items-center">
-          <img className="w-[50px]" src={logo} alt="urbanAura logo" />
+          <img className="w-8" src={logo} alt="urbanAura logo" />
           <h1 className="-ml-1 font-Montserrat text-2xl font-bold md:text-[34px]">
-            Furniro
+            rbanAura
           </h1>
         </Link>
         {/* form */}
         <div className="mt-6">
           <form onSubmit={handleSubmit(onSubmit)}>
             <h1 className="text-4xl font-semibold">Furnish Your Space</h1>
-            <p className="text-xl italic text-[#9f9f9f]">Join Us Today</p>
+            <p className="mt-2 text-xl italic text-[#9f9f9f]">Join Us Today</p>
 
             <label
               htmlFor="name"

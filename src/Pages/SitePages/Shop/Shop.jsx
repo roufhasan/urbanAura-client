@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import PageBanner from "../../../components/PageBanner/PageBanner";
 import ServicesHighlight from "../../../components/ServicesHighlight/ServicesHighlight";
 import ProductsPagination from "./Products/ProductsPagination";
@@ -25,6 +26,9 @@ const Shop = () => {
 
   return (
     <section>
+      <Helmet>
+        <title>Shop - UrbanAura Furniture</title>
+      </Helmet>
       {/* page navigation banner */}
       <PageBanner pathname={pathname} />
 

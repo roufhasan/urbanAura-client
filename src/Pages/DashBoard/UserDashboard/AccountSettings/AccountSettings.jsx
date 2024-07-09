@@ -1,5 +1,6 @@
 import { useContext, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import toast from "react-hot-toast";
 import { FaUser } from "react-icons/fa";
 import {
@@ -99,6 +100,9 @@ const AccountSettings = () => {
 
   return (
     <section className="px-[4%] md:px-[7%]">
+      <Helmet>
+        <title>My Account - UrbanAura Furniture</title>
+      </Helmet>
       <h1 className="pt-6 text-2xl font-medium">Account Settings</h1>
       <div className="mb-5 mt-10 flex w-full">
         <p
@@ -277,7 +281,7 @@ const AccountSettings = () => {
       {activeTab === "settings" && (
         <div className="pb-40 pt-6">
           <h3 className="mb-6 text-xl font-medium">Deleting account?</h3>
-          <p className="mb-6 w-full max-w-sm">
+          <p className="mb-6 w-full max-w-sm text-sm">
             Deleting your account will remove all of your information from our
             database. This cannot be undone.
           </p>

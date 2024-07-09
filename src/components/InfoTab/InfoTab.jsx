@@ -1,4 +1,4 @@
-import { productDetails } from "../../data/productDetails";
+import { productDetails } from "../../assets/data/productDetails";
 import InfoSection from "../InfoSection/InfoSection";
 import "./infoTab.css";
 
