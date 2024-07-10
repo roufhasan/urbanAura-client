@@ -56,16 +56,22 @@ const AccountSettings = () => {
       })
         .then((res) => res.json())
         .then((imageData) => {
+          if (!imageData || !imageData.data || !imageData.data.display_url) {
+            return toast.error(
+              "Failed to upload image. Please try again later.",
+            );
+          }
           const imageURL = imageData.data.display_url;
           updateUserProfile(name, imageURL)
             .then(() => {
               setLoading(false);
-              toast.success("Your profile updated!");
+              toast.success("Your profile updated successfully!");
               navigate("/");
             })
             .catch((err) => {
-              setLoading(false);
               console.log(err.message);
+              setLoading(false);
+              toast.error("Failed to update profile. Please try again later.");
             });
         });
       return;
@@ -89,12 +95,23 @@ const AccountSettings = () => {
   const handleAccountDelete = () => {
     deleteAccount()
       .then(() => {
+        setLoading(false);
         toast.success("Account Deleted");
         navigate("/");
       })
       .catch((error) => {
         console.log(error);
+        if (error.message === "Firebase: Error (auth/requires-recent-login).") {
+          setLoading(false);
+          toast.error(
+            "For security reasons, please log out and log in again to delete your account.",
+          );
+          navigate("/");
+          return;
+        }
+        setLoading(false);
         toast.error("An Error Ocurred!");
+        navigate("/");
       });
   };
 
