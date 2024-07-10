@@ -145,7 +145,7 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
                   size={24}
                   color={loading ? "#9f9f9f" : undefined}
                 />
-                <p>Login With Demo Account</p>
+                <p>Login as a Guest</p>
               </button>
               <p className="mb-8 mt-6 text-center text-sm text-[#9f9f9f]">
                 Don&apos;t have account?{" "}

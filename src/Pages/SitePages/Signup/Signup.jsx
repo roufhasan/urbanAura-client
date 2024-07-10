@@ -139,7 +139,7 @@ const Signup = () => {
             <button
               disabled={loading}
               type="Submit"
-              className={`block w-full rounded-[10px] py-2 text-xl text-white ${loading ? "bg-[#b88f2fc4]" : "bg-[#b88e2f]"}`}
+              className={`block w-full rounded-[10px] py-2 text-xl text-white ${loading ? "bg-[#b88f2fc4]" : "bg-[#b88e2f] transition-all hover:bg-[#a07b26]"}`}
             >
               Sign up
             </button>

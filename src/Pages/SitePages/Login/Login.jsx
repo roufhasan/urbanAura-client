@@ -41,7 +41,7 @@ const Login = () => {
 
   // demo login function to fill up email, password and submit the form
   const handleDemoLogin = () => {
-    setValue("email", "walter_white@crystal.com");
+    setValue("email", "walter@white.com");
     setValue("password", "Asdf1234");
   };
 
@@ -131,7 +131,7 @@ const Login = () => {
             <button
               disabled={loading}
               type="Submit"
-              className={`block w-full rounded-[10px] py-2 text-xl text-white ${loading ? "bg-[#b88f2fc4]" : "bg-[#b88e2f]"}`}
+              className={`block w-full rounded-[10px] py-2 text-xl text-white ${loading ? "bg-[#b88f2fc4]" : "bg-[#b88e2f] transition-all hover:bg-[#a07b26]"}`}
             >
               Login
             </button>
@@ -146,7 +146,7 @@ const Login = () => {
           <button
             onClick={handleGoogleLogin}
             disabled={loading}
-            className={`my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg ${loading && "text-[#9f9f9f]"}`}
+            className={`my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg transition-all hover:bg-[#b88e2f] hover:text-white ${loading && "text-[#9f9f9f]"}`}
           >
             <img src={googleLogo} alt="google logo" className="size-6" />
             <p>Login With Google</p>
@@ -154,13 +154,13 @@ const Login = () => {
           <button
             onClick={handleDemoLogin}
             disabled={loading}
-            className={`flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg ${loading && "text-[#9f9f9f]"}`}
+            className={`flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg transition-all hover:bg-[#b88e2f] hover:text-white ${loading && "text-[#9f9f9f]"}`}
           >
             <BsFillPeopleFill
               size={24}
               color={loading ? "#9f9f9f" : undefined}
             />
-            <p>Login With Demo Account</p>
+            <p>Login as a Guest</p>
           </button>
         </div>
       </div>

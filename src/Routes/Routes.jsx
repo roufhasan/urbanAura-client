@@ -15,6 +15,7 @@ import PrivateRoute from "./PrivateRoute";
 import MyOrders from "../Pages/DashBoard/UserDashboard/MyOrders/MyOrders";
 import AccountSettings from "../Pages/DashBoard/UserDashboard/AccountSettings/AccountSettings";
 import ErrorPage from "../Pages/SitePages/ErrorPage/ErrorPage";
+import About from "../Pages/SitePages/About/About";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
       {
         path: "/shop",
         element: <Shop />,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
       {
         path: "/contact",

@@ -14,7 +14,7 @@ import { motion } from "framer-motion";
 import { AuthContext } from "../../../../Providers/AuthProvider";
 
 const AccountSettings = () => {
-  const { user, updateUserProfile, deleteAccount, setLoading } =
+  const { user, updateUserProfile, deleteAccount, setLoading, loading } =
     useContext(AuthContext);
   const [name, setName] = useState(user.displayName);
   const [activeTab, setActiveTab] = useState("profile");
@@ -136,11 +136,12 @@ const AccountSettings = () => {
             {/* Profile Image */}
             <div className="text-center">
               {selectedImg ? (
-                <img
+                <motion.img
+                  whileTap={{ scale: 0.9 }}
                   onClick={handleImageClick}
                   src={URL.createObjectURL(selectedImg)}
                   alt=""
-                  className="mb-7 h-40 w-40 rounded-full object-cover"
+                  className="mb-7 h-40 w-40 cursor-pointer rounded-full object-cover"
                 />
               ) : (
                 <>
@@ -153,10 +154,13 @@ const AccountSettings = () => {
                       className="mb-7 h-40 w-40 cursor-pointer rounded-full object-cover"
                     />
                   ) : (
-                    <FaUser
+                    <motion.div
+                      whileTap={{ scale: 0.9 }}
                       onClick={handleImageClick}
-                      className="mb-7 h-40 w-40"
-                    />
+                      className="mb-7 h-40 w-40 cursor-pointer"
+                    >
+                      <FaUser className="size-full" />
+                    </motion.div>
                   )}
                 </>
               )}
@@ -166,16 +170,16 @@ const AccountSettings = () => {
                 className="cursor-pointer rounded-md px-3 py-1 font-medium"
               >
                 {user.photoURL ? (
+                  <motion.span className="flex items-center gap-2 rounded-md border border-[#b88e2f] px-3 py-1 transition-all hover:bg-[#b88e2f] hover:text-white">
+                    <TbCameraPlus className="text-xl" /> Change Avatar
+                  </motion.span>
+                ) : (
                   <motion.span
                     whileTap={{ scale: 0.9 }}
                     className="flex items-center gap-2 rounded-md border border-[#b88e2f] px-3 py-1 transition-all hover:bg-[#b88e2f] hover:text-white"
                   >
-                    <TbCameraPlus className="text-xl" /> Change Avatar
-                  </motion.span>
-                ) : (
-                  <span className="flex items-center gap-2">
                     <TbCameraPlus className="text-xl" /> Upload Avatar
-                  </span>
+                  </motion.span>
                 )}
               </label>
               <input
@@ -258,6 +262,7 @@ const AccountSettings = () => {
                 </motion.p>
                 {selectedImg || name !== user?.displayName ? (
                   <button
+                    disabled={loading}
                     type="submit"
                     className="w-1/2 rounded-md bg-[#b88e2f] px-3 py-1.5 text-center font-medium text-white"
                   >

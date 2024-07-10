@@ -16,20 +16,17 @@ const PageBanner = ({ pathname }) => {
         <img
           src={logo}
           alt="urban aura logo"
-          className="size-12 object-cover object-center md:size-16"
+          className="size-12 object-cover object-center lg:size-16"
         />
-        <h1 className="text-5xl font-medium">{urlPath}</h1>
+        <h1 className="text-2xl font-medium md:text-3xl lg:text-5xl">
+          {urlPath}
+        </h1>
         <div className="flex items-center justify-center gap-[6px]">
           <Link to="/" className="font-medium">
             Home
           </Link>
           <BsChevronRight className="text-xl font-bold" />
-          <Link
-            to={location.pathname}
-            className="font-light transition-all hover:font-medium"
-          >
-            {urlPath}
-          </Link>
+          <p className="font-light">{urlPath}</p>
         </div>
       </div>
     </div>
