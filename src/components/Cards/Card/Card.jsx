@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { BsArrowUpLeftCircle, BsFillHeartFill, BsHeart } from "react-icons/bs";
-import { AuthContext } from "../../Providers/AuthProvider";
-import { FavouriteContext } from "../../Providers/FavouriteProvider";
-import LoginModal from "../Modals/LoginModal/LoginModal";
-import AddToCartModal from "../Modals/AddToCartModal/AddToCartModal";
-import { formatPrice } from "../../utils/formatPrice";
+import { AuthContext } from "../../../Providers/AuthProvider";
+import { FavouriteContext } from "../../../Providers/FavouriteProvider";
+import LoginModal from "../../Modals/LoginModal/LoginModal";
+import AddToCartModal from "../../Modals/AddToCartModal/AddToCartModal";
+import { formatPrice } from "../../../utils/formatPrice";
 
 const Card = ({ product }) => {
   const { _id, title, sub_title, price, thumbnail, is_new } = product;
@@ -98,10 +98,13 @@ const Card = ({ product }) => {
             Add to cart
           </button>
           <div className="z-20 flex w-4/5 flex-wrap items-center justify-between gap-1 text-center font-semibold text-white">
-            <button className="flex items-center gap-1 transition-all hover:text-[#B88E2F]">
+            <Link
+              to={`/products/${_id}`}
+              className="flex items-center gap-1 transition-all hover:text-[#B88E2F]"
+            >
               <BsArrowUpLeftCircle size={17} />
               View Details
-            </button>
+            </Link>
             <button
               onClick={toggleFavourite}
               className="flex items-center gap-1 transition-all hover:text-[#B88E2F]"

@@ -29,8 +29,9 @@ const Login = () => {
       .then((result) => {
         setLoading(false);
         const loggedUser = result.user;
-        console.log(loggedUser);
-        navigate(from, { replace: true });
+        if (loggedUser) {
+          navigate(from, { replace: true });
+        }
       })
       .catch((error) => {
         setLoading(false);
@@ -49,8 +50,9 @@ const Login = () => {
     googleSignIn()
       .then((res) => {
         const loggedUser = res.user;
-        navigate(from, { replace: true });
-        console.log(loggedUser);
+        if (loggedUser) {
+          navigate(from, { replace: true });
+        }
       })
       .catch((err) => {
         setLoading(false);

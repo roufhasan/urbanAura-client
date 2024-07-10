@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import Card from "../../../../components/Card/Card";
+import Card from "../../../../components/Cards/Card/Card";
 import { scrollToTop } from "../../../../utils/scrollUtils";
-import CardList from "../../../../components/CardList/CardList";
+import CardList from "../../../../components/Cards/CardList/CardList";
 import SkeletonLoader from "../../../../components/Loaders/SkeletonLoader/SkeletonLoader";
 
 const ProductsPagination = ({

@@ -1,6 +1,6 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import PageBanner from "../../../components/PageBanner/PageBanner";
-import Card from "../../../components/Card/Card";
+import Card from "../../../components/Cards/Card/Card";
 
 const Search = () => {
   const { key: searchValue } = useParams();

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import SkeletonLoader from "../../../../components/Loaders/SkeletonLoader/SkeletonLoader";
-import Card from "../../../../components/Card/Card";
+import Card from "../../../../components/Cards/Card/Card";
 import RouteButton from "../../../../components/Buttons/RouteButton";
 
 const Products = () => {
@@ -10,7 +10,7 @@ const Products = () => {
 
   const getProducts = () => {
     axios
-      .get("http://localhost:5000/products")
+      .get("https://urbanaura-server.up.railway.app/products")
       .then((res) => {
         setLoading(false);
         setProducts(res.data);

@@ -14,11 +14,13 @@ import Checkout from "../Pages/SitePages/Checkout/Checkout";
 import PrivateRoute from "./PrivateRoute";
 import MyOrders from "../Pages/DashBoard/UserDashboard/MyOrders/MyOrders";
 import AccountSettings from "../Pages/DashBoard/UserDashboard/AccountSettings/AccountSettings";
+import ErrorPage from "../Pages/SitePages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -36,7 +38,9 @@ export const router = createBrowserRouter([
         path: "/products/:id",
         element: <ProductDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(
+            `https://urbanaura-server.up.railway.app/products/${params.id}`,
+          ),
       },
       {
         path: "/products",
@@ -46,7 +50,7 @@ export const router = createBrowserRouter([
         path: "/search/:key",
         element: <Search />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/search/${params.key}`),
+          fetch(`https://urbanaura-server.up.railway.app/search/${params.key}`),
       },
       {
         path: "/cart",

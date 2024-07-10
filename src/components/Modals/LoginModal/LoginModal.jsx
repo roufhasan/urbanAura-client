@@ -20,9 +20,10 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
     signIn(data.email, data.password)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
-        setLoading(false);
-        setIsOpen(false);
+        if (loggedUser) {
+          setLoading(false);
+          setIsOpen(false);
+        }
       })
       .catch((error) => {
         setLoading(false);
@@ -42,8 +43,9 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
     googleSignIn()
       .then((res) => {
         const loggedUser = res.user;
-        console.log(loggedUser);
-        setIsOpen(false);
+        if (loggedUser) {
+          setIsOpen(false);
+        }
       })
       .catch((err) => {
         setLoading(false);

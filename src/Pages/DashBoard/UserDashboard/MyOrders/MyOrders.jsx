@@ -14,7 +14,7 @@ const MyOrders = () => {
   useEffect(() => {
     if (user && user.email) {
       axios
-        .get("http://localhost:5000/payments", {
+        .get("https://urbanaura-server.up.railway.app/payments", {
           params: { email: user.email },
         })
         .then((res) => setOrders(res.data))

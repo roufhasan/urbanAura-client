@@ -19,7 +19,7 @@ const FavouriteProvider = ({ children }) => {
   const getFavouriteItems = useCallback(() => {
     if (user && user.email) {
       axios
-        .get("http://localhost:5000/favourite", {
+        .get("https://urbanaura-server.up.railway.app/favourite", {
           params: { userEmail: user.email },
         })
         .then((res) => {
@@ -45,7 +45,7 @@ const FavouriteProvider = ({ children }) => {
     }
 
     axios
-      .post("http://localhost:5000/favourite", {
+      .post("https://urbanaura-server.up.railway.app/favourite", {
         user_email: user.email,
         product_id: _id,
         title,
@@ -56,7 +56,6 @@ const FavouriteProvider = ({ children }) => {
         color: "#816dfa",
       })
       .then((res) => {
-        console.log(res);
         if (res.data.message) {
           return toast.success("Item already in favourites!");
         }
@@ -77,11 +76,10 @@ const FavouriteProvider = ({ children }) => {
   // Delete a favourite a item
   const deleteFavouriteItem = (product_id, user_email) => {
     axios
-      .delete("http://localhost:5000/favourite", {
+      .delete("https://urbanaura-server.up.railway.app/favourite", {
         data: { product_id: product_id, user_email: user_email },
       })
       .then((res) => {
-        console.log(res);
         if (res.data.acknowledged && res.data.deletedCount > 0) {
           toast.success("Favourite item removed");
           setFavouriteItems(

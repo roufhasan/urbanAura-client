@@ -96,7 +96,7 @@ const PaymentModal = ({
       };
 
       axios
-        .post("http://localhost:5000/payments", payment)
+        .post("https://urbanaura-server.up.railway.app/payments", payment)
         .then((res) => {
           if (
             res.data.insertResult.insertedId &&
@@ -118,7 +118,7 @@ const PaymentModal = ({
     const getClientSecret = async () => {
       try {
         const res = await axios.post(
-          "http://localhost:5000/create-payment-intent",
+          "https://urbanaura-server.up.railway.app/create-payment-intent",
           {
             price: totalPrice,
           },

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Card from "../../../../components/Card/Card";
+import Card from "../../../../components/Cards/Card/Card";
 import RouteButton from "../../../../components/Buttons/RouteButton";
 
 const RelatedProducts = ({ category }) => {
@@ -8,7 +8,9 @@ const RelatedProducts = ({ category }) => {
 
   const getRelatedProducts = () => {
     axios
-      .get(`http://localhost:5000/products?category=${category}`)
+      .get(
+        `https://urbanaura-server.up.railway.app/products?category=${category}`,
+      )
       .then((res) => setProducts(res.data))
       .catch((err) => console.error(err));
   };
