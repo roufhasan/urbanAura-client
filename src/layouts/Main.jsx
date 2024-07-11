@@ -5,7 +5,7 @@ import Navbar from "../components/Shared/Navbar/Navbar";
 
 const Main = () => {
   return (
-    <div className="mx-auto w-full max-w-[1440px] font-Poppins">
+    <div className="mx-auto w-full max-w-[1440px] overflow-x-hidden font-Poppins">
       <Helmet>
         <title>UrbanAura Furniture</title>
       </Helmet>
