@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet";
+import toast from "react-hot-toast";
 import { AuthContext } from "../../../Providers/AuthProvider";
 /* images */
 import logo from "../../../assets/logo/logo.png";
@@ -15,6 +16,7 @@ const Signup = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -31,8 +33,9 @@ const Signup = () => {
         updateUserProfile(data.name)
           .then(() => {
             // Navigate to home page after successful profile update
-            navigate("/");
             setLoading(false);
+            toast.success("Account created successfully!");
+            navigate("/");
           })
           .catch((error) => {
             // Handle error during profile update
@@ -42,8 +45,11 @@ const Signup = () => {
       .catch((error) => {
         // Handle error during user creation
         setLoading(false);
+        toast.error("Sign-up failed. Please try again later.");
         console.error(error.message);
       });
+
+    reset();
   };
 
   return (

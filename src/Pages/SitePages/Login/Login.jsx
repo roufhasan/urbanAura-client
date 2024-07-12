@@ -8,6 +8,7 @@ import googleLogo from "../../../assets/logo/google-logo.png";
 import loginImg from "../../../assets/images/authentication/login.jpg";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const { signIn, googleSignIn, loading, setLoading } = useContext(AuthContext);
@@ -20,6 +21,7 @@ const Login = () => {
     register,
     handleSubmit,
     setValue,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -30,13 +32,17 @@ const Login = () => {
         setLoading(false);
         const loggedUser = result.user;
         if (loggedUser) {
+          toast.success("Welcome back!");
           navigate(from, { replace: true });
         }
       })
       .catch((error) => {
         setLoading(false);
+        toast.error("Login failed. Please try again later.");
         console.error(error.message);
       });
+
+    reset();
   };
 
   // demo login function to fill up email, password and submit the form
@@ -51,11 +57,13 @@ const Login = () => {
       .then((res) => {
         const loggedUser = res.user;
         if (loggedUser) {
+          toast.success("Welcome back!");
           navigate(from, { replace: true });
         }
       })
       .catch((err) => {
         setLoading(false);
+        toast.error("Login failed. Please try again later.");
         const errCode = err.code;
         const errMessage = err.message;
         console.error(errCode, errMessage);

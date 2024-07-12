@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { BsFillPeopleFill, BsXLg } from "react-icons/bs";
 import { AuthContext } from "../../../Providers/AuthProvider";
@@ -12,6 +13,7 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
     register,
     handleSubmit,
     setValue,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -23,18 +25,22 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
         if (loggedUser) {
           setLoading(false);
           setIsOpen(false);
+          toast.success("Welcome back!");
         }
       })
       .catch((error) => {
-        setLoading(false);
         console.error(error.message);
+        setLoading(false);
         setIsOpen(false);
+        toast.error("Login failed. Please try again later.");
       });
+
+    reset();
   };
 
   // demo login function to fill up email, password and submit the form
   const handleDemoLogin = () => {
-    setValue("email", "demo@example.com");
+    setValue("email", "walter@white.com");
     setValue("password", "Asdf1234");
   };
 
@@ -45,14 +51,16 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
         const loggedUser = res.user;
         if (loggedUser) {
           setIsOpen(false);
+          toast.success("Welcome back!");
         }
       })
       .catch((err) => {
         setLoading(false);
+        setIsOpen(false);
+        toast.error("Login failed. Please try again later.");
         const errCode = err.code;
         const errMessage = err.message;
         console.error(errCode, errMessage);
-        setIsOpen(false);
       });
   };
 
