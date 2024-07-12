@@ -24,6 +24,8 @@ const AccountSettings = () => {
   const navigate = useNavigate();
   const imgRef = useRef(null);
 
+  console.log(user);
+
   // Image click
   const handleImageClick = () => {
     imgRef.current.click();
@@ -93,6 +95,11 @@ const AccountSettings = () => {
   };
 
   const handleAccountDelete = () => {
+    if (user.email === "walter@white.com") {
+      setDeleteValue("");
+      toast.error("You can't delete guest account!");
+      return;
+    }
     deleteAccount()
       .then(() => {
         setLoading(false);
