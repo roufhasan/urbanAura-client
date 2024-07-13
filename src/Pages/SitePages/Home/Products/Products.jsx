@@ -10,7 +10,7 @@ const Products = () => {
 
   const getProducts = () => {
     axios
-      .get("https://urbanaura-server.up.railway.app/products")
+      .get("http://localhost:5000/products")
       .then((res) => {
         setLoading(false);
         setProducts(res.data);

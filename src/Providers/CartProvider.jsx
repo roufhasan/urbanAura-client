@@ -14,7 +14,7 @@ const CartProvider = ({ children }) => {
   // Add a item to the cart or update the quantity if exists
   const handleCartItemSave = (item, setIsOpen) => {
     axios
-      .put("https://urbanaura-server.up.railway.app/cart", item)
+      .put("http://localhost:5000/cart", item)
       .then((res) => {
         if (res.data.acknowledged) {
           toast.success("Added to cart!");
@@ -40,7 +40,7 @@ const CartProvider = ({ children }) => {
     setCartLoading(true);
 
     axios
-      .patch("https://urbanaura-server.up.railway.app/cart_quantity", {
+      .patch("http://localhost:5000/cart_quantity", {
         id,
         user_email: user.email,
         quantity,
@@ -62,7 +62,7 @@ const CartProvider = ({ children }) => {
   const handleCartItemDel = (id) => {
     if (user && id) {
       axios
-        .delete("https://urbanaura-server.up.railway.app/cart", {
+        .delete("http://localhost:5000/cart", {
           data: { id, email: user.email },
         })
         .then((res) => {
@@ -83,7 +83,7 @@ const CartProvider = ({ children }) => {
     {
       user &&
         axios
-          .get("https://urbanaura-server.up.railway.app/cart", {
+          .get("http://localhost:5000/cart", {
             params: { userEmail: user?.email },
           })
           .then((res) => {

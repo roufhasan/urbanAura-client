@@ -128,7 +128,7 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
               <button
                 disabled={loading}
                 type="Submit"
-                className={`mt-8 block w-full rounded-[10px] py-2 text-xl text-white ${loading ? "bg-[#b88f2fc4]" : "bg-[#b88e2f]"}`}
+                className={`mt-8 block w-full rounded-[10px] py-2 text-xl text-white ${loading ? "bg-[#b88f2fc4]" : "bg-[#b88e2f] transition-all hover:bg-[#a07b26]"}`}
               >
                 Login
               </button>
@@ -139,7 +139,7 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
               <button
                 disabled={loading}
                 onClick={handleGoogleLogin}
-                className={`my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border px-3 py-2 text-lg md:px-6 ${loading && "text-[#9f9f9f]"}`}
+                className={`my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border px-3 py-2 text-lg md:px-6 ${loading ? "text-[#9f9f9f]" : "transition-all hover:bg-[#b88e2f] hover:text-white"}`}
               >
                 <img src={googleLogo} alt="google logo" className="size-6" />
                 <p>Login With Google</p>
@@ -147,7 +147,7 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
               <button
                 disabled={loading}
                 onClick={handleDemoLogin}
-                className={`flex w-full items-center justify-center gap-3 rounded-[10px] border px-3 py-2 text-lg md:px-6 ${loading && "text-[#9f9f9f]"}`}
+                className={`flex w-full items-center justify-center gap-3 rounded-[10px] border px-3 py-2 text-lg md:px-6 ${loading ? "text-[#9f9f9f]" : "transition-all hover:bg-[#b88e2f] hover:text-white"}`}
               >
                 <BsFillPeopleFill
                   size={24}

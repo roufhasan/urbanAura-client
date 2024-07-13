@@ -16,12 +16,13 @@ import MyOrders from "../Pages/DashBoard/UserDashboard/MyOrders/MyOrders";
 import AccountSettings from "../Pages/DashBoard/UserDashboard/AccountSettings/AccountSettings";
 import ErrorPage from "../Pages/SitePages/ErrorPage/ErrorPage";
 import About from "../Pages/SitePages/About/About";
+import AdminLayout from "../layouts/AdminLayout";
+import Dashboard from "../Pages/DashBoard/AdminDashboard/Dashboard/Dashboard";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
-    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -43,9 +44,8 @@ export const router = createBrowserRouter([
         path: "/products/:id",
         element: <ProductDetails />,
         loader: ({ params }) =>
-          fetch(
-            `https://urbanaura-server.up.railway.app/products/${params.id}`,
-          ),
+          fetch(`http://localhost:5000/products/${params.id}`),
+        errorElement: <ErrorPage />,
       },
       {
         path: "/products",
@@ -55,7 +55,8 @@ export const router = createBrowserRouter([
         path: "/search/:key",
         element: <Search />,
         loader: ({ params }) =>
-          fetch(`https://urbanaura-server.up.railway.app/search/${params.key}`),
+          fetch(`http://localhost:5000/search/${params.key}`),
+        errorElement: <ErrorPage />,
       },
       {
         path: "/cart",
@@ -100,6 +101,29 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  // Admin Dashboard Routes
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <AdminLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
+      {
+        path: "/dashboard/orders",
+        element: "order is now loading",
+      },
+      {
+        path: "/dashboard/products",
+        element: "products is hello",
+      },
+    ],
+  },
   {
     path: "/login",
     element: <Login />,
@@ -107,5 +131,9 @@ export const router = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />,
+  },
+  {
+    path: "*",
+    element: <ErrorPage />,
   },
 ]);

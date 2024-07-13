@@ -26,7 +26,7 @@ const Reviews = ({ productId, reviews, setReviews }) => {
     const fetchData = async () => {
       try {
         const paymentResponse = await axios.get(
-          "https://urbanaura-server.up.railway.app/payments",
+          "http://localhost:5000/payments",
           {
             params: { email: user?.email },
           },
@@ -45,15 +45,12 @@ const Reviews = ({ productId, reviews, setReviews }) => {
   // Delete my review
   const deleteMyReview = async () => {
     try {
-      const response = await axios.delete(
-        "https://urbanaura-server.up.railway.app/review",
-        {
-          data: {
-            product_id: productId,
-            email: user.email,
-          },
+      const response = await axios.delete("http://localhost:5000/review", {
+        data: {
+          product_id: productId,
+          email: user.email,
         },
-      );
+      });
       if (response.data.acknowledged) {
         toast.success("Your review has been deleted");
         setIsSubmitted(false);
@@ -93,7 +90,7 @@ const Reviews = ({ productId, reviews, setReviews }) => {
       data.date = new Date();
 
       axios
-        .post("https://urbanaura-server.up.railway.app/review", data)
+        .post("http://localhost:5000/review", data)
         .then((res) => {
           if (res.data.acknowledged) {
             toast.success("Review submitted!");

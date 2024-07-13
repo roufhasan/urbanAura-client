@@ -10,6 +10,7 @@ import {
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { FavouriteContext } from "../../../Providers/FavouriteProvider";
 import toast from "react-hot-toast";
+import { LuLayoutDashboard } from "react-icons/lu";
 
 const MobileNavbar = ({
   sideBarRef,
@@ -22,6 +23,9 @@ const MobileNavbar = ({
   const { user, logOut } = useContext(AuthContext);
   const { setFavouriteItems } = useContext(FavouriteContext);
   const navigate = useNavigate();
+
+  // Check currently logged in user email is admin email or not
+  const isAdmin = user && user.email && user.email === "roufhasan5@gmail.com";
 
   // Handle user logout
   const handleUserLogOut = () => {
@@ -78,13 +82,13 @@ const MobileNavbar = ({
             <div className="mt-2 px-[4%]">
               <Link
                 onClick={() => setShowMenu(!showMenu)}
-                to="/account-settings"
+                to="/dashboard"
                 className="mb-4 flex items-center gap-2"
               >
                 <span>
-                  <BsPersonGear size={24} />
+                  <LuLayoutDashboard size={21} />
                 </span>
-                Manage My Account
+                Dashboard
               </Link>
               <Link
                 onClick={() => setShowMenu(!showMenu)}
@@ -96,6 +100,18 @@ const MobileNavbar = ({
                 </span>
                 My Orders
               </Link>
+              {user && isAdmin && (
+                <Link
+                  onClick={() => setShowMenu(!showMenu)}
+                  to="/account-settings"
+                  className="mb-4 flex items-center gap-2"
+                >
+                  <span>
+                    <BsPersonGear size={24} />
+                  </span>
+                  Manage My Account
+                </Link>
+              )}
               <button
                 onClick={handleUserLogOut}
                 className="flex items-center gap-2"

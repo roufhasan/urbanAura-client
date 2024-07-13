@@ -39,6 +39,10 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Check currently logged in user email is admin email or not
+  const isAdmin = user && user.email && user.email === "roufhasan5@gmail.com";
+  console.log(isAdmin);
+
   // Debounce search input
   const debouncedSearchValue = useDebounce(searchValue, 300);
 
@@ -53,9 +57,7 @@ const Navbar = () => {
       return setSearchResults([]);
     } else {
       axios
-        .get(
-          `https://urbanaura-server.up.railway.app/search/${debouncedSearchValue}`,
-        )
+        .get(`http://localhost:5000/search/${debouncedSearchValue}`)
         .then((res) => setSearchResults(res.data))
         .catch((err) => console.error(err));
     }
@@ -232,7 +234,7 @@ const Navbar = () => {
             </Link>
           )}
         </li>
-        {user && (
+        {user && !isAdmin && (
           <>
             <li className="relative">
               <Link to="/favourite">
@@ -248,6 +250,16 @@ const Navbar = () => {
               <SidebarCart user={user} />
             </li>
           </>
+        )}
+        {user && isAdmin && (
+          <li>
+            <Link
+              to="/dashboard"
+              className="rounded-md bg-[#b88e2f] px-2 py-1 text-white transition-colors hover:bg-[#a37f2a]"
+            >
+              Dashboard
+            </Link>
+          </li>
         )}
       </ul>
 

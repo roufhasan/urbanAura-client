@@ -16,7 +16,7 @@ const ProductDetails = () => {
     const fetchData = async () => {
       try {
         const reviewsResponse = await axios.get(
-          "https://urbanaura-server.up.railway.app/reviews",
+          "http://localhost:5000/reviews",
           {
             params: { product_id: _id },
           },

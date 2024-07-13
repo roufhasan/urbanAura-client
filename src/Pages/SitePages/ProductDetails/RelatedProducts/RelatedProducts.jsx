@@ -8,9 +8,7 @@ const RelatedProducts = ({ category }) => {
 
   const getRelatedProducts = () => {
     axios
-      .get(
-        `https://urbanaura-server.up.railway.app/products?category=${category}`,
-      )
+      .get(`http://localhost:5000/products?category=${category}`)
       .then((res) => setProducts(res.data))
       .catch((err) => console.error(err));
   };

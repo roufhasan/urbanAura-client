@@ -39,12 +39,16 @@ const Signup = () => {
           })
           .catch((error) => {
             // Handle error during profile update
+            setLoading(false);
             console.error("Profile update error:", error);
           });
       })
       .catch((error) => {
         // Handle error during user creation
         setLoading(false);
+        if (error.message === "Firebase: Error (auth/email-already-in-use).") {
+          return toast.error("Email already exists! Please Login!");
+        }
         toast.error("Sign-up failed. Please try again later.");
         console.error(error.message);
       });

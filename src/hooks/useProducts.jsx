@@ -39,8 +39,8 @@ const useProducts = (initialUrl) => {
   };
 
   const url = initialUrl
-    ? `https://urbanaura-server.up.railway.app/products${initialUrl}`
-    : `https://urbanaura-server.up.railway.app/products`;
+    ? `http://localhost:5000/products${initialUrl}`
+    : `http://localhost:5000/products`;
 
   /* get products */
   const getProducts = () => {

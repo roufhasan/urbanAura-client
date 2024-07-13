@@ -154,7 +154,7 @@ const Login = () => {
           <button
             onClick={handleGoogleLogin}
             disabled={loading}
-            className={`my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg transition-all hover:bg-[#b88e2f] hover:text-white ${loading && "text-[#9f9f9f]"}`}
+            className={`my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg ${loading ? "text-[#9f9f9f]" : "transition-all hover:bg-[#b88e2f] hover:text-white"}`}
           >
             <img src={googleLogo} alt="google logo" className="size-6" />
             <p>Login With Google</p>
@@ -162,7 +162,7 @@ const Login = () => {
           <button
             onClick={handleDemoLogin}
             disabled={loading}
-            className={`flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg transition-all hover:bg-[#b88e2f] hover:text-white ${loading && "text-[#9f9f9f]"}`}
+            className={`flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg ${loading ? "text-[#9f9f9f]" : "transition-all hover:bg-[#b88e2f] hover:text-white"}`}
           >
             <BsFillPeopleFill
               size={24}

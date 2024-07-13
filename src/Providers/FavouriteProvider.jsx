@@ -19,7 +19,7 @@ const FavouriteProvider = ({ children }) => {
   const getFavouriteItems = useCallback(() => {
     if (user && user.email) {
       axios
-        .get("https://urbanaura-server.up.railway.app/favourite", {
+        .get("http://localhost:5000/favourite", {
           params: { userEmail: user.email },
         })
         .then((res) => {
@@ -45,7 +45,7 @@ const FavouriteProvider = ({ children }) => {
     }
 
     axios
-      .post("https://urbanaura-server.up.railway.app/favourite", {
+      .post("http://localhost:5000/favourite", {
         user_email: user.email,
         product_id: _id,
         title,
@@ -76,7 +76,7 @@ const FavouriteProvider = ({ children }) => {
   // Delete a favourite a item
   const deleteFavouriteItem = (product_id, user_email) => {
     axios
-      .delete("https://urbanaura-server.up.railway.app/favourite", {
+      .delete("http://localhost:5000/favourite", {
         data: { product_id: product_id, user_email: user_email },
       })
       .then((res) => {
