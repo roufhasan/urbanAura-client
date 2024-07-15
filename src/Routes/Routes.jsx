@@ -19,6 +19,7 @@ import About from "../Pages/SitePages/About/About";
 import AdminLayout from "../layouts/AdminLayout";
 import Dashboard from "../Pages/DashBoard/AdminDashboard/Dashboard/Dashboard";
 import Orders from "../Pages/DashBoard/AdminDashboard/Orders/Orders";
+import ProductManagement from "../Pages/DashBoard/AdminDashboard/ProductManagement/ProductManagement";
 
 export const router = createBrowserRouter([
   {
@@ -121,7 +122,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/products",
-        element: "products is hello",
+        element: <ProductManagement />,
       },
     ],
   },

@@ -75,8 +75,8 @@ const Orders = () => {
         <title>Manage Orders - UrbanAura Furniture</title>
       </Helmet>
 
-      <h3 className="flex items-center gap-1 bg-white px-[4%] py-7 text-2xl font-semibold shadow-sm md:px-5">
-        <MdOutlinePendingActions color="#b88e2f" /> Pending Orders:{" "}
+      <h3 className="flex items-center gap-1 bg-white px-[4%] py-7 text-xl font-semibold shadow-sm md:px-5">
+        <MdOutlinePendingActions size={32} color="#b88e2f" /> Pending Orders:{" "}
         <span>{totalOrders}</span>
       </h3>
 
@@ -125,7 +125,7 @@ const Orders = () => {
                       </td>
                       <td>
                         <select
-                          className={`rounded border border-gray-300 px-2 py-1 text-gray-800 ${
+                          className={`cursor-pointer rounded border border-gray-300 px-2 py-1 text-gray-800 ${
                             order.status === "cancelled" &&
                             "border-red-300 bg-red-200 text-red-800"
                           } ${order.status === "delivered" && "border-green-300 bg-green-200 text-green-800"}`}
