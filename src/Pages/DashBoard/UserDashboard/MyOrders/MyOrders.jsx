@@ -2,10 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { format } from "date-fns";
 import { motion } from "framer-motion";
 import { AuthContext } from "../../../../Providers/AuthProvider";
 import { formatPrice } from "../../../../utils/formatPrice";
+import { dateFormatMDY } from "../../../../utils/dateFormatMDY";
 
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
@@ -21,12 +21,6 @@ const MyOrders = () => {
         .catch((err) => console.log(err));
     }
   }, [user]);
-
-  // Formate date of purchased product
-  const formatDate = (isoDate) => {
-    const date = new Date(isoDate);
-    return format(date, "MMM d, yyy");
-  };
 
   return (
     <section className="mb-28 px-[4%] md:px-[7%]">
@@ -44,12 +38,19 @@ const MyOrders = () => {
                 key={order._id}
                 className={`space-y-6 border-b-[2px] border-gray-200 pb-6 ${i === orders.length - 1 && "border-none"}`}
               >
-                <p className="truncate text-left text-sm text-gray-400">
-                  <span className="text-[#b88e2f]">
-                    Ordered #{order.items.length} items on:
-                  </span>{" "}
-                  {formatDate(order.date)}
-                </p>
+                <div>
+                  <p className="truncate text-left text-sm text-gray-400">
+                    <span className="text-[#b88e2f]">
+                      Ordered #{order.items.length} items on:
+                    </span>{" "}
+                    {dateFormatMDY(order.date)}
+                  </p>
+                  {order.status === "cancelled" && (
+                    <p className="truncate text-left text-sm text-green-600">
+                      NOTE: You will get refund within 7 working days *
+                    </p>
+                  )}
+                </div>
                 {order.items.map((item) => (
                   <div
                     key={item._id}
@@ -84,7 +85,19 @@ const MyOrders = () => {
                     <p className="hidden w-fit min-w-14 truncate pt-1 text-sm text-gray-400 md:block">
                       $ {formatPrice(item.quantity * item.price)}
                     </p>
-                    <p className="h-fit w-24 truncate rounded-full bg-gray-100 p-1 text-center text-xs">
+                    <p
+                      className={`h-fit w-24 truncate rounded-full p-1 text-center text-xs capitalize ${
+                        order.status === "pending"
+                          ? "bg-orange-200 text-orange-800"
+                          : order.status === "processing"
+                            ? "bg-blue-200 text-blue-800"
+                            : order.status === "delivered"
+                              ? "bg-green-200 text-green-800"
+                              : order.status === "cancelled"
+                                ? "bg-red-200 text-red-800"
+                                : ""
+                      }`}
+                    >
                       {order.status}
                     </p>
                   </div>

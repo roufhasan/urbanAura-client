@@ -41,7 +41,6 @@ const Navbar = () => {
 
   // Check currently logged in user email is admin email or not
   const isAdmin = user && user.email && user.email === "roufhasan5@gmail.com";
-  console.log(isAdmin);
 
   // Debounce search input
   const debouncedSearchValue = useDebounce(searchValue, 300);

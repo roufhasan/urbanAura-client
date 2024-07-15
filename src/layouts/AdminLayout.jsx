@@ -8,17 +8,15 @@ import MobileDashNav from "../components/MobileDashNav/MobileDashNav";
 
 const AdminLayout = () => {
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
   const [showNavbar, setShowNavbar] = useState(false);
+  const sideBarRef = useRef();
+  const navigate = useNavigate();
 
   // Check currently logged in user email is admin email or not
   const isAdmin = user && user.email && user.email === "roufhasan5@gmail.com";
   if (!isAdmin) {
     navigate("/");
   }
-
-  // Ref
-  const sideBarRef = useRef();
 
   // Toggle mobile dashboard side navbar visibility
   useEffect(() => {
@@ -48,7 +46,7 @@ const AdminLayout = () => {
       )}
 
       {/* medium to upper device side navbar */}
-      <nav className="hidden h-full min-h-screen flex-col justify-between overflow-y-auto bg-[#111827] pb-10 pt-7 text-white md:flex">
+      <nav className="hidden h-full min-h-screen min-w-fit flex-col justify-between overflow-y-auto bg-[#111827] pb-10 pt-7 text-white md:flex">
         <div>
           {/* Logo & Title */}
           <NavLink to="/" className="flex items-center px-5">
@@ -69,13 +67,17 @@ const AdminLayout = () => {
                 `group flex items-center gap-2 px-5 py-1 ${isActive && "bg-gray-700 bg-opacity-25"}`
               }
             >
-              <span>
-                <LuLayoutDashboard
-                  size={21}
-                  className="transition-all duration-200 group-hover:text-[#b88e2f]"
-                />
-              </span>
-              Dashboard
+              {({ isActive }) => (
+                <>
+                  <span>
+                    <LuLayoutDashboard
+                      size={21}
+                      className={`transition-all duration-200 ${isActive ? "text-[#b88e2f]" : "group-hover:text-[#b88e2f]"}`}
+                    />
+                  </span>
+                  Dashboard
+                </>
+              )}
             </NavLink>
             <NavLink
               to="/dashboard/orders"
@@ -83,13 +85,17 @@ const AdminLayout = () => {
                 `group flex items-center gap-2 px-5 py-1 ${isActive && "bg-gray-700 bg-opacity-25"}`
               }
             >
-              <span>
-                <BsCart3
-                  size={21}
-                  className="w-6 transition-all duration-200 group-hover:text-[#b88e2f]"
-                />
-              </span>
-              Orders
+              {({ isActive }) => (
+                <>
+                  <span>
+                    <BsCart3
+                      size={21}
+                      className={`transition-all duration-200 ${isActive ? "text-[#b88e2f]" : "group-hover:text-[#b88e2f]"}`}
+                    />
+                  </span>
+                  Orders
+                </>
+              )}
             </NavLink>
             <NavLink
               to="/dashboard/products"
@@ -97,13 +103,17 @@ const AdminLayout = () => {
                 `group flex items-center gap-2 px-5 py-1 ${isActive && "bg-gray-700 bg-opacity-25"}`
               }
             >
-              <span>
-                <BsBox2
-                  size={18}
-                  className="w-6 transition-all duration-200 group-hover:text-[#b88e2f]"
-                />
-              </span>
-              Products
+              {({ isActive }) => (
+                <>
+                  <span>
+                    <BsBox2
+                      size={18}
+                      className={`transition-all duration-200 ${isActive ? "text-[#b88e2f]" : "group-hover:text-[#b88e2f]"}`}
+                    />
+                  </span>
+                  Products
+                </>
+              )}
             </NavLink>
           </div>
         </div>
@@ -116,7 +126,7 @@ const AdminLayout = () => {
       </nav>
 
       {/* Routes Page will be here */}
-      <div className="flex-1 bg-[#f3f4fa] px-[4%] pt-7 md:px-5">
+      <div className="flex-1 bg-[#f3f4fa]">
         <Outlet />
       </div>
     </section>

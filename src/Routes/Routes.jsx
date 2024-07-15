@@ -18,6 +18,7 @@ import ErrorPage from "../Pages/SitePages/ErrorPage/ErrorPage";
 import About from "../Pages/SitePages/About/About";
 import AdminLayout from "../layouts/AdminLayout";
 import Dashboard from "../Pages/DashBoard/AdminDashboard/Dashboard/Dashboard";
+import Orders from "../Pages/DashBoard/AdminDashboard/Orders/Orders";
 
 export const router = createBrowserRouter([
   {
@@ -116,7 +117,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/orders",
-        element: "order is now loading",
+        element: <Orders />,
       },
       {
         path: "/dashboard/products",
