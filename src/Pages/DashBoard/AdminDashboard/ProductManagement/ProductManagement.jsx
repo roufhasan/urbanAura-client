@@ -7,6 +7,7 @@ import { RiDeleteBinLine, RiEdit2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { formatPrice } from "../../../../utils/formatPrice";
 import { scrollToTop } from "../../../../utils/scrollUtils";
+import toast from "react-hot-toast";
 
 const ProductManagement = () => {
   const [products, setProducts] = useState([]);
@@ -50,6 +51,22 @@ const ProductManagement = () => {
       .catch((error) => console.error("Error fetching products:", error));
   }, []);
 
+  const handleDeleteProduct = async (id) => {
+    try {
+      const res = await axios.delete(`http://localhost:5000/products/${id}`);
+      if (res.data.deletedCount > 0) {
+        toast.success("Item Deleted Successfully!");
+        const updatedProducts = products.filter(
+          (product) => product._id !== id,
+        );
+        setProducts(updatedProducts);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Something went wrong!");
+    }
+  };
+
   return (
     <section className="product-management">
       {/* Change page title */}
@@ -81,6 +98,7 @@ const ProductManagement = () => {
               <div className="flex gap-7">
                 <Link to={`/products/${product._id}`} className="">
                   <img
+                    loading="lazy"
                     src={product.thumbnail}
                     alt=""
                     className="size-24 object-cover object-center transition-all hover:scale-95"
@@ -104,7 +122,10 @@ const ProductManagement = () => {
                 <button className="flex items-center gap-1 rounded-md bg-blue-400 px-1  py-1 text-sm text-white transition-all hover:bg-blue-600">
                   <RiEdit2Line /> Edit
                 </button>
-                <button className="flex items-center gap-1 rounded-md bg-red-400 px-1  py-1 text-sm text-white transition-all hover:bg-red-600">
+                <button
+                  onClick={() => handleDeleteProduct(product._id)}
+                  className="flex items-center gap-1 rounded-md bg-red-400 px-1  py-1 text-sm text-white transition-all hover:bg-red-600"
+                >
                   <RiDeleteBinLine /> Delete
                 </button>
               </div>

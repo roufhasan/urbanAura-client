@@ -46,7 +46,7 @@ const AdminLayout = () => {
       )}
 
       {/* medium to upper device side navbar */}
-      <nav className="hidden h-full min-h-screen min-w-fit flex-col justify-between overflow-y-auto bg-[#111827] pb-10 pt-7 text-white md:flex">
+      <nav className="hidden min-h-screen min-w-fit flex-col justify-between overflow-y-auto bg-[#111827] pb-10 pt-7 text-white md:flex">
         <div>
           {/* Logo & Title */}
           <NavLink to="/" className="flex items-center px-5">
