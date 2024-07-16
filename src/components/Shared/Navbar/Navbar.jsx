@@ -22,7 +22,7 @@ import logo from "../../../assets/logo/logo.png";
 const Navbar = () => {
   // Context
   const { user } = useContext(AuthContext);
-  const { cart, setCart } = useContext(CartContext);
+  const cartContext = useContext(CartContext);
   const { getFavouriteItems, favouriteItems, setFavouriteItems } =
     useContext(FavouriteContext);
 
@@ -39,11 +39,15 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Check currently logged in user email is admin email or not
-  const isAdmin = user && user.email && user.email === "roufhasan5@gmail.com";
-
   // Debounce search input
   const debouncedSearchValue = useDebounce(searchValue, 300);
+
+  // Check if the cart context is available
+  const cart = cartContext?.cart || [];
+  const setCart = cartContext?.setCart || (() => {});
+
+  // Check currently logged in user email is admin email or not
+  const isAdmin = user && user.email && user.email === "roufhasan5@gmail.com";
 
   // Fetch favourite items of a user
   useEffect(() => {
