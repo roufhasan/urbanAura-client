@@ -24,8 +24,6 @@ const AccountSettings = () => {
   const navigate = useNavigate();
   const imgRef = useRef(null);
 
-  console.log(user);
-
   // Image click
   const handleImageClick = () => {
     imgRef.current.click();
@@ -94,6 +92,7 @@ const AccountSettings = () => {
     return;
   };
 
+  // Handle Account Delete
   const handleAccountDelete = () => {
     if (user.email === "walter@white.com") {
       setDeleteValue("");
