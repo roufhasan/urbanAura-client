@@ -17,12 +17,30 @@ const AddProducts = () => {
   });
 
   const onSubmit = (data) => {
-    // Convert the string to boolean before submitting
-    data.is_new = data.is_new === "true";
-    // Split tags input by commas and trim whitespace from each tag
     const tagsArray = data.tags.split(",");
-    data.tags = tagsArray;
-    console.log(data);
+
+    const newProduct = {
+      category: data.category,
+      title: data.title,
+      sub_title: data.sub_title,
+      is_new: data.is_new === "true",
+      tags: tagsArray,
+      price: {
+        original: parseFloat(data.originalPrice),
+      },
+    };
+
+    if (data.discount_percent > 0) {
+      const discounted =
+        parseFloat(data.originalPrice) -
+        (parseFloat(data.originalPrice) * parseInt(data.discount_percent)) /
+          100;
+
+      newProduct.price.discount_percent = parseInt(data.discount_percent);
+      newProduct.price.discounted = parseFloat(discounted.toFixed(2));
+    }
+
+    console.log("[New Product]", newProduct);
   };
 
   return (
