@@ -1,11 +1,15 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 import { BsArrowLeft, BsInfoCircle } from "react-icons/bs";
 import AddImages from "./AddImages/AddImages";
 
 const AddProducts = () => {
+  const [selectedImages, setSelectedImages] = useState([]);
+  const [imagePreviews, setImagePreviews] = useState([]);
   const {
     register,
     handleSubmit,
@@ -18,6 +22,15 @@ const AddProducts = () => {
 
   const onSubmit = (data) => {
     const tagsArray = data.tags.split(",");
+    let thumbnail = "";
+    let gallery = [];
+
+    if (selectedImages.length === 5) {
+      thumbnail = selectedImages[0];
+      gallery = selectedImages.slice(1, 5);
+    } else {
+      return toast.error("Select at least 5 images!");
+    }
 
     const newProduct = {
       category: data.category,
@@ -28,6 +41,8 @@ const AddProducts = () => {
       price: {
         original: parseFloat(data.originalPrice),
       },
+      thumbnail,
+      gallery,
     };
 
     if (data.discount_percent > 0) {
@@ -115,7 +130,14 @@ const AddProducts = () => {
           />
         </div>
         {/* Product Images */}
-        <AddImages register={register} errors={errors} />
+        <AddImages
+          register={register}
+          errors={errors}
+          selectedImages={selectedImages}
+          setSelectedImages={setSelectedImages}
+          imagePreviews={imagePreviews}
+          setImagePreviews={setImagePreviews}
+        />
         {/* Pricing */}
         <div className="col-span-12 rounded-lg border bg-white px-4 pb-4 pt-6 shadow-sm lg:col-span-8">
           <h4 className="mb-6 font-semibold">Pricing</h4>

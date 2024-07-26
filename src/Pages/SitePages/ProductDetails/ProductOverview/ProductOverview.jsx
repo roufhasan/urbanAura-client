@@ -80,11 +80,12 @@ const ProductOverview = ({ product, reviews }) => {
                 return (
                   <img
                     key={index}
-                    src={image}
-                    alt="shop image"
                     onClick={() => setMainImage(image)}
                     onMouseEnter={() => setMainImage(image)}
                     className={`size-16 rounded-[10px] border-[3px] object-cover object-center transition-all duration-150 ease-in sm:size-20 md:h-20 md:w-[76px] ${image === mainImage ? "border-[#b88e2f]" : "border-transparent"}`}
+                    src={image}
+                    alt="shop image"
+                    loading="lazy"
                   ></img>
                 );
               })}
@@ -92,9 +93,10 @@ const ProductOverview = ({ product, reviews }) => {
           {/* main image */}
           <div>
             <img
+              className="h-96 w-full rounded-[10px] object-cover object-center sm:h-[450px] md:h-[500px] md:max-h-[500px] md:w-[420px] md:max-w-[420px]"
               src={mainImage}
               alt={`image of ${title}`}
-              className="h-96 w-full rounded-[10px] object-cover object-center sm:h-[450px] md:h-[500px] md:max-h-[500px] md:w-[420px] md:max-w-[420px]"
+              loading="lazy"
             />
           </div>
         </div>

@@ -80,10 +80,10 @@ const SidebarCart = ({ user }) => {
                       >
                         <div className="flex items-center gap-8">
                           <img
-                            loading="lazy"
+                            className="size-24 rounded-[10px] object-cover object-center"
                             src={item.thumbnail}
                             alt={`${item.title} image`}
-                            className="size-24 rounded-[10px] object-cover object-center"
+                            loading="lazy"
                           />
                           <div>
                             <p>{item.title}</p>

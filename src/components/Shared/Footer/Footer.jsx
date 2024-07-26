@@ -7,7 +7,12 @@ const Footer = () => {
       <div className="justify-between gap-10 border-b border-b-[#D9D9D9] pb-12 text-center md:flex md:text-left">
         <div>
           <Link to="/" className="mb-8 flex items-center md:mb-[50px] ">
-            <img className="mr-0.5 w-5" src={logo} alt="urbanAura logo" />
+            <img
+              className="mr-0.5 w-5"
+              src={logo}
+              alt="urbanAura logo"
+              loading="lazy"
+            />
             <h2 className="text-2xl font-bold">rbanAura.</h2>
           </Link>
           <p className="mx-auto max-w-72 text-[#9F9F9F] md:mx-0">

@@ -10,9 +10,10 @@ const ServicesHighlight = () => {
       <div className="w-full gap-4 md:flex md:justify-evenly xl:w-fit xl:justify-normal xl:gap-6">
         <div className="flex w-4/5 items-center justify-center gap-[10px] md:w-auto md:justify-normal">
           <img
+            className="size-11 md:size-12 xl:size-14"
             src={trophySvg}
             alt="trophy logo"
-            className="size-11 md:size-12 xl:size-14"
+            loading="lazy"
           />
           <div className="w-[242px] xl:w-full">
             <h3 className="text-xl font-semibold text-[#242424] xl:text-[22px]">
@@ -24,9 +25,10 @@ const ServicesHighlight = () => {
 
         <div className="flex w-4/5 items-center justify-center gap-[10px] md:w-auto md:justify-normal">
           <img
+            className="size-11 md:size-12 xl:size-14"
             src={guaranteeSvg}
             alt="guarantee logo"
-            className="size-11 md:size-12 xl:size-14"
+            loading="lazy"
           />
           <div className="w-[242px] xl:w-full">
             <h3 className="text-xl font-semibold text-[#242424] xl:text-[22px]">
@@ -40,9 +42,10 @@ const ServicesHighlight = () => {
       <div className="w-full md:flex md:justify-evenly xl:w-fit xl:justify-normal xl:gap-6">
         <div className="flex w-4/5 items-center justify-center gap-[10px] md:w-auto md:justify-normal">
           <img
+            className="size-11 md:size-12 xl:size-14"
             src={shippingSvg}
             alt="shipping logo"
-            className="size-11 md:size-12 xl:size-14"
+            loading="lazy"
           />
           <div className="w-[242px] xl:w-full">
             <h3 className="text-xl font-semibold text-[#242424] xl:text-[22px]">
@@ -54,9 +57,10 @@ const ServicesHighlight = () => {
 
         <div className="flex w-4/5 items-center justify-center gap-[10px] md:w-auto md:justify-normal">
           <img
+            className="size-11 md:size-12 xl:size-14"
             src={supportSvg}
             alt="customer-support logo"
-            className="size-11 md:size-12 xl:size-14"
+            loading="lazy"
           />
           <div className="w-[242px] xl:w-full">
             <h3 className="text-xl font-semibold text-[#242424] xl:text-[22px]">

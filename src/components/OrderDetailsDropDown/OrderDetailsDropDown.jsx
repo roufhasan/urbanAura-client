@@ -22,9 +22,10 @@ const OrderDetailsDropDown = ({ order }) => {
                 className="mr-4 h-16 w-16"
               >
                 <img
+                  className="h-full w-full transition-all hover:scale-95"
                   src={item.thumbnail}
                   alt={item.title}
-                  className="h-full w-full transition-all hover:scale-95"
+                  loading="lazy"
                 />
               </Link>
               <Link

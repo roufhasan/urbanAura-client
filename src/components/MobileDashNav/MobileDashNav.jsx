@@ -22,6 +22,7 @@ const MobileDashNav = ({ sideBarRef, setShowNavbar }) => {
               className="mr-1 w-5 lg:w-7 xl:w-8"
               src={logo}
               alt="urbanAura logo"
+              loading="lazy"
             />
             <h1 className="-ml-1 font-Montserrat text-2xl font-bold lg:text-[28px]">
               rbanAura

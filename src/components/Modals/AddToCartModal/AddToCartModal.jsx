@@ -62,9 +62,10 @@ const AddToCartModal = ({ isOpen, setIsOpen, selectedProduct }) => {
             <DialogPanel className="w-full rounded-[10px] border bg-white p-2 md:h-fit md:w-fit md:p-6">
               <div className="flex w-full flex-wrap items-center justify-center gap-4">
                 <img
+                  className="w-56 rounded-[10px]"
                   src={thumbnail}
                   alt={`${title} image`}
-                  className="w-56 rounded-[10px]"
+                  loading="lazy"
                 />
                 {/* Product Info & Add To cart */}
                 <div className="space-y-8">

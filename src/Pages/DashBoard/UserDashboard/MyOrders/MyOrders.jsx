@@ -58,9 +58,10 @@ const MyOrders = () => {
                   >
                     <Link to={`/products/${item.product_id}`} className="group">
                       <img
+                        className="size-20 object-cover object-center transition-all group-hover:scale-95 sm:pt-1"
                         src={item.thumbnail}
                         alt={item.title}
-                        className="size-20 object-cover object-center transition-all group-hover:scale-95 sm:pt-1"
+                        loading="lazy"
                       />
                     </Link>
                     <div>

@@ -17,14 +17,16 @@ const About = () => {
           <div className="mb-10 flex min-h-80 w-full justify-center md:mb-0 md:w-1/2">
             <div className="relative w-full">
               <img
+                className="absolute left-0 top-0 h-60 w-52 rounded-md object-cover object-center shadow-lg md:w-56 lg:h-80 lg:w-72 xl:h-96 xl:w-80"
                 src={img2}
                 alt="urbanAura board room"
-                className="absolute left-0 top-0 h-60 w-52 rounded-md object-cover object-center shadow-lg md:w-56 lg:h-80 lg:w-72 xl:h-96 xl:w-80"
+                loading="lazy"
               />
               <img
+                className="absolute left-[80px] top-[65px] h-60 w-52 rounded-md object-cover object-center shadow-lg md:w-56 lg:h-80 lg:w-72 xl:left-[30%] xl:top-[25%] xl:h-96 xl:w-80"
                 src={img1}
                 alt="urbanAura employee"
-                className="absolute left-[80px] top-[65px] h-60 w-52 rounded-md object-cover object-center shadow-lg md:w-56 lg:h-80 lg:w-72 xl:left-[30%] xl:top-[25%] xl:h-96 xl:w-80"
+                loading="lazy"
               />
             </div>
           </div>
@@ -85,9 +87,10 @@ const About = () => {
           {/* our mission delivery guy img */}
           <div className="mt-10 w-full md:mt-0 md:w-1/2">
             <img
+              className="w-[340px] rounded-md"
               src={img3}
               alt="urbanAura delivery"
-              className="w-[340px] rounded-md"
+              loading="lazy"
             />
           </div>
         </div>

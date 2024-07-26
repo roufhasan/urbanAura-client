@@ -14,9 +14,10 @@ const FavouriteItemList = ({
     <div className="flex w-full flex-col justify-between md:flex-row">
       <div className="flex w-full gap-x-6">
         <img
+          className="h-16 w-14 min-w-16 rounded-[10px] object-cover object-center"
           src={item.thumbnail}
           alt={`image of ${item.title}`}
-          className="h-16 w-14 min-w-16 rounded-[10px] object-cover object-center"
+          loading="lazy"
         />
         <div className="w-full space-y-4 md:w-fit">
           <Link

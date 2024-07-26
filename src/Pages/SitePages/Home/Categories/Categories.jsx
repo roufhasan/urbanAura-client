@@ -16,10 +16,10 @@ const Categories = () => {
         {/* card-1 */}
         <div className="relative mx-auto w-full md:w-fit">
           <img
-            loading="lazy"
+            className="h-full w-full md:max-h-[664px]"
             src={categoryImg1}
             alt="elagant white sofa with pillow"
-            className="h-full w-full md:max-h-[664px]"
+            loading="lazy"
           />
           <div className="absolute left-0 top-0 h-full w-full bg-black/10 md:hidden"></div>
           <div className="absolute left-8 top-12 font-medium md:left-12">
@@ -43,10 +43,10 @@ const Categories = () => {
           {/* card-2 */}
           <div className="relative mx-auto w-full md:w-fit">
             <img
-              loading="lazy"
+              className="h-full w-full md:max-w-[548px]"
               src={categoryImg2}
               alt="elagant white sofa with pillow"
-              className="h-full w-full md:max-w-[548px]"
+              loading="lazy"
             />
             <div className="absolute left-0 top-0 h-full w-full bg-black/10 md:hidden"></div>
             <div className="absolute bottom-10 left-8 font-medium">
@@ -68,10 +68,10 @@ const Categories = () => {
           {/* card-3 */}
           <div className="relative mx-auto w-full md:w-fit">
             <img
-              loading="lazy"
+              className="h-full w-full md:max-w-[548px]"
               src={categoryImg3}
               alt="elagant white sofa with pillow"
-              className="h-full w-full md:max-w-[548px]"
+              loading="lazy"
             />
             <div className="absolute left-0 top-0 h-full w-full bg-black/10 md:hidden"></div>
             <div className="absolute bottom-10 left-8 font-medium">

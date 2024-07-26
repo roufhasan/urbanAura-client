@@ -15,9 +15,10 @@ const SearchResultDropDown = ({ products, clearSearch }) => {
                 className="group flex items-center gap-2 transition-all hover:text-[#b88e2f]"
               >
                 <img
+                  className="size-14 rounded"
                   src={item.thumbnail}
                   alt={item.title}
-                  className="size-14 rounded"
+                  loading="lazy"
                 />
                 <div>
                   <p className="text-sm font-medium">{item.title}</p>

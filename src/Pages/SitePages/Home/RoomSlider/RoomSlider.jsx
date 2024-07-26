@@ -88,9 +88,9 @@ const RoomSlider = () => {
             sliderData.map((data, index) => (
               <SwiperSlide key={data.title} className="relative h-full w-full">
                 <img
-                  src={data.image}
-                  alt={`${data.title}`}
                   className="h-full max-h-[486px] w-full object-cover object-center md:h-[486px]"
+                  src={data.image}
+                  alt={data.title}
                   loading="lazy"
                 />
                 <div className="slider-text absolute bottom-10 left-[10%] flex items-end justify-center">

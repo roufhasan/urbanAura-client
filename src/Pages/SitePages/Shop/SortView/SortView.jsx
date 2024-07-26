@@ -23,16 +23,18 @@ const SortView = ({
         <div className="flex items-center gap-2 sm:gap-3 md:gap-4 xl:gap-6">
           <p className="lg:text-xl">View:</p>
           <img
+            className="size-6 cursor-pointer lg:size-7"
+            onClick={() => setGridView(true)}
             src={gridIcon}
             alt="grid icon"
-            onClick={() => setGridView(true)}
-            className="size-6 cursor-pointer lg:size-7"
+            loading="lazy"
           />
           <img
+            className="size-5 cursor-pointer lg:size-6"
+            onClick={() => setGridView(false)}
             src={listIcon}
             alt="grid icon"
-            onClick={() => setGridView(false)}
-            className="size-5 cursor-pointer lg:size-6"
+            loading="lazy"
           />
         </div>
         {/* horizontal divider */}

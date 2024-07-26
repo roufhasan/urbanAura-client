@@ -53,9 +53,10 @@ const CartDetails = () => {
                         >
                           <td>
                             <img
-                              src={item.thumbnail}
-                              alt=""
                               className="h-16 w-14 min-w-16 rounded-[10px] object-cover object-center md:size-[105px]"
+                              src={item.thumbnail}
+                              alt={item.title}
+                              loading="lazy"
                             />
                           </td>
                           <td>

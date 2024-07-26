@@ -79,7 +79,7 @@ const Login = () => {
       <div className="md:col-span-5">
         {/* Logo & Title */}
         <Link to="/" className="inline-flex items-center">
-          <img className="w-8" src={logo} alt="urbanAura logo" />
+          <img className="w-8" src={logo} alt="urbanAura logo" loading="lazy" />
           <h1 className="-ml-1 font-Montserrat text-2xl font-bold md:text-[34px]">
             rbanAura
           </h1>
@@ -156,7 +156,12 @@ const Login = () => {
             disabled={loading}
             className={`my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg ${loading ? "text-[#9f9f9f]" : "transition-all hover:bg-[#b88e2f] hover:text-white"}`}
           >
-            <img src={googleLogo} alt="google logo" className="size-6" />
+            <img
+              className="size-6"
+              src={googleLogo}
+              alt="google logo"
+              loading="lazy"
+            />
             <p>Login With Google</p>
           </button>
           <button

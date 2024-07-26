@@ -33,10 +33,10 @@ const UserDropDown = ({ setCart, setFavouriteItems }) => {
       >
         {user && user.photoURL ? (
           <img
-            loading="eazy"
+            className="h-full w-full rounded-full"
             src={user.photoURL}
             alt={`${user && user?.displayName} profile img`}
-            className="h-full w-full rounded-full"
+            loading="lazy"
           />
         ) : (
           <BsPersonCircle size={28} />

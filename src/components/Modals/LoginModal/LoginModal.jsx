@@ -141,7 +141,12 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
                 onClick={handleGoogleLogin}
                 className={`my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border px-3 py-2 text-lg md:px-6 ${loading ? "text-[#9f9f9f]" : "transition-all hover:bg-[#b88e2f] hover:text-white"}`}
               >
-                <img src={googleLogo} alt="google logo" className="size-6" />
+                <img
+                  className="size-6"
+                  src={googleLogo}
+                  alt="google logo"
+                  loading="lazy"
+                />
                 <p>Login With Google</p>
               </button>
               <button

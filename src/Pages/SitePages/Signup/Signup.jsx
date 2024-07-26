@@ -67,13 +67,14 @@ const Signup = () => {
           className="h-full max-h-[671px] w-full rounded-[10px] object-cover object-center"
           src={signupImg}
           alt="elegant sofa chair minimal photo"
+          loading="lazy"
         />
       </div>
       {/* form container */}
       <div className="col-span-full md:col-start-8">
         {/* Logo & Title */}
         <Link to="/" className="inline-flex items-center">
-          <img className="w-8" src={logo} alt="urbanAura logo" />
+          <img className="w-8" src={logo} alt="urbanAura logo" loading="lazy" />
           <h1 className="-ml-1 font-Montserrat text-2xl font-bold md:text-[34px]">
             rbanAura
           </h1>

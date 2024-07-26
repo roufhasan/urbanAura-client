@@ -26,14 +26,16 @@ const ProductTabs = ({ gallery, productId, reviews, setReviews }) => {
       </div>
       <div className="mt-9 gap-7 md:flex">
         <img
+          className="h-full max-h-[348px] w-full rounded-[10px] object-cover object-center md:w-1/2"
           src={gallery[0]}
           alt="sofa three seated"
-          className="h-full max-h-[348px] w-full rounded-[10px] object-cover object-center md:w-1/2"
+          loading="lazy"
         />
         <img
+          className="h-full max-h-[348px] w-full rounded-[10px] object-cover object-center md:w-1/2"
           src={gallery[1]}
           alt="sofa three seated"
-          className="h-full max-h-[348px] w-full rounded-[10px] object-cover object-center md:w-1/2"
+          loading="lazy"
         />
       </div>
     </div>

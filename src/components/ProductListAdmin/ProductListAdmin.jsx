@@ -40,10 +40,10 @@ const ProductListAdmin = ({
         <div className="flex gap-7">
           <Link to={`/products/${product._id}`} className="">
             <img
-              loading="lazy"
-              src={product.thumbnail}
-              alt=""
               className="size-24 object-cover object-center transition-all hover:scale-95"
+              src={product.thumbnail}
+              alt={product.title}
+              loading="lazy"
             />
           </Link>
           <div className="space-y-0.5">

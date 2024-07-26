@@ -14,9 +14,10 @@ const PageBanner = ({ pathname }) => {
     >
       <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-black/5 capitalize backdrop-blur-sm">
         <img
+          className="size-12 object-cover object-center lg:size-16"
           src={logo}
           alt="urban aura logo"
-          className="size-12 object-cover object-center lg:size-16"
+          loading="lazy"
         />
         <h1 className="text-2xl font-medium md:text-3xl lg:text-5xl">
           {urlPath}
