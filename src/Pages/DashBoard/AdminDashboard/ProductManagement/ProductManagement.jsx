@@ -11,6 +11,7 @@ import ProductListAdmin from "../../../../components/ProductListAdmin/ProductLis
 const ProductManagement = () => {
   const [products, setProducts] = useState([]);
   const [refetch, setRefetch] = useState(false);
+  const [sortValue, setSortValue] = useState("desc");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
@@ -41,15 +42,20 @@ const ProductManagement = () => {
   // items to display
   const itemsToDisplay = products.slice(startIndex, endIndex);
 
+  // Products sorting function
+  const handleSort = (e) => {
+    setSortValue(e.target.value);
+  };
+
   useEffect(() => {
     axios
-      .get("http://localhost:5000/products")
+      .get(`http://localhost:5000/products?sortBy=${sortValue}`)
       .then((res) => {
         setProducts(res.data);
         setTotalPages(Math.ceil(res.data.length / 5));
       })
       .catch((error) => console.error("Error fetching products:", error));
-  }, [refetch]);
+  }, [refetch, sortValue]);
 
   return (
     <section className="product-management">
@@ -73,6 +79,26 @@ const ProductManagement = () => {
       </div>
       {/* Products list container */}
       <div className="mt-6 divide-y bg-white">
+        <div className="flex w-full items-center justify-between gap-2 px-[4%] py-6 md:px-5">
+          <p className="w-full text-sm font-medium text-gray-700">
+            Manage all of your products
+          </p>
+          <div className="flex w-full items-center justify-end gap-2">
+            <p className="text-sm font-medium text-gray-700">Sort By:</p>
+            <select
+              onChange={handleSort}
+              id="product_order_list"
+              className="rounded bg-[#ffe5a8] px-2 py-1 text-sm outline-none"
+            >
+              <option value="desc" className="bg-[#ffe5a8]">
+                Latest (desc)
+              </option>
+              <option value="asc" className="bg-[#ffe5a8]">
+                Oldest (asc)
+              </option>
+            </select>
+          </div>
+        </div>
         {itemsToDisplay && itemsToDisplay.length > 0 ? (
           itemsToDisplay.map((product) => (
             <ProductListAdmin

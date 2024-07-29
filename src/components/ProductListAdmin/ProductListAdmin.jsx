@@ -65,13 +65,13 @@ const ProductListAdmin = ({
         <div className="flex flex-col justify-between sm:flex-row sm:items-start sm:gap-2.5">
           <button
             onClick={() => setModalOpen(true)}
-            className="flex items-center gap-1 rounded-md bg-blue-400 px-1  py-1 text-sm text-white transition-all hover:bg-blue-600"
+            className="flex items-center gap-1 rounded-md bg-gray-100 px-1  py-1 text-sm text-gray-400 transition-all hover:bg-gray-200 hover:text-gray-600"
           >
             <RiEdit2Line /> Edit
           </button>
           <button
             onClick={() => handleDeleteProduct(product._id)}
-            className="flex items-center gap-1 rounded-md bg-red-400 px-1  py-1 text-sm text-white transition-all hover:bg-red-600"
+            className="flex items-center gap-1 rounded-md bg-red-100 px-1  py-1 text-sm text-red-400 transition-all hover:bg-red-200 hover:text-red-600"
           >
             <RiDeleteBinLine /> Delete
           </button>

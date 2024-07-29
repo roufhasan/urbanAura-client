@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 import { BsArrowLeft, BsInfoCircle } from "react-icons/bs";
@@ -12,9 +12,11 @@ import { uploadImagesToImgbb } from "../../../../utils/imageUpload";
 const AddProducts = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [imagePreviews, setImagePreviews] = useState([]);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -22,6 +24,7 @@ const AddProducts = () => {
     },
   });
 
+  // Add New Product Function
   const addNewProduct = async (newProduct) => {
     try {
       const res = await axios.post(
@@ -30,15 +33,19 @@ const AddProducts = () => {
       );
       if (res.data.acknowledged && res.data.insertedId) {
         toast.success("New product added successfully!");
+        navigate("/dashboard/products");
       } else {
         toast.error("Failed to add new product. Please try again.");
+        reset();
       }
     } catch (err) {
       console.error("Error adding new product:", err);
       toast.error("Error adding new product. Please try again.");
+      reset();
     }
   };
 
+  // Form Submit Handler
   const onSubmit = async (data) => {
     try {
       if (selectedImages.length < 5) {
@@ -88,6 +95,7 @@ const AddProducts = () => {
     } catch (err) {
       console.error("Error submitting form:", err);
       toast.error("Error submitting form. Please try again.");
+      reset();
     }
   };
 
