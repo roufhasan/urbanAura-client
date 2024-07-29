@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -6,6 +7,7 @@ import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 import { BsArrowLeft, BsInfoCircle } from "react-icons/bs";
 import AddImages from "./AddImages/AddImages";
+import { uploadImagesToImgbb } from "../../../../utils/imageUpload";
 
 const AddProducts = () => {
   const [selectedImages, setSelectedImages] = useState([]);
@@ -20,42 +22,73 @@ const AddProducts = () => {
     },
   });
 
-  const onSubmit = (data) => {
-    const tagsArray = data.tags.split(",");
-    let thumbnail = "";
-    let gallery = [];
-
-    if (selectedImages.length === 5) {
-      thumbnail = selectedImages[0];
-      gallery = selectedImages.slice(1, 5);
-    } else {
-      return toast.error("Select at least 5 images!");
+  const addNewProduct = async (newProduct) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/products",
+        newProduct,
+      );
+      if (res.data.acknowledged && res.data.insertedId) {
+        toast.success("New product added successfully!");
+      } else {
+        toast.error("Failed to add new product. Please try again.");
+      }
+    } catch (err) {
+      console.error("Error adding new product:", err);
+      toast.error("Error adding new product. Please try again.");
     }
+  };
 
-    const newProduct = {
-      category: data.category,
-      title: data.title,
-      sub_title: data.sub_title,
-      is_new: data.is_new === "true",
-      tags: tagsArray,
-      price: {
-        original: parseFloat(data.originalPrice),
-      },
-      thumbnail,
-      gallery,
-    };
+  const onSubmit = async (data) => {
+    try {
+      if (selectedImages.length < 5) {
+        return toast.error("Select at least 5 images!");
+      }
 
-    if (data.discount_percent > 0) {
-      const discounted =
-        parseFloat(data.originalPrice) -
-        (parseFloat(data.originalPrice) * parseInt(data.discount_percent)) /
-          100;
+      const uploadResults = await uploadImagesToImgbb(selectedImages);
+      const uploadedImages = uploadResults.map((result) => result.url);
 
-      newProduct.price.discount_percent = parseInt(data.discount_percent);
-      newProduct.price.discounted = parseFloat(discounted.toFixed(2));
+      if (uploadedImages.length < 5) {
+        return toast.error(
+          "Not all images could be uploaded. Please try again.",
+        );
+      }
+
+      // First image is thumbnail, the rest are gallery images
+      const thumbnail = uploadedImages[0];
+      const gallery = uploadedImages.slice(1);
+
+      const tagsArray = data.tags.split(",");
+
+      const newProduct = {
+        category: data.category,
+        title: data.title,
+        sub_title: data.sub_title,
+        is_new: data.is_new === "true",
+        tags: tagsArray,
+        price: {
+          original: parseFloat(data.originalPrice),
+        },
+        thumbnail,
+        gallery,
+      };
+
+      if (data.discount_percent > 0) {
+        const discounted =
+          parseFloat(data.originalPrice) -
+          (parseFloat(data.originalPrice) * parseInt(data.discount_percent)) /
+            100;
+
+        newProduct.price.discount_percent = parseInt(data.discount_percent);
+        newProduct.price.discounted = parseFloat(discounted.toFixed(2));
+      }
+
+      // Add new product
+      await addNewProduct(newProduct);
+    } catch (err) {
+      console.error("Error submitting form:", err);
+      toast.error("Error submitting form. Please try again.");
     }
-
-    console.log("[New Product]", newProduct);
   };
 
   return (
