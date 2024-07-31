@@ -1,18 +1,18 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { AuthContext } from "../../../Providers/AuthProvider";
-import { CartContext } from "../../../Providers/CartProvider";
-import { FavouriteContext } from "../../../Providers/FavouriteProvider";
 import PageBanner from "../../../components/PageBanner/PageBanner";
 import FavouriteItemList from "./FavouriteItemList/FavouriteItemList";
+import useAuth from "../../../hooks/useAuth";
+import useCart from "../../../hooks/useCart";
+import useFavourite from "../../../hooks/useFavourite";
 
 const Favourite = () => {
   const { pathname } = useLocation();
-  const { user } = useContext(AuthContext);
-  const { cart, handleCartItemSave } = useContext(CartContext);
+  const { user } = useAuth();
+  const { cart, handleCartItemSave } = useCart();
   const { favouriteItems, getFavouriteItems, deleteFavouriteItem } =
-    useContext(FavouriteContext);
+    useFavourite();
 
   useEffect(() => {
     getFavouriteItems();

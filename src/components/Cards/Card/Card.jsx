@@ -1,17 +1,17 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { BsArrowUpLeftCircle, BsFillHeartFill, BsHeart } from "react-icons/bs";
-import { AuthContext } from "../../../Providers/AuthProvider";
-import { FavouriteContext } from "../../../Providers/FavouriteProvider";
 import LoginModal from "../../Modals/LoginModal/LoginModal";
 import AddToCartModal from "../../Modals/AddToCartModal/AddToCartModal";
 import { formatPrice } from "../../../utils/formatPrice";
+import useAuth from "../../../hooks/useAuth";
+import useFavourite from "../../../hooks/useFavourite";
 
 const Card = ({ product }) => {
   const { _id, title, sub_title, price, thumbnail, is_new } = product;
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const { favouriteItems, addToFavourite, deleteFavouriteItem } =
-    useContext(FavouriteContext);
+    useFavourite();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState({});
 

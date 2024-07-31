@@ -12,10 +12,7 @@ const AdminLayout = () => {
   const navigate = useNavigate();
 
   // Check currently logged in user email is admin email or not
-  const isAdmin = useAdmin();
-  if (!isAdmin) {
-    navigate("/");
-  }
+  const { isAdmin, adminLoading } = useAdmin();
 
   // Toggle mobile dashboard side navbar visibility
   useEffect(() => {
@@ -30,6 +27,12 @@ const AdminLayout = () => {
       window.removeEventListener("click", handleClickOutside);
     };
   }, [showNavbar]);
+
+  useEffect(() => {
+    if (!adminLoading && !isAdmin) {
+      navigate("/");
+    }
+  }, [adminLoading, isAdmin, navigate]);
 
   return (
     <section className="mx-auto w-full max-w-[1440px] font-Poppins md:flex">

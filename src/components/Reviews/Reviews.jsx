@@ -1,15 +1,15 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Rating } from "@smastrom/react-rating";
-import { AuthContext } from "../../Providers/AuthProvider";
 import { formatReviewDate } from "../../utils/formatReviewDate";
 import { calculateAvgRating } from "../../utils/calculateAvgRating";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Reviews = ({ productId, reviews, setReviews }) => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const { register, handleSubmit, control, reset } = useForm({
     mode: "onBlur",
     defaultValues: {

@@ -6,12 +6,11 @@ import { useForm } from "react-hook-form";
 import logo from "../../../assets/logo/logo.png";
 import googleLogo from "../../../assets/logo/google-logo.png";
 import loginImg from "../../../assets/images/authentication/login.jpg";
-import { useContext } from "react";
-import { AuthContext } from "../../../Providers/AuthProvider";
 import toast from "react-hot-toast";
+import useAuth from "../../../hooks/useAuth";
 
 const Login = () => {
-  const { signIn, googleSignIn, loading, setLoading } = useContext(AuthContext);
+  const { signIn, googleSignIn, loading, setLoading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";

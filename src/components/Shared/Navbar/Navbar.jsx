@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
@@ -8,9 +8,7 @@ import {
   BsPersonExclamation,
   BsSearch,
 } from "react-icons/bs";
-import { AuthContext } from "../../../Providers/AuthProvider";
-import { CartContext } from "../../../Providers/CartProvider";
-import { FavouriteContext } from "../../../Providers/FavouriteProvider";
+
 import SearchResultDropDown from "../../DropDowns/SearchResultDropDown/SearchResultDropDown";
 import UserDropDown from "../../DropDowns/UserDropDown/UserDropDown";
 import SidebarCart from "../../SidebarCart/SidebarCart";
@@ -19,13 +17,16 @@ import useDebounce from "../../../hooks/useDebounce";
 import { navItems } from "../../../assets/data/navItems";
 import logo from "../../../assets/logo/logo.png";
 import useAdmin from "../../../hooks/useAdmin";
+import useAuth from "../../../hooks/useAuth";
+import useCart from "../../../hooks/useCart";
+import useFavourite from "../../../hooks/useFavourite";
 
 const Navbar = () => {
   // Context
-  const { user } = useContext(AuthContext);
-  const cartContext = useContext(CartContext);
+  const { user } = useAuth();
+  const cartContext = useCart();
   const { getFavouriteItems, favouriteItems, setFavouriteItems } =
-    useContext(FavouriteContext);
+    useFavourite();
 
   // State
   const [showMenu, setShowMenu] = useState(false);
@@ -41,7 +42,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   // Check currently logged in user email is admin email or not
-  const isAdmin = useAdmin();
+  const { isAdmin } = useAdmin();
 
   // Debounce search input
   const debouncedSearchValue = useDebounce(searchValue, 300);

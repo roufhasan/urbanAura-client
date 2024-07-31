@@ -1,16 +1,16 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Dialog, DialogPanel, Transition } from "@headlessui/react";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import { BsBagX, BsCart3 } from "react-icons/bs";
 import { IoCloseCircle } from "react-icons/io5";
-import { CartContext } from "../../Providers/CartProvider";
 import { formatPrice } from "../../utils/formatPrice";
 import { calculateTotalPrice } from "../../utils/calculateTotalPrice";
+import useCart from "../../hooks/useCart";
 
 const SidebarCart = ({ user }) => {
-  const { cart, handleCartItemDel } = useContext(CartContext);
+  const { cart, handleCartItemDel } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [isShowing, setIsShowing] = useState(true);
 

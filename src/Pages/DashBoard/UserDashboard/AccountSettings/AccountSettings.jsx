@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import toast from "react-hot-toast";
@@ -11,11 +11,11 @@ import {
 } from "react-icons/bs";
 import { TbCameraPlus } from "react-icons/tb";
 import { motion } from "framer-motion";
-import { AuthContext } from "../../../../Providers/AuthProvider";
+import useAuth from "../../../../hooks/useAuth";
 
 const AccountSettings = () => {
   const { user, updateUserProfile, deleteAccount, setLoading, loading } =
-    useContext(AuthContext);
+    useAuth();
   const [name, setName] = useState(user.displayName);
   const [activeTab, setActiveTab] = useState("profile");
   const [nameReadOnly, setNameReadOnly] = useState(true);

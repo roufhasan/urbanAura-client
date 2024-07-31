@@ -1,17 +1,17 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
+import toast from "react-hot-toast";
 import {
   BsBox2,
   BsBoxArrowInLeft,
   BsPersonCircle,
   BsPersonGear,
 } from "react-icons/bs";
-import { AuthContext } from "../../../Providers/AuthProvider";
-import toast from "react-hot-toast";
+import useAuth from "../../../hooks/useAuth";
 
 const UserDropDown = ({ setCart, setFavouriteItems }) => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
   // Handle user logout

@@ -1,19 +1,13 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { AuthContext } from "./AuthProvider";
+import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
 export const FavouriteContext = createContext(null);
 
 const FavouriteProvider = ({ children }) => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const { axiosSecure } = useAxiosSecure();
   const [favouriteItems, setFavouriteItems] = useState([]);
 

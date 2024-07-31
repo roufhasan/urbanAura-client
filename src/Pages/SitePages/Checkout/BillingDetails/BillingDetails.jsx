@@ -1,18 +1,18 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import { AuthContext } from "../../../../Providers/AuthProvider";
-import { CartContext } from "../../../../Providers/CartProvider";
 import PaymentModal from "../../../../components/Modals/PaymentModal/PaymentModal";
 import { calculateTotalPrice } from "../../../../utils/calculateTotalPrice";
 import { formatPrice } from "../../../../utils/formatPrice";
+import useAuth from "../../../../hooks/useAuth";
+import useCart from "../../../../hooks/useCart";
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 
 const BillingDetails = () => {
-  const { user } = useContext(AuthContext);
-  const { cart, setCart } = useContext(CartContext);
+  const { user } = useAuth();
+  const { cart, setCart } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [billingData, setBillingData] = useState({});
   const {

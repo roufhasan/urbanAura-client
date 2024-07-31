@@ -1,16 +1,14 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { BiSolidTrashAlt } from "react-icons/bi";
 import { motion } from "framer-motion";
-import { CartContext } from "../../../../Providers/CartProvider";
 import FixedLoader from "../../../../components/Loaders/Loader/FixedLoader";
 import { calculateTotalPrice } from "../../../../utils/calculateTotalPrice";
 import { formatPrice } from "../../../../utils/formatPrice";
 import "./cartDetails.css";
+import useCart from "../../../../hooks/useCart";
 
 const CartDetails = () => {
-  const { cart, cartLoading, handleQuantity, handleCartItemDel } =
-    useContext(CartContext);
+  const { cart, cartLoading, handleQuantity, handleCartItemDel } = useCart();
   // total price of all cart items
   const totalPrice = calculateTotalPrice(cart);
 

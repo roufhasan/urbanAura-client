@@ -1,14 +1,13 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { BsFillPeopleFill, BsXLg } from "react-icons/bs";
-import { AuthContext } from "../../../Providers/AuthProvider";
 import googleLogo from "../../../assets/logo/google-logo.png";
+import useAuth from "../../../hooks/useAuth";
 
 const LoginModal = ({ isOpen, setIsOpen }) => {
-  const { signIn, googleSignIn, loading, setLoading } = useContext(AuthContext);
+  const { signIn, googleSignIn, loading, setLoading } = useAuth();
   const {
     register,
     handleSubmit,

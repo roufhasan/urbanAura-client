@@ -1,19 +1,13 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useCallback,
-  useState,
-} from "react";
+import { createContext, useEffect, useCallback, useState } from "react";
 import toast from "react-hot-toast";
-import { AuthContext } from "./AuthProvider";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import axios from "axios";
+import useAuth from "../hooks/useAuth";
 
 export const CartContext = createContext(null);
 
 const CartProvider = ({ children }) => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const { axiosSecure } = useAxiosSecure();
   const [cart, setCart] = useState([]);
   const [cartLoading, setCartLoading] = useState(false);

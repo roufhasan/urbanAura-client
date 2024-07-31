@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   BsBox2,
@@ -7,11 +6,11 @@ import {
   BsPersonGear,
   BsXLg,
 } from "react-icons/bs";
-import { AuthContext } from "../../../Providers/AuthProvider";
-import { FavouriteContext } from "../../../Providers/FavouriteProvider";
 import toast from "react-hot-toast";
 import { LuLayoutDashboard } from "react-icons/lu";
 import useAdmin from "../../../hooks/useAdmin";
+import useAuth from "../../../hooks/useAuth";
+import useFavourite from "../../../hooks/useFavourite";
 
 const MobileNavbar = ({
   sideBarRef,
@@ -21,12 +20,12 @@ const MobileNavbar = ({
   navItems,
   setCart,
 }) => {
-  const { user, logOut } = useContext(AuthContext);
-  const { setFavouriteItems } = useContext(FavouriteContext);
+  const { user, logOut } = useAuth();
+  const { setFavouriteItems } = useFavourite();
   const navigate = useNavigate();
 
   // Check currently logged in user email is admin email or not
-  const isAdmin = useAdmin();
+  const { isAdmin } = useAdmin();
 
   // Handle user logout
   const handleUserLogOut = () => {

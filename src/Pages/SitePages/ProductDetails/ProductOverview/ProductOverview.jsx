@@ -1,24 +1,24 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Rating } from "@smastrom/react-rating";
 import { motion } from "framer-motion";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { BsFacebook, BsHeart, BsHeartFill, BsLinkedin } from "react-icons/bs";
-import { AuthContext } from "../../../../Providers/AuthProvider";
-import { CartContext } from "../../../../Providers/CartProvider";
-import { FavouriteContext } from "../../../../Providers/FavouriteProvider";
 import LoginModal from "../../../../components/Modals/LoginModal/LoginModal";
 import { formatPrice } from "../../../../utils/formatPrice";
 import { calculateAvgRating } from "../../../../utils/calculateAvgRating";
+import useAuth from "../../../../hooks/useAuth";
+import useCart from "../../../../hooks/useCart";
+import useFavourite from "../../../../hooks/useFavourite";
 
 const sizes = ["l", "xl", "xs"];
 const colors = ["#816dfa", "black", "#b88e2f"];
 
 const ProductOverview = ({ product, reviews }) => {
   const { _id, title, price, thumbnail, gallery } = product;
-  const { user } = useContext(AuthContext);
-  const { handleCartItemSave } = useContext(CartContext);
+  const { user } = useAuth();
+  const { handleCartItemSave } = useCart();
   const { addToFavourite, favouriteItems, deleteFavouriteItem } =
-    useContext(FavouriteContext);
+    useFavourite();
   const [mainImage, setMainImage] = useState(thumbnail);
   const [size, setSize] = useState("l");
   const [color, setColor] = useState("#816dfa");

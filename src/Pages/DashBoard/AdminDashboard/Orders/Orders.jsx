@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { Helmet } from "react-helmet";
 import toast from "react-hot-toast";
 import {
   IoChevronDownCircleOutline,
@@ -10,11 +10,12 @@ import OrderDetailsDropDown from "../../../../components/OrderDetailsDropDown/Or
 import NoOrdersMessage from "../../../../components/NoOrdersMessage/NoOrdersMessage";
 import { formatPrice } from "../../../../utils/formatPrice";
 import { dateFormatMDY } from "../../../../utils/dateFormatMDY";
-import { Helmet } from "react-helmet";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [expandedOrderId, setExpandedOrderId] = useState(null);
+  const { axiosSecure } = useAxiosSecure();
 
   // Filter orders with status "pending" or "processing"
   const pendingOrders = orders.filter(
@@ -32,10 +33,10 @@ const Orders = () => {
   // Get all orders
   const getAllOrders = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/admin/payments");
+      const res = await axiosSecure.get("/admin/payments");
       setOrders(res.data);
     } catch (err) {
-      console.log("error fetching:", err);
+      console.log(err);
     }
   };
 
@@ -46,12 +47,9 @@ const Orders = () => {
   // Update status of an order
   const handleStatusChange = async (orderId, newStatus) => {
     try {
-      const res = await axios.put(
-        `http://localhost:5000/admin/payments/${orderId}/status`,
-        {
-          status: newStatus,
-        },
-      );
+      const res = await axiosSecure.put(`/admin/payments/${orderId}/status`, {
+        status: newStatus,
+      });
       if (res.data.modifiedCount > 0) {
         setOrders((prevOrders) =>
           prevOrders.map((order) =>

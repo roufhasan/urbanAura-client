@@ -1,14 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
-import { AuthContext } from "../../../../Providers/AuthProvider";
 import { formatPrice } from "../../../../utils/formatPrice";
 import { dateFormatMDY } from "../../../../utils/dateFormatMDY";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import useAuth from "../../../../hooks/useAuth";
 
 const MyOrders = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const { axiosSecure } = useAxiosSecure();
   const [orders, setOrders] = useState([]);
 
@@ -19,7 +19,9 @@ const MyOrders = () => {
           params: { email: user.email },
         })
         .then((res) => setOrders(res.data))
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [user, axiosSecure]);
 
