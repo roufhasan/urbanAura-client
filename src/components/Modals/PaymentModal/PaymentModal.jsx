@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { motion } from "framer-motion";
 import {
   Dialog,
   DialogPanel,
@@ -139,13 +140,14 @@ const PaymentModal = ({
   return (
     <>
       <div className="mt-10 text-center">
-        <button
+        <motion.button
           type="submit"
+          whileTap={{ scale: 0.9 }}
           onClick={handleFormModal}
           className="rounded-2xl border border-black px-24 py-4 text-xl transition-all hover:border-transparent hover:bg-[#B88E2F] hover:text-white"
         >
           Place order
-        </button>
+        </motion.button>
       </div>
       <Transition appear show={isOpen}>
         <Dialog

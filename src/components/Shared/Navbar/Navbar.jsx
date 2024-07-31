@@ -18,6 +18,7 @@ import MobileNavbar from "./MobileNavbar";
 import useDebounce from "../../../hooks/useDebounce";
 import { navItems } from "../../../assets/data/navItems";
 import logo from "../../../assets/logo/logo.png";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Navbar = () => {
   // Context
@@ -39,15 +40,15 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Check currently logged in user email is admin email or not
+  const isAdmin = useAdmin();
+
   // Debounce search input
   const debouncedSearchValue = useDebounce(searchValue, 300);
 
   // Check if the cart context is available
   const cart = cartContext?.cart || [];
   const setCart = cartContext?.setCart || (() => {});
-
-  // Check currently logged in user email is admin email or not
-  const isAdmin = user && user.email && user.email === "roufhasan5@gmail.com";
 
   // Fetch favourite items of a user
   useEffect(() => {

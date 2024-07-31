@@ -11,6 +11,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -67,13 +68,26 @@ const AuthProvider = ({ children }) => {
 
   // authentication observer
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
+      setLoading(true);
+
+      if (currentUser) {
+        try {
+          const res = await axios.post("http://localhost:5000/jwt", {
+            email: currentUser.email,
+          });
+          localStorage.setItem("access-token", res.data.token);
+        } catch (error) {
+          console.error("Error fetching token:", error);
+        }
+      } else {
+        localStorage.removeItem("access-token");
+      }
       setLoading(false);
     });
-    return () => {
-      return unsubscribe();
-    };
+
+    return () => unsubscribe();
   }, []);
 
   const authInfo = {

@@ -11,6 +11,7 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 import { FavouriteContext } from "../../../Providers/FavouriteProvider";
 import toast from "react-hot-toast";
 import { LuLayoutDashboard } from "react-icons/lu";
+import useAdmin from "../../../hooks/useAdmin";
 
 const MobileNavbar = ({
   sideBarRef,
@@ -25,7 +26,7 @@ const MobileNavbar = ({
   const navigate = useNavigate();
 
   // Check currently logged in user email is admin email or not
-  const isAdmin = user && user.email && user.email === "roufhasan5@gmail.com";
+  const isAdmin = useAdmin();
 
   // Handle user logout
   const handleUserLogOut = () => {

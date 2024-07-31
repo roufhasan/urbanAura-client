@@ -1,19 +1,18 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { AuthContext } from "../Providers/AuthProvider";
+import { useEffect, useRef, useState } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import logo from "../assets/logo/logo.png";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { BsBox2, BsCart3, BsList, BsPower } from "react-icons/bs";
 import MobileDashNav from "../components/MobileDashNav/MobileDashNav";
+import useAdmin from "../hooks/useAdmin";
 
 const AdminLayout = () => {
-  const { user } = useContext(AuthContext);
   const [showNavbar, setShowNavbar] = useState(false);
   const sideBarRef = useRef();
   const navigate = useNavigate();
 
   // Check currently logged in user email is admin email or not
-  const isAdmin = user && user.email && user.email === "roufhasan5@gmail.com";
+  const isAdmin = useAdmin();
   if (!isAdmin) {
     navigate("/");
   }

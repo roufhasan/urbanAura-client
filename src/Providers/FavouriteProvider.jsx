@@ -8,31 +8,46 @@ import {
 import axios from "axios";
 import toast from "react-hot-toast";
 import { AuthContext } from "./AuthProvider";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 export const FavouriteContext = createContext(null);
 
 const FavouriteProvider = ({ children }) => {
   const { user } = useContext(AuthContext);
+  const { axiosSecure } = useAxiosSecure();
   const [favouriteItems, setFavouriteItems] = useState([]);
 
   // Get favourite items of a user
-  const getFavouriteItems = useCallback(() => {
+  const getFavouriteItems = useCallback(async () => {
     if (user && user.email) {
-      axios
-        .get("http://localhost:5000/favourite", {
-          params: { userEmail: user.email },
-        })
-        .then((res) => {
-          setFavouriteItems(res.data);
-        })
-        .catch((err) => {
-          console.error(
-            "error while fetching favourite items:",
-            err.response.data.message,
-          );
-        });
+      // Retry up to 3 times
+      for (let i = 0; i < 3; i++) {
+        const token = localStorage.getItem("access-token");
+        if (token) {
+          try {
+            const response = await axiosSecure.get("/favourite", {
+              params: { userEmail: user.email },
+            });
+            setFavouriteItems(response.data);
+            return;
+          } catch (err) {
+            console.log(
+              "Error while fetching favourite items:",
+              err.response?.data?.message || err.message,
+            );
+            if (i === 2) {
+              // If the last retry failed
+              console.log(
+                "Failed to fetch favourite items after multiple attempts",
+              );
+            }
+          }
+        } else {
+          await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait before retry
+        }
+      }
     }
-  }, [user]);
+  }, [user, axiosSecure]);
 
   useEffect(() => {
     getFavouriteItems();

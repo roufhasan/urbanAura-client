@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { BiSolidTrashAlt } from "react-icons/bi";
+import { motion } from "framer-motion";
 import { CartContext } from "../../../../Providers/CartProvider";
 import FixedLoader from "../../../../components/Loaders/Loader/FixedLoader";
 import { calculateTotalPrice } from "../../../../utils/calculateTotalPrice";
@@ -13,13 +14,13 @@ const CartDetails = () => {
   // total price of all cart items
   const totalPrice = calculateTotalPrice(cart);
 
-  const increaseQuantity = (quantity, id) => {
-    handleQuantity(quantity + 1, id);
+  const increaseQuantity = (quantity, product_id) => {
+    handleQuantity(quantity + 1, product_id);
   };
 
-  const decreaseQuantity = (quantity, id) => {
+  const decreaseQuantity = (quantity, product_id) => {
     if (quantity > 1) {
-      handleQuantity(quantity - 1, id);
+      handleQuantity(quantity - 1, product_id);
     }
   };
 
@@ -52,15 +53,26 @@ const CartDetails = () => {
                           className="text-base shadow-sm transition-all hover:bg-gray-100"
                         >
                           <td>
-                            <img
-                              className="h-16 w-14 min-w-16 rounded-[10px] object-cover object-center md:size-[105px]"
-                              src={item.thumbnail}
-                              alt={item.title}
-                              loading="lazy"
-                            />
+                            <motion.button whileTap={{ scale: 0.9 }}>
+                              <Link to={`/products/${item.product_id}`}>
+                                <img
+                                  className="h-16 w-14 min-w-16 rounded-[10px] object-cover object-center md:size-[105px]"
+                                  src={item.thumbnail}
+                                  alt={item.title}
+                                  loading="lazy"
+                                />
+                              </Link>
+                            </motion.button>
                           </td>
                           <td>
-                            <p className="text-[#9f9f9f]">{item.title}</p>
+                            <motion.p
+                              whileTap={{ scale: 0.9 }}
+                              className="text-[#9f9f9f]"
+                            >
+                              <Link to={`/products/${item.product_id}`}>
+                                {item.title}
+                              </Link>
+                            </motion.p>
                           </td>
                           <td>
                             <p className="text-[#9f9f9f]">${item.price}</p>
@@ -70,7 +82,10 @@ const CartDetails = () => {
                               <button
                                 disabled={cartLoading}
                                 onClick={() =>
-                                  decreaseQuantity(item.quantity, item._id)
+                                  decreaseQuantity(
+                                    item.quantity,
+                                    item.product_id,
+                                  )
                                 }
                                 className="flex size-5 items-center justify-center rounded-full transition-all hover:bg-gray-300"
                               >
@@ -80,7 +95,10 @@ const CartDetails = () => {
                               <button
                                 disabled={cartLoading}
                                 onClick={() =>
-                                  increaseQuantity(item.quantity, item._id)
+                                  increaseQuantity(
+                                    item.quantity,
+                                    item.product_id,
+                                  )
                                 }
                                 className="flex size-5 items-center justify-center rounded-full transition-all hover:bg-gray-300"
                               >
@@ -121,12 +139,14 @@ const CartDetails = () => {
                   ${formatPrice(totalPrice)}
                 </span>
               </p>
-              <Link
-                to="/checkout"
-                className="inline-block rounded-2xl border border-black px-6 py-3 text-lg transition-all hover:border-[#b88e2f] hover:bg-[#b88e2f] hover:text-white md:py-4 lg:px-9 lg:text-xl xl:px-12"
-              >
-                Check Out
-              </Link>
+              <motion.button whileTap={{ scale: 0.9 }}>
+                <Link
+                  to="/checkout"
+                  className="inline-block rounded-2xl border border-black px-6 py-3 text-lg transition-all hover:border-[#b88e2f] hover:bg-[#b88e2f] hover:text-white md:py-4 lg:px-9 lg:text-xl xl:px-12"
+                >
+                  Check Out
+                </Link>
+              </motion.button>
             </div>
           </>
         ) : (

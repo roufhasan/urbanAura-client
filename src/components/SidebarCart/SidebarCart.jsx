@@ -1,12 +1,13 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Dialog, DialogPanel, Transition } from "@headlessui/react";
+import toast from "react-hot-toast";
+import { motion } from "framer-motion";
 import { BsBagX, BsCart3 } from "react-icons/bs";
 import { IoCloseCircle } from "react-icons/io5";
 import { CartContext } from "../../Providers/CartProvider";
 import { formatPrice } from "../../utils/formatPrice";
 import { calculateTotalPrice } from "../../utils/calculateTotalPrice";
-import toast from "react-hot-toast";
 
 const SidebarCart = ({ user }) => {
   const { cart, handleCartItemDel } = useContext(CartContext);
@@ -79,14 +80,28 @@ const SidebarCart = ({ user }) => {
                         className="flex items-center justify-between"
                       >
                         <div className="flex items-center gap-8">
-                          <img
-                            className="size-24 rounded-[10px] object-cover object-center"
-                            src={item.thumbnail}
-                            alt={`${item.title} image`}
-                            loading="lazy"
-                          />
+                          <motion.button
+                            whileTap={{ scale: 0.9 }}
+                            onClick={() => setIsOpen(false)}
+                          >
+                            <Link to={`/products/${item.product_id}`}>
+                              <img
+                                className="size-24 rounded-[10px] object-cover object-center"
+                                src={item.thumbnail}
+                                alt={`${item.title} image`}
+                                loading="lazy"
+                              />
+                            </Link>
+                          </motion.button>
                           <div>
-                            <p>{item.title}</p>
+                            <motion.p
+                              whileTap={{ scale: 0.9 }}
+                              onClick={() => setIsOpen(false)}
+                            >
+                              <Link to={`/products/${item.product_id}`}>
+                                {item.title}
+                              </Link>
+                            </motion.p>
                             <p className="mt-2 font-light">
                               {item.quantity}
                               <span className="mx-4 text-xs">X</span>
@@ -97,7 +112,7 @@ const SidebarCart = ({ user }) => {
                           </div>
                         </div>
                         <IoCloseCircle
-                          onClick={() => handleCartItemDel(item._id)}
+                          onClick={() => handleCartItemDel(item.product_id)}
                           size={24}
                           className="cursor-pointer text-[#9f9f9f] transition-all hover:text-[#888888]"
                         />
@@ -119,28 +134,29 @@ const SidebarCart = ({ user }) => {
                 <div className="my-6 h-[1px] bg-[#d9d9d9]"></div>
                 {/* buttons */}
                 <div className="flex w-full justify-between gap-5 px-7 pb-7">
-                  <Link
+                  <motion.button
+                    whileTap={{ scale: 0.9 }}
                     onClick={() => setIsOpen(false)}
-                    to="/cart"
                     className="w-full rounded-full border border-black px-[30px] py-1.5 text-center text-xs transition-all hover:border-[#b88e2f] hover:bg-[#b88e2f] hover:text-white"
                   >
-                    Cart
-                  </Link>
+                    <Link to="/cart">Cart</Link>
+                  </motion.button>
                   {cart && cart.length > 0 ? (
-                    <Link
+                    <motion.button
+                      whileTap={{ scale: 0.9 }}
                       onClick={() => setIsOpen(false)}
-                      to="/checkout"
                       className="w-full rounded-full border border-black px-[30px] py-1.5 text-center text-xs transition-all hover:border-[#b88e2f] hover:bg-[#b88e2f] hover:text-white"
                     >
-                      Checkout
-                    </Link>
+                      <Link to="/checkout">Checkout</Link>
+                    </motion.button>
                   ) : (
-                    <button
+                    <motion.button
+                      whileTap={{ scale: 0.9 }}
                       onClick={() => toast.error("Cart is empty!")}
                       className="w-full rounded-full border border-black px-[30px] py-1.5 text-center text-xs transition-all hover:border-[#b88e2f] hover:bg-[#b88e2f] hover:text-white"
                     >
                       Checkout
-                    </button>
+                    </motion.button>
                   )}
                 </div>
               </div>

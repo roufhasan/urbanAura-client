@@ -76,17 +76,17 @@ const ProductOverview = ({ product, reviews }) => {
           <div className="flex justify-evenly lg:flex-col lg:justify-start lg:gap-8">
             {gallery &&
               gallery.length > 0 &&
-              gallery.map((image, index) => {
+              gallery.map((image) => {
                 return (
                   <img
-                    key={index}
+                    key={image}
                     onClick={() => setMainImage(image)}
                     onMouseEnter={() => setMainImage(image)}
                     className={`size-16 rounded-[10px] border-[3px] object-cover object-center transition-all duration-150 ease-in sm:size-20 md:h-20 md:w-[76px] ${image === mainImage ? "border-[#b88e2f]" : "border-transparent"}`}
                     src={image}
                     alt="shop image"
                     loading="lazy"
-                  ></img>
+                  />
                 );
               })}
           </div>
