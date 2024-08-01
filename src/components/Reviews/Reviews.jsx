@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { Link } from "react-router-dom";
+import { Rating } from "@smastrom/react-rating";
 import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Rating } from "@smastrom/react-rating";
-import { formatReviewDate } from "../../utils/formatReviewDate";
-import { calculateAvgRating } from "../../utils/calculateAvgRating";
-import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { calculateAvgRating } from "../../utils/calculateAvgRating";
+import { formatReviewDate } from "../../utils/formatReviewDate";
 
 const Reviews = ({ productId, reviews, setReviews }) => {
   const { user } = useAuth();
+  const { axiosSecure } = useAxiosSecure();
   const { register, handleSubmit, control, reset } = useForm({
     mode: "onBlur",
     defaultValues: {
@@ -25,12 +26,9 @@ const Reviews = ({ productId, reviews, setReviews }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const paymentResponse = await axios.get(
-          "http://localhost:5000/payments",
-          {
-            params: { email: user?.email },
-          },
-        );
+        const paymentResponse = await axiosSecure.get("/orders", {
+          params: { email: user?.email },
+        });
         setPaymentHistory(paymentResponse.data);
 
         isReviewSubmitted(reviews);
@@ -45,11 +43,12 @@ const Reviews = ({ productId, reviews, setReviews }) => {
   // Delete my review
   const deleteMyReview = async () => {
     try {
-      const response = await axios.delete("http://localhost:5000/review", {
+      const response = await axiosSecure.delete("/reviews", {
         data: {
           product_id: productId,
           email: user.email,
         },
+        params: { userEmail: user.email },
       });
       if (response.data.acknowledged) {
         toast.success("Your review has been deleted");
@@ -89,8 +88,10 @@ const Reviews = ({ productId, reviews, setReviews }) => {
       data.email = user.email;
       data.date = new Date();
 
-      axios
-        .post("http://localhost:5000/review", data)
+      axiosSecure
+        .post("/reviews", data, {
+          params: { userEmail: user.email },
+        })
         .then((res) => {
           if (res.data.acknowledged) {
             toast.success("Review submitted!");
@@ -210,8 +211,8 @@ const Reviews = ({ productId, reviews, setReviews }) => {
       <div className="divide-y">
         {reviews &&
           reviews.length > 0 &&
-          reviews.map((review) => (
-            <div key={review._id} className="mt-7 text-sm">
+          reviews.map((review, index) => (
+            <div key={index} className="mt-7 text-sm">
               <div className="mt-3 flex items-center justify-between">
                 <div className="flex items-center">
                   <Rating

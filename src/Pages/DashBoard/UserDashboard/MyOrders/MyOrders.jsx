@@ -15,8 +15,8 @@ const MyOrders = () => {
   useEffect(() => {
     if (user && user.email) {
       axiosSecure
-        .get("/payments", {
-          params: { email: user.email },
+        .get(`/orders/${user.email}`, {
+          params: { userEmail: user.email },
         })
         .then((res) => setOrders(res.data))
         .catch((err) => {
@@ -54,9 +54,9 @@ const MyOrders = () => {
                     </p>
                   )}
                 </div>
-                {order.items.map((item) => (
+                {order.items.map((item, index) => (
                   <div
-                    key={item._id}
+                    key={index}
                     className="flex justify-between py-1 shadow-sm"
                   >
                     <Link to={`/products/${item.product_id}`} className="group">

@@ -12,7 +12,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 
 const BillingDetails = () => {
   const { user } = useAuth();
-  const { cart, setCart } = useCart();
+  const { cart } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [billingData, setBillingData] = useState({});
   const {
@@ -166,11 +166,8 @@ const BillingDetails = () => {
             <ul className="mb-6 space-y-2">
               {cart &&
                 cart.length > 0 &&
-                cart.map((item) => (
-                  <li
-                    key={item._id}
-                    className="flex items-center justify-between"
-                  >
+                cart.map((item, index) => (
+                  <li key={index} className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <p className="text-[#9f9f9f]">{item.title}</p>
                       <p className="text-xs font-medium">X</p>
@@ -210,8 +207,6 @@ const BillingDetails = () => {
                   isOpen,
                   setIsOpen,
                   user,
-                  cart,
-                  setCart,
                   totalPrice,
                   billingData,
                   triggerFormSubmit,

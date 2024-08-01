@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   Dialog,
@@ -8,23 +9,24 @@ import {
   Transition,
   TransitionChild,
 } from "@headlessui/react";
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { BsXLg } from "react-icons/bs";
 import toast from "react-hot-toast";
+import useCart from "../../../hooks/useCart";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { formatPrice } from "../../../utils/formatPrice";
 
 const PaymentModal = ({
   isOpen,
   setIsOpen,
   user,
-  cart,
-  setCart,
   totalPrice,
   billingData,
   triggerFormSubmit,
 }) => {
   const stripe = useStripe();
   const elements = useElements();
+  const { cart, setCart } = useCart();
+  const { axiosSecure } = useAxiosSecure();
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [processing, setProcessing] = useState(false);
@@ -84,8 +86,8 @@ const PaymentModal = ({
     setProcessing(false);
 
     if (paymentIntent.status === "succeeded") {
-      // save this payment info to the server
-      const payment = {
+      // save this paymented order info to the server
+      const orderInfo = {
         email: user.email,
         transactionId: paymentIntent.id,
         totalPrice,
@@ -96,15 +98,17 @@ const PaymentModal = ({
         items: cart,
       };
 
-      axios
-        .post("http://localhost:5000/payments", payment)
+      axiosSecure
+        .post("/orders", orderInfo, { params: { userEmail: user.email } })
         .then((res) => {
+          console.log(res);
+
           if (
             res.data.insertResult.insertedId &&
             res.data.deleteResult.deletedCount > 0
           ) {
-            toast.success("Payment successful! Thank you for your purchase.");
             setIsOpen(false);
+            toast.success("Payment successful! Thank you for your purchase.");
             setCart([]);
             navigate("/");
           }

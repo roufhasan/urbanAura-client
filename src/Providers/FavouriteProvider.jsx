@@ -1,5 +1,4 @@
 import { createContext, useCallback, useEffect, useState } from "react";
-import axios from "axios";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
@@ -19,7 +18,7 @@ const FavouriteProvider = ({ children }) => {
         const token = localStorage.getItem("access-token");
         if (token) {
           try {
-            const response = await axiosSecure.get("/favourite", {
+            const response = await axiosSecure.get("/favourites", {
               params: { userEmail: user.email },
             });
             setFavouriteItems(response.data);
@@ -53,17 +52,21 @@ const FavouriteProvider = ({ children }) => {
       return toast.error("Please login to add your favourite item!");
     }
 
-    axios
-      .post("http://localhost:5000/favourite", {
-        user_email: user.email,
-        product_id: _id,
-        title,
-        price,
-        thumbnail,
-        quantity: 1,
-        size: "l",
-        color: "#816dfa",
-      })
+    axiosSecure
+      .post(
+        "/favourites",
+        {
+          user_email: user.email,
+          product_id: _id,
+          title,
+          price,
+          thumbnail,
+          quantity: 1,
+          size: "l",
+          color: "#816dfa",
+        },
+        { params: { userEmail: user.email } },
+      )
       .then((res) => {
         if (res.data.message) {
           return toast.success("Item already in favourites!");
@@ -84,9 +87,10 @@ const FavouriteProvider = ({ children }) => {
 
   // Delete a favourite a item
   const deleteFavouriteItem = (product_id, user_email) => {
-    axios
-      .delete("http://localhost:5000/favourite", {
+    axiosSecure
+      .delete("/favourites", {
         data: { product_id: product_id, user_email: user_email },
+        params: { userEmail: user.email },
       })
       .then((res) => {
         if (res.data.acknowledged && res.data.deletedCount > 0) {
