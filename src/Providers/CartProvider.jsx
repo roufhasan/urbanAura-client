@@ -1,7 +1,6 @@
 import { createContext, useEffect, useCallback, useState } from "react";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../hooks/useAxiosSecure";
-import axios from "axios";
 import useAuth from "../hooks/useAuth";
 
 export const CartContext = createContext(null);
@@ -20,7 +19,7 @@ const CartProvider = ({ children }) => {
         const token = localStorage.getItem("access-token");
         if (token) {
           try {
-            const response = await axiosSecure.get("/cart", {
+            const response = await axiosSecure.get("/carts", {
               params: { userEmail: user.email },
             });
             setCart(response.data);
@@ -48,13 +47,33 @@ const CartProvider = ({ children }) => {
 
   // Add a item to the cart or update the quantity if exists
   const handleCartItemSave = (item, setIsOpen) => {
-    axios
-      .put("http://localhost:5000/cart", item)
+    axiosSecure
+      .put("/carts", item, { params: { userEmail: user.email } })
       .then((res) => {
         if (res.data.acknowledged) {
           toast.success("Added to cart!");
-          setCart((prevCartItems) => [item, ...prevCartItems]);
-          // add to cart modal hide
+
+          // Update the cart state
+          setCart((prevCartItems) => {
+            // Find existing item
+            const existingItem = prevCartItems.find(
+              (cartItem) => cartItem.product_id === item.product_id,
+            );
+
+            if (existingItem) {
+              // Update the quantity of the existing item
+              return prevCartItems.map((cartItem) =>
+                cartItem.product_id === item.product_id
+                  ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
+                  : cartItem,
+              );
+            } else {
+              // Add the new item to the cart
+              return [item, ...prevCartItems];
+            }
+          });
+
+          // Hide the add to cart modal
           if (setIsOpen) {
             setIsOpen(false);
           }
@@ -74,12 +93,16 @@ const CartProvider = ({ children }) => {
   const handleQuantity = (quantity, product_id) => {
     setCartLoading(true);
 
-    axios
-      .patch("http://localhost:5000/cart_quantity", {
-        product_id,
-        user_email: user.email,
-        quantity,
-      })
+    axiosSecure
+      .patch(
+        "/carts/cart_quantity",
+        {
+          product_id,
+          user_email: user.email,
+          quantity,
+        },
+        { params: { userEmail: user.email } },
+      )
       .then((res) => {
         if (res.data.acknowledged && res.data.matchedCount > 0) {
           setCartLoading(false);
@@ -100,9 +123,10 @@ const CartProvider = ({ children }) => {
   // Delete a item from the cart
   const handleCartItemDel = (product_id) => {
     if (user && product_id) {
-      axios
-        .delete("http://localhost:5000/cart", {
+      axiosSecure
+        .delete("/carts", {
           data: { product_id, email: user.email },
+          params: { userEmail: user.email },
         })
         .then((res) => {
           if (res.data.acknowledged && res.data.deletedCount > 0) {

@@ -74,9 +74,9 @@ const SidebarCart = ({ user }) => {
                 {/* Products container */}
                 <div className="h-[60vh] max-h-[648px] space-y-5 overflow-y-auto">
                   {cart && cart.length > 0 ? (
-                    cart.map((item) => (
+                    cart.map((item, index) => (
                       <div
-                        key={item._id}
+                        key={index}
                         className="flex items-center justify-between"
                       >
                         <div className="flex items-center gap-8">
@@ -137,17 +137,27 @@ const SidebarCart = ({ user }) => {
                   <motion.button
                     whileTap={{ scale: 0.9 }}
                     onClick={() => setIsOpen(false)}
-                    className="w-full rounded-full border border-black px-[30px] py-1.5 text-center text-xs transition-all hover:border-[#b88e2f] hover:bg-[#b88e2f] hover:text-white"
+                    className="w-full rounded-full border border-black text-center text-xs transition-all hover:border-[#b88e2f] hover:bg-[#b88e2f] hover:text-white"
                   >
-                    <Link to="/cart">Cart</Link>
+                    <Link
+                      to="/cart"
+                      className="inline-block w-full px-[30px] py-1.5"
+                    >
+                      Cart
+                    </Link>
                   </motion.button>
                   {cart && cart.length > 0 ? (
                     <motion.button
                       whileTap={{ scale: 0.9 }}
                       onClick={() => setIsOpen(false)}
-                      className="w-full rounded-full border border-black px-[30px] py-1.5 text-center text-xs transition-all hover:border-[#b88e2f] hover:bg-[#b88e2f] hover:text-white"
+                      className="w-full rounded-full border border-black text-center text-xs transition-all hover:border-[#b88e2f] hover:bg-[#b88e2f] hover:text-white"
                     >
-                      <Link to="/checkout">Checkout</Link>
+                      <Link
+                        to="/checkout"
+                        className="inline-block w-full px-[30px] py-1.5"
+                      >
+                        Checkout
+                      </Link>
                     </motion.button>
                   ) : (
                     <motion.button

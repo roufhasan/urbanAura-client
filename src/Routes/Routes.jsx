@@ -58,7 +58,7 @@ export const router = createBrowserRouter([
         path: "/search/:key",
         element: <Search />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/search/${params.key}`),
+          fetch(`http://localhost:5000/products/search/${params.key}`),
         errorElement: <ErrorPage />,
       },
       {

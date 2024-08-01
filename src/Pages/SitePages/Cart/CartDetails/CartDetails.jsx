@@ -109,7 +109,7 @@ const CartDetails = () => {
                           </td>
                           <td>
                             <BiSolidTrashAlt
-                              onClick={() => handleCartItemDel(item._id)}
+                              onClick={() => handleCartItemDel(item.product_id)}
                               size={26}
                               className="cursor-pointer text-[#b88e2f] transition-all hover:text-[#947325]"
                             />
