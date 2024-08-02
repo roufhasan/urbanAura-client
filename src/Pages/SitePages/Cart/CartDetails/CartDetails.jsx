@@ -148,7 +148,7 @@ const CartDetails = () => {
             </div>
           </>
         ) : (
-          <div className="w-full text-center">
+          <div className="min-h-[calc(60vh-240px)] w-full text-center">
             <h1 className="mb-2 text-2xl font-medium">
               You have not added any items to the cart.
             </h1>

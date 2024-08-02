@@ -34,9 +34,9 @@ const Favourite = () => {
         {/* favourite list container */}
         <div className="space-y-8">
           {favouriteItems && favouriteItems.length > 0 ? (
-            favouriteItems.map((item) => (
+            favouriteItems.map((item, index) => (
               <FavouriteItemList
-                key={item._id}
+                key={index}
                 item={item}
                 deleteFavouriteItem={deleteFavouriteItem}
                 cartItemIds={cartItemIds}
@@ -45,7 +45,7 @@ const Favourite = () => {
               />
             ))
           ) : (
-            <div className="text-center">
+            <div className="min-h-[calc(60vh-240px)] text-center">
               <h1 className="mb-2 text-2xl font-medium">
                 You have not added any favourite products yet.
               </h1>

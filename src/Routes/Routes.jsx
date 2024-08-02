@@ -47,7 +47,9 @@ export const router = createBrowserRouter([
         path: "/products/:id",
         element: <ProductDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(
+            `https://urbanaura-server.up.railway.app/products/${params.id}`,
+          ),
         errorElement: <ErrorPage />,
       },
       {
@@ -58,7 +60,9 @@ export const router = createBrowserRouter([
         path: "/search/:key",
         element: <Search />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/search/${params.key}`),
+          fetch(
+            `https://urbanaura-server.up.railway.app/products/search/${params.key}`,
+          ),
         errorElement: <ErrorPage />,
       },
       {

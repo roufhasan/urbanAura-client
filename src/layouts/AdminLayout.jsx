@@ -5,11 +5,15 @@ import { LuLayoutDashboard } from "react-icons/lu";
 import { BsBox2, BsCart3, BsList, BsPower } from "react-icons/bs";
 import MobileDashNav from "../components/MobileDashNav/MobileDashNav";
 import useAdmin from "../hooks/useAdmin";
+import useAuth from "../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const AdminLayout = () => {
   const [showNavbar, setShowNavbar] = useState(false);
   const sideBarRef = useRef();
   const navigate = useNavigate();
+
+  const { logOut } = useAuth();
 
   // Check currently logged in user email is admin email or not
   const { isAdmin, adminLoading } = useAdmin();
@@ -33,6 +37,16 @@ const AdminLayout = () => {
       navigate("/");
     }
   }, [adminLoading, isAdmin, navigate]);
+
+  // Handle user logout
+  const handleUserLogOut = () => {
+    logOut()
+      .then(() => {
+        toast.success("Logged out!");
+        navigate("/");
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <section className="mx-auto w-full max-w-[1440px] font-Poppins md:flex">
@@ -120,7 +134,10 @@ const AdminLayout = () => {
             </NavLink>
           </div>
         </div>
-        <button className="mt-10 flex items-center gap-2 px-5 transition-all duration-200">
+        <button
+          onClick={handleUserLogOut}
+          className="mt-10 flex items-center gap-2 px-5 transition-all duration-200"
+        >
           <span>
             <BsPower size={20} className="w-6 text-[#ffb300]" />
           </span>

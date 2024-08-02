@@ -14,8 +14,8 @@ const OrderDetailsDropDown = ({ order }) => {
       </tr>
       {order.items &&
         order.items.length > 0 &&
-        order.items.map((item) => (
-          <tr key={item._id} className="hover overflow-x-auto">
+        order.items.map((item, index) => (
+          <tr key={index} className="hover overflow-x-auto">
             <td className="flex items-center">
               <Link
                 to={`/products/${item.product_id}`}

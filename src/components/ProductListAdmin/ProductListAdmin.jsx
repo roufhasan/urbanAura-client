@@ -17,7 +17,9 @@ const ProductListAdmin = ({
 
   const handleDeleteProduct = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:5000/products/${id}`);
+      const res = await axios.delete(
+        `https://urbanaura-server.up.railway.app/products/${id}`,
+      );
       if (res.data.deletedCount > 0) {
         toast.success("Item Deleted Successfully!");
         const updatedProducts = products.filter(

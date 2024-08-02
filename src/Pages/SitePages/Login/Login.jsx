@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { BsFillPeopleFill } from "react-icons/bs";
+import { BsFillPeopleFill, BsFillPersonFill } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 /* images */
 import logo from "../../../assets/logo/logo.png";
@@ -47,6 +47,12 @@ const Login = () => {
   // demo login function to fill up email, password and submit the form
   const handleDemoLogin = () => {
     setValue("email", "walter@white.com");
+    setValue("password", "Asdf1234");
+  };
+
+  // demo login function as admin
+  const handleDemoAdminLogin = () => {
+    setValue("email", "admin@urbanaura.com");
     setValue("password", "Asdf1234");
   };
 
@@ -166,13 +172,24 @@ const Login = () => {
           <button
             onClick={handleDemoLogin}
             disabled={loading}
-            className={`flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg ${loading ? "text-[#9f9f9f]" : "transition-all hover:bg-[#b88e2f] hover:text-white"}`}
+            className={`my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg ${loading ? "text-[#9f9f9f]" : "transition-all hover:bg-[#b88e2f] hover:text-white"}`}
           >
             <BsFillPeopleFill
               size={24}
               color={loading ? "#9f9f9f" : undefined}
             />
             <p>Login as a Guest</p>
+          </button>
+          <button
+            onClick={handleDemoAdminLogin}
+            disabled={loading}
+            className={`flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg ${loading ? "text-[#9f9f9f]" : "transition-all hover:bg-[#b88e2f] hover:text-white"}`}
+          >
+            <BsFillPersonFill
+              size={24}
+              color={loading ? "#9f9f9f" : "#b88e2f"}
+            />
+            <p>Login as Demo Admin</p>
           </button>
         </div>
       </div>

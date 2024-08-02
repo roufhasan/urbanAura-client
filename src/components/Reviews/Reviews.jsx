@@ -26,14 +26,18 @@ const Reviews = ({ productId, reviews, setReviews }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const paymentResponse = await axiosSecure.get("/orders", {
-          params: { email: user?.email },
-        });
+        // TODO: fix the belwo url to send user and jwt verification good.
+        const paymentResponse = await axiosSecure.get(
+          `/orders/${user?.email}`,
+          {
+            params: { userEmail: user?.email },
+          },
+        );
         setPaymentHistory(paymentResponse.data);
 
         isReviewSubmitted(reviews);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.log("Error fetching data:", error);
       }
     };
 

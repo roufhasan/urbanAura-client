@@ -62,7 +62,9 @@ const Navbar = () => {
       return setSearchResults([]);
     } else {
       axios
-        .get(`http://localhost:5000/products/search/${debouncedSearchValue}`)
+        .get(
+          `https://urbanaura-server.up.railway.app/products/search/${debouncedSearchValue}`,
+        )
         .then((res) => setSearchResults(res.data))
         .catch((err) => console.error(err));
     }

@@ -74,9 +74,12 @@ const AuthProvider = ({ children }) => {
 
       if (currentUser) {
         try {
-          const res = await axios.post("http://localhost:5000/jwt", {
-            email: currentUser.email,
-          });
+          const res = await axios.post(
+            "https://urbanaura-server.up.railway.app/jwt",
+            {
+              email: currentUser.email,
+            },
+          );
           localStorage.setItem("access-token", res.data.token);
         } catch (error) {
           console.error("Error fetching token:", error);

@@ -28,7 +28,7 @@ const AddProducts = () => {
   const addNewProduct = async (newProduct) => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/products",
+        "https://urbanaura-server.up.railway.app/products",
         newProduct,
       );
       if (res.data.acknowledged && res.data.insertedId) {

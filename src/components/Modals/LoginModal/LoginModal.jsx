@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
-import { BsFillPeopleFill, BsXLg } from "react-icons/bs";
+import { BsFillPeopleFill, BsFillPersonFill, BsXLg } from "react-icons/bs";
 import googleLogo from "../../../assets/logo/google-logo.png";
 import useAuth from "../../../hooks/useAuth";
 
@@ -40,6 +40,12 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
   // demo login function to fill up email, password and submit the form
   const handleDemoLogin = () => {
     setValue("email", "walter@white.com");
+    setValue("password", "Asdf1234");
+  };
+
+  // demo login function as admin
+  const handleDemoAdminLogin = () => {
+    setValue("email", "admin@urbanaura.com");
     setValue("password", "Asdf1234");
   };
 
@@ -151,13 +157,24 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
               <button
                 disabled={loading}
                 onClick={handleDemoLogin}
-                className={`flex w-full items-center justify-center gap-3 rounded-[10px] border px-3 py-2 text-lg md:px-6 ${loading ? "text-[#9f9f9f]" : "transition-all hover:bg-[#b88e2f] hover:text-white"}`}
+                className={`my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border px-3 py-2 text-lg md:px-6 ${loading ? "text-[#9f9f9f]" : "transition-all hover:bg-[#b88e2f] hover:text-white"}`}
               >
                 <BsFillPeopleFill
                   size={24}
                   color={loading ? "#9f9f9f" : undefined}
                 />
                 <p>Login as a Guest</p>
+              </button>
+              <button
+                disabled={loading}
+                onClick={handleDemoAdminLogin}
+                className={`flex w-full items-center justify-center gap-3 rounded-[10px] border px-3 py-2 text-lg md:px-6 ${loading ? "text-[#9f9f9f]" : "transition-all hover:bg-[#b88e2f] hover:text-white"}`}
+              >
+                <BsFillPersonFill
+                  size={24}
+                  color={loading ? "#9f9f9f" : "#b88e2f"}
+                />
+                <p>Login as Demo Admin</p>
               </button>
               <p className="mb-8 mt-6 text-center text-sm text-[#9f9f9f]">
                 Don&apos;t have account?{" "}

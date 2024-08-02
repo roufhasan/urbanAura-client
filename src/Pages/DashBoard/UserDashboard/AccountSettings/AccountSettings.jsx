@@ -98,27 +98,34 @@ const AccountSettings = () => {
       setDeleteValue("");
       toast.error("You can't delete guest account!");
       return;
-    }
-    deleteAccount()
-      .then(() => {
-        setLoading(false);
-        toast.success("Account Deleted");
-        navigate("/");
-      })
-      .catch((error) => {
-        console.log(error);
-        if (error.message === "Firebase: Error (auth/requires-recent-login).") {
+    } else if (user.email === "admin@urbanaura.com") {
+      setDeleteValue("");
+      toast.error("You can't delete admin account!");
+      return;
+    } else {
+      deleteAccount()
+        .then(() => {
           setLoading(false);
-          toast.error(
-            "For security reasons, please log out and log in again to delete your account.",
-          );
+          toast.success("Account Deleted");
           navigate("/");
-          return;
-        }
-        setLoading(false);
-        toast.error("An Error Ocurred!");
-        navigate("/");
-      });
+        })
+        .catch((error) => {
+          console.log(error);
+          if (
+            error.message === "Firebase: Error (auth/requires-recent-login)."
+          ) {
+            setLoading(false);
+            toast.error(
+              "For security reasons, please log out and log in again to delete your account.",
+            );
+            navigate("/");
+            return;
+          }
+          setLoading(false);
+          toast.error("An Error Ocurred!");
+          navigate("/");
+        });
+    }
   };
 
   return (

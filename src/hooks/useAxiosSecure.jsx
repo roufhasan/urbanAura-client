@@ -4,7 +4,7 @@ import axios from "axios";
 const useAxiosSecure = () => {
   const axiosSecure = useMemo(() => {
     const instance = axios.create({
-      baseURL: "http://localhost:5000",
+      baseURL: "https://urbanaura-server.up.railway.app",
     });
 
     instance.interceptors.request.use((config) => {

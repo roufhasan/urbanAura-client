@@ -16,6 +16,7 @@ const useAdmin = () => {
           try {
             const response = await axiosSecure.get(
               `/users/admin/${user.email}`,
+              { params: { userEmail: user.email } },
             );
             setIsAdmin(response.data.admin);
             setAdminLoading(false);

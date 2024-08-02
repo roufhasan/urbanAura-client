@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -101,8 +100,6 @@ const PaymentModal = ({
       axiosSecure
         .post("/orders", orderInfo, { params: { userEmail: user.email } })
         .then((res) => {
-          console.log(res);
-
           if (
             res.data.insertResult.insertedId &&
             res.data.deleteResult.deletedCount > 0
@@ -122,11 +119,10 @@ const PaymentModal = ({
   useEffect(() => {
     const getClientSecret = async () => {
       try {
-        const res = await axios.post(
-          "http://localhost:5000/create-payment-intent",
-          {
-            price: totalPrice,
-          },
+        const res = await axiosSecure.post(
+          "/payments/create-payment-intent",
+          { price: totalPrice },
+          { params: { userEmail: user.email } },
         );
         if (res.data.clientSecret) {
           setClientSecret(res.data.clientSecret);

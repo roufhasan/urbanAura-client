@@ -17,7 +17,7 @@ const ProductUpdateModal = ({
   const handleProductUpdate = async (updatedProduct) => {
     try {
       const res = await axios.put(
-        `http://localhost:5000/products/${product._id}`,
+        `https://urbanaura-server.up.railway.app/products/${product._id}`,
         updatedProduct,
       );
       if (res.data.modifiedCount > 0) {

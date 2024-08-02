@@ -5,8 +5,8 @@ const InfoSection = ({ title, details }) => {
       <div className="overflow-x-auto">
         <table className="table">
           <tbody className="divide-y">
-            {details.map((specInfo) => (
-              <tr key={Math.random()} className="text-base">
+            {details.map((specInfo, index) => (
+              <tr key={index} className="text-base">
                 <td className="w-48 text-[#666] sm:w-52">{specInfo.key}</td>
                 <td>{specInfo.value}</td>
               </tr>

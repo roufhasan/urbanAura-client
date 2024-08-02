@@ -49,7 +49,9 @@ const ProductManagement = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/products?sortBy=${sortValue}`)
+      .get(
+        `https://urbanaura-server.up.railway.app/products?sortBy=${sortValue}`,
+      )
       .then((res) => {
         setProducts(res.data);
         setTotalPages(Math.ceil(res.data.length / 5));
