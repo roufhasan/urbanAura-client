@@ -5,13 +5,17 @@ import toast from "react-hot-toast";
 import {
   BsBox2,
   BsBoxArrowInLeft,
+  BsCart3,
+  BsHeart,
   BsPersonCircle,
   BsPersonGear,
 } from "react-icons/bs";
 import useAuth from "../../../hooks/useAuth";
+import useAdmin from "../../../hooks/useAdmin";
 
 const UserDropDown = ({ setCart, setFavouriteItems }) => {
   const { user, logOut } = useAuth();
+  const { isAdmin } = useAdmin();
   const [isOpen, setIsOpen] = useState(false);
 
   // Handle user logout
@@ -48,6 +52,30 @@ const UserDropDown = ({ setCart, setFavouriteItems }) => {
           anchor="bottom"
           className="mt-10 rounded border bg-white px-4 py-3 text-gray-600 shadow"
         >
+          {isAdmin && (
+            <>
+              <Link
+                onClick={() => setIsOpen(false)}
+                to="/favourite"
+                className="mb-4 flex items-center gap-2 text-sm"
+              >
+                <BsHeart size={18} className="w-6" />
+                <span className="border-b border-transparent transition-all hover:border-[#b88e2f] hover:text-[#b88e2f]">
+                  Favourite
+                </span>
+              </Link>
+              <Link
+                onClick={() => setIsOpen(false)}
+                to="/cart"
+                className="mb-4 flex items-center gap-2 text-sm"
+              >
+                <BsCart3 size={20} className="w-6" />
+                <span className="border-b border-transparent transition-all hover:border-[#b88e2f] hover:text-[#b88e2f]">
+                  Cart
+                </span>
+              </Link>
+            </>
+          )}
           <Link
             onClick={() => setIsOpen(false)}
             to="/my-orders"

@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
-import { formatPrice } from "../../utils/formatPrice";
 import { useState } from "react";
-import ProductUpdateModal from "../Modals/ProductUpdateModal/ProductUpdateModal";
-import { RiDeleteBinLine, RiEdit2Line } from "react-icons/ri";
-import axios from "axios";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import { RiDeleteBinLine, RiEdit2Line } from "react-icons/ri";
+import ProductUpdateModal from "../Modals/ProductUpdateModal/ProductUpdateModal";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
+import { formatPrice } from "../../utils/formatPrice";
 
 const ProductListAdmin = ({
   product,
@@ -13,13 +14,16 @@ const ProductListAdmin = ({
   setProducts,
   setRefetch,
 }) => {
+  const { user } = useAuth();
+  const { axiosSecure } = useAxiosSecure();
   const [modalOpen, setModalOpen] = useState(false);
 
+  // delete a product
   const handleDeleteProduct = async (id) => {
     try {
-      const res = await axios.delete(
-        `https://urbanaura-server.up.railway.app/products/${id}`,
-      );
+      const res = await axiosSecure.delete(`/admin/products/${id}`, {
+        params: { userEmail: user?.email },
+      });
       if (res.data.deletedCount > 0) {
         toast.success("Item Deleted Successfully!");
         const updatedProducts = products.filter(

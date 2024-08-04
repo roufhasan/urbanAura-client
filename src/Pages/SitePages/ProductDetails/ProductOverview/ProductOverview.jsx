@@ -125,9 +125,16 @@ const ProductOverview = ({ product, reviews }) => {
           </div>
 
           <p className="mb-6 w-full max-w-md text-sm">
-            Setting the bar as one of the loudest speakers in its class, the
-            Kilburn is a compact, stout-hearted hero with a well-balanced audio
-            which boasts a clear midrange and extended highs for a sound.
+            {product.overview ? (
+              product.overview
+            ) : (
+              <>
+                Setting the bar as one of the loudest speakers in its class, the
+                Kilburn is a compact, stout-hearted hero with a well-balanced
+                audio which boasts a clear midrange and extended highs for a
+                sound.
+              </>
+            )}
           </p>
           {/* Size Selection Buttons */}
           <div className="text-sm">

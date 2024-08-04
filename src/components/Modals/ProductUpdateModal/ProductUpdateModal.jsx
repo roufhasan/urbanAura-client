@@ -1,9 +1,10 @@
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
-import axios from "axios";
-import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
+import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 import { BsX } from "react-icons/bs";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ProductUpdateModal = ({
   product,
@@ -12,13 +13,17 @@ const ProductUpdateModal = ({
   setModalOpen,
   setRefetch,
 }) => {
+  const { user } = useAuth();
+  const { axiosSecure } = useAxiosSecure();
   const { register, handleSubmit, reset } = useForm();
 
+  // update a product info
   const handleProductUpdate = async (updatedProduct) => {
     try {
-      const res = await axios.put(
-        `https://urbanaura-server.up.railway.app/products/${product._id}`,
+      const res = await axiosSecure.put(
+        `/admin/products/${product._id}`,
         updatedProduct,
+        { params: { userEmail: user?.email } },
       );
       if (res.data.modifiedCount > 0) {
         reset();
@@ -147,12 +152,15 @@ const ProductUpdateModal = ({
               </div>
 
               <div className="mt-10 flex items-center justify-center gap-6">
-                {/* TODO: add style to the cancel button. */}
-                <motion.button className="" whileTap={{ scale: 0.9 }}>
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => setModalOpen(false)}
+                  className="rounded border border-[#b88e2f] px-6 py-1 hover:bg-[#b88e2f] hover:text-white"
+                >
                   Cancel
                 </motion.button>
                 <motion.button
-                  className="rounded-lg bg-[#b88e2f] px-2 py-1 text-white hover:bg-[#a07c28]"
+                  className="rounded bg-[#b88e2f] px-6 py-1 text-white hover:bg-[#a07c28]"
                   whileTap={{ scale: 0.9 }}
                   type="submit"
                 >

@@ -26,7 +26,6 @@ const Reviews = ({ productId, reviews, setReviews }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // TODO: fix the belwo url to send user and jwt verification good.
         const paymentResponse = await axiosSecure.get(
           `/orders/${user?.email}`,
           {

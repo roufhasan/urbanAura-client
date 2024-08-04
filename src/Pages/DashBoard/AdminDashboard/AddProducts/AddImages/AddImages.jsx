@@ -34,7 +34,7 @@ const AddImages = ({
           </span>
         </h3>
         <p className="font-regular text-xs text-gray-400">
-          NOTE: First selected image will be your thumbnail.
+          NOTE: The first image from the left will be your thumbnail.
         </p>
       </div>
 

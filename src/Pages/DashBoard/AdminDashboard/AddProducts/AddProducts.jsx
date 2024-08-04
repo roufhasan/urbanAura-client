@@ -1,15 +1,18 @@
 import { useState } from "react";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 import { BsArrowLeft, BsInfoCircle } from "react-icons/bs";
 import AddImages from "./AddImages/AddImages";
 import { uploadImagesToImgbb } from "../../../../utils/imageUpload";
+import useAuth from "../../../../hooks/useAuth";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const AddProducts = () => {
+  const { user } = useAuth();
+  const { axiosSecure } = useAxiosSecure();
   const [selectedImages, setSelectedImages] = useState([]);
   const [imagePreviews, setImagePreviews] = useState([]);
   const navigate = useNavigate();
@@ -27,10 +30,9 @@ const AddProducts = () => {
   // Add New Product Function
   const addNewProduct = async (newProduct) => {
     try {
-      const res = await axios.post(
-        "https://urbanaura-server.up.railway.app/products",
-        newProduct,
-      );
+      const res = await axiosSecure.post("/admin/products", newProduct, {
+        params: { userEmail: user?.email },
+      });
       if (res.data.acknowledged && res.data.insertedId) {
         toast.success("New product added successfully!");
         navigate("/dashboard/products");
@@ -68,7 +70,7 @@ const AddProducts = () => {
       const tagsArray = data.tags.split(",");
 
       const newProduct = {
-        category: data.category,
+        category: data.category.toLowerCase(),
         title: data.title,
         sub_title: data.sub_title,
         is_new: data.is_new === "true",
@@ -78,6 +80,7 @@ const AddProducts = () => {
         },
         thumbnail,
         gallery,
+        overview: data.overview,
       };
 
       if (data.discount_percent > 0) {
@@ -246,7 +249,7 @@ const AddProducts = () => {
             {...register("category")}
           >
             <option value="dining">Dining</option>
-            <option value="Living">Living</option>
+            <option value="living">Living</option>
             <option value="bedroom">Bedroom</option>
             <option value="office">Office</option>
             <option value="outdoor">Outdoor</option>
@@ -263,7 +266,7 @@ const AddProducts = () => {
               Tags{errors.tags && "*"}
               <span
                 className="group tooltip font-normal"
-                data-tip="Don't use space after comma (,)"
+                data-tip="Tags must be comma-separated without spaces after commas. Spaces within tags are allowed."
               >
                 <BsInfoCircle
                   className={
@@ -282,12 +285,12 @@ const AddProducts = () => {
             className="mb-2 mt-1 w-full rounded-md border bg-[#f8fafb] px-2 py-1.5 outline-none"
             id="tags"
             type="text"
-            placeholder="bedroom,chair,bed etc.."
+            placeholder="sofa,modern sofa,fabric sofa etc.."
             {...register("tags", {
               required: true,
               pattern: {
-                value: /^[^\s,]+(,[^\s,]+)*$/,
-                message: "Tags must be comma-separated and contain no spaces",
+                value: /^(?!.*, )[A-Za-z0-9 ]+(?:,[A-Za-z0-9 ]+)*$/,
+                message: "Tags must be comma-separated without spaces.",
               },
             })}
           ></input>

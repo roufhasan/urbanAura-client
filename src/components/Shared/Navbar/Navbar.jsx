@@ -28,6 +28,9 @@ const Navbar = () => {
   const { getFavouriteItems, favouriteItems, setFavouriteItems } =
     useFavourite();
 
+  // Check user admin status
+  const { isAdmin } = useAdmin();
+
   // State
   const [showMenu, setShowMenu] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -40,9 +43,6 @@ const Navbar = () => {
   // Router
   const location = useLocation();
   const navigate = useNavigate();
-
-  // Check currently logged in user email is admin email or not
-  const { isAdmin } = useAdmin();
 
   // Debounce search input
   const debouncedSearchValue = useDebounce(searchValue, 300);
