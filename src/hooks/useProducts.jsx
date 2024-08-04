@@ -14,6 +14,20 @@ const useProducts = (initialUrl) => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
+  const url = initialUrl
+    ? `https://urbanaura-server.up.railway.app/products${initialUrl}`
+    : `https://urbanaura-server.up.railway.app/products`;
+
+  /* get products */
+  const getProducts = (url) => {
+    axios.get(url).then((res) => {
+      setLoading(false);
+      setProducts(res.data);
+      setSortedProducts(res.data);
+      setTotalPages(Math.ceil(res.data.length / itemsPerPage));
+    });
+  };
+
   /* handle products sorting */
   const handleSort = (e) => {
     const sortType = e.target.value;
@@ -27,10 +41,18 @@ const useProducts = (initialUrl) => {
           ? b.price.discounted
           : b.price.original;
 
-        if (sortType === "asc") {
+        if (sortType === "priceAsc") {
           return priceA - priceB;
-        } else if (sortType === "desc") {
+        } else if (sortType === "priceDesc") {
           return priceB - priceA;
+        } else if (sortType === "desc") {
+          getProducts(
+            "https://urbanaura-server.up.railway.app/products?sortBy=desc",
+          );
+        } else if (sortType === "asc") {
+          getProducts(
+            "https://urbanaura-server.up.railway.app/products?sortBy=asc",
+          );
         } else {
           return 0;
         }
@@ -38,22 +60,8 @@ const useProducts = (initialUrl) => {
     );
   };
 
-  const url = initialUrl
-    ? `https://urbanaura-server.up.railway.app/products${initialUrl}`
-    : `https://urbanaura-server.up.railway.app/products`;
-
-  /* get products */
-  const getProducts = () => {
-    axios.get(url).then((res) => {
-      setLoading(false);
-      setProducts(res.data);
-      setSortedProducts(res.data);
-      setTotalPages(Math.ceil(res.data.length / itemsPerPage));
-    });
-  };
-
   useEffect(() => {
-    getProducts();
+    getProducts(url);
   }, [initialUrl]);
 
   return {

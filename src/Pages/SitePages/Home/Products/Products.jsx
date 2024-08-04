@@ -10,7 +10,7 @@ const Products = () => {
 
   const getProducts = () => {
     axios
-      .get("https://urbanaura-server.up.railway.app/products")
+      .get("https://urbanaura-server.up.railway.app/products?sortBy=desc")
       .then((res) => {
         setLoading(false);
         setProducts(res.data);
@@ -33,7 +33,7 @@ const Products = () => {
       </h1>
 
       {/* Products */}
-      <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-8">
+      <div className="grid h-full gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-8">
         {loading && <SkeletonLoader />}
         {!loading &&
           products &&

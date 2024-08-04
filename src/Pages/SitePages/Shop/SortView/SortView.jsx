@@ -1,6 +1,7 @@
 // images
 import gridIcon from "../../../../assets/logo/grid-big-round.svg";
 import listIcon from "../../../../assets/logo/view-list.svg";
+import "./sortView.css";
 
 const SortView = ({
   endIndex,
@@ -9,6 +10,7 @@ const SortView = ({
   sortedProducts,
   startIndex,
   setGridView,
+  gridView,
   setItemsPerPage,
 }) => {
   const handleItemsPerPage = (e) => {
@@ -23,14 +25,14 @@ const SortView = ({
         <div className="flex items-center gap-2 sm:gap-3 md:gap-4 xl:gap-6">
           <p className="lg:text-xl">View:</p>
           <img
-            className="size-6 cursor-pointer lg:size-7"
+            className={`size-6 cursor-pointer lg:size-7 ${gridView && "cursor-default opacity-40"}`}
             onClick={() => setGridView(true)}
             src={gridIcon}
             alt="grid icon"
             loading="lazy"
           />
           <img
-            className="size-5 cursor-pointer lg:size-6"
+            className={`size-5 cursor-pointer lg:size-6 ${!gridView && "cursor-default opacity-40"}`}
             onClick={() => setGridView(false)}
             src={listIcon}
             alt="grid icon"
@@ -51,8 +53,8 @@ const SortView = ({
         <div className="flex items-center gap-2 lg:text-xl xl:gap-4">
           <p>Show:</p>
           <input
-            className="size-11 text-center text-[#9f9f9f] lg:size-[55px]"
-            type="text"
+            className="size-11 border-none text-center text-[#9f9f9f] outline-none lg:size-[55px]"
+            type="number"
             name="itemsPerPage"
             id="itemsPerPage"
             defaultValue={itemsPerPage}
@@ -64,12 +66,14 @@ const SortView = ({
           <select
             name="sortings"
             id="sortings"
-            className="h-11 w-20 py-1 text-[#9f9f9f] lg:h-auto lg:w-fit lg:py-3 lg:pl-7"
+            className="h-11 w-20 border-none py-1 text-[#9f9f9f] outline-none lg:h-auto lg:w-fit lg:py-3 lg:pl-7"
             onChange={handleSort}
           >
             <option value="default">Default</option>
-            <option value="asc">Price (Low to High)</option>
-            <option value="desc">Price (High to Low)</option>
+            <option value="desc">Latest (Desc)</option>
+            <option value="asc">Oldest (Asc)</option>
+            <option value="priceAsc">Price (Low to High)</option>
+            <option value="priceDesc">Price (High to Low)</option>
           </select>
         </div>
       </div>

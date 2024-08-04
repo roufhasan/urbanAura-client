@@ -35,7 +35,7 @@ const Card = ({ product }) => {
 
   return (
     <>
-      <div className="group relative">
+      <div className="group relative flex h-full flex-col">
         <div className="relative h-[300px] w-full">
           <Link to={`/products/${_id}`}>
             <img
@@ -54,7 +54,7 @@ const Card = ({ product }) => {
           ) : null}
         </div>
 
-        <div className="bg-[#F4F5F7] pb-7 pl-4 pr-5 pt-4">
+        <div className="flex-1 bg-[#F4F5F7] pb-7 pl-4 pr-5 pt-4">
           <Link
             to={`/products/${_id}`}
             className="text-xl font-semibold md:text-2xl"

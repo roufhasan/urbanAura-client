@@ -35,7 +35,7 @@ const Shop = () => {
       {/* Props for SortView component:
           - Pagination data: startIndex, endIndex, itemsPerPage, setItemsPerPage
           - Sorting: sortedProducts, handleSort
-          - View state: setGridView
+          - View state:gridView, setGridView
       */}
       <SortView
         {...{
@@ -45,6 +45,7 @@ const Shop = () => {
           setItemsPerPage,
           sortedProducts,
           handleSort,
+          gridView,
           setGridView,
         }}
       />
