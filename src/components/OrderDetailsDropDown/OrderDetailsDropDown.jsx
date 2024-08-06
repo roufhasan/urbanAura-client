@@ -30,7 +30,7 @@ const OrderDetailsDropDown = ({ order }) => {
               </Link>
               <Link
                 to={`/products/${item.product_id}`}
-                className="text-sm font-medium transition-all hover:text-[#b88e2f]"
+                className="text-sm font-medium transition-all hover:text-primary"
               >
                 {item.title}
               </Link>

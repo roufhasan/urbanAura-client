@@ -19,7 +19,7 @@ const ServicesHighlight = () => {
             <h3 className="text-xl font-semibold text-[#242424] xl:text-[22px]">
               High Quality
             </h3>
-            <p className="text-lg text-[#898989]">Crafted from top materials</p>
+            <p className="text-steelGray text-lg">Crafted from top materials</p>
           </div>
         </div>
 
@@ -34,7 +34,7 @@ const ServicesHighlight = () => {
             <h3 className="text-xl font-semibold text-[#242424] xl:text-[22px]">
               Warranty Protection
             </h3>
-            <p className="text-lg text-[#898989]">Over 2 years</p>
+            <p className="text-steelGray text-lg">Over 2 years</p>
           </div>
         </div>
       </div>
@@ -51,7 +51,7 @@ const ServicesHighlight = () => {
             <h3 className="text-xl font-semibold text-[#242424] xl:text-[22px]">
               Free Shipping
             </h3>
-            <p className="text-lg text-[#898989]">Order over 150$</p>
+            <p className="text-steelGray text-lg">Order over 150$</p>
           </div>
         </div>
 
@@ -66,7 +66,7 @@ const ServicesHighlight = () => {
             <h3 className="text-xl font-semibold text-[#242424] xl:text-[22px]">
               24 / 7 Support
             </h3>
-            <p className="text-lg text-[#898989]">Dedicated support</p>
+            <p className="text-steelGray text-lg">Dedicated support</p>
           </div>
         </div>
       </div>

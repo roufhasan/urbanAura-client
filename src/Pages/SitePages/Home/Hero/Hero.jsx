@@ -1,32 +1,68 @@
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import heroImg from "../../../../assets/images/home/hero-bg.jpg";
 
 const Hero = () => {
+  const fadeInUpAnimation = {
+    hidden: {
+      opacity: 0,
+      y: 100,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.3,
+        duration: 1,
+      },
+    },
+  };
+
   return (
     <section
-      style={{ backgroundImage: `url(${heroImg})` }}
-      className="flex h-[calc(100vh-106px)] max-h-[716px] min-h-[470px] w-full flex-col items-start justify-evenly bg-cover bg-center bg-no-repeat text-[#333] md:items-end md:justify-center md:pr-[7%]"
+      style={{
+        backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url(${heroImg}) `,
+      }}
+      className="flex h-screen max-h-[800px] min-h-[470px] w-full items-center justify-center bg-cover bg-center bg-no-repeat px-[4%] text-[#333] md:px-[7%]"
     >
-      <div className="bg-[#fff3e3] px-[4%] pr-14 pt-16 md:max-w-[643px] md:pl-10">
-        <p className="font-semibold">New Arrival</p>
-        <h1 className="mt-2 text-[35px] font-bold leading-tight text-[#b88e2f] md:text-[45px] lg:text-[48px] xl:text-[52px]">
-          Discover Our <br />
-          New Collection
-        </h1>
-        <p className="mt-4 text-lg font-medium">
-          Refresh your space with our latest furniture designs. Stylish,
-          comfortable, and made for you.
-        </p>
-        <motion.button whileTap={{ scale: 0.9 }}>
+      <motion.div
+        initial="hidden"
+        animate="show"
+        variants={fadeInUpAnimation}
+        className="text-center"
+      >
+        <motion.p
+          variants={fadeInUpAnimation}
+          className="gradient-text mb-1 text-sm font-medium uppercase"
+        >
+          enlighten your home
+        </motion.p>
+        <motion.h3
+          variants={fadeInUpAnimation}
+          className="gradient-text mb-2.5 text-5xl font-semibold capitalize md:text-6xl md:font-bold"
+        >
+          harmony in design :
+        </motion.h3>
+        <motion.h3
+          variants={fadeInUpAnimation}
+          className="gradient-text mb-5 text-5xl font-semibold capitalize md:text-6xl md:font-bold"
+        >
+          blending form and function
+        </motion.h3>
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.9 }}
+          transition={{ duration: 0.2 }}
+          variants={fadeInUpAnimation}
+        >
           <Link
             to="/shop"
-            className="mb-9 mt-12 inline-block bg-[#B88E2F] px-14 py-4  font-bold uppercase text-white md:px-16 lg:px-[68px] lg:py-5 xl:px-[72px] xl:py-6"
+            className="gradient-text inline-block rounded-full border border-white px-4 py-0.5 text-lg font-semibold"
           >
-            Buy Now
+            Shop Now
           </Link>
         </motion.button>
-      </div>
+      </motion.div>
     </section>
   );
 };

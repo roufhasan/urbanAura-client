@@ -93,11 +93,11 @@ const Login = () => {
         <div className="mt-6">
           <form onSubmit={handleSubmit(onSubmit)}>
             <h1 className="text-4xl font-semibold">Welcome Back</h1>
-            <p className="text-xl italic text-[#9f9f9f]">Enter you details</p>
+            <p className="text-cadetGray text-xl italic">Enter you details</p>
 
             <label
               htmlFor="email"
-              className="mb-2 mt-10 block w-full text-[#9f9f9f]"
+              className="text-cadetGray mb-2 mt-10 block w-full"
             >
               {errors.email ? (
                 <span className="text-red-500">Email is required*</span>
@@ -113,7 +113,7 @@ const Login = () => {
             />
             <label
               htmlFor="password"
-              className="mb-2 mt-6 block w-full text-[#9f9f9f]"
+              className="text-cadetGray mb-2 mt-6 block w-full"
             >
               {errors.password ? (
                 <span className="text-sm text-red-500">
@@ -134,9 +134,9 @@ const Login = () => {
               })}
             />
 
-            <p className="mb-8 mt-6 text-right text-sm text-[#9f9f9f]">
+            <p className="text-cadetGray mb-8 mt-6 text-right text-sm">
               Don&apos;t have account?{" "}
-              <Link to="/signup" className="text-medium text-[#b88e2f]">
+              <Link to="/signup" className="text-medium text-primary">
                 Register
               </Link>
             </p>
@@ -144,22 +144,22 @@ const Login = () => {
             <button
               disabled={loading}
               type="Submit"
-              className={`block w-full rounded-[10px] py-2 text-xl text-white ${loading ? "bg-[#b88f2fc4]" : "bg-[#b88e2f] transition-all hover:bg-[#a07b26]"}`}
+              className={`block w-full rounded-[10px] py-2 text-xl text-white ${loading ? "bg-[#b88f2fc4]" : "bg-primary transition-all hover:bg-[#a07b26]"}`}
             >
               Login
             </button>
           </form>
 
           {/* divider and other login buttons */}
-          <div className="mb-4 mt-8 flex items-center gap-2.5 text-[#9f9f9f]">
-            <div className="h-0.5 w-full bg-[#9f9f9f]"></div>
+          <div className="text-cadetGray mb-4 mt-8 flex items-center gap-2.5">
+            <div className="bg-cadetGray h-0.5 w-full"></div>
             <p className="">OR</p>
-            <div className="h-0.5 w-full bg-[#9f9f9f]"></div>
+            <div className="bg-cadetGray h-0.5 w-full"></div>
           </div>
           <button
             onClick={handleGoogleLogin}
             disabled={loading}
-            className={`my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg ${loading ? "text-[#9f9f9f]" : "transition-all hover:bg-[#b88e2f] hover:text-white"}`}
+            className={`my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg ${loading ? "text-cadetGray" : "transition-all hover:bg-primary hover:text-white"}`}
           >
             <img
               className="size-6"
@@ -172,7 +172,7 @@ const Login = () => {
           <button
             onClick={handleDemoLogin}
             disabled={loading}
-            className={`my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg ${loading ? "text-[#9f9f9f]" : "transition-all hover:bg-[#b88e2f] hover:text-white"}`}
+            className={`my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg ${loading ? "text-cadetGray" : "transition-all hover:bg-primary hover:text-white"}`}
           >
             <BsFillPeopleFill
               size={24}
@@ -183,7 +183,7 @@ const Login = () => {
           <button
             onClick={handleDemoAdminLogin}
             disabled={loading}
-            className={`flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg ${loading ? "text-[#9f9f9f]" : "transition-all hover:bg-[#b88e2f] hover:text-white"}`}
+            className={`flex w-full items-center justify-center gap-3 rounded-[10px] border py-2 text-lg ${loading ? "text-cadetGray" : "transition-all hover:bg-primary hover:text-white"}`}
           >
             <BsFillPersonFill
               size={24}

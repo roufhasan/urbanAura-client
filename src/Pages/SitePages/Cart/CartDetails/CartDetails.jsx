@@ -32,7 +32,7 @@ const CartDetails = () => {
               <div className="overflow-x-auto">
                 <table className="table">
                   {/* head */}
-                  <thead className="bg-[#f9f1e7]">
+                  <thead className="bg-cream">
                     <tr className="text-left text-base font-medium text-black">
                       <th></th>
                       <th className="py-4">Product</th>
@@ -65,7 +65,7 @@ const CartDetails = () => {
                           <td>
                             <motion.p
                               whileTap={{ scale: 0.9 }}
-                              className="text-[#9f9f9f]"
+                              className="text-cadetGray"
                             >
                               <Link to={`/products/${item.product_id}`}>
                                 {item.title}
@@ -73,7 +73,7 @@ const CartDetails = () => {
                             </motion.p>
                           </td>
                           <td>
-                            <p className="text-[#9f9f9f]">${item.price}</p>
+                            <p className="text-cadetGray">${item.price}</p>
                           </td>
                           <td>
                             <div className="flex items-center gap-3">
@@ -111,7 +111,7 @@ const CartDetails = () => {
                             <BiSolidTrashAlt
                               onClick={() => handleCartItemDel(item.product_id)}
                               size={26}
-                              className="cursor-pointer text-[#b88e2f] transition-all hover:text-[#947325]"
+                              className="cursor-pointer text-primary transition-all hover:text-[#947325]"
                             />
                           </td>
                         </tr>
@@ -121,26 +121,26 @@ const CartDetails = () => {
               </div>
             </div>
 
-            <div className="mt-16 h-fit bg-[#f9f1e7] px-10 pb-10 pt-4 text-right md:px-16 lg:mt-0 lg:inline-block lg:pb-20 lg:text-left">
+            <div className="bg-cream mt-16 h-fit px-10 pb-10 pt-4 text-right md:px-16 lg:mt-0 lg:inline-block lg:pb-20 lg:text-left">
               <h2 className="mb-8 text-2xl font-semibold lg:mb-14 lg:text-[32px]">
                 Cart Totals
               </h2>
               <p className="mb-2 md:mb-8">
                 <span className="mr-16 font-medium">Subtotal</span>
-                <span className="text-[#9f9f9f]">
+                <span className="text-cadetGray">
                   ${formatPrice(totalPrice)}
                 </span>
               </p>
               <p className="mb-8 md:mb-10">
                 <span className="mr-14 font-medium">Total</span>
-                <span className="text-xl font-medium text-[#b88e2f]">
+                <span className="text-xl font-medium text-primary">
                   ${formatPrice(totalPrice)}
                 </span>
               </p>
               <motion.button whileTap={{ scale: 0.9 }}>
                 <Link
                   to="/checkout"
-                  className="inline-block rounded-2xl border border-black px-6 py-3 text-lg transition-all hover:border-[#b88e2f] hover:bg-[#b88e2f] hover:text-white md:py-4 lg:px-9 lg:text-xl xl:px-12"
+                  className="inline-block rounded-2xl border border-black px-6 py-3 text-lg transition-all hover:border-primary hover:bg-primary hover:text-white md:py-4 lg:px-9 lg:text-xl xl:px-12"
                 >
                   Check Out
                 </Link>
@@ -152,8 +152,8 @@ const CartDetails = () => {
             <h1 className="mb-2 text-2xl font-medium">
               You have not added any items to the cart.
             </h1>
-            <div className="text-[#9f9f9f]">
-              <Link to="/shop" className="text-[#b88e2f]">
+            <div className="text-cadetGray">
+              <Link to="/shop" className="text-primary">
                 Browse our catalog
               </Link>{" "}
               and add your desired items to see them here.

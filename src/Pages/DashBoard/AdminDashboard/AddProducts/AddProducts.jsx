@@ -112,7 +112,7 @@ const AddProducts = () => {
       <div className="flex h-full w-full items-center gap-3 bg-white px-[4%] py-7 shadow-sm md:px-5">
         <Link
           to="/dashboard/orders"
-          className="grid size-10 place-items-center rounded border shadow-sm transition-all hover:border-transparent hover:bg-[#b88e2f] hover:text-white"
+          className="grid size-10 place-items-center rounded border shadow-sm transition-all hover:border-transparent hover:bg-primary hover:text-white"
         >
           <BsArrowLeft className="text-xl" />
         </Link>
@@ -304,19 +304,19 @@ const AddProducts = () => {
           <div className="flex items-center justify-between">
             <Link
               to="/dashboard/products"
-              className="rounded-md border bg-white px-4 py-1 shadow-sm transition-all hover:bg-[#b88e2f] hover:text-white"
+              className="rounded-md border bg-white px-4 py-1 shadow-sm transition-all hover:bg-primary hover:text-white"
             >
               Discard
             </Link>
             <div className="space-x-6">
               <Link
                 to="/dashboard/products"
-                className="rounded-md border bg-[#f7e8c1] px-4 py-1 text-[#b88e2f] shadow-sm transition-all hover:bg-[#e0c993]"
+                className="rounded-md border bg-[#f7e8c1] px-4 py-1 text-primary shadow-sm transition-all hover:bg-[#e0c993]"
               >
                 Schedule
               </Link>
               <motion.button
-                className="rounded-md border bg-[#b88e2f] px-4 py-1 text-white shadow-sm transition-all hover:bg-[#a07d28]"
+                className="rounded-md border bg-primary px-4 py-1 text-white shadow-sm transition-all hover:bg-[#a07d28]"
                 type="submit"
                 whileTap={{ scale: 0.9 }}
               >

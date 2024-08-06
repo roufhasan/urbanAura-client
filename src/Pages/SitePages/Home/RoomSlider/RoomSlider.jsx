@@ -39,7 +39,7 @@ const RoomSlider = () => {
   ];
 
   return (
-    <section className="my-16 bg-[#FCF8F3] px-[4%] py-12 text-[#3A3A3A] md:flex md:items-center md:gap-4 md:px-[7%]">
+    <section className="text-charcoal my-16 bg-[#FCF8F3] px-[4%] py-12 md:flex md:items-center md:gap-4 md:px-[7%]">
       {/* Left Side Text */}
       <div className="mb-10 md:mb-0 md:w-[35%]">
         <h1 className="text-[32px] font-bold leading-none lg:text-[40px]">
@@ -52,7 +52,7 @@ const RoomSlider = () => {
         <motion.button whileTap={{ scale: 0.9 }}>
           <Link
             to="/shop"
-            className="inline-block bg-[#B88E2F] px-9 py-3 font-semibold text-white"
+            className="inline-block bg-primary px-9 py-3 font-semibold text-white"
           >
             Explore More
           </Link>
@@ -108,7 +108,7 @@ const RoomSlider = () => {
                   </div>
                   <Link
                     to="/shop"
-                    className="inline-block h-full bg-[#B88E2F] p-3"
+                    className="inline-block h-full bg-primary p-3"
                   >
                     <BsArrowRight size={24} className="text-white" />
                   </Link>

@@ -139,8 +139,8 @@ const AccountSettings = () => {
           onClick={() => setActiveTab("profile")}
           className={`flex w-1/2 cursor-pointer items-center justify-center gap-1.5 border-b-2 pb-2 text-center font-semibold transition-all ${
             activeTab === "profile"
-              ? "border-[#b88e2f] text-[#b88e2f]"
-              : "text-gray-400/90 hover:text-[#b88e2f]"
+              ? "border-primary text-primary"
+              : "text-gray-400/90 hover:text-primary"
           }`}
         >
           <BsPersonGear size={22} />
@@ -150,8 +150,8 @@ const AccountSettings = () => {
           onClick={() => setActiveTab("settings")}
           className={`flex w-1/2 cursor-pointer items-center justify-center gap-1.5 border-b-2 pb-2 font-semibold transition-all ${
             activeTab === "settings"
-              ? "border-[#b88e2f] text-[#b88e2f]"
-              : "text-gray-400/90 hover:text-[#b88e2f]"
+              ? "border-primary text-primary"
+              : "text-gray-400/90 hover:text-primary"
           }`}
         >
           <BsGear size={18} />
@@ -200,13 +200,13 @@ const AccountSettings = () => {
                 className="cursor-pointer rounded-md px-3 py-1 font-medium"
               >
                 {user.photoURL ? (
-                  <motion.span className="flex items-center gap-2 rounded-md border border-[#b88e2f] px-3 py-1 transition-all hover:bg-[#b88e2f] hover:text-white">
+                  <motion.span className="flex items-center gap-2 rounded-md border border-primary px-3 py-1 transition-all hover:bg-primary hover:text-white">
                     <TbCameraPlus className="text-xl" /> Change Avatar
                   </motion.span>
                 ) : (
                   <motion.span
                     whileTap={{ scale: 0.9 }}
-                    className="flex items-center gap-2 rounded-md border border-[#b88e2f] px-3 py-1 transition-all hover:bg-[#b88e2f] hover:text-white"
+                    className="flex items-center gap-2 rounded-md border border-primary px-3 py-1 transition-all hover:bg-primary hover:text-white"
                   >
                     <TbCameraPlus className="text-xl" /> Upload Avatar
                   </motion.span>
@@ -238,7 +238,7 @@ const AccountSettings = () => {
                   <motion.span
                     whileTap={{ scale: 0.9 }}
                     onClick={() => setNameReadOnly(false)}
-                    className="cursor-pointer text-gray-400 transition-all hover:text-[#b88e2f]"
+                    className="cursor-pointer text-gray-400 transition-all hover:text-primary"
                   >
                     <BsPencilSquare />
                   </motion.span>
@@ -294,7 +294,7 @@ const AccountSettings = () => {
                   <button
                     disabled={loading}
                     type="submit"
-                    className="w-1/2 rounded-md bg-[#b88e2f] px-3 py-1.5 text-center font-medium text-white"
+                    className="w-1/2 rounded-md bg-primary px-3 py-1.5 text-center font-medium text-white"
                   >
                     Update
                   </button>
@@ -302,7 +302,7 @@ const AccountSettings = () => {
                   <button
                     disabled
                     type="submit"
-                    className="w-1/2 rounded-md bg-[#b88e2f]/80 px-3 py-1.5 text-center font-medium text-white"
+                    className="w-1/2 rounded-md bg-primary/80 px-3 py-1.5 text-center font-medium text-white"
                   >
                     Update
                   </button>

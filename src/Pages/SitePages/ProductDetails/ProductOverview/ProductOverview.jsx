@@ -82,7 +82,7 @@ const ProductOverview = ({ product, reviews }) => {
                     key={image}
                     onClick={() => setMainImage(image)}
                     onMouseEnter={() => setMainImage(image)}
-                    className={`size-16 rounded-[10px] border-[3px] object-cover object-center transition-all duration-150 ease-in sm:size-20 md:h-20 md:w-[76px] ${image === mainImage ? "border-[#b88e2f]" : "border-transparent"}`}
+                    className={`size-16 rounded-[10px] border-[3px] object-cover object-center transition-all duration-150 ease-in sm:size-20 md:h-20 md:w-[76px] ${image === mainImage ? "border-primary" : "border-transparent"}`}
                     src={image}
                     alt="shop image"
                     loading="lazy"
@@ -106,7 +106,7 @@ const ProductOverview = ({ product, reviews }) => {
           <h1 className="text-2xl font-semibold sm:text-3xl lg:text-4xl lg:font-normal xl:text-[42px]">
             {title}
           </h1>
-          <p className="mt-4 text-xl font-medium text-[#9f9f9f] sm:text-2xl">
+          <p className="text-cadetGray mt-4 text-xl font-medium sm:text-2xl">
             ${" "}
             {price.discounted
               ? formatPrice(price.discounted)
@@ -118,8 +118,8 @@ const ProductOverview = ({ product, reviews }) => {
               value={calculateAvgRating(reviews)}
               readOnly
             />
-            <div className="h-6 w-0.5 bg-[#9f9f9f] lg:h-8"></div>
-            <p className="text-sm text-[#9f9f9f]">
+            <div className="bg-cadetGray h-6 w-0.5 lg:h-8"></div>
+            <p className="text-cadetGray text-sm">
               {reviews.length} customer review
             </p>
           </div>
@@ -138,13 +138,13 @@ const ProductOverview = ({ product, reviews }) => {
           </p>
           {/* Size Selection Buttons */}
           <div className="text-sm">
-            <p className="text-[#9f9f9f]">Size</p>
+            <p className="text-cadetGray">Size</p>
             <div className="mt-3 flex gap-4">
               {sizes.map((itemSize, i) => (
                 <button
                   onClick={() => setSize(itemSize)}
                   key={i}
-                  className={`size-8 rounded-md uppercase ${size === itemSize ? "bg-[#b88e2f] text-white" : "bg-[#f9f1e7]"}`}
+                  className={`size-8 rounded-md uppercase ${size === itemSize ? "bg-primary text-white" : "bg-cream"}`}
                 >
                   {itemSize}
                 </button>
@@ -153,7 +153,7 @@ const ProductOverview = ({ product, reviews }) => {
           </div>
           {/* Color Selection Buttons */}
           <div className="mt-5 text-sm">
-            <p className="text-[#9f9f9f]">Color</p>
+            <p className="text-cadetGray">Color</p>
             <div className="mt-3 flex gap-4">
               {colors.map((itemColor, i) => (
                 <div
@@ -169,7 +169,7 @@ const ProductOverview = ({ product, reviews }) => {
           {/* buttons */}
           <div className="mb-16 mt-8 flex flex-col flex-wrap gap-4 lg:flex-row">
             {/* Quantity selection button */}
-            <div className="inline-flex w-full flex-1 items-center justify-center gap-2 rounded-[10px] border border-[#9f9f9f] p-2 lg:w-1/2 lg:p-3 xl:max-w-[120px] xl:p-5">
+            <div className="border-cadetGray inline-flex w-full flex-1 items-center justify-center gap-2 rounded-[10px] border p-2 lg:w-1/2 lg:p-3 xl:max-w-[120px] xl:p-5">
               <button
                 onClick={decreaseQuantity}
                 className="flex size-5 items-center justify-center rounded-full transition-all hover:bg-gray-300"
@@ -188,7 +188,7 @@ const ProductOverview = ({ product, reviews }) => {
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={submitCartItem}
-              className="flex flex-1 items-center justify-center rounded-[10px] border border-black py-2 transition-colors hover:border-transparent hover:bg-[#b88e2f] hover:text-white md:w-full md:px-12 lg:w-1/2 lg:px-6 lg:text-lg xl:max-w-[217px] xl:px-2 xl:text-xl"
+              className="flex flex-1 items-center justify-center rounded-[10px] border border-black py-2 transition-colors hover:border-transparent hover:bg-primary hover:text-white md:w-full md:px-12 lg:w-1/2 lg:px-6 lg:text-lg xl:max-w-[217px] xl:px-2 xl:text-xl"
             >
               Add To Cart
             </motion.button>
@@ -196,7 +196,7 @@ const ProductOverview = ({ product, reviews }) => {
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={toggleFavourite}
-              className="group flex items-center justify-center gap-2.5 rounded-[10px] border border-black py-2 transition-colors hover:border-transparent hover:bg-[#b88e2f] hover:text-white md:w-full md:px-12 xl:max-w-[215px] xl:py-[14px]"
+              className="group flex items-center justify-center gap-2.5 rounded-[10px] border border-black py-2 transition-colors hover:border-transparent hover:bg-primary hover:text-white md:w-full md:px-12 xl:max-w-[215px] xl:py-[14px]"
             >
               {isFavourite ? (
                 <BsHeartFill className="text-red-600 group-hover:text-white" />
@@ -207,8 +207,8 @@ const ProductOverview = ({ product, reviews }) => {
             </motion.button>
           </div>
 
-          <div className="border-t border-[#d9d9d9] pt-10">
-            <div className="grid gap-3 text-[#9f9f9f]">
+          <div className="border-paleGray border-t pt-10">
+            <div className="text-cadetGray grid gap-3">
               <div className="grid grid-cols-[90px_34px_auto]">
                 <span>SKU</span>
                 <span className="text-center">:</span>

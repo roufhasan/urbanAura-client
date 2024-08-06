@@ -144,7 +144,7 @@ const PaymentModal = ({
           type="submit"
           whileTap={{ scale: 0.9 }}
           onClick={handleFormModal}
-          className="rounded-2xl border border-black px-24 py-4 text-xl transition-all hover:border-transparent hover:bg-[#B88E2F] hover:text-white"
+          className="rounded-2xl border border-black px-24 py-4 text-xl transition-all hover:border-transparent hover:bg-primary hover:text-white"
         >
           Place order
         </motion.button>
@@ -169,7 +169,7 @@ const PaymentModal = ({
                   <h3 className="text-xl font-semibold">Payment details</h3>
                   <BsXLg
                     onClick={() => setIsOpen(false)}
-                    className="cursor-pointer text-xl text-[#9f9f9f] transition-all hover:text-black"
+                    className="text-cadetGray cursor-pointer text-xl transition-all hover:text-black"
                   />
                 </div>
                 <div>
@@ -243,7 +243,7 @@ const PaymentModal = ({
                   <button
                     type="submit"
                     disabled={!stripe || !clientSecret || processing}
-                    className={`block w-full rounded-md bg-[#b88e2f] px-3 py-2 font-medium text-white transition-all ${!stripe || !clientSecret || (processing && "bg-[#b88f2fc7]")}`}
+                    className={`block w-full rounded-md bg-primary px-3 py-2 font-medium text-white transition-all ${!stripe || !clientSecret || (processing && "bg-[#b88f2fc7]")}`}
                   >
                     Place your order
                   </button>

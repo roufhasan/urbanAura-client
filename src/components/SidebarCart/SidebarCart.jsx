@@ -9,7 +9,7 @@ import { formatPrice } from "../../utils/formatPrice";
 import { calculateTotalPrice } from "../../utils/calculateTotalPrice";
 import useCart from "../../hooks/useCart";
 
-const SidebarCart = ({ user }) => {
+const SidebarCart = ({ user, isHomePage }) => {
   const { cart, handleCartItemDel } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [isShowing, setIsShowing] = useState(true);
@@ -28,7 +28,7 @@ const SidebarCart = ({ user }) => {
                 setIsShowing(false);
                 setTimeout(() => setIsShowing(true), 300);
               }}
-              className="cursor-pointer text-2xl lg:text-[23px]"
+              className={`${isHomePage && "text-white"} cursor-pointer text-2xl lg:text-[23px]`}
             />
             {cart && cart.length > 0 && (
               <p className="absolute -right-1 -top-1 flex size-[14px] items-center justify-center rounded-full bg-red-500 text-xs text-white">
@@ -67,10 +67,10 @@ const SidebarCart = ({ user }) => {
                   <BsBagX
                     size={19}
                     onClick={() => setIsOpen(false)}
-                    className="cursor-pointer text-[#9f9f9f] transition-all hover:text-[#8f8f8f]"
+                    className="text-cadetGray cursor-pointer transition-all hover:text-[#8f8f8f]"
                   />
                 </div>
-                <div className="mb-10 mt-6 h-[1px] w-5/6 bg-[#d9d9d9]"></div>
+                <div className="bg-paleGray mb-10 mt-6 h-[1px] w-5/6"></div>
                 {/* Products container */}
                 <div className="h-[60vh] max-h-[648px] space-y-5 overflow-y-auto">
                   {cart && cart.length > 0 ? (
@@ -105,7 +105,7 @@ const SidebarCart = ({ user }) => {
                             <p className="mt-2 font-light">
                               {item.quantity}
                               <span className="mx-4 text-xs">X</span>
-                              <span className="text-xs font-medium text-[#b88e2f]">
+                              <span className="text-xs font-medium text-primary">
                                 ${formatPrice(item.price * item.quantity)}
                               </span>
                             </p>
@@ -114,7 +114,7 @@ const SidebarCart = ({ user }) => {
                         <IoCloseCircle
                           onClick={() => handleCartItemDel(item.product_id)}
                           size={24}
-                          className="cursor-pointer text-[#9f9f9f] transition-all hover:text-[#888888]"
+                          className="text-cadetGray cursor-pointer transition-all hover:text-[#888888]"
                         />
                       </div>
                     ))
@@ -127,17 +127,17 @@ const SidebarCart = ({ user }) => {
               <div>
                 <div className="mt-7 flex items-center justify-between pl-[30px] pr-24">
                   <p>Subtotal</p>
-                  <p className="font-semibold text-[#b88e2f]">
+                  <p className="font-semibold text-primary">
                     ${formatPrice(totalPrice)}
                   </p>
                 </div>
-                <div className="my-6 h-[1px] bg-[#d9d9d9]"></div>
+                <div className="bg-paleGray my-6 h-[1px]"></div>
                 {/* buttons */}
                 <div className="flex w-full justify-between gap-5 px-7 pb-7">
                   <motion.button
                     whileTap={{ scale: 0.9 }}
                     onClick={() => setIsOpen(false)}
-                    className="w-full rounded-full border border-black text-center text-xs transition-all hover:border-[#b88e2f] hover:bg-[#b88e2f] hover:text-white"
+                    className="w-full rounded-full border border-black text-center text-xs transition-all hover:border-primary hover:bg-primary hover:text-white"
                   >
                     <Link
                       to="/cart"
@@ -150,7 +150,7 @@ const SidebarCart = ({ user }) => {
                     <motion.button
                       whileTap={{ scale: 0.9 }}
                       onClick={() => setIsOpen(false)}
-                      className="w-full rounded-full border border-black text-center text-xs transition-all hover:border-[#b88e2f] hover:bg-[#b88e2f] hover:text-white"
+                      className="w-full rounded-full border border-black text-center text-xs transition-all hover:border-primary hover:bg-primary hover:text-white"
                     >
                       <Link
                         to="/checkout"
@@ -163,7 +163,7 @@ const SidebarCart = ({ user }) => {
                     <motion.button
                       whileTap={{ scale: 0.9 }}
                       onClick={() => toast.error("Cart is empty!")}
-                      className="w-full rounded-full border border-black px-[30px] py-1.5 text-center text-xs transition-all hover:border-[#b88e2f] hover:bg-[#b88e2f] hover:text-white"
+                      className="w-full rounded-full border border-black px-[30px] py-1.5 text-center text-xs transition-all hover:border-primary hover:bg-primary hover:text-white"
                     >
                       Checkout
                     </motion.button>

@@ -84,7 +84,7 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
             <BsXLg
               onClick={() => setIsOpen(false)}
               size={24}
-              className="cursor-pointer text-[#9f9f9f] transition-all hover:text-[#8f8f8f]"
+              className="text-cadetGray cursor-pointer transition-all hover:text-[#8f8f8f]"
             />
           </DialogTitle>
 
@@ -92,7 +92,7 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
             <form onSubmit={handleSubmit(onSubmit)} className="md:min-w-80">
               <label
                 htmlFor="email"
-                className="mb-2 mt-10 block w-full text-[#9f9f9f]"
+                className="text-cadetGray mb-2 mt-10 block w-full"
               >
                 {errors.email ? (
                   <span className="text-red-500">Email is required*</span>
@@ -109,7 +109,7 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
 
               <label
                 htmlFor="password"
-                className="mb-2 mt-6 block w-full text-[#9f9f9f]"
+                className="text-cadetGray mb-2 mt-6 block w-full"
               >
                 {errors.password ? (
                   <span className="text-sm text-red-500">
@@ -133,7 +133,7 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
               <button
                 disabled={loading}
                 type="Submit"
-                className={`mt-8 block w-full rounded-[10px] py-2 text-xl text-white ${loading ? "bg-[#b88f2fc4]" : "bg-[#b88e2f] transition-all hover:bg-[#a07b26]"}`}
+                className={`mt-8 block w-full rounded-[10px] py-2 text-xl text-white ${loading ? "bg-[#b88f2fc4]" : "bg-primary transition-all hover:bg-[#a07b26]"}`}
               >
                 Login
               </button>
@@ -144,7 +144,7 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
               <button
                 disabled={loading}
                 onClick={handleGoogleLogin}
-                className={`my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border px-3 py-2 text-lg md:px-6 ${loading ? "text-[#9f9f9f]" : "transition-all hover:bg-[#b88e2f] hover:text-white"}`}
+                className={`my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border px-3 py-2 text-lg md:px-6 ${loading ? "text-cadetGray" : "transition-all hover:bg-primary hover:text-white"}`}
               >
                 <img
                   className="size-6"
@@ -157,7 +157,7 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
               <button
                 disabled={loading}
                 onClick={handleDemoLogin}
-                className={`my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border px-3 py-2 text-lg md:px-6 ${loading ? "text-[#9f9f9f]" : "transition-all hover:bg-[#b88e2f] hover:text-white"}`}
+                className={`my-4 flex w-full items-center justify-center gap-3 rounded-[10px] border px-3 py-2 text-lg md:px-6 ${loading ? "text-cadetGray" : "transition-all hover:bg-primary hover:text-white"}`}
               >
                 <BsFillPeopleFill
                   size={24}
@@ -168,7 +168,7 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
               <button
                 disabled={loading}
                 onClick={handleDemoAdminLogin}
-                className={`flex w-full items-center justify-center gap-3 rounded-[10px] border px-3 py-2 text-lg md:px-6 ${loading ? "text-[#9f9f9f]" : "transition-all hover:bg-[#b88e2f] hover:text-white"}`}
+                className={`flex w-full items-center justify-center gap-3 rounded-[10px] border px-3 py-2 text-lg md:px-6 ${loading ? "text-cadetGray" : "transition-all hover:bg-primary hover:text-white"}`}
               >
                 <BsFillPersonFill
                   size={24}
@@ -176,9 +176,9 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
                 />
                 <p>Login as Demo Admin</p>
               </button>
-              <p className="mb-8 mt-6 text-center text-sm text-[#9f9f9f]">
+              <p className="text-cadetGray mb-8 mt-6 text-center text-sm">
                 Don&apos;t have account?{" "}
-                <Link to="/signup" className="text-medium text-[#b88e2f]">
+                <Link to="/signup" className="text-medium text-primary">
                   Register
                 </Link>
               </p>

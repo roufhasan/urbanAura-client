@@ -74,18 +74,18 @@ const AddToCartModal = ({ isOpen, setIsOpen, selectedProduct }) => {
                     <BsXLg
                       onClick={() => setIsOpen(false)}
                       size={24}
-                      className="cursor-pointer text-[#9f9f9f] transition-all hover:text-[#8f8f8f]"
+                      className="text-cadetGray cursor-pointer transition-all hover:text-[#8f8f8f]"
                     />
                   </DialogTitle>
                   {/* Size Selection Buttons */}
                   <div className="mt-5 text-sm">
-                    <p className="text-[#9f9f9f]">Size</p>
+                    <p className="text-cadetGray">Size</p>
                     <div className="mt-3 flex gap-4">
                       {sizes.map((itemSize, i) => (
                         <button
                           onClick={() => setSize(itemSize)}
                           key={i}
-                          className={`size-8 rounded-md uppercase ${size === itemSize ? "bg-[#b88e2f] text-white" : "bg-[#f9f1e7]"}`}
+                          className={`size-8 rounded-md uppercase ${size === itemSize ? "bg-primary text-white" : "bg-cream"}`}
                         >
                           {itemSize}
                         </button>
@@ -94,7 +94,7 @@ const AddToCartModal = ({ isOpen, setIsOpen, selectedProduct }) => {
                   </div>
                   {/* Color Selection Buttons */}
                   <div className="mt-5 text-sm">
-                    <p className="text-[#9f9f9f]">Color</p>
+                    <p className="text-cadetGray">Color</p>
                     <div className="mt-3 flex gap-4">
                       {colors.map((itemColor, i) => (
                         <div

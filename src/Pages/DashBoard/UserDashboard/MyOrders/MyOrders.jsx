@@ -32,7 +32,7 @@ const MyOrders = () => {
       </Helmet>
       {orders && orders.length > 0 ? (
         <>
-          <h3 className="pb-8 pt-6 font-semibold text-[#b88e2f]">
+          <h3 className="pb-8 pt-6 font-semibold text-primary">
             My order history:
           </h3>
           <ul className="space-y-6">
@@ -43,7 +43,7 @@ const MyOrders = () => {
               >
                 <div>
                   <p className="truncate text-left text-sm text-gray-400">
-                    <span className="text-[#b88e2f]">
+                    <span className="text-primary">
                       Ordered #{order.items.length} items on:
                     </span>{" "}
                     {dateFormatMDY(order.date)}
@@ -70,7 +70,7 @@ const MyOrders = () => {
                     <div>
                       <motion.p
                         whileTap={{ scale: 0.9 }}
-                        className="w-24 cursor-pointer truncate text-lg transition-all hover:text-[#b88e2f]"
+                        className="w-24 cursor-pointer truncate text-lg transition-all hover:text-primary"
                       >
                         <Link to={`/products/${item.product_id}`}>
                           {item.title}
@@ -115,8 +115,8 @@ const MyOrders = () => {
           <h1 className="mb-2 mt-20 text-2xl font-medium">
             You have not buyed any product yet.
           </h1>
-          <div className="text-[#9f9f9f]">
-            <Link to="/shop" className="text-[#b88e2f]">
+          <div className="text-cadetGray">
+            <Link to="/shop" className="text-primary">
               Browse our catalog
             </Link>{" "}
             and buy your desired items to see them here.

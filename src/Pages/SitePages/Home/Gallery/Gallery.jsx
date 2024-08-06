@@ -16,7 +16,7 @@ const Gallery = () => {
         <p className="text-lg font-bold text-[#616161] md:text-xl">
           Share your setup with
         </p>
-        <h1 className="text-3xl font-bold text-[#3a3a3a] md:text-[40px]">
+        <h1 className="text-charcoal text-3xl font-bold md:text-[40px]">
           #FuniroFurniture
         </h1>
 

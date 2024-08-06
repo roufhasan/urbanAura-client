@@ -7,7 +7,7 @@ const RouteButton = ({ url }) => {
       <motion.button whileTap={{ scale: 0.9 }}>
         <Link
           to={url}
-          className="mr-auto inline-block border border-[#B88E2F] px-20 py-3 font-semibold text-[#B88E2F] transition-all hover:bg-[#B88E2F] hover:text-white"
+          className="mr-auto inline-block border border-primary px-20 py-3 font-semibold text-primary transition-all hover:bg-primary hover:text-white"
         >
           Show More
         </Link>

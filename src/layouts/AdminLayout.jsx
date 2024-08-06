@@ -89,7 +89,7 @@ const AdminLayout = () => {
                   <span>
                     <LuLayoutDashboard
                       size={21}
-                      className={`transition-all duration-200 ${isActive ? "text-[#b88e2f]" : "group-hover:text-[#b88e2f]"}`}
+                      className={`transition-all duration-200 ${isActive ? "text-primary" : "group-hover:text-primary"}`}
                     />
                   </span>
                   Dashboard
@@ -107,7 +107,7 @@ const AdminLayout = () => {
                   <span>
                     <BsCart3
                       size={21}
-                      className={`transition-all duration-200 ${isActive ? "text-[#b88e2f]" : "group-hover:text-[#b88e2f]"}`}
+                      className={`transition-all duration-200 ${isActive ? "text-primary" : "group-hover:text-primary"}`}
                     />
                   </span>
                   Orders
@@ -125,7 +125,7 @@ const AdminLayout = () => {
                   <span>
                     <BsBox2
                       size={18}
-                      className={`transition-all duration-200 ${isActive ? "text-[#b88e2f]" : "group-hover:text-[#b88e2f]"}`}
+                      className={`transition-all duration-200 ${isActive ? "text-primary" : "group-hover:text-primary"}`}
                     />
                   </span>
                   Products

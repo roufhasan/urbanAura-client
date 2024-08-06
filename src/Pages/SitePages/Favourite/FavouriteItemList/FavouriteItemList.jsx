@@ -36,7 +36,7 @@ const FavouriteItemList = ({
             {item.price.discount_percent && (
               <>
                 <div className="flex items-center gap-2 text-sm">
-                  <del className="text-[#9f9f9f]">
+                  <del className="text-cadetGray">
                     ${formatPrice(item.price.original)}
                   </del>
                   <p>-{item.price.discount_percent}%</p>
@@ -49,7 +49,7 @@ const FavouriteItemList = ({
             <button>
               <BiSolidTrashAlt
                 onClick={() => deleteFavouriteItem(item.product_id, user.email)}
-                className="cursor-pointer text-xl text-[#9f9f9f] transition-all hover:text-[#b88e2f]"
+                className="text-cadetGray cursor-pointer text-xl transition-all hover:text-primary"
               />
             </button>
             {cartItemIds.includes(item.product_id) ? (
@@ -75,7 +75,7 @@ const FavouriteItemList = ({
                     color: item.color,
                   })
                 }
-                className="bg-[#b88e2f] px-8 py-2 text-2xl text-white md:hidden"
+                className="bg-primary px-8 py-2 text-2xl text-white md:hidden"
               >
                 <BsCartPlus />
               </button>
@@ -96,7 +96,7 @@ const FavouriteItemList = ({
           {item.price.discount_percent && (
             <>
               <div className="flex items-center gap-2 text-sm">
-                <del className="text-[#9f9f9f]">
+                <del className="text-cadetGray">
                   ${formatPrice(item.price.original)}
                 </del>
                 <p>-{item.price.discount_percent}%</p>
@@ -129,7 +129,7 @@ const FavouriteItemList = ({
                   color: item.color,
                 })
               }
-              className="bg-[#b88e2f] px-8 py-2 text-2xl text-white"
+              className="bg-primary px-8 py-2 text-2xl text-white"
             >
               <BsCartPlus />
             </button>

@@ -21,7 +21,7 @@ const Contact = () => {
           <h1 className="mb-2 text-balance text-3xl font-semibold md:text-4xl">
             Get In Touch With Us
           </h1>
-          <p className="mx-auto max-w-[40.25rem] text-balance text-sm text-[#9f9f9f] md:text-base">
+          <p className="text-cadetGray mx-auto max-w-[40.25rem] text-balance text-sm md:text-base">
             For More Information About Our Product & Services. Please Feel Free
             To Drop Us An Email. Our Staff Always Be There To Help You Out. Do
             Not Hesitate!

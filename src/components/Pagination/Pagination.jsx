@@ -11,7 +11,7 @@ const Pagination = ({
       <button
         onClick={handlePrevClick}
         disabled={prevDisabled}
-        className={`rounded-md  px-2 py-1 ${prevDisabled ? "bg-gray-300 text-black" : "bg-[#b88e2f] text-white"}`}
+        className={`rounded-md  px-2 py-1 ${prevDisabled ? "bg-gray-300 text-black" : "bg-primary text-white"}`}
       >
         Prev
       </button>
@@ -21,7 +21,7 @@ const Pagination = ({
       <button
         onClick={handleNextClick}
         disabled={nextDisabled}
-        className={`rounded-md  px-2 py-1 ${nextDisabled ? "bg-gray-300 text-black" : "bg-[#b88e2f] text-white"}`}
+        className={`rounded-md  px-2 py-1 ${nextDisabled ? "bg-gray-300 text-black" : "bg-primary text-white"}`}
       >
         Next
       </button>

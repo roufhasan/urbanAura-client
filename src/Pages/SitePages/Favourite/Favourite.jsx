@@ -49,8 +49,8 @@ const Favourite = () => {
               <h1 className="mb-2 text-2xl font-medium">
                 You have not added any favourite products yet.
               </h1>
-              <div className="text-[#9f9f9f]">
-                <Link to="/shop" className="text-[#b88e2f]">
+              <div className="text-cadetGray">
+                <Link to="/shop" className="text-primary">
                   Browse our catalog
                 </Link>{" "}
                 and add your favourite items to see them here.

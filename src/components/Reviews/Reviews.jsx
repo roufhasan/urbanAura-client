@@ -123,7 +123,7 @@ const Reviews = ({ productId, reviews, setReviews }) => {
               value={calculateAvgRating(reviews)}
               readOnly
             />
-            <p className="ml-2 mt-2 text-[#9f9f9f]">{reviews.length} reviews</p>
+            <p className="text-cadetGray ml-2 mt-2">{reviews.length} reviews</p>
           </div>
         </div>
         <div>
@@ -132,14 +132,14 @@ const Reviews = ({ productId, reviews, setReviews }) => {
               {isSubmitted ? (
                 <button
                   onClick={deleteMyReview}
-                  className="rounded bg-[#b88e2f] px-5 py-2.5 font-medium text-white transition-all hover:bg-[#9e7b28] md:px-6 md:py-4"
+                  className="rounded bg-primary px-5 py-2.5 font-medium text-white transition-all hover:bg-[#9e7b28] md:px-6 md:py-4"
                 >
                   Delete my review
                 </button>
               ) : (
                 <button
                   onClick={() => setFormVisible(true)}
-                  className="rounded bg-[#b88e2f] px-5 py-2.5 font-medium text-white transition-all hover:bg-[#9e7b28] md:px-6 md:py-4"
+                  className="rounded bg-primary px-5 py-2.5 font-medium text-white transition-all hover:bg-[#9e7b28] md:px-6 md:py-4"
                 >
                   Write a review
                 </button>
@@ -148,7 +148,7 @@ const Reviews = ({ productId, reviews, setReviews }) => {
           ) : (
             <Link
               to="/login"
-              className="rounded bg-[#b88e2f] px-5 py-2.5 font-medium text-white transition-all hover:bg-[#9e7b28] md:px-6 md:py-4"
+              className="rounded bg-primary px-5 py-2.5 font-medium text-white transition-all hover:bg-[#9e7b28] md:px-6 md:py-4"
             >
               Write a review
             </Link>
@@ -195,7 +195,7 @@ const Reviews = ({ productId, reviews, setReviews }) => {
           <br />
           <button
             type="submit"
-            className="mt-6 rounded border border-[#b88e2f] px-8 py-2 font-medium transition-all hover:bg-[#b88e2f] hover:text-white"
+            className="mt-6 rounded border border-primary px-8 py-2 font-medium transition-all hover:bg-primary hover:text-white"
           >
             Submit
           </button>
@@ -223,9 +223,9 @@ const Reviews = ({ productId, reviews, setReviews }) => {
                     value={review.rating}
                     readOnly
                   />
-                  <p className="ml-1 mt-1 text-[#9f9f9f]">{review.name}</p>
+                  <p className="text-cadetGray ml-1 mt-1">{review.name}</p>
                 </div>
-                <p className="text-[#9f9f9f]">
+                <p className="text-cadetGray">
                   {formatReviewDate(review.date)}
                 </p>
               </div>

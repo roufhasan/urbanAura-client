@@ -70,7 +70,7 @@ const ProductsPagination = ({
           onClick={() => handlePageChange(i)}
           disabled={i === currentPage}
           className={`rounded-[10px] px-4 py-3 text-lg md:px-6 md:py-4 md:text-xl ${
-            i === currentPage ? "bg-[#d4a017] text-white" : "bg-[#f9f1e7]"
+            i === currentPage ? "bg-[#d4a017] text-white" : "bg-cream"
           }`}
         >
           {i}
@@ -117,7 +117,7 @@ const ProductsPagination = ({
           <button
             onClick={handlePrevClick}
             disabled={prevDisabled}
-            className={`rounded-[10px] bg-[#f9f1e7] px-4 py-2 font-light md:px-7 md:py-4 md:text-lg`}
+            className={`bg-cream rounded-[10px] px-4 py-2 font-light md:px-7 md:py-4 md:text-lg`}
           >
             Prev
           </button>
@@ -127,7 +127,7 @@ const ProductsPagination = ({
           <button
             onClick={handleNextClick}
             disabled={nextDisabled}
-            className={`rounded-[10px] bg-[#f9f1e7] px-4 py-2 font-light md:px-7 md:py-4 md:text-lg`}
+            className={`bg-cream rounded-[10px] px-4 py-2 font-light md:px-7 md:py-4 md:text-lg`}
           >
             Next
           </button>

@@ -61,7 +61,7 @@ const BillingDetails = () => {
                 </label>
                 <br />
                 <input
-                  className="h-[75px] w-full rounded-[10px] border border-[#9f9f9f] px-5 outline-none"
+                  className="border-cadetGray h-[75px] w-full rounded-[10px] border px-5 outline-none"
                   type="text"
                   id="firstName"
                   {...register("firstName", { required: true })}
@@ -76,7 +76,7 @@ const BillingDetails = () => {
                 </label>
                 <br />
                 <input
-                  className="h-[75px] w-full rounded-[10px] border border-[#9f9f9f] px-5 outline-none"
+                  className="border-cadetGray h-[75px] w-full rounded-[10px] border px-5 outline-none"
                   type="text"
                   id="lastName"
                   {...register("lastName", { required: true })}
@@ -92,7 +92,7 @@ const BillingDetails = () => {
               </label>
               <select
                 id="country"
-                className="h-[75px] w-full rounded-[10px] border border-[#9f9f9f] px-5"
+                className="border-cadetGray h-[75px] w-full rounded-[10px] border px-5"
                 {...register("country", { required: true })}
               >
                 <option value="usa">USA</option>
@@ -111,7 +111,7 @@ const BillingDetails = () => {
               </label>
               <br />
               <input
-                className="h-[75px] w-full rounded-[10px] border border-[#9f9f9f] px-5 outline-none"
+                className="border-cadetGray h-[75px] w-full rounded-[10px] border px-5 outline-none"
                 type="text"
                 id="city"
                 {...register("city", { required: true })}
@@ -126,7 +126,7 @@ const BillingDetails = () => {
               </label>
               <br />
               <input
-                className="h-[75px] w-full rounded-[10px] border border-[#9f9f9f] px-5 outline-none"
+                className="border-cadetGray h-[75px] w-full rounded-[10px] border px-5 outline-none"
                 type="text"
                 id="street"
                 {...register("street", { required: true })}
@@ -141,7 +141,7 @@ const BillingDetails = () => {
               </label>
               <br />
               <input
-                className="h-[75px] w-full rounded-[10px] border border-[#9f9f9f] px-5 outline-none"
+                className="border-cadetGray h-[75px] w-full rounded-[10px] border px-5 outline-none"
                 type="tel"
                 id="phone"
                 {...register("phone", { required: true })}
@@ -149,7 +149,7 @@ const BillingDetails = () => {
             </div>
             <div>
               <textarea
-                className="h-[75px] w-full rounded-[10px] border border-[#9f9f9f] px-5 py-6 outline-none"
+                className="border-cadetGray h-[75px] w-full rounded-[10px] border px-5 py-6 outline-none"
                 id="add_info"
                 placeholder="Additional information"
                 {...register("add_info")}
@@ -169,7 +169,7 @@ const BillingDetails = () => {
                 cart.map((item, index) => (
                   <li key={index} className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <p className="text-[#9f9f9f]">{item.title}</p>
+                      <p className="text-cadetGray">{item.title}</p>
                       <p className="text-xs font-medium">X</p>
                       <p className="text-xs font-medium">{item.quantity}</p>
                     </div>
@@ -187,12 +187,12 @@ const BillingDetails = () => {
             </div>
             <div className="flex items-center justify-between">
               <p>Total</p>
-              <p className="text-2xl font-bold text-[#B88E2F]">
+              <p className="text-2xl font-bold text-primary">
                 ${formatPrice(totalPrice)}
               </p>
             </div>
 
-            <p className="mt-8 border-t border-[#d9d9d9] pt-6 font-light">
+            <p className="border-paleGray mt-8 border-t pt-6 font-light">
               Your personal data will be used to support your experience
               throughout this website, to manage access to your account, and for
               other purposes described in our{" "}

@@ -81,11 +81,11 @@ const Signup = () => {
         <div className="mt-6">
           <form onSubmit={handleSubmit(onSubmit)}>
             <h1 className="text-4xl font-semibold">Furnish Your Space</h1>
-            <p className="mt-2 text-xl italic text-[#9f9f9f]">Join Us Today</p>
+            <p className="text-cadetGray mt-2 text-xl italic">Join Us Today</p>
 
             <label
               htmlFor="name"
-              className="mb-2 mt-10 block w-full text-[#9f9f9f]"
+              className="text-cadetGray mb-2 mt-10 block w-full"
             >
               {errors.name ? (
                 <span className="text-red-500">Name is required*</span>
@@ -101,7 +101,7 @@ const Signup = () => {
             />
             <label
               htmlFor="email"
-              className="mb-2 mt-6 block w-full text-[#9f9f9f]"
+              className="text-cadetGray mb-2 mt-6 block w-full"
             >
               {errors.email ? (
                 <span className="text-red-500">Email is required*</span>
@@ -117,7 +117,7 @@ const Signup = () => {
             />
             <label
               htmlFor="password"
-              className="mb-2 mt-6 block w-full text-[#9f9f9f]"
+              className="text-cadetGray mb-2 mt-6 block w-full"
             >
               {errors.password ? (
                 <span className="text-sm text-red-500">
@@ -138,9 +138,9 @@ const Signup = () => {
               })}
             />
 
-            <p className="mb-8 mt-6 text-right text-sm text-[#9f9f9f]">
+            <p className="text-cadetGray mb-8 mt-6 text-right text-sm">
               Already have account?{" "}
-              <Link to="/login" className="text-medium text-[#b88e2f]">
+              <Link to="/login" className="text-medium text-primary">
                 Login
               </Link>
             </p>
@@ -148,7 +148,7 @@ const Signup = () => {
             <button
               disabled={loading}
               type="Submit"
-              className={`block w-full rounded-[10px] py-2 text-xl text-white ${loading ? "bg-[#b88f2fc4]" : "bg-[#b88e2f] transition-all hover:bg-[#a07b26]"}`}
+              className={`block w-full rounded-[10px] py-2 text-xl text-white ${loading ? "bg-[#b88f2fc4]" : "bg-primary transition-all hover:bg-[#a07b26]"}`}
             >
               Sign up
             </button>

@@ -40,7 +40,7 @@ const MobileDashNav = ({ sideBarRef, setShowNavbar }) => {
               <span>
                 <LuLayoutDashboard
                   size={21}
-                  className="transition-all duration-200 group-hover:text-[#b88e2f]"
+                  className="transition-all duration-200 group-hover:text-primary"
                 />
               </span>
               Dashboard
@@ -55,7 +55,7 @@ const MobileDashNav = ({ sideBarRef, setShowNavbar }) => {
               <span>
                 <BsCart3
                   size={21}
-                  className="w-6 transition-all duration-200 group-hover:text-[#b88e2f]"
+                  className="w-6 transition-all duration-200 group-hover:text-primary"
                 />
               </span>
               Orders
@@ -70,7 +70,7 @@ const MobileDashNav = ({ sideBarRef, setShowNavbar }) => {
               <span>
                 <BsBox2
                   size={18}
-                  className="w-6 transition-all duration-200 group-hover:text-[#b88e2f]"
+                  className="w-6 transition-all duration-200 group-hover:text-primary"
                 />
               </span>
               Products

@@ -19,7 +19,7 @@ const CardList = ({ product }) => {
         </Link>
         {is_new || price.discount_percent ? (
           <p
-            className={`absolute right-4 top-4 flex size-8 items-center justify-center rounded-full text-xs font-medium text-white md:right-3 md:top-3 md:size-9 ${is_new ? "bg-[#2EC1AC]" : "bg-[#E97171]"}`}
+            className={`absolute right-4 top-4 flex size-8 items-center justify-center rounded-full text-xs font-medium text-white md:right-3 md:top-3 md:size-9 ${is_new ? "bg-keppel" : "bg-lightCoral"}`}
           >
             <span>{is_new ? "New" : `-${price.discount_percent}%`}</span>
           </p>
@@ -37,14 +37,14 @@ const CardList = ({ product }) => {
           </Link>
           {/* Original price of a discounted product  */}
           {price.discounted && (
-            <p className="text-[#B0B0B0] line-through">
+            <p className="text-grayStone line-through">
               ${formatPrice(price.original)}
             </p>
           )}
         </div>
 
         <div className="mt-3 flex items-center justify-between gap-2 md:mt-4">
-          <p className="text-[#898989] md:font-medium">{sub_title}</p>
+          <p className="text-steelGray md:font-medium">{sub_title}</p>
           {/* discounted price */}
           <div
             className={`${price.discounted && "flex items-center justify-between"} mt-auto`}

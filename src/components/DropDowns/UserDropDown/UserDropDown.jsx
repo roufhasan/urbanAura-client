@@ -60,7 +60,7 @@ const UserDropDown = ({ setCart, setFavouriteItems }) => {
                 className="mb-4 flex items-center gap-2 text-sm"
               >
                 <BsHeart size={18} className="w-6" />
-                <span className="border-b border-transparent transition-all hover:border-[#b88e2f] hover:text-[#b88e2f]">
+                <span className="border-b border-transparent transition-all hover:border-primary hover:text-primary">
                   Favourite
                 </span>
               </Link>
@@ -70,7 +70,7 @@ const UserDropDown = ({ setCart, setFavouriteItems }) => {
                 className="mb-4 flex items-center gap-2 text-sm"
               >
                 <BsCart3 size={20} className="w-6" />
-                <span className="border-b border-transparent transition-all hover:border-[#b88e2f] hover:text-[#b88e2f]">
+                <span className="border-b border-transparent transition-all hover:border-primary hover:text-primary">
                   Cart
                 </span>
               </Link>
@@ -82,7 +82,7 @@ const UserDropDown = ({ setCart, setFavouriteItems }) => {
             className="mb-4 flex items-center gap-2 text-sm"
           >
             <BsBox2 size={18} className="w-6" />
-            <span className="border-b border-transparent transition-all hover:border-[#b88e2f] hover:text-[#b88e2f]">
+            <span className="border-b border-transparent transition-all hover:border-primary hover:text-primary">
               My Orders
             </span>
           </Link>
@@ -92,7 +92,7 @@ const UserDropDown = ({ setCart, setFavouriteItems }) => {
             className="mb-4 flex items-center gap-2 text-sm"
           >
             <BsPersonGear size={24} />
-            <span className="border-b border-transparent transition-all hover:border-[#b88e2f] hover:text-[#b88e2f]">
+            <span className="border-b border-transparent transition-all hover:border-primary hover:text-primary">
               Manage My Account
             </span>
           </Link>
@@ -101,7 +101,7 @@ const UserDropDown = ({ setCart, setFavouriteItems }) => {
             className="flex items-center gap-2 text-sm"
           >
             <BsBoxArrowInLeft size={24} />
-            <span className="border-b border-transparent transition-all hover:border-[#b88e2f] hover:text-[#b88e2f]">
+            <span className="border-b border-transparent transition-all hover:border-primary hover:text-primary">
               Logout
             </span>
           </button>

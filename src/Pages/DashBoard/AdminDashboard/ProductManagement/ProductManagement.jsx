@@ -73,7 +73,7 @@ const ProductManagement = () => {
         </h3>
         <Link
           to="/dashboard/add-product"
-          className="flex items-center gap-0.5 rounded-md border border-[#b88e2f] bg-[#b88e2f] px-1.5 py-0.5 text-xs font-medium text-white transition-all hover:bg-[#967426]"
+          className="flex items-center gap-0.5 rounded-md border border-primary bg-primary px-1.5 py-0.5 text-xs font-medium text-white transition-all hover:bg-[#967426]"
         >
           <BsPlus size={22} />
           Add New Item

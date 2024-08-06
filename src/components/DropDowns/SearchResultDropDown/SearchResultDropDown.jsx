@@ -12,7 +12,7 @@ const SearchResultDropDown = ({ products, clearSearch }) => {
               <Link
                 to={`/products/${item._id}`}
                 onClick={clearSearch}
-                className="group flex items-center gap-2 transition-all hover:text-[#b88e2f]"
+                className="group flex items-center gap-2 transition-all hover:text-primary"
               >
                 <img
                   className="size-14 rounded"
@@ -22,7 +22,7 @@ const SearchResultDropDown = ({ products, clearSearch }) => {
                 />
                 <div>
                   <p className="text-sm font-medium">{item.title}</p>
-                  <small className="text-gray-400 group-hover:text-[#b88e2f]">
+                  <small className="text-gray-400 group-hover:text-primary">
                     Starts from $
                     {item.price.discounted
                       ? formatPrice(item.price.discounted)

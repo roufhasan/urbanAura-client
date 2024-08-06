@@ -76,7 +76,7 @@ const ProductUpdateModal = ({
               <BsX
                 onClick={() => setModalOpen(false)}
                 size={26}
-                className="cursor-pointer transition-all hover:text-[#b88e2f]"
+                className="cursor-pointer transition-all hover:text-primary"
               />
             </DialogTitle>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -85,7 +85,7 @@ const ProductUpdateModal = ({
                 <div className="w-full">
                   <label
                     htmlFor="title"
-                    className="mb-2 mt-10 block w-full text-[#9f9f9f]"
+                    className="text-cadetGray mb-2 mt-10 block w-full"
                   >
                     Title
                   </label>
@@ -100,7 +100,7 @@ const ProductUpdateModal = ({
                 <div className="w-full">
                   <label
                     htmlFor="sub_title"
-                    className="mb-2 mt-10 block w-full text-[#9f9f9f]"
+                    className="text-cadetGray mb-2 mt-10 block w-full"
                   >
                     Subtitle
                   </label>
@@ -118,7 +118,7 @@ const ProductUpdateModal = ({
                 <div className="w-full">
                   <label
                     htmlFor="price"
-                    className="mb-2 mt-10 block w-full text-[#9f9f9f]"
+                    className="text-cadetGray mb-2 mt-10 block w-full"
                   >
                     Price <span className="text-xs">($USD)</span>
                   </label>
@@ -133,7 +133,7 @@ const ProductUpdateModal = ({
                 <div className="w-full">
                   <label
                     htmlFor="discount"
-                    className="mb-2 mt-10 block w-full text-[#9f9f9f]"
+                    className="text-cadetGray mb-2 mt-10 block w-full"
                   >
                     Discount %
                   </label>
@@ -155,12 +155,12 @@ const ProductUpdateModal = ({
                 <motion.button
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setModalOpen(false)}
-                  className="rounded border border-[#b88e2f] px-6 py-1 hover:bg-[#b88e2f] hover:text-white"
+                  className="rounded border border-primary px-6 py-1 hover:bg-primary hover:text-white"
                 >
                   Cancel
                 </motion.button>
                 <motion.button
-                  className="rounded bg-[#b88e2f] px-6 py-1 text-white hover:bg-[#a07c28]"
+                  className="rounded bg-primary px-6 py-1 text-white hover:bg-[#a07c28]"
                   whileTap={{ scale: 0.9 }}
                   type="submit"
                 >
