@@ -2,7 +2,7 @@
 
 Welcome to the [UrbanAura](https://urbanaurafurniture.web.app/) E-Commerce Frontend repository! This is the Frontend of the UrbanAura e-commerce platform, built using the MERN Stack (MongoDB, ExpressJS, React, NodeJS). Check out the backend repository [here](https://github.com/roufhasan/urbanAura-server).
 
-![UrbanAura Thumbnail](./public/urbanAura%20thumbnail.png)
+![UrbanAura Thumbnail](./public/Mockup-1.jpg)
 
 ## Table of Contents
 
