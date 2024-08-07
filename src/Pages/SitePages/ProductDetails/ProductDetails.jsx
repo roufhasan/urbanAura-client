@@ -16,7 +16,7 @@ const ProductDetails = () => {
     const fetchData = async () => {
       try {
         const reviewsResponse = await axios.get(
-          "https://urbanaura-server.up.railway.app/reviews",
+          "http://localhost:5000/reviews",
           {
             params: { product_id: _id },
           },
@@ -37,7 +37,7 @@ const ProductDetails = () => {
       <BreadCrumbs title={title} />
       <div className="px-[4%] md:px-[7%]">
         <ProductOverview product={product} reviews={reviews} />
-        <div className="border-paleGray border-y pb-16">
+        <div className="border-y border-paleGray pb-16">
           <ProductTabs
             gallery={gallery}
             productId={_id}

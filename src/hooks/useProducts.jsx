@@ -15,8 +15,8 @@ const useProducts = (initialUrl) => {
   const endIndex = startIndex + itemsPerPage;
 
   const url = initialUrl
-    ? `https://urbanaura-server.up.railway.app/products${initialUrl}`
-    : `https://urbanaura-server.up.railway.app/products`;
+    ? `http://localhost:5000/products${initialUrl}`
+    : `http://localhost:5000/products`;
 
   /* get products */
   const getProducts = (url) => {
@@ -46,13 +46,9 @@ const useProducts = (initialUrl) => {
         } else if (sortType === "priceDesc") {
           return priceB - priceA;
         } else if (sortType === "desc") {
-          getProducts(
-            "https://urbanaura-server.up.railway.app/products?sortBy=desc",
-          );
+          getProducts("http://localhost:5000/products?sortBy=desc");
         } else if (sortType === "asc") {
-          getProducts(
-            "https://urbanaura-server.up.railway.app/products?sortBy=asc",
-          );
+          getProducts("http://localhost:5000/products?sortBy=asc");
         } else {
           return 0;
         }

@@ -10,7 +10,7 @@ const Products = () => {
 
   const getProducts = () => {
     axios
-      .get("https://urbanaura-server.up.railway.app/products?sortBy=desc")
+      .get("http://localhost:5000/products?sortBy=desc")
       .then((res) => {
         setLoading(false);
         setProducts(res.data);
@@ -26,7 +26,7 @@ const Products = () => {
   }, []);
 
   return (
-    <section className="text-charcoal mb-16 mt-14 px-[4%] md:px-[7%]">
+    <section className="mb-16 mt-14 px-[4%] text-charcoal md:px-[7%]">
       {/* Section Title */}
       <h1 className="mb-8 text-center text-3xl font-bold md:text-[40px]">
         Our Products
