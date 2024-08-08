@@ -130,7 +130,7 @@ git clone https://github.com/roufhasan/urbanAura-client.git
 2. **Install dependencies**
 
 ```sh
-cd urbanAura--client
+cd urbanAura-client
 npm install
 ```
 
